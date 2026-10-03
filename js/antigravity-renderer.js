@@ -626,132 +626,129 @@ class AntigravityRenderer {
             }).join('')}
           </div>
 
-          <!-- SECCIÓN VERSUS: El verdadero costo de tu empaque -->
-          <div class="border-t border-gray-800 pt-16 mt-8">
-            <div class="text-center max-w-3xl mx-auto mb-12">
-              <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-900 border border-slate-700 text-gray-300 text-xs font-mono font-semibold uppercase mb-3">
-                <i data-lucide="scale" class="w-3.5 h-3.5 text-[#FF6B00]"></i>
-                Comparativa de Costo Total
-              </div>
-              <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
-                ${versus.title}
-              </h3>
-              <p class="text-gray-400 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
-                ${versus.subtitle}
-              </p>
-            </div>
+          <!-- SECCIÓN VERSUS: El verdadero costo de tu empaque (Rediseñada para Alta Conversión) -->
+          <div class="border-t border-gray-800 pt-16 mt-8 relative">
+            
+            <!-- Efecto de luz ambiental de fondo -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#FF6B00]/10 blur-[120px] pointer-events-none"></div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div class="max-w-6xl mx-auto relative z-10">
               
-              <!-- Imprenta Tradicional -->
-              <div class="bg-gray-900/70 p-8 rounded-2xl border border-red-900/40 backdrop-blur-sm shadow-xl flex flex-col justify-between">
-                <div>
-                  <div class="flex items-center justify-between mb-6 pb-3 border-b border-gray-800">
-                    <span class="text-red-400 font-bold text-lg flex items-center gap-2 font-sans">
-                      ${versus.traditional.title}
-                    </span>
-                    <span class="text-xs font-mono bg-red-950/60 text-red-300 border border-red-800/60 px-2.5 py-0.5 rounded-full">Costos Ocultos</span>
-                  </div>
-                  
-                  <div class="space-y-4 text-sm text-gray-300">
-                    <div class="flex justify-between border-b border-gray-800/80 pb-2.5">
-                      <span>Costo bolsas (${versus.traditional.cost_bags_detail})</span>
-                      <span class="font-mono text-white font-semibold">${versus.traditional.cost_bags}</span>
-                    </div>
-                    <div class="flex justify-between border-b border-gray-800/80 pb-2.5">
-                      <div>
-                        <span>${versus.traditional.plates_detail}</span>
-                        <span class="block text-[11px] text-gray-500">Obligatorio por cilindro de color</span>
-                      </div>
-                      <span class="font-mono text-red-400 font-bold">${versus.traditional.cost_plates}</span>
-                    </div>
-                    <div class="flex justify-between border-b border-gray-800/80 pb-2.5">
-                      <span>Flexibilidad de diseño</span>
-                      <span class="text-red-300/80">${versus.traditional.flexibility}</span>
-                    </div>
-                    <div class="flex justify-between border-b border-gray-800/80 pb-2.5">
-                      <span>Tiempo de entrega inicial</span>
-                      <span class="text-gray-400">${versus.traditional.lead_time}</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="mt-6 pt-4 border-t border-gray-800">
-                  <div class="flex justify-between items-baseline text-base font-bold text-white">
-                    <span>Inversión Real Inicial:</span>
-                    <span class="text-red-400 font-mono text-xl sm:text-2xl">${versus.traditional.total_investment}</span>
-                  </div>
-                  <div class="text-right text-xs text-gray-400 mt-1">
-                    Costo real por unidad: <span class="text-red-400 font-semibold text-sm">${versus.traditional.real_unit_cost}</span>
-                  </div>
-                </div>
+              <!-- Encabezado con mayor peso -->
+              <div class="text-center mb-16">
+                <span class="inline-block py-1 px-4 rounded-full bg-[#FF6B00]/10 border border-[#FF6B00]/30 text-[#FF6B00] text-xs font-bold tracking-widest uppercase mb-4 shadow-sm">
+                  📊 Transparencia Financiera B2B
+                </span>
+                <h3 class="text-4xl md:text-5xl font-black mb-4 tracking-tight text-white">El Verdadero Costo de tu Empaque</h3>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">¿Por qué las imprentas tradicionales te hacen pagar de más al inicio? Analicemos los números fríos para un tiraje estándar de 10.000 unidades.</p>
               </div>
 
-              <!-- Wellpack -->
-              <div class="bg-[#1E293B] p-8 rounded-2xl border-2 border-orange-500/40 relative overflow-hidden shadow-2xl shadow-orange-950/20 flex flex-col justify-between">
-                <div class="absolute -right-12 -top-12 w-40 h-40 bg-[#FF6B00]/15 rounded-full blur-3xl pointer-events-none"></div>
+              <!-- Contenedor de Tarjetas (Asimétrico y Dominante: 5 cols vs 7 cols) -->
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 
-                <div>
-                  <div class="flex items-center justify-between mb-6 pb-3 border-b border-gray-700/60 relative z-10">
-                    <span class="text-[#FF6B00] font-bold text-lg flex items-center gap-2">
-                      ${versus.wellpack.title}
-                    </span>
-                    <span class="text-xs bg-[#FF6B00]/20 text-[#FF6B00] border border-[#FF6B00]/40 px-3 py-0.5 rounded-full font-bold uppercase tracking-wider">
-                      ${versus.wellpack.badge}
-                    </span>
+                <!-- TARJETA 1: Imprenta Tradicional (Se ve costosa y restrictiva) -->
+                <div class="lg:col-span-5 bg-[#131d35]/60 backdrop-blur-md p-8 rounded-2xl border border-red-500/20 relative shadow-xl">
+                  <div class="flex items-center justify-between mb-8 pb-4 border-b border-gray-800">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 rounded-xl bg-red-500/10 flex items-center justify-center text-red-500 font-bold text-xl">✕</div>
+                      <h4 class="text-xl font-bold text-gray-300">Imprenta Tradicional</h4>
+                    </div>
+                    <span class="text-xs uppercase tracking-wider px-2.5 py-1 rounded bg-red-500/10 text-red-400 font-semibold">Modelo Antiguo</span>
                   </div>
 
-                  <div class="space-y-4 text-sm text-gray-300 relative z-10">
-                    <div class="flex justify-between border-b border-gray-700/60 pb-2.5">
-                      <span>Costo bolsas (${versus.wellpack.cost_bags_detail})</span>
-                      <span class="font-mono text-white font-semibold">${versus.wellpack.cost_bags}</span>
+                  <div class="space-y-6 text-sm text-gray-400 mb-8">
+                    <div class="flex justify-between items-center">
+                      <span>Costo bolsas (10.000 un. x $95)</span>
+                      <span class="text-white font-mono font-medium">$950.000</span>
                     </div>
-                    <div class="flex justify-between border-b border-gray-700/60 pb-2.5">
-                      <div>
-                        <span>${versus.wellpack.plates_detail}</span>
-                        <span class="block text-[11px] text-emerald-400/80">Tecnología Web-to-Print Wellpack</span>
-                      </div>
-                      <span class="font-mono text-emerald-400 font-bold">${versus.wellpack.cost_plates}</span>
+                    <div class="flex justify-between items-center text-red-400">
+                      <span>Matrices de polímero (Cilindros) <br><small class="text-gray-500">Obligatorio por cada color</small></span>
+                      <span class="font-mono font-bold">+$800.000</span>
                     </div>
-                    <div class="flex justify-between border-b border-gray-700/60 pb-2.5">
+                    <div class="flex justify-between items-center">
                       <span>Flexibilidad de diseño</span>
-                      <span class="text-emerald-400 font-medium">${versus.wellpack.flexibility}</span>
+                      <span class="text-red-400 font-medium">Nula (Pagas si cambias)</span>
                     </div>
-                    <div class="flex justify-between border-b border-gray-700/60 pb-2.5">
-                      <span>Cotización y Asesoría</span>
-                      <span class="text-white font-medium">${versus.wellpack.lead_time}</span>
+                    <div class="flex justify-between items-center">
+                      <span>Tiempo de entrega inicial</span>
+                      <span class="text-gray-300">45 a 60 días</span>
                     </div>
+                  </div>
+
+                  <!-- Total Competencia -->
+                  <div class="pt-6 border-t border-red-500/20 bg-red-950/20 -mx-8 -mb-8 p-8 rounded-b-2xl">
+                    <div class="text-xs uppercase tracking-widest text-red-400 font-bold mb-1">Inversión Real Inicial:</div>
+                    <div class="text-3xl font-black text-red-400 font-mono">$1.750.000 <span class="text-xs font-normal text-gray-400 font-sans">CLP</span></div>
+                    <div class="text-xs text-gray-500 mt-1">Costo real por unidad: <strong class="text-red-300">$175 CLP</strong></div>
                   </div>
                 </div>
 
-                <div class="mt-6 pt-4 border-t border-gray-700/60 relative z-10">
-                  <div class="flex justify-between items-baseline text-base font-bold text-white">
-                    <span>Inversión Real Inicial:</span>
-                    <span class="text-emerald-400 font-mono text-xl sm:text-2xl">${versus.wellpack.total_investment}</span>
+                <!-- TARJETA 2: Tecnología Wellpack (Gigante, Brillante, Protagonista: 7 cols) -->
+                <div class="lg:col-span-7 bg-gradient-to-b from-[#1E293B] to-[#0f172a] p-8 md:p-10 rounded-2xl border-2 border-[#FF6B00] relative shadow-[0_0_50px_rgba(255,107,0,0.15)] transform lg:-translate-y-2">
+                  
+                  <!-- Badge flotante -->
+                  <div class="absolute -top-4 right-8 bg-[#FF6B00] text-white text-xs font-extrabold px-4 py-1.5 rounded-full shadow-lg tracking-wider uppercase">
+                    ⭐ La Opción Inteligente
                   </div>
-                  <div class="text-right text-xs text-gray-400 mt-1">
-                    Costo real por unidad: <span class="text-emerald-400 font-semibold text-sm">${versus.wellpack.real_unit_cost}</span>
+
+                  <div class="flex items-center justify-between mb-8 pb-4 border-b border-gray-700">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 rounded-xl bg-[#FF6B00]/20 flex items-center justify-center text-[#FF6B00] font-bold text-xl">✓</div>
+                      <h4 class="text-2xl font-black text-white">Tecnología Wellpack</h4>
+                    </div>
                   </div>
+
+                  <div class="space-y-6 text-sm text-gray-300 mb-8">
+                    <div class="flex justify-between items-center">
+                      <span>Costo bolsas (10.000 un. x $145*)</span>
+                      <span class="text-white font-mono font-medium">$1.450.000</span>
+                    </div>
+                    <div class="flex justify-between items-center text-[#FF6B00] bg-[#FF6B00]/5 p-2.5 rounded-lg border border-[#FF6B00]/20">
+                      <div>
+                        <strong class="text-white block">Matrices de impresión: COSTO CERO</strong>
+                        <small class="text-gray-400">Tecnología Web-to-Print impulsada por IA</small>
+                      </div>
+                      <span class="font-mono font-black text-lg">$0</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <span>Flexibilidad de diseño</span>
+                      <span class="text-emerald-400 font-bold">Total en cada tiraje</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <span>Cotización y Asesoría</span>
+                      <span class="text-white font-semibold">Inmediata con IA y Especialista</span>
+                    </div>
+                  </div>
+
+                  <!-- Total Wellpack (Destacado en verde/ámbar corporativo) -->
+                  <div class="pt-6 border-t border-gray-700 bg-[#FF6B00]/10 -mx-8 md:-mx-10 -mb-8 md:-mb-10 p-8 md:p-10 rounded-b-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div>
+                      <div class="text-xs uppercase tracking-widest text-[#FF6B00] font-extrabold mb-1">Inversión Real Inicial:</div>
+                      <div class="text-4xl font-black text-white font-mono">$1.450.000 <span class="text-xs font-normal text-gray-400 font-sans">CLP</span></div>
+                      <div class="text-xs text-gray-400 mt-1">Costo real por unidad: <strong class="text-[#FF6B00]">$145 CLP netos</strong></div>
+                    </div>
+                    <button 
+                      data-tier-id="tier_scale"
+                      data-tier-volume="10.000"
+                      data-tier-price="$145"
+                      data-tier-title="Plan Escala (10.000 un.)"
+                      class="btn-tier-quote w-full sm:w-auto px-6 py-3.5 bg-[#FF6B00] text-white font-bold rounded-xl hover:bg-[#e66000] transition shadow-lg shadow-[#FF6B00]/40 text-center hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
+                      <span>Elegir este Plan</span>
+                      <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                  </div>
+
                 </div>
+
               </div>
 
-            </div>
+              <!-- Frase de cierre persuasiva -->
+              <div class="mt-16 text-center">
+                <p class="text-gray-400 italic text-base max-w-xl mx-auto">
+                  "Deja de tirar dinero en moldes de polímero que se destruyen cada vez que actualizas tu información nutricional o diseño."
+                </p>
+              </div>
 
-            <!-- Frase de Cierre y CTA -->
-            <div class="text-center mt-12 max-w-2xl mx-auto">
-              <p class="text-gray-300 italic mb-6 text-sm sm:text-base font-light">
-                "${versus.quote}"
-              </p>
-              <button 
-                data-tier-id="tier_scale"
-                data-tier-volume="10.000"
-                data-tier-price="$145"
-                data-tier-title="Tecnología WellPack (Plan Escala)"
-                class="btn-tier-quote inline-flex items-center gap-3 bg-[#FF6B00] hover:bg-[#e05e00] text-white font-extrabold py-4 px-10 rounded-2xl transition-all shadow-xl shadow-orange-950/40 hover:scale-105 active:scale-95 text-base">
-                <i data-lucide="calculator" class="w-5 h-5"></i>
-                <span>${versus.cta_label}</span>
-                <i data-lucide="arrow-right" class="w-5 h-5"></i>
-              </button>
             </div>
 
           </div>
