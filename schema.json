@@ -1,0 +1,216 @@
+{
+  "page_id": "home_wellpack_universal",
+  "theme": "premium_industrial_food",
+  "meta": {
+    "title": "WellPack | Empaques de Alta Barrera Personalizados para tu Industria",
+    "description": "Desde bolsas al vacío hasta formatos Doypack. Importamos y fabricamos el envase exacto con la identidad visual de tu marca para el sector cárnico, pesquero, agrícola y retail."
+  },
+  "colors": {
+    "background": "#121212",
+    "accent": "#F59E0B",
+    "text_main": "#FFFFFF",
+    "text_secondary": "#D1D5DB"
+  },
+  "layout": [
+    {
+      "section": "hero_universal",
+      "config": {
+        "layout": "centered",
+        "title": {
+          "text": "Empaques de Alta Barrera Personalizados para tu Industria",
+          "color": "#FFFFFF"
+        },
+        "subtitle": {
+          "text": "Desde bolsas al vacío hasta formatos Doypack. Importamos y fabricamos el envase exacto con la identidad visual de tu marca para el sector cárnico, pesquero, agrícola y retail.",
+          "color": "#D1D5DB"
+        },
+        "actions": [
+          { "label": "Cotizar Empaque a Medida", "type": "primary", "bg_color": "#F59E0B" }
+        ],
+        "background_image": {
+          "url": "/assets/img/hero-fondo-impresion-hd.jpg",
+          "overlay": "rgba(18, 18, 18, 0.35)"
+        }
+      }
+    },
+    {
+      "section": "service_customization",
+      "config": {
+        "title": "Tu Producto, Tu Formato, Tu Marca",
+        "layout_style": "three_columns_icons",
+        "features": [
+          {
+            "icon": "dimensions",
+            "title": "Formatos a Medida",
+            "description": "No te adaptes al envase. Traemos las dimensiones y micrajes exactos que tu línea de producción y tus porciones necesitan."
+          },
+          {
+            "icon": "printer",
+            "title": "Impresión Flexográfica HD",
+            "description": "Tu logo y diseño a full color (hasta 10 colores). Posiciona tu marca en los refrigeradores y góndolas con calidad premium."
+          },
+          {
+            "icon": "shield",
+            "title": "Materiales Especializados",
+            "description": "Bolsas coextruidas (PA/PE), barrera EVOH, resistencia al punzonamiento y aptas para túneles de congelación (-35°C)."
+          }
+        ]
+      }
+    },
+    {
+      "section": "packaging_types_gallery",
+      "config": {
+        "title": "Soluciones de Empaque para Cada Necesidad",
+        "layout_style": "grid_cards",
+        "items": [
+          {
+            "title": "Bolsas al Vacío de Alta Resistencia",
+            "image": "/assets/img/bolsa-vacio-carne-hueso.jpg",
+            "uses": "Carnes rojas, cecinas, pescados, quesos."
+          },
+          {
+            "title": "Stand-Up Pouch (Doypack) con Zipper",
+            "image": "/assets/img/doypack-frutos-secos.jpg",
+            "uses": "Frutos secos, snacks, café, alimentos en polvo."
+          },
+          {
+            "title": "Bolsas Fondo Cuadrado / Fuelle Lateral",
+            "image": "/assets/img/bolsa-fuelle-cafe.jpg",
+            "uses": "Café en grano, alimentos para mascotas, harinas."
+          },
+          {
+            "title": "Empaque Termoencogible",
+            "image": "/assets/img/termoencogible-pollo.jpg",
+            "uses": "Aves enteras, cortes grandes de exportación."
+          }
+        ]
+      }
+    },
+    {
+      "section": "tiered_pricing_offers",
+      "config": {
+        "title": "Escala tu Producción, Reduce tus Costos",
+        "subtitle": "Valores para formato Vacío 3 Sellos Alta Barrera. Sin cobros ocultos por matrices.",
+        "layout_style": "pricing_cards",
+        "cards": [
+          {
+            "id": "tier_pilot",
+            "title": "Plan Piloto",
+            "subtitle": "Para pruebas y nuevos SKUs",
+            "volume": "5.000",
+            "unit": "unidades",
+            "price_per_unit": "$165",
+            "currency": "CLP",
+            "badge": "",
+            "features": [
+              "5.000 unidades",
+              "Impresión HD Full Color",
+              "Alta Barrera (PA/PE)",
+              "Matrices con copago"
+            ],
+            "button": { "label": "Cotizar Piloto", "action": "open_webhook", "style": "outline" }
+          },
+          {
+            "id": "tier_scale",
+            "title": "Plan Escala",
+            "subtitle": "Crecimiento y rotación continua",
+            "volume": "10.000",
+            "unit": "unidades",
+            "price_per_unit": "$145",
+            "currency": "CLP",
+            "badge": "MÁS VENDIDO",
+            "highlight": true,
+            "features": [
+              "10.000 unidades",
+              "Impresión HD Full Color",
+              "Alta Barrera (PA/PE)",
+              "Matrices COSTO CERO",
+              "Ahorro de $200.000 vs Piloto"
+            ],
+            "button": { "label": "Elegir Escala", "action": "open_webhook", "style": "primary" }
+          },
+          {
+            "id": "tier_wholesale",
+            "title": "Plan Mayorista",
+            "subtitle": "Consolidación de marca",
+            "volume": "20.000",
+            "unit": "unidades",
+            "price_per_unit": "$130",
+            "currency": "CLP",
+            "badge": "",
+            "features": [
+              "20.000 unidades",
+              "Impresión HD Full Color",
+              "Alta Barrera (PA/PE)",
+              "Matrices COSTO CERO",
+              "Prioridad en producción"
+            ],
+            "button": { "label": "Cotizar Mayorista", "action": "open_webhook", "style": "outline" }
+          },
+          {
+            "id": "tier_industrial",
+            "title": "Plan Industrial",
+            "subtitle": "Grandes volúmenes y maquila",
+            "volume": "40.000+",
+            "unit": "unidades",
+            "price_per_unit": "$115",
+            "currency": "CLP",
+            "badge": "",
+            "features": [
+              "Desde 40.000 unidades",
+              "Impresión HD Full Color",
+              "Alta Barrera (PA/PE)",
+              "Matrices COSTO CERO",
+              "Ejecutivo de cuenta dedicado"
+            ],
+            "button": { "label": "Cotizar Industrial", "action": "open_webhook", "style": "outline" }
+          }
+        ],
+        "versus": {
+          "title": "El Verdadero Costo de tu Empaque",
+          "subtitle": "¿Por qué las imprentas tradicionales te hacen pagar de más al inicio? Analicemos los números para un tiraje de 5.000 unidades.",
+          "traditional": {
+            "title": "❌ Imprenta Tradicional",
+            "cost_bags": "$475.000",
+            "cost_bags_detail": "5.000 un. x $95",
+            "cost_plates": "+$800.000",
+            "plates_detail": "Matrices de polímero (Cilindros)",
+            "flexibility": "Nula (Costo si cambias)",
+            "lead_time": "45 a 60 días",
+            "total_investment": "$1.275.000",
+            "real_unit_cost": "$255 CLP"
+          },
+          "wellpack": {
+            "title": "✅ Tecnología Wellpack",
+            "badge": "Recomendado",
+            "cost_bags": "$725.000",
+            "cost_bags_detail": "5.000 un. x $145*",
+            "cost_plates": "$0 (Sin cobro)",
+            "plates_detail": "Matrices de impresión",
+            "flexibility": "Total en cada tiraje",
+            "lead_time": "Inmediata con IA y Especialista",
+            "total_investment": "$725.000",
+            "real_unit_cost": "$145 CLP"
+          },
+          "quote": "Deja de pagar por moldes de polímero que terminan en la basura al actualizar tu información nutricional o diseño.",
+          "cta_label": "Cotizar mi empaque ahora"
+        }
+      }
+    },
+    {
+      "section": "industries_served",
+      "config": {
+        "title": "Protegemos los Productos de Múltiples Sectores",
+        "layout_style": "horizontal_scroll_badges",
+        "tags": [
+          "🥩 Industria Cárnica",
+          "🐟 Sector Pesquero",
+          "🥜 Frutos Secos y Snacks",
+          "🧀 Lácteos y Quesos",
+          "☕ Café y Tostadurías",
+          "🐕 Pet Food"
+        ]
+      }
+    }
+  ]
+}

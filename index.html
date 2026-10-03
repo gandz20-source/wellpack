@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Bolsas al Vacío & Doypack Personalizados | WellPack Biobío</title>
+  <meta name="description" content="Empaques al vacío y bolsas stand-up impresas de alta resistencia para plantas procesadoras de pescados y mariscos en la Región del Biobío.">
+  
+  <!-- Favicon SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230284c7'><path d='M21 16.5c0 .3-.1.5-.3.7l-8 5c-.4.3-1 .3-1.4 0l-8-5c-.2-.2-.3-.4-.3-.7V7.5c0-.3.1-.5.3-.7l8-5c.4-.3 1-.3 1.4 0l8 5c.2.2.3.4.3.7v9z'/></svg>">
+
+  <!-- Tipografía Industrial Moderna -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+            heading: ['Space Grotesk', 'Inter', 'sans-serif']
+          },
+          colors: {
+            ocean: {
+              frost: '#f0f9ff',
+              ice: '#e0f2fe',
+              celesteLight: '#bae6fd',
+              celeste: '#7dd3fc',
+              celesteVivid: '#38bdf8',
+              cyan: '#06b6d4',
+              marine: '#0284c7',
+              marineDark: '#0369a1',
+              deep: '#075985',
+              abyss: '#082f49',
+              night: '#04162e',
+              trench: '#020d1c'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- GSAP y ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <!-- Three.js para visor 3D -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Supabase JS Client v2 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Estilos base y scrollbar -->
+  <style>
+    body {
+      background-color: #121212;
+      color: #FFFFFF;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Space Grotesk', 'Inter', sans-serif;
+    }
+
+    /* Scrollbar personalizada en tonos Dark Industrial & Amber */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #121212;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #d97706;
+      border-radius: 4px;
+      border: 1px solid #f59e0b;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #f59e0b;
+    }
+
+    /* Range slider customizado */
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 24px;
+      width: 24px;
+      border-radius: 50%;
+      background: #38bdf8;
+      cursor: pointer;
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.9);
+      border: 2px solid #ffffff;
+      margin-top: -8px;
+      transition: transform 0.15s ease;
+    }
+    input[type=range]::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 8px;
+      cursor: pointer;
+      background: #075985;
+      border-radius: 4px;
+      border: 1px solid #0284c7;
+    }
+
+    /* Efectos de brillo cristalino y gradiente continuo */
+    .ocean-gradient-canvas {
+      background: linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #f0f9ff 5%,
+        #e0f2fe 15%,
+        #bae6fd 25%,
+        #7dd3fc 35%,
+        #38bdf8 45%,
+        #0284c7 60%,
+        #0369a1 72%,
+        #075985 82%,
+        #0c3156 90%,
+        #04162e 96%,
+        #020d1c 100%
+      );
+    }
+
+    .glass-card-light {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(186, 230, 253, 0.8);
+    }
+
+    .glass-card-marine {
+      background: rgba(12, 49, 86, 0.75);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    /* Animación flotante requerida para hero_premium_b2b */
+    @keyframes floatUpDown {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-16px) rotate(0.8deg);
+      }
+    }
+    .animate-float-up-down {
+      animation: floatUpDown 4s ease-in-out infinite;
+    }
+
+    /* Movimiento fluido cinematográfico horizontal (izquierda <-> derecha) */
+    @keyframes heroPanLeftRight {
+      0% {
+        transform: translate3d(-4.5%, 0, 0) scale(1.05);
+      }
+      50% {
+        transform: translate3d(4.5%, -1.5%, 0) scale(1.08);
+      }
+      100% {
+        transform: translate3d(-4.5%, 0, 0) scale(1.05);
+      }
+    }
+
+    .animate-hero-pan {
+      animation: heroPanLeftRight 20s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+      will-change: transform;
+    }
+
+    /* Destello sutil de brillo sobre envases plásticos y foil */
+    @keyframes lightSweep {
+      0% {
+        transform: translateX(-160%) skewX(-20deg);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.15;
+      }
+      50% {
+        opacity: 0.25;
+      }
+      80% {
+        opacity: 0.10;
+      }
+      100% {
+        transform: translateX(260%) skewX(-20deg);
+        opacity: 0;
+      }
+    }
+
+    .animate-light-sweep {
+      animation: lightSweep 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#121212] text-white selection:bg-amber-400 selection:text-neutral-950 font-sans">
+
+  <!-- Contenedor Principal donde AntigravityRenderer inyectará la UI -->
+  <div id="app" class="relative bg-[#121212] text-white min-h-screen">
+    <!-- Pantalla inicial de carga -->
+    <div class="min-h-screen flex flex-col items-center justify-center p-4">
+      <div class="w-12 h-12 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+      <p class="font-mono text-xs text-amber-400 tracking-widest uppercase animate-pulse font-bold">
+        Cargando WellPack...
+      </p>
+    </div>
+  </div>
+
+  <!-- Carga del Motor de Renderizado Dinámico con Cache-Busting -->
+  <script type="module" src="js/antigravity-renderer.js?v=tiered_versus_v13"></script>
+
+</body>
+</html>
