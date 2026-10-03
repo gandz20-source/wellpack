@@ -84,7 +84,7 @@ export class AlibabaVariationModal {
     this.selectedFinish = COLORS_FINISHES[1]; // Impresión HD
     this.quantities = {
       '70um': 0,
-      '90um': 5000,
+      '90um': 10000,
       '110um': 0,
       '120um': 0,
       '150um': 0
@@ -459,12 +459,12 @@ export class AlibabaVariationModal {
   }
 
   getTierInfo(totalPieces) {
-    if (totalPieces >= 50000) {
-      return { tier: 3, discount: 0.20, label: '≥ 50.000 un. (-20% Industrial)' };
-    } else if (totalPieces >= 5000) {
-      return { tier: 2, discount: 0.10, label: '5.000 - 49.999 un. (-10% Mayorista)' };
+    if (totalPieces >= 40000) {
+      return { tier: 3, discount: 0.20, label: '≥ 40.000 un. (-20% Industrial)' };
+    } else if (totalPieces >= 20000) {
+      return { tier: 2, discount: 0.10, label: '20.000 - 39.999 un. (-10% Mayorista)' };
     } else {
-      return { tier: 1, discount: 0.00, label: '500 - 4.999 un. (Precio Estándar)' };
+      return { tier: 1, discount: 0.00, label: '10.000 - 19.999 un. (Plan Escala Base)' };
     }
   }
 

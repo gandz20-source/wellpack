@@ -163,21 +163,21 @@
       animation: floatUpDown 4s ease-in-out infinite;
     }
 
-    /* Movimiento fluido cinematográfico horizontal (izquierda <-> derecha) */
+    /* Movimiento fluido cinematográfico horizontal más rápido (izquierda <-> derecha) */
     @keyframes heroPanLeftRight {
       0% {
-        transform: translate3d(-4.5%, 0, 0) scale(1.05);
+        transform: translate3d(-5.5%, 0, 0) scale(1.06);
       }
       50% {
-        transform: translate3d(4.5%, -1.5%, 0) scale(1.08);
+        transform: translate3d(5.5%, -1.8%, 0) scale(1.09);
       }
       100% {
-        transform: translate3d(-4.5%, 0, 0) scale(1.05);
+        transform: translate3d(-5.5%, 0, 0) scale(1.06);
       }
     }
 
     .animate-hero-pan {
-      animation: heroPanLeftRight 20s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+      animation: heroPanLeftRight 9s cubic-bezier(0.42, 0, 0.58, 1) infinite;
       will-change: transform;
     }
 
@@ -188,13 +188,13 @@
         opacity: 0;
       }
       20% {
-        opacity: 0.15;
+        opacity: 0.18;
       }
       50% {
-        opacity: 0.25;
+        opacity: 0.28;
       }
       80% {
-        opacity: 0.10;
+        opacity: 0.12;
       }
       100% {
         transform: translateX(260%) skewX(-20deg);
@@ -203,7 +203,7 @@
     }
 
     .animate-light-sweep {
-      animation: lightSweep 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      animation: lightSweep 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     }
   </style>
 </head>
@@ -221,7 +221,7 @@
   </div>
 
   <!-- Carga del Motor de Renderizado Dinámico con Cache-Busting -->
-  <script type="module" src="js/antigravity-renderer.js?v=tiered_versus_v13"></script>
+  <script type="module" src="js/antigravity-renderer.js?v=formats_10k_v14"></script>
 
 </body>
 </html>

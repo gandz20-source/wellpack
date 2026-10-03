@@ -66,12 +66,12 @@
           {
             "title": "Bolsas al Vacío de Alta Resistencia",
             "image": "/assets/img/bolsa-vacio-carne-hueso.jpg",
-            "uses": "Carnes rojas, cecinas, pescados, quesos."
+            "uses": "Carnes rojas, cecinas, pescados, quesos maduros."
           },
           {
             "title": "Stand-Up Pouch (Doypack) con Zipper",
             "image": "/assets/img/doypack-frutos-secos.jpg",
-            "uses": "Frutos secos, snacks, café, alimentos en polvo."
+            "uses": "Frutos secos, snacks, café, polvos y semillas."
           },
           {
             "title": "Bolsas Fondo Cuadrado / Fuelle Lateral",
@@ -79,9 +79,29 @@
             "uses": "Café en grano, alimentos para mascotas, harinas."
           },
           {
-            "title": "Empaque Termoencogible",
+            "title": "Empaque Termoencogible Cryovac",
             "image": "/assets/img/termoencogible-pollo.jpg",
-            "uses": "Aves enteras, cortes grandes de exportación."
+            "uses": "Aves enteras, cortes grandes congelados de exportación."
+          },
+          {
+            "title": "Bolsas Congelados Retail IQF / Antivaho",
+            "image": "/assets/images/bolsa_congelados_freezer_retail.jpg",
+            "uses": "Berries, verduras, papas prefritas, mariscos (-35°C)."
+          },
+          {
+            "title": "Doypack con Asa Troquelada (Heavy Duty)",
+            "image": "/assets/images/bolsa_doypack_handle.png",
+            "uses": "Formatos familiares 1kg a 5kg, pet food, mariscos."
+          },
+          {
+            "title": "Bolsas Metalizadas con Barrera Foil UV",
+            "image": "/assets/img/salmon-vacio-premium.jpg",
+            "uses": "Filetes de salmón premium, exportación pesquera y charcutería."
+          },
+          {
+            "title": "Bolsas Tubulares Sellado 3 Sellos",
+            "image": "/assets/img/embutidos-vacio.jpg",
+            "uses": "Embutidos, salchichas, charcutería y quesos laminados."
           }
         ]
       }
@@ -93,23 +113,6 @@
         "subtitle": "Valores para formato Vacío 3 Sellos Alta Barrera. Sin cobros ocultos por matrices.",
         "layout_style": "pricing_cards",
         "cards": [
-          {
-            "id": "tier_pilot",
-            "title": "Plan Piloto",
-            "subtitle": "Para pruebas y nuevos SKUs",
-            "volume": "5.000",
-            "unit": "unidades",
-            "price_per_unit": "$165",
-            "currency": "CLP",
-            "badge": "",
-            "features": [
-              "5.000 unidades",
-              "Impresión HD Full Color",
-              "Alta Barrera (PA/PE)",
-              "Matrices con copago"
-            ],
-            "button": { "label": "Cotizar Piloto", "action": "open_webhook", "style": "outline" }
-          },
           {
             "id": "tier_scale",
             "title": "Plan Escala",
@@ -123,9 +126,9 @@
             "features": [
               "10.000 unidades",
               "Impresión HD Full Color",
-              "Alta Barrera (PA/PE)",
+              "Alta Barrera (PA/PE + EVOH)",
               "Matrices COSTO CERO",
-              "Ahorro de $200.000 vs Piloto"
+              "Asesoría técnica y diseño 3D"
             ],
             "button": { "label": "Elegir Escala", "action": "open_webhook", "style": "primary" }
           },
@@ -137,13 +140,13 @@
             "unit": "unidades",
             "price_per_unit": "$130",
             "currency": "CLP",
-            "badge": "",
+            "badge": "MÁXIMO AHORRO",
             "features": [
               "20.000 unidades",
               "Impresión HD Full Color",
-              "Alta Barrera (PA/PE)",
+              "Alta Barrera (PA/PE + EVOH)",
               "Matrices COSTO CERO",
-              "Prioridad en producción"
+              "Prioridad en línea de producción"
             ],
             "button": { "label": "Cotizar Mayorista", "action": "open_webhook", "style": "outline" }
           },
@@ -155,11 +158,11 @@
             "unit": "unidades",
             "price_per_unit": "$115",
             "currency": "CLP",
-            "badge": "",
+            "badge": "MEJOR TARIFA B2B",
             "features": [
               "Desde 40.000 unidades",
               "Impresión HD Full Color",
-              "Alta Barrera (PA/PE)",
+              "Alta Barrera (PA/PE + EVOH)",
               "Matrices COSTO CERO",
               "Ejecutivo de cuenta dedicado"
             ],
@@ -168,28 +171,28 @@
         ],
         "versus": {
           "title": "El Verdadero Costo de tu Empaque",
-          "subtitle": "¿Por qué las imprentas tradicionales te hacen pagar de más al inicio? Analicemos los números para un tiraje de 5.000 unidades.",
+          "subtitle": "¿Por qué las imprentas tradicionales te hacen pagar de más al inicio? Analicemos los números para un tiraje estándar de 10.000 unidades.",
           "traditional": {
             "title": "❌ Imprenta Tradicional",
-            "cost_bags": "$475.000",
-            "cost_bags_detail": "5.000 un. x $95",
+            "cost_bags": "$950.000",
+            "cost_bags_detail": "10.000 un. x $95",
             "cost_plates": "+$800.000",
             "plates_detail": "Matrices de polímero (Cilindros)",
             "flexibility": "Nula (Costo si cambias)",
             "lead_time": "45 a 60 días",
-            "total_investment": "$1.275.000",
-            "real_unit_cost": "$255 CLP"
+            "total_investment": "$1.750.000",
+            "real_unit_cost": "$175 CLP"
           },
           "wellpack": {
             "title": "✅ Tecnología Wellpack",
             "badge": "Recomendado",
-            "cost_bags": "$725.000",
-            "cost_bags_detail": "5.000 un. x $145*",
+            "cost_bags": "$1.450.000",
+            "cost_bags_detail": "10.000 un. x $145*",
             "cost_plates": "$0 (Sin cobro)",
-            "plates_detail": "Matrices de impresión",
+            "plates_detail": "Matrices de impresión COSTO CERO",
             "flexibility": "Total en cada tiraje",
             "lead_time": "Inmediata con IA y Especialista",
-            "total_investment": "$725.000",
+            "total_investment": "$1.450.000",
             "real_unit_cost": "$145 CLP"
           },
           "quote": "Deja de pagar por moldes de polímero que terminan en la basura al actualizar tu información nutricional o diseño.",

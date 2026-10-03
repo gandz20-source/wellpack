@@ -15,7 +15,7 @@ class AntigravityRenderer {
     this.products = [];
     this.filteredProducts = [];
     this.selectedProduct = null;
-    this.currentQuantity = 5000;
+    this.currentQuantity = 10000;
     this.uploadedLogo = null;
     this.threeViewerInstance = null;
     this.currentCategory = 'all';
@@ -27,7 +27,7 @@ class AntigravityRenderer {
       selectedFinish: COLORS_FINISHES[1], // Impresión HD
       quantities: {
         '70um': 0,
-        '90um': 5000,
+        '90um': 10000,
         '110um': 0,
         '120um': 0,
         '150um': 0
@@ -494,28 +494,28 @@ class AntigravityRenderer {
     const cards = config.cards || [];
     const versus = config.versus || {
       title: "El Verdadero Costo de tu Empaque",
-      subtitle: "¿Por qué las imprentas tradicionales te hacen pagar de más al inicio? Analicemos los números para un tiraje de 5.000 unidades.",
+      subtitle: "¿Por qué las imprentas tradicionales te hacen pagar de más al inicio? Analicemos los números para un tiraje estándar de 10.000 unidades.",
       traditional: {
         title: "❌ Imprenta Tradicional",
-        cost_bags: "$475.000",
-        cost_bags_detail: "5.000 un. x $95",
+        cost_bags: "$950.000",
+        cost_bags_detail: "10.000 un. x $95",
         cost_plates: "+$800.000",
         plates_detail: "Matrices de polímero (Cilindros)",
         flexibility: "Nula (Costo si cambias)",
         lead_time: "45 a 60 días",
-        total_investment: "$1.275.000",
-        real_unit_cost: "$255 CLP"
+        total_investment: "$1.750.000",
+        real_unit_cost: "$175 CLP"
       },
       wellpack: {
         title: "✅ Tecnología Wellpack",
         badge: "Recomendado",
-        cost_bags: "$725.000",
-        cost_bags_detail: "5.000 un. x $145*",
+        cost_bags: "$1.450.000",
+        cost_bags_detail: "10.000 un. x $145*",
         cost_plates: "$0 (Sin cobro)",
-        plates_detail: "Matrices de impresión",
+        plates_detail: "Matrices de impresión COSTO CERO",
         flexibility: "Total en cada tiraje",
         lead_time: "Inmediata con IA y Especialista",
-        total_investment: "$725.000",
+        total_investment: "$1.450.000",
         real_unit_cost: "$145 CLP"
       },
       quote: "Deja de pagar por moldes de polímero que terminan en la basura al actualizar tu información nutricional o diseño.",
@@ -544,8 +544,8 @@ class AntigravityRenderer {
             </p>
           </div>
 
-          <!-- Tiers de Precios (4 Columnas) -->
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20 items-stretch">
+          <!-- Tiers de Precios (3 Columnas Centradas) -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-20 items-stretch max-w-6xl mx-auto">
             ${cards.map(card => {
               const isHighlighted = !!card.highlight || card.id === 'tier_scale';
               const hasBadge = !!card.badge;
