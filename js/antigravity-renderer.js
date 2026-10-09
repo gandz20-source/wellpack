@@ -659,11 +659,30 @@ class AntigravityRenderer {
                 <div data-machine-cat="${cat}" class="machinery-card spotlight-card bg-[#111827] border border-gray-700/80 hover:border-blue-400/70 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-2xl transition-all duration-300 hover:-translate-y-1">
                   
                   <div>
+                    <!-- Fotografía Real del Equipo Industrial -->
+                    ${item.image ? `
+                      <div class="relative w-full h-56 sm:h-64 rounded-2xl overflow-hidden bg-slate-950/90 border border-gray-800 mb-6 flex items-center justify-center p-3 group hover:border-blue-500/50 transition-all">
+                        <img 
+                          src="${item.image.startsWith('/') ? item.image.slice(1) : item.image}" 
+                          alt="${item.title}" 
+                          loading="lazy" 
+                          class="max-h-full max-w-full object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-500 ease-out">
+                        
+                        <!-- Badge de Especificación Flotante -->
+                        <div class="absolute top-3 left-3 z-10">
+                          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-black/85 backdrop-blur-md text-[10px] font-mono font-bold text-blue-300 border border-blue-500/40 shadow-lg">
+                            <i data-lucide="${icon}" class="w-3.5 h-3.5 text-blue-400"></i>
+                            ${badge}
+                          </span>
+                        </div>
+                      </div>
+                    ` : ''}
+
                     <!-- Header Tarjeta -->
                     <div class="flex items-start justify-between gap-4 mb-4">
                       <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-2xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0">
-                          <i data-lucide="${icon}" class="w-6 h-6"></i>
+                        <div class="w-10 h-10 rounded-xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0">
+                          <i data-lucide="${icon}" class="w-5 h-5"></i>
                         </div>
                         <div>
                           <h3 class="text-xl sm:text-2xl font-black text-white leading-tight">
@@ -674,10 +693,6 @@ class AntigravityRenderer {
                           </span>
                         </div>
                       </div>
-
-                      <span class="px-3 py-1 rounded-xl bg-blue-950/80 border border-blue-500/40 text-[10px] sm:text-xs font-mono font-bold text-blue-300 shrink-0 shadow-sm">
-                        ${badge}
-                      </span>
                     </div>
 
                     <!-- Descripción -->

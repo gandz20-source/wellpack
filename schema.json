@@ -25,7 +25,11 @@
           "color": "#D1D5DB"
         },
         "actions": [
-          { "label": "Cotizar Empaque a Medida", "type": "primary", "bg_color": "#F59E0B" }
+          {
+            "label": "Cotizar Empaque a Medida",
+            "type": "primary",
+            "bg_color": "#F59E0B"
+          }
         ],
         "background_image": {
           "url": "/assets/img/hero-fondo-impresion-hd.jpg",
@@ -190,9 +194,22 @@
               "Alimentación automática con protección operativa de seguridad"
             ],
             "specs": [
-              { "model": "AKD-520", "power": "7.5 kW", "capacity": "2.000 kg/h", "speed": "60 rpm", "dims": "2200×1120×1150 mm" },
-              { "model": "AKG-520", "power": "11 kW", "capacity": "4.000 kg/h", "speed": "330 rpm", "dims": "2200×1120×1150 mm" }
-            ]
+              {
+                "model": "AKD-520",
+                "power": "7.5 kW",
+                "capacity": "2.000 kg/h",
+                "speed": "60 rpm",
+                "dims": "2200×1120×1150 mm"
+              },
+              {
+                "model": "AKG-520",
+                "power": "11 kW",
+                "capacity": "4.000 kg/h",
+                "speed": "330 rpm",
+                "dims": "2200×1120×1150 mm"
+              }
+            ],
+            "image": "/assets/images/machinery/desmenuzadora_carne_congelada.jpg"
           },
           {
             "id": "picadora_industrial",
@@ -209,9 +226,22 @@
               "Reductor de alto torque que evita calentamiento de la masa"
             ],
             "specs": [
-              { "model": "AKJ300", "power": "55 kW", "capacity": "3.000~6.000 kg/h", "knife": "ø300 mm", "dims": "2300×1400×2000 mm" },
-              { "model": "AKJ250", "power": "37 kW", "capacity": "2.000~4.000 kg/h", "knife": "ø250 mm", "dims": "1850×1100×1700 mm" }
-            ]
+              {
+                "model": "AKJ300",
+                "power": "55 kW",
+                "capacity": "3.000~6.000 kg/h",
+                "knife": "ø300 mm",
+                "dims": "2300×1400×2000 mm"
+              },
+              {
+                "model": "AKJ250",
+                "power": "37 kW",
+                "capacity": "2.000~4.000 kg/h",
+                "knife": "ø250 mm",
+                "dims": "1850×1100×1700 mm"
+              }
+            ],
+            "image": "/assets/images/machinery/picadora_congelada_industrial.jpg"
           },
           {
             "id": "picadora_mediana",
@@ -228,9 +258,22 @@
               "Construcción en acero inoxidable higiénico SUS304"
             ],
             "specs": [
-              { "model": "AKJ130", "power": "11 kW", "capacity": "1.000~2.000 kg/h", "knife": "ø130 mm", "dims": "1300×700×1200 mm" },
-              { "model": "AKJ120", "power": "7.5 kW", "capacity": "800~1.200 kg/h", "knife": "ø120 mm", "dims": "950×550×1100 mm" }
-            ]
+              {
+                "model": "AKJ130",
+                "power": "11 kW",
+                "capacity": "1.000~2.000 kg/h",
+                "knife": "ø130 mm",
+                "dims": "1300×700×1200 mm"
+              },
+              {
+                "model": "AKJ120",
+                "power": "7.5 kW",
+                "capacity": "800~1.200 kg/h",
+                "knife": "ø120 mm",
+                "dims": "950×550×1100 mm"
+              }
+            ],
+            "image": "/assets/images/machinery/picadora_congelada_mediana.jpg"
           },
           {
             "id": "picadora_fresca",
@@ -247,8 +290,15 @@
               "Cubierta antipolvo y desmontaje higiénico instantáneo"
             ],
             "specs": [
-              { "model": "AKJ-B32", "power": "3.7 kW", "capacity": "500~600 kg/h", "voltage": "380V 50Hz", "dims": "850×510×950 mm" }
-            ]
+              {
+                "model": "AKJ-B32",
+                "power": "3.7 kW",
+                "capacity": "500~600 kg/h",
+                "voltage": "380V 50Hz",
+                "dims": "850×510×950 mm"
+              }
+            ],
+            "image": "/assets/images/machinery/picadora_carne_fresca.jpg"
           },
           {
             "id": "cutter_bowl_vacio",
@@ -266,11 +316,40 @@
               "Tazón giratorio sincronizado de acero inoxidable SUS304"
             ],
             "specs": [
-              { "model": "AKZ-40", "power": "8.35 kW", "capacity": "25 kg/h", "bowl": "40L", "knife_rpm": "1500/3000/4500", "dims": "1100×850×1050 mm" },
-              { "model": "AKZ80", "power": "15 kW", "capacity": "50~60 kg/h", "bowl": "80L", "knife_rpm": "1500/3000", "dims": "1900×1500×1500 mm" },
-              { "model": "AKZ200 Vacío", "power": "60 kW", "capacity": "140~160 kg/h", "bowl": "200L", "knife_rpm": "200~3600", "dims": "2250×2000×1760 mm" },
-              { "model": "AKZ525 Industrial", "power": "119 kW", "capacity": "300~420 kg/h", "bowl": "525L", "knife_rpm": "300~3300", "dims": "3060×2350×2650 mm" }
-            ]
+              {
+                "model": "AKZ-40",
+                "power": "8.35 kW",
+                "capacity": "25 kg/h",
+                "bowl": "40L",
+                "knife_rpm": "1500/3000/4500",
+                "dims": "1100×850×1050 mm"
+              },
+              {
+                "model": "AKZ80",
+                "power": "15 kW",
+                "capacity": "50~60 kg/h",
+                "bowl": "80L",
+                "knife_rpm": "1500/3000",
+                "dims": "1900×1500×1500 mm"
+              },
+              {
+                "model": "AKZ200 Vacío",
+                "power": "60 kW",
+                "capacity": "140~160 kg/h",
+                "bowl": "200L",
+                "knife_rpm": "200~3600",
+                "dims": "2250×2000×1760 mm"
+              },
+              {
+                "model": "AKZ525 Industrial",
+                "power": "119 kW",
+                "capacity": "300~420 kg/h",
+                "bowl": "525L",
+                "knife_rpm": "300~3300",
+                "dims": "3060×2350×2650 mm"
+              }
+            ],
+            "image": "/assets/images/machinery/cutter_bowl_vacio.jpg"
           },
           {
             "id": "mezcladora_carne_vacio",
@@ -288,11 +367,36 @@
               "Reductor cicloide de acero fundido y transmisión por cadena"
             ],
             "specs": [
-              { "model": "AKJB180", "power": "3.5 kW", "capacity": "120 kg/h", "voltage": "380V", "dims": "1200×950×1350 mm" },
-              { "model": "AKJB350", "power": "6 kW", "capacity": "270 kg/h", "voltage": "380V", "dims": "1500×1200×1380 mm" },
-              { "model": "AKJB650", "power": "9 kW", "capacity": "500 kg/h", "voltage": "380V", "dims": "2050×1650×1700 mm" },
-              { "model": "AKJB1200", "power": "13.5 kW", "capacity": "900 kg/h", "voltage": "380V", "dims": "2100×1500×2000 mm" }
-            ]
+              {
+                "model": "AKJB180",
+                "power": "3.5 kW",
+                "capacity": "120 kg/h",
+                "voltage": "380V",
+                "dims": "1200×950×1350 mm"
+              },
+              {
+                "model": "AKJB350",
+                "power": "6 kW",
+                "capacity": "270 kg/h",
+                "voltage": "380V",
+                "dims": "1500×1200×1380 mm"
+              },
+              {
+                "model": "AKJB650",
+                "power": "9 kW",
+                "capacity": "500 kg/h",
+                "voltage": "380V",
+                "dims": "2050×1650×1700 mm"
+              },
+              {
+                "model": "AKJB1200",
+                "power": "13.5 kW",
+                "capacity": "900 kg/h",
+                "voltage": "380V",
+                "dims": "2100×1500×2000 mm"
+              }
+            ],
+            "image": "/assets/images/machinery/mezcladora_carne_industrial.jpg"
           },
           {
             "id": "linea_llenado_atado",
@@ -310,8 +414,16 @@
               "Compatible con todo tipo de tripa artificial y natural"
             ],
             "specs": [
-              { "model": "AK3200T+AKQ1200+AK800", "power": "10 kW", "capacity": "Max 800 nudos/min", "length": "20-250 mm", "diameter": "ø9-40 mm", "precision": "±2 mm / 100 mm" }
-            ]
+              {
+                "model": "AK3200T+AKQ1200+AK800",
+                "power": "10 kW",
+                "capacity": "Max 800 nudos/min",
+                "length": "20-250 mm",
+                "diameter": "ø9-40 mm",
+                "precision": "±2 mm / 100 mm"
+              }
+            ],
+            "image": "/assets/images/machinery/linea_llenado_atado_salchichas.jpg"
           },
           {
             "id": "embutidora_vacio_twister",
@@ -329,8 +441,16 @@
               "Conectable a máquina de atar y cortadora automática"
             ],
             "specs": [
-              { "model": "AK-3200TN", "power": "6.75 kW", "capacity": "3.000 kg/h", "volume": "240L", "twister": "10~200 nudos/min", "dims": "2500×1290×2150 mm" }
-            ]
+              {
+                "model": "AK-3200TN",
+                "power": "6.75 kW",
+                "capacity": "3.000 kg/h",
+                "volume": "240L",
+                "twister": "10~200 nudos/min",
+                "dims": "2500×1290×2150 mm"
+              }
+            ],
+            "image": "/assets/images/machinery/embutidora_vacio_twister.jpg"
           },
           {
             "id": "envoltura_atadora",
@@ -348,10 +468,29 @@
               "Ajuste milimétrico de vueltas de hilo y longitud de salchicha"
             ],
             "specs": [
-              { "model": "AKTG1.0 Envolvedora", "power": "90 W", "protection": "IP64", "speed": "1.400 rpm", "dims": "693×596×429 mm" },
-              { "model": "AK807 Atadora", "power": "4.25 kW", "capacity": "800 nudos/min", "diameter": "ø9~26 mm", "dims": "1135×960×1165 mm" },
-              { "model": "AK807F Calibre Mayor", "power": "4.25 kW", "capacity": "800 nudos/min", "diameter": "ø9~40 mm", "dims": "1135×960×1165 mm" }
-            ]
+              {
+                "model": "AKTG1.0 Envolvedora",
+                "power": "90 W",
+                "protection": "IP64",
+                "speed": "1.400 rpm",
+                "dims": "693×596×429 mm"
+              },
+              {
+                "model": "AK807 Atadora",
+                "power": "4.25 kW",
+                "capacity": "800 nudos/min",
+                "diameter": "ø9~26 mm",
+                "dims": "1135×960×1165 mm"
+              },
+              {
+                "model": "AK807F Calibre Mayor",
+                "power": "4.25 kW",
+                "capacity": "800 nudos/min",
+                "diameter": "ø9~40 mm",
+                "dims": "1135×960×1165 mm"
+              }
+            ],
+            "image": "/assets/images/machinery/envolvedora_tripa_natural.jpg"
           },
           {
             "id": "cortadora_doble_canal",
@@ -369,8 +508,16 @@
               "Fácil desmontaje para sanitización con espuma"
             ],
             "specs": [
-              { "model": "ENJ500", "power": "4 kW", "voltage": "380V", "capacity": "2.000~3.000 kg/h", "weight": "200 kg", "dims": "1000×800×1400 mm" }
-            ]
+              {
+                "model": "ENJ500",
+                "power": "4 kW",
+                "voltage": "380V",
+                "capacity": "2.000~3.000 kg/h",
+                "weight": "200 kg",
+                "dims": "1000×800×1400 mm"
+              }
+            ],
+            "image": "/assets/images/machinery/cortadora_salchichas_doble_canal.jpg"
           },
           {
             "id": "ahumadores_industriales",
@@ -389,11 +536,36 @@
               "Calentamiento a vapor externo o eléctrico opcional"
             ],
             "specs": [
-              { "model": "AKYX-1/1 (1 Carro)", "capacity": "250 kg/lote", "power": "4.5 kW", "steam": "75 kg/h", "dims": "2580×1500×3350 mm" },
-              { "model": "AKYX-2/2 (2 Carros)", "capacity": "500 kg/lote", "power": "8.5 kW", "steam": "150 kg/h", "dims": "2580×2680×3350 mm" },
-              { "model": "AKYX-2/3 (3 Carros)", "capacity": "750 kg/lote", "power": "12.5 kW", "steam": "225 kg/h", "dims": "2580×3780×3350 mm" },
-              { "model": "AKYX-2/4 (4 Carros)", "capacity": "1.000 kg/lote", "power": "16.5 kW", "steam": "300 kg/h", "dims": "2580×4880×3350 mm" }
-            ]
+              {
+                "model": "AKYX-1/1 (1 Carro)",
+                "capacity": "250 kg/lote",
+                "power": "4.5 kW",
+                "steam": "75 kg/h",
+                "dims": "2580×1500×3350 mm"
+              },
+              {
+                "model": "AKYX-2/2 (2 Carros)",
+                "capacity": "500 kg/lote",
+                "power": "8.5 kW",
+                "steam": "150 kg/h",
+                "dims": "2580×2680×3350 mm"
+              },
+              {
+                "model": "AKYX-2/3 (3 Carros)",
+                "capacity": "750 kg/lote",
+                "power": "12.5 kW",
+                "steam": "225 kg/h",
+                "dims": "2580×3780×3350 mm"
+              },
+              {
+                "model": "AKYX-2/4 (4 Carros)",
+                "capacity": "1.000 kg/lote",
+                "power": "16.5 kW",
+                "steam": "300 kg/h",
+                "dims": "2580×4880×3350 mm"
+              }
+            ],
+            "image": "/assets/images/machinery/horno_ahumador_industrial.jpg"
           },
           {
             "id": "servicio_tecnico_nacional",
@@ -411,10 +583,20 @@
               "Atención remota y visitas a terreno para plantas procesadoras"
             ],
             "specs": [
-              { "model": "Soporte Técnico Preventivo", "detail": "Planes mensuales y trimestrales" },
-              { "model": "Puesta en Marcha", "detail": "Capacitación a operadores de planta" },
-              { "model": "Repuestos Originales", "detail": "Cuchillas, sellos, válvulas y placas" }
-            ]
+              {
+                "model": "Soporte Técnico Preventivo",
+                "detail": "Planes mensuales y trimestrales"
+              },
+              {
+                "model": "Puesta en Marcha",
+                "detail": "Capacitación a operadores de planta"
+              },
+              {
+                "model": "Repuestos Originales",
+                "detail": "Cuchillas, sellos, válvulas y placas"
+              }
+            ],
+            "image": "/assets/images/fabrica_extrusion_evoh.jpg"
           }
         ]
       }
@@ -443,7 +625,11 @@
               "Matrices COSTO CERO",
               "Asesoría técnica y diseño 3D"
             ],
-            "button": { "label": "Elegir Escala", "action": "open_webhook", "style": "primary" }
+            "button": {
+              "label": "Elegir Escala",
+              "action": "open_webhook",
+              "style": "primary"
+            }
           },
           {
             "id": "tier_wholesale",
@@ -461,7 +647,11 @@
               "Matrices COSTO CERO",
               "Prioridad en línea de producción"
             ],
-            "button": { "label": "Cotizar Mayorista", "action": "open_webhook", "style": "outline" }
+            "button": {
+              "label": "Cotizar Mayorista",
+              "action": "open_webhook",
+              "style": "outline"
+            }
           },
           {
             "id": "tier_industrial",
@@ -479,7 +669,11 @@
               "Matrices COSTO CERO",
               "Ejecutivo de cuenta dedicado"
             ],
-            "button": { "label": "Cotizar Industrial", "action": "open_webhook", "style": "outline" }
+            "button": {
+              "label": "Cotizar Industrial",
+              "action": "open_webhook",
+              "style": "outline"
+            }
           }
         ],
         "versus": {
