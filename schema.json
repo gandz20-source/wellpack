@@ -93,7 +93,7 @@
           },
           {
             "title": "Stand-Up Pouch (Doypack) con Zipper",
-            "image": "/assets/img/doypack-frutos-secos.jpg",
+            "image": "/assets/images/doypack_frutos_secos_wellpack.jpg",
             "uses": "Frutos secos, snacks, granola, polvos y semillas con cierre hermético.",
             "category": "doypack",
             "badge": "Zipper Reutilizable",
@@ -101,7 +101,7 @@
           },
           {
             "title": "Doypack Impreso en Alta Definición HD",
-            "image": "/assets/images/bolsas_standup_ocean_print.png",
+            "image": "/assets/images/doypack_hd_wellpack.jpg",
             "uses": "Marcas retail a todo color, hasta 10 tintas con barniz mate/brillo.",
             "category": "doypack",
             "badge": "Impresión HD 10 Tintas",
@@ -109,7 +109,7 @@
           },
           {
             "title": "Bolsas Fuelle Lateral para Café en Grano",
-            "image": "/assets/img/bolsa-fuelle-cafe.jpg",
+            "image": "/assets/images/bolsa_cafe_wellpack.jpg",
             "uses": "Café en grano, tostado artesanal, opción de válvula desgasificadora.",
             "category": "cafe",
             "badge": "Válvula Desgasificadora",
@@ -125,7 +125,7 @@
           },
           {
             "title": "Bolsas para Mariscos IQF & Moluscos",
-            "image": "/assets/images/bolsa_mariscos_36x20.jpg",
+            "image": "/assets/images/bolsa_mariscos_wellpack.jpg",
             "uses": "Choritos, almejas, camarones, resistencia a túneles -35°C.",
             "category": "pesca",
             "badge": "Túnel IQF -35°C",
@@ -133,7 +133,7 @@
           },
           {
             "title": "Bolsas Congelados Retail IQF / Antivaho",
-            "image": "/assets/images/bolsa_congelados_freezer_retail.jpg",
+            "image": "/assets/images/bolsa_congelados_wellpack.jpg",
             "uses": "Berries, verduras, mix congelados, film antivaho de alta claridad.",
             "category": "pesca",
             "badge": "Película Antivaho",
@@ -141,7 +141,7 @@
           },
           {
             "title": "Doypack con Asa Troquelada (Heavy Duty)",
-            "image": "/assets/images/bolsa_doypack_handle.png",
+            "image": "/assets/images/doypack_asa_wellpack.jpg",
             "uses": "Formatos familiares de 1kg a 5kg, pet food, sal de mar y graneles.",
             "category": "doypack",
             "badge": "Asa Ergonómica",
@@ -149,7 +149,7 @@
           },
           {
             "title": "Bolsas al Vacío con Ventana Panorámica",
-            "image": "/assets/images/bolsa_vacio_pescado_ventana.png",
+            "image": "/assets/images/bolsa_ventana_wellpack.jpg",
             "uses": "Visualización directa del alimento con respaldo impreso o metalizado.",
             "category": "pesca",
             "badge": "Ventana Frontal",

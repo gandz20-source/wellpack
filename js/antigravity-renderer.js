@@ -1352,7 +1352,7 @@ class AntigravityRenderer {
                 <div class="flex items-center gap-1.5">
                   <img src="assets/images/bolsa_vacio_salmon_impresa.jpg" title="Salmón sellado al vacío impreso" class="w-8 h-8 rounded-lg object-cover border border-sky-200 hover:scale-110 transition">
                   <img src="assets/images/bolsa_vacio_tomahawk_impresa.jpg" title="Corte vacuno Tomahawk impreso" class="w-8 h-8 rounded-lg object-cover border border-sky-200 hover:scale-110 transition">
-                  <img src="assets/img/doypack-mariscos.jpg" title="Doypack mariscos" class="w-8 h-8 rounded-lg object-cover border border-sky-200 hover:scale-110 transition">
+                  <img src="assets/images/bolsa_mariscos_wellpack.jpg" title="Doypack mariscos WellPack" class="w-8 h-8 rounded-lg object-cover border border-sky-200 hover:scale-110 transition">
                   <img src="assets/images/bolsa_vacio_embutidos_impresa.jpg" title="Cecinas y embutidos impresos" class="w-8 h-8 rounded-lg object-cover border border-sky-200 hover:scale-110 transition">
                 </div>
               </div>
@@ -1872,9 +1872,9 @@ class AntigravityRenderer {
         caption: "Presentación Black Label con bone guard y vida útil para carnes rojas."
       },
       {
-        url: "/assets/img/doypack-mariscos.jpg",
-        alt_text: "Bolsa Doypack con mariscos mixtos",
-        caption: "Soluciones Doypack para productos procesados."
+        url: "/assets/images/bolsa_mariscos_wellpack.jpg",
+        alt_text: "Bolsa Doypack para mariscos con branding WellPack Seafood",
+        caption: "Soluciones Doypack de alta resistencia para productos congelados IQF."
       },
       {
         url: "/assets/images/bolsa_vacio_embutidos_impresa.jpg",
