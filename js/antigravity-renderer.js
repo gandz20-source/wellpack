@@ -477,20 +477,58 @@ class AntigravityRenderer {
             </p>
           </div>
 
+          <!-- Filtro Interactivo de Categorías de Formato -->
+          <div class="flex items-center justify-center gap-2 mb-10 overflow-x-auto pb-2 px-2" id="packaging-category-filters">
+            <button 
+              type="button" 
+              data-format-filter="all" 
+              class="btn-format-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-amber-500 bg-amber-500 text-neutral-950 shadow-lg shadow-amber-500/30">
+              🌟 Todos (${items.length})
+            </button>
+            <button 
+              type="button" 
+              data-format-filter="carnes" 
+              class="btn-format-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-neutral-700 bg-neutral-900/90 text-neutral-300 hover:border-neutral-500">
+              🥩 Carnes & Cecinas
+            </button>
+            <button 
+              type="button" 
+              data-format-filter="pesca" 
+              class="btn-format-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-neutral-700 bg-neutral-900/90 text-neutral-300 hover:border-neutral-500">
+              🐟 Salmón & Congelados
+            </button>
+            <button 
+              type="button" 
+              data-format-filter="doypack" 
+              class="btn-format-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-neutral-700 bg-neutral-900/90 text-neutral-300 hover:border-neutral-500">
+              🥜 Doypack & Retail
+            </button>
+            <button 
+              type="button" 
+              data-format-filter="cafe" 
+              class="btn-format-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-neutral-700 bg-neutral-900/90 text-neutral-300 hover:border-neutral-500">
+              ☕ Café & Secos
+            </button>
+          </div>
+
           <!-- Rejilla de Tarjetas con Fotografía Real de Empaque (Con efecto Spotlight & Micro-interacciones) -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-stretch" id="packaging-format-cards-grid">
             ${items.map(item => {
               const normalizedImg = item.image.startsWith('/') ? item.image.slice(1) : item.image;
+              const badgeText = item.badge || 'Alta Barrera';
+              const iconName = item.icon || 'shield-check';
+              const cat = item.category || 'all';
+
               return `
-                <div class="spotlight-card group relative rounded-3xl overflow-hidden bg-[#181818] border border-neutral-800 hover:border-amber-500/70 shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:shadow-amber-500/20 flex flex-col justify-between">
+                <div data-format-cat="${cat}" class="packaging-format-card spotlight-card group relative rounded-3xl overflow-hidden bg-[#181818] border border-neutral-800 hover:border-amber-500/70 shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:shadow-amber-500/20 flex flex-col justify-between">
                   
                   <!-- Imagen con hover zoom y badge flotante -->
                   <div class="relative w-full h-64 overflow-hidden bg-[#101010]">
                     <!-- Badge Flotante de Especificación Técnica -->
                     <div class="absolute top-3.5 left-3.5 z-10">
-                      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-black/80 backdrop-blur-md text-[10px] font-mono font-bold text-amber-400 border border-amber-500/30 shadow-lg">
-                        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-amber-400"></i>
-                        Alta Barrera
+                      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-black/85 backdrop-blur-md text-[10px] font-mono font-bold text-amber-400 border border-amber-500/40 shadow-lg">
+                        <i data-lucide="${iconName}" class="w-3.5 h-3.5 text-amber-400"></i>
+                        ${badgeText}
                       </span>
                     </div>
 
@@ -1620,8 +1658,11 @@ class AntigravityRenderer {
       }
     };
 
+    const isDark = this.schema?.theme === 'premium_industrial_food' || this.schema?.colors?.background === '#121212';
+    const bgClass = isDark ? 'bg-[#0b1329] text-white border-b border-gray-800' : 'bg-gradient-to-b from-sky-500/80 via-sky-600 to-blue-800 text-white border-b border-blue-700/60';
+
     return `
-      <section id="visual_gallery" class="py-24 bg-gradient-to-b from-sky-500/80 via-sky-600 to-blue-800 text-white relative border-b border-blue-700/60 overflow-hidden">
+      <section id="visual_gallery" class="py-24 ${bgClass} relative overflow-hidden">
         
         <!-- Efecto sutil de fondo lumínico -->
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.15),transparent_50%)] pointer-events-none"></div>
@@ -1655,7 +1696,7 @@ class AntigravityRenderer {
               const normalizedUrl = img.url.startsWith('/') ? img.url.slice(1) : img.url;
 
               return `
-                <div class="visual-gallery-card group relative rounded-3xl overflow-hidden bg-slate-950/85 border border-white/20 hover:border-cyan-400/80 shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:shadow-cyan-500/25 flex flex-col justify-between backdrop-blur-md">
+                <div class="visual-gallery-card spotlight-card group relative rounded-3xl overflow-hidden bg-slate-950/85 border border-white/20 hover:border-cyan-400/80 shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:shadow-cyan-500/25 flex flex-col justify-between backdrop-blur-md">
                   
                   <!-- Contenedor Fotográfico con Hover Zoom -->
                   <div class="relative w-full h-72 sm:h-80 overflow-hidden bg-slate-900">
@@ -2518,6 +2559,30 @@ class AntigravityRenderer {
             targetCard.classList.remove('scale-[1.03]');
           }, 600);
         }
+      });
+    });
+
+    // Filtro interactivo de formatos de empaque (Packaging Types Gallery)
+    document.querySelectorAll('.btn-format-tab').forEach(tab => {
+      tab.addEventListener('click', (e) => {
+        e.preventDefault();
+        const cat = tab.getAttribute('data-format-filter');
+        
+        // Actualizar estado visual de los tabs
+        document.querySelectorAll('.btn-format-tab').forEach(t => {
+          t.className = 'btn-format-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-neutral-700 bg-neutral-900/90 text-neutral-300 hover:border-neutral-500';
+        });
+        tab.className = 'btn-format-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-amber-500 bg-amber-500 text-neutral-950 shadow-lg shadow-amber-500/30';
+
+        // Filtrar tarjetas con transición suave
+        document.querySelectorAll('.packaging-format-card').forEach(card => {
+          const cardCat = card.getAttribute('data-format-cat');
+          if (cat === 'all' || cardCat === cat) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
       });
     });
 

@@ -64,46 +64,109 @@
         "layout_style": "grid_cards",
         "items": [
           {
-            "title": "Bolsas al Vacío de Alta Resistencia",
+            "title": "Bolsas al Vacío para Carnes Rojas & Hueso",
             "image": "/assets/img/bolsa-vacio-carne-hueso.jpg",
-            "uses": "Carnes rojas, cecinas, pescados, quesos maduros."
+            "uses": "Cortes con hueso, vacuno, antipunzonamiento 120μ y maduración.",
+            "category": "carnes",
+            "badge": "120μ Antipunzonamiento",
+            "icon": "shield-alert"
+          },
+          {
+            "title": "Filetes de Salmón & Pescados Premium",
+            "image": "/assets/images/bolsa_salmon_40x25.jpg",
+            "uses": "Salmón fresco/congelado, exportación pesquera y barrera EVOH total.",
+            "category": "pesca",
+            "badge": "Alta Barrera EVOH",
+            "icon": "fish"
+          },
+          {
+            "title": "Cortes Gourmet al Vacío (Tomahawk)",
+            "image": "/assets/img/corte-vacuno-tomahawk.jpg",
+            "uses": "Frigoríficos, carnicerías boutique, maduración en bolsa.",
+            "category": "carnes",
+            "badge": "Maduración en Vacío",
+            "icon": "flame"
           },
           {
             "title": "Stand-Up Pouch (Doypack) con Zipper",
             "image": "/assets/img/doypack-frutos-secos.jpg",
-            "uses": "Frutos secos, snacks, café, polvos y semillas."
+            "uses": "Frutos secos, snacks, granola, polvos y semillas con cierre hermético.",
+            "category": "doypack",
+            "badge": "Zipper Reutilizable",
+            "icon": "lock"
           },
           {
-            "title": "Bolsas Fondo Cuadrado / Fuelle Lateral",
+            "title": "Doypack Impreso en Alta Definición HD",
+            "image": "/assets/images/bolsas_standup_ocean_print.png",
+            "uses": "Marcas retail a todo color, hasta 10 tintas con barniz mate/brillo.",
+            "category": "doypack",
+            "badge": "Impresión HD 10 Tintas",
+            "icon": "printer"
+          },
+          {
+            "title": "Bolsas Fuelle Lateral para Café en Grano",
             "image": "/assets/img/bolsa-fuelle-cafe.jpg",
-            "uses": "Café en grano, alimentos para mascotas, harinas."
+            "uses": "Café en grano, tostado artesanal, opción de válvula desgasificadora.",
+            "category": "cafe",
+            "badge": "Válvula Desgasificadora",
+            "icon": "coffee"
           },
           {
             "title": "Empaque Termoencogible Cryovac",
             "image": "/assets/img/termoencogible-pollo.jpg",
-            "uses": "Aves enteras, cortes grandes congelados de exportación."
+            "uses": "Pollos enteros, pavos, cortes porcinos y empaque segunda piel.",
+            "category": "carnes",
+            "badge": "Segunda Piel Cryovac",
+            "icon": "maximize"
+          },
+          {
+            "title": "Bolsas para Mariscos IQF & Moluscos",
+            "image": "/assets/images/bolsa_mariscos_36x20.jpg",
+            "uses": "Choritos, almejas, camarones, resistencia a túneles -35°C.",
+            "category": "pesca",
+            "badge": "Túnel IQF -35°C",
+            "icon": "snowflake"
           },
           {
             "title": "Bolsas Congelados Retail IQF / Antivaho",
             "image": "/assets/images/bolsa_congelados_freezer_retail.jpg",
-            "uses": "Berries, verduras, papas prefritas, mariscos (-35°C)."
+            "uses": "Berries, verduras, mix congelados, film antivaho de alta claridad.",
+            "category": "pesca",
+            "badge": "Película Antivaho",
+            "icon": "eye"
           },
           {
             "title": "Doypack con Asa Troquelada (Heavy Duty)",
             "image": "/assets/images/bolsa_doypack_handle.png",
-            "uses": "Formatos familiares 1kg a 5kg, pet food, mariscos."
+            "uses": "Formatos familiares de 1kg a 5kg, pet food, sal de mar y graneles.",
+            "category": "doypack",
+            "badge": "Asa Ergonómica",
+            "icon": "shopping-bag"
           },
           {
-            "title": "Bolsas Metalizadas con Barrera Foil UV",
-            "image": "/assets/img/salmon-vacio-premium.jpg",
-            "uses": "Filetes de salmón premium, exportación pesquera y charcutería."
+            "title": "Bolsas al Vacío con Ventana Panorámica",
+            "image": "/assets/images/bolsa_vacio_pescado_ventana.png",
+            "uses": "Visualización directa del alimento con respaldo impreso o metalizado.",
+            "category": "pesca",
+            "badge": "Ventana Frontal",
+            "icon": "layout"
           },
           {
             "title": "Bolsas Tubulares Sellado 3 Sellos",
             "image": "/assets/img/embutidos-vacio.jpg",
-            "uses": "Embutidos, salchichas, charcutería y quesos laminados."
+            "uses": "Salchichas, charcutería gourmet, quesos laminados y embutidos.",
+            "category": "carnes",
+            "badge": "Sellado 3 Sellos",
+            "icon": "shield-check"
           }
         ]
+      }
+    },
+    {
+      "section": "visual_gallery",
+      "config": {
+        "title": "Aplicaciones Reales de Nuestros Empaques en Terreno",
+        "subtitle": "Fotografías de alimentos procesados y plantas productivas con sellado WellPack de máxima barrera y brillo óptico."
       }
     },
     {
