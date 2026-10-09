@@ -103,6 +103,7 @@ class AntigravityRenderer {
       <!-- 5. Modales y Notificaciones -->
       ${this.renderSampleModal()}
       ${this.renderConfigModal()}
+      ${this.renderMachineryModal()}
       <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3"></div>
     `;
 
@@ -179,8 +180,11 @@ class AntigravityRenderer {
             <!-- Enlaces de navegación -->
             <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-neutral-300">
               <a href="#hero" class="hover:text-amber-400 transition-colors">Inicio</a>
-              <a href="#service_customization" class="hover:text-amber-400 transition-colors">Personalización</a>
               <a href="#packaging_types_gallery" class="hover:text-amber-400 transition-colors">Formatos</a>
+              <a href="#machinery_showcase" class="hover:text-blue-400 text-blue-400 flex items-center gap-1.5 transition-colors font-bold">
+                <i data-lucide="cpu" class="w-4 h-4 text-blue-400"></i>
+                <span>Maquinaria</span>
+              </a>
               <a href="#tiered_pricing_offers" class="hover:text-amber-400 transition-colors">Precios & Planes</a>
               <a href="#industries_served" class="hover:text-amber-400 transition-colors">Sectores</a>
               
@@ -268,6 +272,8 @@ class AntigravityRenderer {
         return this.renderServiceCustomizationSection(section.config);
       case 'packaging_types_gallery':
         return this.renderPackagingTypesGallerySection(section.config);
+      case 'machinery_showcase':
+        return this.renderMachineryShowcaseSection(section.config);
       case 'tiered_pricing_offers':
         return this.renderTieredPricingOffersSection(section.config);
       case 'industries_served':
@@ -570,6 +576,195 @@ class AntigravityRenderer {
                 </div>
               `;
             }).join('')}
+          </div>
+
+        </div>
+      </section>
+    `;
+  }
+
+  // ==========================================================
+  // SECCIÓN UNIVERSAL: MAQUINARIA & LÍNEAS DE PRODUCCIÓN INDUSTRIAL
+  // ==========================================================
+  renderMachineryShowcaseSection(config = {}) {
+    const title = config.title || "Maquinaria y Líneas de Producción para Alimentos";
+    const subtitle = config.subtitle || "Equipamiento industrial para procesamiento cárnico, embutidos y plantas alimentarias. Fabricación en acero inoxidable SUS304 y servicio técnico nacional.";
+    const items = config.items || [];
+
+    return `
+      <section id="machinery_showcase" class="py-24 bg-[#0a0f1d] text-white relative border-b border-gray-800 overflow-hidden font-sans">
+        
+        <!-- Luz ambiental en tonos azul acero y ámbar industrial -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/10 blur-[150px] pointer-events-none rounded-full"></div>
+        <div class="absolute bottom-10 right-10 w-[500px] h-[300px] bg-amber-500/10 blur-[130px] pointer-events-none rounded-full"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
+          <!-- Encabezado de Sección -->
+          <div class="text-center max-w-3xl mx-auto mb-16">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900 border border-blue-500/40 text-blue-400 text-xs font-mono font-bold uppercase mb-4 shadow-sm">
+              <i data-lucide="cpu" class="w-4 h-4 text-amber-400"></i>
+              Tecnología para Empresas Alimentarias
+            </div>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+              ${title}
+            </h2>
+            <p class="mt-4 text-gray-300 text-base sm:text-lg leading-relaxed">
+              ${subtitle}
+            </p>
+          </div>
+
+          <!-- Filtro Interactivo de Maquinaria -->
+          <div class="flex items-center justify-center gap-2 mb-12 overflow-x-auto pb-2 px-2" id="machinery-category-filters">
+            <button 
+              type="button" 
+              data-machine-filter="all" 
+              class="btn-machine-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-blue-500 bg-blue-600 text-white shadow-lg shadow-blue-600/30">
+              🌟 Toda la Maquinaria (${items.length})
+            </button>
+            <button 
+              type="button" 
+              data-machine-filter="procesamiento" 
+              class="btn-machine-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-neutral-700 bg-neutral-900/90 text-neutral-300 hover:border-neutral-500">
+              🥩 Procesamiento & Corte
+            </button>
+            <button 
+              type="button" 
+              data-machine-filter="embutido" 
+              class="btn-machine-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-neutral-700 bg-neutral-900/90 text-neutral-300 hover:border-neutral-500">
+              🌭 Embutido & Porcionado
+            </button>
+            <button 
+              type="button" 
+              data-machine-filter="ahumado" 
+              class="btn-machine-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-neutral-700 bg-neutral-900/90 text-neutral-300 hover:border-neutral-500">
+              💨 Cocción & Ahumado
+            </button>
+            <button 
+              type="button" 
+              data-machine-filter="servicio" 
+              class="btn-machine-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-neutral-700 bg-neutral-900/90 text-neutral-300 hover:border-neutral-500">
+              🛠️ Servicio Técnico
+            </button>
+          </div>
+
+          <!-- Grilla de Tarjetas de Maquinaria -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch" id="machinery-cards-grid">
+            ${items.map(item => {
+              const cat = item.category || 'all';
+              const badge = item.badge || 'SUS304 Inoxidable';
+              const icon = item.icon || 'settings';
+
+              return `
+                <div data-machine-cat="${cat}" class="machinery-card spotlight-card bg-[#111827] border border-gray-700/80 hover:border-blue-400/70 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                  
+                  <div>
+                    <!-- Header Tarjeta -->
+                    <div class="flex items-start justify-between gap-4 mb-4">
+                      <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-2xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0">
+                          <i data-lucide="${icon}" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                          <h3 class="text-xl sm:text-2xl font-black text-white leading-tight">
+                            ${item.title}
+                          </h3>
+                          <span class="text-xs text-blue-300 font-mono block mt-0.5">
+                            ${item.subtitle}
+                          </span>
+                        </div>
+                      </div>
+
+                      <span class="px-3 py-1 rounded-xl bg-blue-950/80 border border-blue-500/40 text-[10px] sm:text-xs font-mono font-bold text-blue-300 shrink-0 shadow-sm">
+                        ${badge}
+                      </span>
+                    </div>
+
+                    <!-- Descripción -->
+                    <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-6">
+                      ${item.description}
+                    </p>
+
+                    <!-- Lista de Características -->
+                    <div class="space-y-2 mb-6">
+                      ${(item.features || []).map(f => `
+                        <div class="flex items-start gap-2 text-xs text-gray-300">
+                          <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                          <span>${f}</span>
+                        </div>
+                      `).join('')}
+                    </div>
+
+                    <!-- Tabla de Modelos y Parámetros Técnicos -->
+                    ${item.specs && item.specs.length > 0 ? `
+                      <div class="mb-6 overflow-x-auto rounded-xl border border-gray-800 bg-[#0c1220]">
+                        <table class="w-full text-[11px] font-mono text-left">
+                          <thead class="bg-gray-800/60 text-gray-400 uppercase text-[10px]">
+                            <tr>
+                              <th class="py-2 px-3">Modelo</th>
+                              ${item.specs[0].power ? '<th class="py-2 px-3">Potencia</th>' : ''}
+                              ${item.specs[0].capacity ? '<th class="py-2 px-3">Capacidad</th>' : ''}
+                              ${item.specs[0].speed ? '<th class="py-2 px-3">Velocidad</th>' : ''}
+                              ${item.specs[0].dims ? '<th class="py-2 px-3 hidden sm:table-cell">Dimensiones</th>' : ''}
+                              ${item.specs[0].detail ? '<th class="py-2 px-3">Detalle</th>' : ''}
+                            </tr>
+                          </thead>
+                          <tbody class="divide-y divide-gray-800/60 text-gray-300">
+                            ${item.specs.map(sp => `
+                              <tr class="hover:bg-blue-950/20">
+                                <td class="py-2 px-3 font-bold text-amber-400">${sp.model}</td>
+                                ${sp.power ? `<td class="py-2 px-3">${sp.power}</td>` : ''}
+                                ${sp.capacity ? `<td class="py-2 px-3 text-emerald-300 font-semibold">${sp.capacity}</td>` : ''}
+                                ${sp.speed ? `<td class="py-2 px-3">${sp.speed}</td>` : ''}
+                                ${sp.dims ? `<td class="py-2 px-3 hidden sm:table-cell text-gray-400 text-[10px]">${sp.dims}</td>` : ''}
+                                ${sp.detail ? `<td class="py-2 px-3 text-gray-300">${sp.detail}</td>` : ''}
+                              </tr>
+                            `).join('')}
+                          </tbody>
+                        </table>
+                      </div>
+                    ` : ''}
+                  </div>
+
+                  <!-- Footer Botón CTA -->
+                  <div class="pt-4 border-t border-gray-800 flex items-center justify-between gap-3">
+                    <span class="text-[11px] font-mono text-gray-400 flex items-center gap-1.5">
+                      <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                      Cotización y Soporte en Todo Chile
+                    </span>
+                    <button 
+                      type="button" 
+                      data-machine-title="${item.title}"
+                      class="btn-machinery-quote btn-spring inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-blue-600/30">
+                      <span>Cotizar Equipo</span>
+                      <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                    </button>
+                  </div>
+
+                </div>
+              `;
+            }).join('')}
+          </div>
+
+          <!-- Banner Inferior de Servicio Técnico y Líneas Llave en Mano -->
+          <div class="mt-16 p-8 rounded-3xl bg-gradient-to-r from-blue-950/60 via-slate-900 to-amber-950/40 border border-blue-500/30 backdrop-blur-xl flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-blue-500/20 flex items-center justify-center text-blue-400 shrink-0 border border-blue-500/40">
+                <i data-lucide="wrench" class="w-7 h-7 text-blue-400"></i>
+              </div>
+              <div>
+                <h4 class="text-xl font-black text-white">¿Necesitas una Línea de Producción Completa o Asesoría de Planta?</h4>
+                <p class="text-xs sm:text-sm text-gray-300 mt-1 max-w-2xl">
+                  Dimensionamos la capacidad exacta de tu planta desde la molienda hasta el empaque al vacío final. Incluye instalación, puesta en marcha y soporte técnico preventivo a nivel nacional.
+                </p>
+              </div>
+            </div>
+            <button 
+              type="button"
+              data-machine-title="Línea de Producción Completa Llave en Mano"
+              class="btn-machinery-quote btn-spring px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-[#FF6B00] text-neutral-950 font-black text-xs sm:text-sm uppercase tracking-wider shrink-0 shadow-xl shadow-amber-500/25">
+              Solicitar Asesoría de Planta
+            </button>
           </div>
 
         </div>
@@ -2283,6 +2478,83 @@ class AntigravityRenderer {
     `;
   }
 
+  renderMachineryModal() {
+    return `
+      <!-- Modal de Cotización de Maquinaria Industrial -->
+      <div id="machinery-modal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-[#18181B] text-white rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl relative border border-blue-500/30 animate-slide-up">
+          <button id="btn-close-machinery-modal" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-white flex items-center justify-center transition">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+          
+          <div class="flex items-center gap-3.5 mb-5">
+            <div class="w-12 h-12 rounded-2xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0">
+              <i data-lucide="cpu" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h3 class="text-lg sm:text-xl font-black text-white">Cotizar Maquinaria Industrial</h3>
+              <p class="text-xs text-neutral-400">Asesoría técnica y propuesta formal de ingeniería para plantas de alimentos.</p>
+            </div>
+          </div>
+
+          <form id="machinery-form" class="space-y-3.5 text-xs font-sans">
+            <div>
+              <label class="block font-mono text-neutral-300 mb-1 font-semibold">1. Equipo o Línea Seleccionada *</label>
+              <input type="text" id="machine-selected-name" required readonly class="w-full bg-[#121212] border border-blue-500/50 rounded-xl px-3.5 py-2.5 text-amber-400 font-bold focus:outline-none cursor-not-allowed">
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block font-mono text-neutral-300 mb-1 font-semibold">2. Empresa / Planta *</label>
+                <input type="text" id="machine-company" required placeholder="Ej: Cecinas del Sur SpA" class="w-full bg-[#121212] border border-neutral-700 rounded-xl px-3.5 py-2.5 text-white placeholder-neutral-500 focus:border-blue-400 focus:outline-none">
+              </div>
+              <div>
+                <label class="block font-mono text-neutral-300 mb-1 font-semibold">3. Nombre de Contacto *</label>
+                <input type="text" id="machine-contact-name" required placeholder="Ej: Roberto Gómez" class="w-full bg-[#121212] border border-neutral-700 rounded-xl px-3.5 py-2.5 text-white placeholder-neutral-500 focus:border-blue-400 focus:outline-none">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block font-mono text-neutral-300 mb-1 font-semibold">4. WhatsApp / Teléfono *</label>
+                <input type="text" id="machine-phone" required placeholder="+56 9..." class="w-full bg-[#121212] border border-neutral-700 rounded-xl px-3.5 py-2.5 text-white placeholder-neutral-500 focus:border-blue-400 focus:outline-none">
+              </div>
+              <div>
+                <label class="block font-mono text-neutral-300 mb-1 font-semibold">5. Email Corporativo *</label>
+                <input type="email" id="machine-email" required placeholder="contacto@planta.cl" class="w-full bg-[#121212] border border-neutral-700 rounded-xl px-3.5 py-2.5 text-white placeholder-neutral-500 focus:border-blue-400 focus:outline-none">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block font-mono text-neutral-300 mb-1 font-semibold">6. Capacidad Estimada</label>
+                <input type="text" id="machine-capacity" placeholder="Ej: 2.000 kg/hora o 10 ton/día" class="w-full bg-[#121212] border border-neutral-700 rounded-xl px-3.5 py-2.5 text-white placeholder-neutral-500 focus:border-blue-400 focus:outline-none">
+              </div>
+              <div>
+                <label class="block font-mono text-neutral-300 mb-1 font-semibold">7. Tipo de Alimento / Proceso</label>
+                <input type="text" id="machine-product-type" placeholder="Ej: Salchichas, carne congelada, cecinas" class="w-full bg-[#121212] border border-neutral-700 rounded-xl px-3.5 py-2.5 text-white placeholder-neutral-500 focus:border-blue-400 focus:outline-none">
+              </div>
+            </div>
+
+            <div>
+              <label class="block font-mono text-neutral-300 mb-1 font-semibold">8. Requerimiento o Consulta Adicional</label>
+              <textarea id="machine-notes" rows="2" placeholder="Detalles de voltaje, espacio en planta, requerimiento de montaje o servicio técnico..." class="w-full bg-[#121212] border border-neutral-700 rounded-xl px-3.5 py-2 text-white placeholder-neutral-500 focus:border-blue-400 focus:outline-none text-xs"></textarea>
+            </div>
+
+            <p class="text-[11px] text-neutral-400 leading-tight pt-1">
+              * Nota: Incluye asesoría técnica, especificaciones de voltaje/vapor, planos dimensionales y soporte de puesta en marcha en todo el país.
+            </p>
+
+            <button type="submit" class="w-full mt-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-black py-3.5 rounded-xl text-xs sm:text-sm uppercase tracking-wider transition shadow-lg shadow-blue-600/30 active:scale-98 flex items-center justify-center gap-2">
+              <i data-lucide="send" class="w-4 h-4"></i>
+              <span>Solicitar Ficha Técnica y Cotización</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    `;
+  }
+
   initAnimationsAndAssets() {
     this.threeViewerInstance = initThreeViewer('three-bag-container');
 
@@ -2584,6 +2856,91 @@ class AntigravityRenderer {
           }
         });
       });
+    });
+
+    // Filtro interactivo de maquinaria industrial
+    document.querySelectorAll('.btn-machine-tab').forEach(tab => {
+      tab.addEventListener('click', (e) => {
+        e.preventDefault();
+        const cat = tab.getAttribute('data-machine-filter');
+        
+        // Actualizar estado visual de los tabs
+        document.querySelectorAll('.btn-machine-tab').forEach(t => {
+          t.className = 'btn-machine-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-neutral-700 bg-neutral-900/90 text-neutral-300 hover:border-neutral-500';
+        });
+        tab.className = 'btn-machine-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-blue-500 bg-blue-600 text-white shadow-lg shadow-blue-600/30';
+
+        // Filtrar tarjetas
+        document.querySelectorAll('.machinery-card').forEach(card => {
+          const cardCat = card.getAttribute('data-machine-cat');
+          if (cat === 'all' || cardCat === cat) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Modal de Cotización de Maquinaria Industrial
+    const machineryModal = document.getElementById('machinery-modal');
+    const machineSelectedInput = document.getElementById('machine-selected-name');
+
+    document.querySelectorAll('.btn-machinery-quote').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const machineTitle = btn.getAttribute('data-machine-title') || 'Maquinaria Industrial';
+        if (machineSelectedInput) machineSelectedInput.value = machineTitle;
+        machineryModal?.classList.remove('hidden');
+      });
+    });
+
+    document.getElementById('btn-close-machinery-modal')?.addEventListener('click', () => {
+      machineryModal?.classList.add('hidden');
+    });
+
+    document.getElementById('machinery-form')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const machineTitle = machineSelectedInput?.value || '';
+      const company = document.getElementById('machine-company')?.value || '';
+      const contact = document.getElementById('machine-contact-name')?.value || '';
+      const phone = document.getElementById('machine-phone')?.value || '';
+      const email = document.getElementById('machine-email')?.value || '';
+      const capacity = document.getElementById('machine-capacity')?.value || '';
+      const productType = document.getElementById('machine-product-type')?.value || '';
+      const notes = document.getElementById('machine-notes')?.value || '';
+
+      const payload = {
+        event: 'machinery_quote_inquiry',
+        equipment_name: machineTitle,
+        company_name: company,
+        contact_name: contact,
+        contact_phone: phone,
+        contact_email: email,
+        capacity_required: capacity,
+        product_type: productType,
+        notes: notes,
+        timestamp: new Date().toISOString()
+      };
+
+      try {
+        await saveB2BOrder({
+          company_name: company,
+          contact_email: email,
+          product_name: `[MAQUINARIA] ${machineTitle}`,
+          quantity: 1,
+          unit_price: 0,
+          total_price: 0,
+          has_custom_logo: false,
+          status: 'machinery_inquiry_pending'
+        });
+        await triggerMakeWebhook(payload);
+      } catch (err) {
+        console.warn('Webhook machinery notice:', err);
+      }
+
+      machineryModal?.classList.add('hidden');
+      this.showToast(`¡Solicitud enviada para ${machineTitle}! Un especialista técnico te contactará.`, 'success');
     });
 
     this.updatePricingSummary();

@@ -170,6 +170,256 @@
       }
     },
     {
+      "section": "machinery_showcase",
+      "config": {
+        "title": "Maquinaria y Líneas de Producción para Alimentos",
+        "subtitle": "Equipamiento industrial para procesamiento cárnico, embutidos y plantas alimentarias. Fabricación en acero inoxidable SUS304 y servicio técnico nacional.",
+        "items": [
+          {
+            "id": "desmenuzadora_congelada",
+            "category": "procesamiento",
+            "badge": "Procesa a -18°C sin descongelar",
+            "icon": "snowflake",
+            "title": "Desmenuzadora de Carne Congelada",
+            "subtitle": "Descomposición de bloques cárnicos congelados sin pérdida de frío",
+            "description": "Descompone directamente bloques enteros de carne cruda no descongelada a temperaturas de -5°C a -18°C. Elimina el tiempo y costos de descongelación en cámara, preservando la frescura y propiedades nutricionales.",
+            "features": [
+              "Procesa carne congelada de -5°C a -18°C directamente",
+              "Estructura reforzada en acero inoxidable SUS304",
+              "Cuchillas de aleación de alta calidad con doble filo reciclable",
+              "Alimentación automática con protección operativa de seguridad"
+            ],
+            "specs": [
+              { "model": "AKD-520", "power": "7.5 kW", "capacity": "2.000 kg/h", "speed": "60 rpm", "dims": "2200×1120×1150 mm" },
+              { "model": "AKG-520", "power": "11 kW", "capacity": "4.000 kg/h", "speed": "330 rpm", "dims": "2200×1120×1150 mm" }
+            ]
+          },
+          {
+            "id": "picadora_industrial",
+            "category": "procesamiento",
+            "badge": "Potencia hasta 55 kW",
+            "icon": "gauge",
+            "title": "Picadora de Carne Congelada Industrial",
+            "subtitle": "Molienda pesada para producción masiva de salchichas y cecinas",
+            "description": "Pica directamente carne congelada y sin congelar. Equipada con escariador en aleación 9CrSi forjado resistente al desgaste y engranajes helicoidales de bajo ruido y alto torque.",
+            "features": [
+              "Pica bloques congelados de hasta -15°C sin detención",
+              "Escariador 9CrSi forjado de alta durabilidad",
+              "Placas perforadas intercambiables para granulometrías precisas",
+              "Reductor de alto torque que evita calentamiento de la masa"
+            ],
+            "specs": [
+              { "model": "AKJ300", "power": "55 kW", "capacity": "3.000~6.000 kg/h", "knife": "ø300 mm", "dims": "2300×1400×2000 mm" },
+              { "model": "AKJ250", "power": "37 kW", "capacity": "2.000~4.000 kg/h", "knife": "ø250 mm", "dims": "1850×1100×1700 mm" }
+            ]
+          },
+          {
+            "id": "picadora_mediana",
+            "category": "procesamiento",
+            "badge": "Planta Mediana & Gourmet",
+            "icon": "settings",
+            "title": "Picadora de Carne Congelada Pequeña/Mediana",
+            "subtitle": "Molienda continua para fábricas de embutidos y charcutería",
+            "description": "Equipo compacto y eficiente para plantas medianas. Pica carne congelada por encima de -5°C con pernos frontales de rápido desarme y limpieza.",
+            "features": [
+              "Capacidad continua de 800 a 2.000 kg/h",
+              "Caja de cambios frontal de fácil mantenimiento",
+              "Uniformidad total de partículas sin pérdida de jugosidad",
+              "Construcción en acero inoxidable higiénico SUS304"
+            ],
+            "specs": [
+              { "model": "AKJ130", "power": "11 kW", "capacity": "1.000~2.000 kg/h", "knife": "ø130 mm", "dims": "1300×700×1200 mm" },
+              { "model": "AKJ120", "power": "7.5 kW", "capacity": "800~1.200 kg/h", "knife": "ø120 mm", "dims": "950×550×1100 mm" }
+            ]
+          },
+          {
+            "id": "picadora_fresca",
+            "category": "procesamiento",
+            "badge": "Baja Fricción & Sabor Intacto",
+            "icon": "shield-check",
+            "title": "Máquina para Picar Carne Fresca",
+            "subtitle": "Molienda suave de alta calidad que conserva el sabor y color natural",
+            "description": "Tecnología de molienda suave que minimiza la fricción para evitar la degradación de la mioglobina y grasa. Equipada con componentes importados y reinicio automático de sobrecarga.",
+            "features": [
+              "Capacidad de 500 a 600 kg/h",
+              "Red y escariador importados de máxima precisión",
+              "Apagado automático de sobrecarga y función de reinicio",
+              "Cubierta antipolvo y desmontaje higiénico instantáneo"
+            ],
+            "specs": [
+              { "model": "AKJ-B32", "power": "3.7 kW", "capacity": "500~600 kg/h", "voltage": "380V 50Hz", "dims": "850×510×950 mm" }
+            ]
+          },
+          {
+            "id": "cutter_bowl_vacio",
+            "category": "procesamiento",
+            "badge": "Cutter al Vacío & Alta Velocidad",
+            "icon": "zap",
+            "title": "Cortadora Cutter Bowl & Procesadora al Vacío",
+            "subtitle": "Picado fino, emulsión y mezclado con sensor de temperatura",
+            "description": "Cutter bowl industrial con sensor térmico digital incorporado. Utiliza de 3 a 6 cuchillas de alta velocidad (hasta 4.500 rpm) y cámara de vacío para extraer burbujas de aire y emulsionar proteínas.",
+            "features": [
+              "Sensor de temperatura en tiempo real en la pasta cárnica",
+              "3 a 6 cuchillas de alta velocidad (hasta 4.500 rpm)",
+              "Variación de frecuencia para corte, emulsión y mezcla en un solo paso",
+              "Cámara de vacío que mejora la elasticidad y vida útil del producto",
+              "Tazón giratorio sincronizado de acero inoxidable SUS304"
+            ],
+            "specs": [
+              { "model": "AKZ-40", "power": "8.35 kW", "capacity": "25 kg/h", "bowl": "40L", "knife_rpm": "1500/3000/4500", "dims": "1100×850×1050 mm" },
+              { "model": "AKZ80", "power": "15 kW", "capacity": "50~60 kg/h", "bowl": "80L", "knife_rpm": "1500/3000", "dims": "1900×1500×1500 mm" },
+              { "model": "AKZ200 Vacío", "power": "60 kW", "capacity": "140~160 kg/h", "bowl": "200L", "knife_rpm": "200~3600", "dims": "2250×2000×1760 mm" },
+              { "model": "AKZ525 Industrial", "power": "119 kW", "capacity": "300~420 kg/h", "bowl": "525L", "knife_rpm": "300~3300", "dims": "3060×2350×2650 mm" }
+            ]
+          },
+          {
+            "id": "mezcladora_carne_vacio",
+            "category": "procesamiento",
+            "badge": "Doble Eje & Vacío SMC Japón",
+            "icon": "refresh-cw",
+            "title": "Mezcladora de Carne Normal e Industrial al Vacío",
+            "subtitle": "Mezclado homogéneo con control de recetas en pantalla táctil Delta PLC",
+            "description": "Estructura de doble eje paralelo con paletas inclinadas que generan círculos positivos y negativos simultáneos. Sistema de vacío SMC japonés que reduce microburbujas y prolonga la vida útil.",
+            "features": [
+              "Doble eje paralelo con paletas de placas inclinadas",
+              "Válvulas y control de vacío SMC de alta velocidad",
+              "Pantalla táctil Delta PLC programable con recetas memorizadas",
+              "Apertura y descarga neumática automatizada",
+              "Reductor cicloide de acero fundido y transmisión por cadena"
+            ],
+            "specs": [
+              { "model": "AKJB180", "power": "3.5 kW", "capacity": "120 kg/h", "voltage": "380V", "dims": "1200×950×1350 mm" },
+              { "model": "AKJB350", "power": "6 kW", "capacity": "270 kg/h", "voltage": "380V", "dims": "1500×1200×1380 mm" },
+              { "model": "AKJB650", "power": "9 kW", "capacity": "500 kg/h", "voltage": "380V", "dims": "2050×1650×1700 mm" },
+              { "model": "AKJB1200", "power": "13.5 kW", "capacity": "900 kg/h", "voltage": "380V", "dims": "2100×1500×2000 mm" }
+            ]
+          },
+          {
+            "id": "linea_llenado_atado",
+            "category": "embutido",
+            "badge": "Hasta 800 nudos / minuto",
+            "icon": "layers",
+            "title": "Línea de Producción de Llenado y Atado de Salchichas",
+            "subtitle": "Automatización continua con control cuantitativo de longitud y peso",
+            "description": "Línea continua de alta velocidad para salchichas en tripa de colágeno, celulosa, natural o plástico. Ahorra entre 600 y 1.600 metros de tripa por tonelada producida gracias a su precisión de ±2mm.",
+            "features": [
+              "Producción continua de hasta 800 nudos por minuto",
+              "Ahorro de hasta 1.600 metros de tripa por tonelada de producto",
+              "Grado de vacío hasta -0.1 MPa que previene oxidación de grasas",
+              "Precisión cuantitativa milimétrica con servocontrol",
+              "Compatible con todo tipo de tripa artificial y natural"
+            ],
+            "specs": [
+              { "model": "AK3200T+AKQ1200+AK800", "power": "10 kW", "capacity": "Max 800 nudos/min", "length": "20-250 mm", "diameter": "ø9-40 mm", "precision": "±2 mm / 100 mm" }
+            ]
+          },
+          {
+            "id": "embutidora_vacio_twister",
+            "category": "embutido",
+            "badge": "Llenado 3.000 kg/h • Tolva 240L",
+            "icon": "maximize-2",
+            "title": "Embutidora al Vacío con Torsión Automática",
+            "subtitle": "Llenadora continua de paletas con twister de retorcimiento simultáneo",
+            "description": "Llenadora al vacío con bomba de paletas interna que evita la hidrólisis de proteínas y la rotura de fibras. Porcionado exacto de 5g a 10.000g con retorcimiento automático de salchichas.",
+            "features": [
+              "Capacidad de llenado directo hasta 3.000 kg/h",
+              "Dispositivo twister de torsión automático integrado",
+              "Porcionado de alta precisión: 5g a 10.000g (error ±1.5g)",
+              "Tolva abatible de 240L en acero inoxidable SUS304",
+              "Conectable a máquina de atar y cortadora automática"
+            ],
+            "specs": [
+              { "model": "AK-3200TN", "power": "6.75 kW", "capacity": "3.000 kg/h", "volume": "240L", "twister": "10~200 nudos/min", "dims": "2500×1290×2150 mm" }
+            ]
+          },
+          {
+            "id": "envoltura_atadora",
+            "category": "embutido",
+            "badge": "Protección IP64 & Servomotores",
+            "icon": "shield",
+            "title": "Envolvedora de Tripa Natural y Atadora Eléctrica",
+            "subtitle": "Manejo suave de tripa natural y anudadora servo asistida Inovance",
+            "description": "Equipos diseñados para ambientes de alta salinidad y humedad (IP64). La anudadora cuenta con servomotor Inovance, leva electrónica y pantalla táctil de 4.3 pulgadas.",
+            "features": [
+              "Envolvedora con protección IP64 contra niebla salina y salpicaduras",
+              "Anudadora con servocontrol Inovance y leva electrónica",
+              "Velocidad de atado regulable de 20 a 800 nudos/minuto",
+              "Pantalla táctil de 4.3 pulgadas para configuración independiente",
+              "Ajuste milimétrico de vueltas de hilo y longitud de salchicha"
+            ],
+            "specs": [
+              { "model": "AKTG1.0 Envolvedora", "power": "90 W", "protection": "IP64", "speed": "1.400 rpm", "dims": "693×596×429 mm" },
+              { "model": "AK807 Atadora", "power": "4.25 kW", "capacity": "800 nudos/min", "diameter": "ø9~26 mm", "dims": "1135×960×1165 mm" },
+              { "model": "AK807F Calibre Mayor", "power": "4.25 kW", "capacity": "800 nudos/min", "diameter": "ø9~40 mm", "dims": "1135×960×1165 mm" }
+            ]
+          },
+          {
+            "id": "cortadora_doble_canal",
+            "category": "embutido",
+            "badge": "Doble Canal 3.000 kg/h",
+            "icon": "scissors",
+            "title": "Maquinaria Cortadora de Salchichas Doble Canal",
+            "subtitle": "Corte preciso y limpio de nudos sin adición de aceite ni agua",
+            "description": "Cortadora automática de nudos de salchicha con opción de doble canal o canal simple. Corte seco limpio que preserva la higiene de la línea sin contaminar el producto.",
+            "features": [
+              "Modo de doble canal simultáneo o canal simple",
+              "Corte seco sin lubricantes (cero consumo de aceite o agua)",
+              "Tasa de rotura de intestino ultra baja",
+              "Capacidad industrial de 2.000 a 3.000 kg/h",
+              "Fácil desmontaje para sanitización con espuma"
+            ],
+            "specs": [
+              { "model": "ENJ500", "power": "4 kW", "voltage": "380V", "capacity": "2.000~3.000 kg/h", "weight": "200 kg", "dims": "1000×800×1400 mm" }
+            ]
+          },
+          {
+            "id": "ahumadores_industriales",
+            "category": "ahumado",
+            "badge": "250 a 1.000 kg/lote • PLC 100 Recetas",
+            "icon": "flame",
+            "title": "Hornos y Cámaras de Ahumado Industrial",
+            "subtitle": "Secado, cocción a vapor, ahumado uniforme y autolavado CIP",
+            "description": "Cámaras industriales con generador de humo externo para cecinas, salchichas, pollo, pato y pescado. Equipadas con aislamiento térmico en poliuretano inyectado y PLC con memoria para 100 recetas.",
+            "features": [
+              "4 procesos en un equipo: secado, cocción vapor, ahumado y coloración",
+              "Circulación forzada de humo para un dorado 100% homogéneo",
+              "Controlador PLC con interfaz táctil y 100 recetas memorizadas",
+              "Aislamiento térmico de poliuretano de alta densidad",
+              "Sistema de limpieza automática CIP integrado",
+              "Calentamiento a vapor externo o eléctrico opcional"
+            ],
+            "specs": [
+              { "model": "AKYX-1/1 (1 Carro)", "capacity": "250 kg/lote", "power": "4.5 kW", "steam": "75 kg/h", "dims": "2580×1500×3350 mm" },
+              { "model": "AKYX-2/2 (2 Carros)", "capacity": "500 kg/lote", "power": "8.5 kW", "steam": "150 kg/h", "dims": "2580×2680×3350 mm" },
+              { "model": "AKYX-2/3 (3 Carros)", "capacity": "750 kg/lote", "power": "12.5 kW", "steam": "225 kg/h", "dims": "2580×3780×3350 mm" },
+              { "model": "AKYX-2/4 (4 Carros)", "capacity": "1.000 kg/lote", "power": "16.5 kW", "steam": "300 kg/h", "dims": "2580×4880×3350 mm" }
+            ]
+          },
+          {
+            "id": "servicio_tecnico_nacional",
+            "category": "servicio",
+            "badge": "Cobertura en Todo Chile",
+            "icon": "wrench",
+            "title": "Servicio Técnico Nacional & Repuestos",
+            "subtitle": "Ingeniería de montaje, mantenimiento preventivo y postventa técnica",
+            "description": "Equipo multidisciplinario de técnicos e ingenieros para plantas de alimentos a nivel nacional. Ofrecemos instalación, puesta en marcha, contratos de mantenimiento y stock permanente de repuestos críticos.",
+            "features": [
+              "Asistencia técnica y postventa en todo Chile",
+              "Mantenimiento preventivo y correctivo de líneas industriales",
+              "Stock permanente de repuestos y cuchillas originales",
+              "Dimensionamiento e ingeniería de líneas llave en mano",
+              "Atención remota y visitas a terreno para plantas procesadoras"
+            ],
+            "specs": [
+              { "model": "Soporte Técnico Preventivo", "detail": "Planes mensuales y trimestrales" },
+              { "model": "Puesta en Marcha", "detail": "Capacitación a operadores de planta" },
+              { "model": "Repuestos Originales", "detail": "Cuchillas, sellos, válvulas y placas" }
+            ]
+          }
+        ]
+      }
+    },
+    {
       "section": "tiered_pricing_offers",
       "config": {
         "title": "Escala tu Producción, Reduce tus Costos",
