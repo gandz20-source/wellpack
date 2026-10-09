@@ -163,53 +163,101 @@ class AntigravityRenderer {
 
     if (isDark) {
       return `
-        <header class="sticky top-0 z-40 backdrop-blur-xl bg-[#121212]/90 border-b border-neutral-800 shadow-2xl transition-all">
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <header class="sticky top-0 z-40 backdrop-blur-2xl bg-[#0b0c10]/85 border-b border-white/[0.08] shadow-[0_4px_30px_rgba(0,0,0,0.6)] transition-all">
+          <!-- Cyber Hairline Gradient Top Accent -->
+          <div class="h-[1.5px] w-full bg-gradient-to-r from-transparent via-amber-500/60 to-transparent"></div>
+
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[74px] flex items-center justify-between gap-4">
             
-            <!-- Logo WellPack Universal -->
-            <a href="#hero" class="flex items-center gap-3 group">
-              <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-500 via-amber-600 to-yellow-400 flex items-center justify-center shadow-lg shadow-amber-500/20 ring-2 ring-amber-400/40 group-hover:scale-105 transition-transform">
-                <i data-lucide="package" class="w-6 h-6 text-neutral-950 font-black"></i>
+            <!-- 1. Logo Oficial WellPack (WP Glowing Mark + Tipografía Tecnológica) -->
+            <a href="#hero" class="flex items-center gap-3 sm:gap-3.5 group shrink-0 transition-transform active:scale-95">
+              <div class="relative w-10 h-10 sm:w-11 sm:h-11 rounded-full p-[1.5px] bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 shadow-[0_0_15px_rgba(245,158,11,0.35)] group-hover:shadow-[0_0_25px_rgba(245,158,11,0.6)] transition-all duration-300">
+                <img 
+                  src="/assets/images/logo_wp_badge.png" 
+                  alt="WellPack Official Logo" 
+                  class="w-full h-full object-contain rounded-full bg-[#121212]"
+                />
               </div>
-              <div>
-                <span class="text-xl font-extrabold tracking-wider text-white font-mono uppercase">WellPack</span>
-                <span class="text-[10px] block text-amber-400 font-mono tracking-widest font-bold uppercase">EMPAQUES INDUSTRIALES ALIMENTARIOS</span>
+              <div class="flex flex-col">
+                <div class="flex items-center gap-2">
+                  <span class="text-xl sm:text-[22px] font-black tracking-wider text-white font-heading uppercase group-hover:text-amber-400 transition-colors leading-none">WellPack</span>
+                  <span class="text-[8.5px] font-mono px-1.5 py-0.5 rounded bg-amber-500/15 border border-amber-500/30 text-amber-400 font-bold tracking-widest hidden xs:inline-block">TECH</span>
+                </div>
+                <span class="text-[8.5px] sm:text-[9.5px] font-mono tracking-[0.24em] text-neutral-400 uppercase font-semibold mt-1 group-hover:text-neutral-200 transition-colors leading-none">
+                  Digital Flexible Packaging
+                </span>
               </div>
             </a>
 
-            <!-- Enlaces de navegación -->
-            <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-neutral-300">
-              <a href="#hero" class="hover:text-amber-400 transition-colors">Inicio</a>
-              <a href="#packaging_types_gallery" class="hover:text-amber-400 transition-colors">Formatos</a>
-              <a href="#machinery_showcase" class="hover:text-blue-400 text-blue-400 flex items-center gap-1.5 transition-colors font-bold">
-                <i data-lucide="cpu" class="w-4 h-4 text-blue-400"></i>
+            <!-- 2. Menú de Navegación Central (Pill Dock Tecnológico) -->
+            <nav class="hidden lg:flex items-center gap-1 px-2 py-1 rounded-2xl bg-neutral-900/60 border border-neutral-800/80 backdrop-blur-md shadow-inner">
+              <a href="#hero" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-neutral-300 hover:text-white hover:bg-neutral-800/70 transition-all">Inicio</a>
+              <a href="#packaging_types_gallery" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-neutral-300 hover:text-white hover:bg-neutral-800/70 transition-all">Formatos</a>
+              <a href="#machinery_showcase" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-amber-300 bg-amber-500/15 border border-amber-500/40 hover:bg-amber-500/25 hover:border-amber-400 flex items-center gap-1.5 transition-all shadow-[0_0_12px_rgba(245,158,11,0.25)]">
+                <i data-lucide="cpu" class="w-3.5 h-3.5 text-amber-400"></i>
                 <span>Maquinaria</span>
               </a>
-              <a href="#tiered_pricing_offers" class="hover:text-amber-400 transition-colors">Precios & Planes</a>
-              <a href="#industries_served" class="hover:text-amber-400 transition-colors">Sectores</a>
-              
-              <span class="text-xs bg-neutral-900 text-amber-300 px-3 py-1 rounded-full border border-neutral-700 flex items-center gap-1.5 font-mono font-medium">
-                <span class="w-2 h-2 rounded-full ${isConfigured ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'}"></span>
-                ${isConfigured ? 'Supabase Conectado' : 'Catálogo Activo'}
-              </span>
+              <a href="#tiered_pricing_offers" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-neutral-300 hover:text-white hover:bg-neutral-800/70 transition-all">Precios & Planes</a>
+              <a href="#industries_served" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-neutral-300 hover:text-white hover:bg-neutral-800/70 transition-all">Sectores</a>
             </nav>
 
-            <!-- Acciones de Cabecera -->
-            <div class="flex items-center gap-2.5">
-              <button id="btn-open-config" title="Configurar Supabase y Make" class="p-2.5 rounded-xl bg-neutral-900 text-neutral-400 hover:text-amber-400 hover:bg-neutral-800 border border-neutral-800 transition shadow-sm">
+            <!-- 3. Acciones de Cabecera (Botones con Separaciones y Estética Tecnológica) -->
+            <div class="flex items-center gap-2 sm:gap-3">
+              <!-- Telemetría / Estado Activo -->
+              <div class="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-neutral-900/80 border border-neutral-800/90 text-neutral-300 text-xs font-mono shadow-sm">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full ${isConfigured ? 'bg-emerald-400' : 'bg-amber-400'} opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 ${isConfigured ? 'bg-emerald-500' : 'bg-amber-500'}"></span>
+                </span>
+                <span class="text-[10px] font-bold tracking-widest uppercase ${isConfigured ? 'text-emerald-400' : 'text-amber-300'}">
+                  ${isConfigured ? 'API ONLINE' : 'CATÁLOGO V2.4'}
+                </span>
+              </div>
+
+              <!-- Configuración Webhook/Supabase -->
+              <button 
+                id="btn-open-config" 
+                title="Configuración de Sistema & Webhooks" 
+                class="p-2.5 rounded-xl bg-neutral-900/80 hover:bg-neutral-800 text-neutral-400 hover:text-amber-400 border border-neutral-800 hover:border-amber-500/40 transition-all shadow-sm hover:shadow-[0_0_12px_rgba(245,158,11,0.2)] active:scale-95">
                 <i data-lucide="settings" class="w-4 h-4"></i>
               </button>
-              <button id="btn-open-variations-nav" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-amber-300 border border-amber-500/30 text-xs font-mono font-bold transition shadow-sm">
+
+              <!-- Selector de Variaciones Estilo Alibaba -->
+              <button 
+                id="btn-open-variations-nav" 
+                class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-neutral-900/90 hover:bg-neutral-800/90 text-amber-300 hover:text-amber-200 border border-amber-500/30 hover:border-amber-400/80 text-xs font-mono font-bold tracking-wider transition-all shadow-sm hover:shadow-[0_0_15px_rgba(245,158,11,0.25)] active:scale-95">
                 <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5 text-amber-400"></i>
-                <span class="hidden sm:inline">Variaciones</span>
+                <span class="hidden sm:inline">VARIACIONES</span>
               </button>
+
+              <!-- CTA Principal de Cotización Tecnológica -->
               <button 
                 data-open-variation="any"
-                class="btn-open-variation inline-flex items-center gap-2 bg-[#F59E0B] hover:bg-amber-400 text-neutral-950 font-black text-sm px-4 sm:px-5 py-2.5 rounded-xl shadow-lg shadow-amber-500/25 transition-all hover:scale-[1.03] active:scale-95">
-                <i data-lucide="file-text" class="w-4 h-4"></i>
+                class="btn-open-variation group relative inline-flex items-center gap-2.5 bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 hover:from-amber-400 hover:to-yellow-300 text-neutral-950 font-black text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-xl shadow-[0_0_20px_rgba(245,158,11,0.4)] hover:shadow-[0_0_30px_rgba(245,158,11,0.65)] border border-amber-300/60 transition-all hover:scale-[1.03] active:scale-95 font-mono tracking-wider uppercase shrink-0">
+                <i data-lucide="file-text" class="w-4 h-4 text-neutral-950 group-hover:rotate-6 transition-transform"></i>
                 <span>Cotizar Empaque</span>
               </button>
+
+              <!-- Botón Menú Móvil -->
+              <button 
+                id="btn-mobile-nav-toggle" 
+                aria-label="Abrir menú" 
+                class="lg:hidden p-2.5 rounded-xl bg-neutral-900/80 text-neutral-300 hover:text-amber-400 border border-neutral-800 hover:border-amber-500/40 transition-all active:scale-95">
+                <i data-lucide="menu" class="w-5 h-5"></i>
+              </button>
             </div>
+          </div>
+
+          <!-- Menú Desplegable Móvil -->
+          <div id="mobile-nav-menu" class="hidden lg:hidden border-t border-neutral-800/80 bg-[#0b0c10]/95 backdrop-blur-2xl px-4 py-3 space-y-2">
+            <a href="#hero" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-neutral-300 hover:text-white hover:bg-neutral-800/70">Inicio</a>
+            <a href="#packaging_types_gallery" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-neutral-300 hover:text-white hover:bg-neutral-800/70">Formatos</a>
+            <a href="#machinery_showcase" class="mobile-nav-link flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-bold text-amber-300 bg-amber-500/10 border border-amber-500/30">
+              <i data-lucide="cpu" class="w-4 h-4 text-amber-400"></i>
+              <span>Maquinaria Industrial</span>
+            </a>
+            <a href="#tiered_pricing_offers" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-neutral-300 hover:text-white hover:bg-neutral-800/70">Precios & Planes</a>
+            <a href="#industries_served" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-neutral-300 hover:text-white hover:bg-neutral-800/70">Sectores</a>
           </div>
         </header>
       `;
@@ -2366,20 +2414,32 @@ class AntigravityRenderer {
 
   renderFooter() {
     const isDark = this.schema?.theme === 'premium_industrial_food' || this.schema?.colors?.background === '#121212';
-    const bg = isDark ? 'bg-[#0a0a0a] border-neutral-800 text-neutral-400' : 'bg-[#020814] border-slate-900 text-slate-500';
-    const dot = isDark ? 'bg-amber-400 shadow-sm shadow-amber-400/50' : 'bg-sky-400';
-    const subtitle = isDark ? '• Empaques de Alta Barrera para la Industria Alimentaria Nacional' : '• Importación & Venta Mayorista de Bolsas al Vacío y Doypack';
+    const bg = isDark ? 'bg-[#090a0d] border-neutral-800/80 text-neutral-400' : 'bg-[#020814] border-slate-900 text-slate-500';
 
     return `
       <footer class="${bg} border-t py-12 text-xs font-mono">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div class="flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full ${dot}"></span>
-            <span class="text-white font-bold uppercase tracking-wider">WellPack</span>
-            <span>${subtitle}</span>
+          <div class="flex items-center gap-3.5">
+            <div class="relative w-9 h-9 rounded-full p-0.5 bg-gradient-to-br from-amber-400 to-amber-600 shadow-[0_0_12px_rgba(245,158,11,0.4)]">
+              <img src="/assets/images/logo_wp_badge.png" alt="WellPack Logo" class="w-full h-full object-contain rounded-full bg-[#121212]" />
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-white font-black tracking-wider uppercase font-heading text-sm">WellPack</span>
+                <span class="text-[9px] px-1.5 py-0.5 rounded bg-amber-500/15 border border-amber-500/30 text-amber-400 font-bold">PRO</span>
+              </div>
+              <span class="text-[9px] text-neutral-400 block tracking-[0.2em] uppercase font-semibold">Digital Flexible Packaging & Maquinaria</span>
+            </div>
           </div>
-          <div>
-            <span class="text-neutral-500">Desarrollado con Google Antigravity • Supabase • Make.com</span>
+          <div class="flex flex-wrap items-center gap-4 text-neutral-400 text-[11px]">
+            <span class="inline-flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>Planta Operativa</span>
+            </span>
+            <span>•</span>
+            <span>Soporte Técnico Nacional</span>
+            <span>•</span>
+            <span class="text-neutral-500">WellPack © 2026</span>
           </div>
         </div>
       </footer>
@@ -2809,6 +2869,18 @@ class AntigravityRenderer {
     });
     document.getElementById('btn-banner-open-variations')?.addEventListener('click', () => {
       alibabaModal.open();
+    });
+
+    // Menú de navegación móvil tecnológico
+    const mobileToggle = document.getElementById('btn-mobile-nav-toggle');
+    const mobileMenu = document.getElementById('mobile-nav-menu');
+    mobileToggle?.addEventListener('click', () => {
+      mobileMenu?.classList.toggle('hidden');
+    });
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu?.classList.add('hidden');
+      });
     });
 
     // Micro-interacción Spotlight: Seguir puntero del mouse dinámicamente
