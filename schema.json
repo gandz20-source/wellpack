@@ -69,7 +69,7 @@
         "items": [
           {
             "title": "Bolsas al Vacío para Carnes Rojas & Hueso",
-            "image": "/assets/img/bolsa-vacio-carne-hueso.jpg",
+            "image": "/assets/images/bolsa_vacio_carne_impresa.jpg",
             "uses": "Cortes con hueso, vacuno, antipunzonamiento 120μ y maduración.",
             "category": "carnes",
             "badge": "120μ Antipunzonamiento",
@@ -77,7 +77,7 @@
           },
           {
             "title": "Filetes de Salmón & Pescados Premium",
-            "image": "/assets/images/bolsa_salmon_40x25.jpg",
+            "image": "/assets/images/bolsa_vacio_salmon_impresa.jpg",
             "uses": "Salmón fresco/congelado, exportación pesquera y barrera EVOH total.",
             "category": "pesca",
             "badge": "Alta Barrera EVOH",
@@ -85,7 +85,7 @@
           },
           {
             "title": "Cortes Gourmet al Vacío (Tomahawk)",
-            "image": "/assets/img/corte-vacuno-tomahawk.jpg",
+            "image": "/assets/images/bolsa_vacio_tomahawk_impresa.jpg",
             "uses": "Frigoríficos, carnicerías boutique, maduración en bolsa.",
             "category": "carnes",
             "badge": "Maduración en Vacío",
@@ -117,7 +117,7 @@
           },
           {
             "title": "Empaque Termoencogible Cryovac",
-            "image": "/assets/img/termoencogible-pollo.jpg",
+            "image": "/assets/images/bolsa_termoencogible_pollo_impresa.jpg",
             "uses": "Pollos enteros, pavos, cortes porcinos y empaque segunda piel.",
             "category": "carnes",
             "badge": "Segunda Piel Cryovac",
@@ -157,7 +157,7 @@
           },
           {
             "title": "Bolsas Tubulares Sellado 3 Sellos",
-            "image": "/assets/img/embutidos-vacio.jpg",
+            "image": "/assets/images/bolsa_vacio_embutidos_impresa.jpg",
             "uses": "Salchichas, charcutería gourmet, quesos laminados y embutidos.",
             "category": "carnes",
             "badge": "Sellado 3 Sellos",

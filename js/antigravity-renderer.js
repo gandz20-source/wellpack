@@ -1350,10 +1350,10 @@ class AntigravityRenderer {
                   <span>Ver aplicaciones reales:</span>
                 </a>
                 <div class="flex items-center gap-1.5">
-                  <img src="assets/img/salmon-vacio-premium.jpg" title="Salmón sellado al vacío" class="w-8 h-8 rounded-lg object-cover border border-sky-200 hover:scale-110 transition">
-                  <img src="assets/img/corte-vacuno-tomahawk.jpg" title="Corte vacuno Tomahawk" class="w-8 h-8 rounded-lg object-cover border border-sky-200 hover:scale-110 transition">
+                  <img src="assets/images/bolsa_vacio_salmon_impresa.jpg" title="Salmón sellado al vacío impreso" class="w-8 h-8 rounded-lg object-cover border border-sky-200 hover:scale-110 transition">
+                  <img src="assets/images/bolsa_vacio_tomahawk_impresa.jpg" title="Corte vacuno Tomahawk impreso" class="w-8 h-8 rounded-lg object-cover border border-sky-200 hover:scale-110 transition">
                   <img src="assets/img/doypack-mariscos.jpg" title="Doypack mariscos" class="w-8 h-8 rounded-lg object-cover border border-sky-200 hover:scale-110 transition">
-                  <img src="assets/img/embutidos-vacio.jpg" title="Cecinas y embutidos" class="w-8 h-8 rounded-lg object-cover border border-sky-200 hover:scale-110 transition">
+                  <img src="assets/images/bolsa_vacio_embutidos_impresa.jpg" title="Cecinas y embutidos impresos" class="w-8 h-8 rounded-lg object-cover border border-sky-200 hover:scale-110 transition">
                 </div>
               </div>
 
@@ -1862,14 +1862,14 @@ class AntigravityRenderer {
     
     const defaultImages = [
       {
-        url: "/assets/img/salmon-vacio-premium.jpg",
-        alt_text: "Salmón sellado al vacío",
-        caption: "Máxima barrera de oxígeno para pescados."
+        url: "/assets/images/bolsa_vacio_salmon_impresa.jpg",
+        alt_text: "Salmón sellado al vacío con impresión HD y logo",
+        caption: "Máxima barrera de oxígeno e impresión color para pescados."
       },
       {
-        url: "/assets/img/corte-vacuno-tomahawk.jpg",
-        alt_text: "Corte premium de carne de vacuno sellado al vacío",
-        caption: "Presentación y vida útil para carnes rojas."
+        url: "/assets/images/bolsa_vacio_tomahawk_impresa.jpg",
+        alt_text: "Corte premium Tomahawk sellado al vacío con branding y logo",
+        caption: "Presentación Black Label con bone guard y vida útil para carnes rojas."
       },
       {
         url: "/assets/img/doypack-mariscos.jpg",
@@ -1877,9 +1877,9 @@ class AntigravityRenderer {
         caption: "Soluciones Doypack para productos procesados."
       },
       {
-        url: "/assets/img/embutidos-vacio.jpg",
-        alt_text: "Cecinas y embutidos sellados al vacío",
-        caption: "Protección prolongada y brillo estético."
+        url: "/assets/images/bolsa_vacio_embutidos_impresa.jpg",
+        alt_text: "Cecinas y embutidos sellados al vacío con diseño flexo y logo",
+        caption: "Protección prolongada y branding artesanal de alta calidad."
       }
     ];
 
