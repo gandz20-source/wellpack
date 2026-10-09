@@ -352,7 +352,7 @@ class AntigravityRenderer {
     const title = config.title?.text || "Empaques de Alta Barrera Personalizados para tu Industria";
     const subtitle = config.subtitle?.text || "Desde bolsas al vacío hasta formatos Doypack. Importamos y fabricamos el envase exacto con la identidad visual de tu marca para el sector cárnico, pesquero, agrícola y retail.";
     const actions = config.actions || [{ label: "Cotizar Empaque a Medida", type: "primary", bg_color: "#F59E0B" }];
-    const bgImg = config.background_image?.url || "assets/img/hero-fondo-impresion-hd.jpg";
+    const bgImg = config.background_image?.url || "assets/images/hero_wellpack_lineup.jpg";
     const normalizedBg = bgImg.startsWith('/') ? bgImg.slice(1) : bgImg;
     const overlay = config.background_image?.overlay || "rgba(18, 18, 18, 0.35)";
 
