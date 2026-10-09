@@ -205,6 +205,51 @@
     .animate-light-sweep {
       animation: lightSweep 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     }
+
+    /* Efecto Spotlight: Resplandor interactivo que sigue el puntero del mouse */
+    .spotlight-card {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .spotlight-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      border-radius: inherit;
+      background: radial-gradient(550px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(255, 107, 0, 0.14), transparent 42%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 2;
+    }
+    .spotlight-card:hover::before {
+      opacity: 1;
+    }
+
+    /* Transiciones suaves con curvas de easings.net (Quintic / Spring Out) */
+    .btn-spring {
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-spring:hover {
+      transform: translateY(-2px) scale(1.02);
+    }
+    .btn-spring:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    /* Animación de pulso suave de badge */
+    @keyframes subtleGlowPulse {
+      0%, 100% {
+        box-shadow: 0 0 15px rgba(255, 107, 0, 0.2);
+      }
+      50% {
+        box-shadow: 0 0 30px rgba(255, 107, 0, 0.45);
+      }
+    }
+    .animate-glow-pulse {
+      animation: subtleGlowPulse 3s ease-in-out infinite;
+    }
   </style>
 </head>
 <body class="min-h-screen bg-[#121212] text-white selection:bg-amber-400 selection:text-neutral-950 font-sans">
@@ -221,7 +266,7 @@
   </div>
 
   <!-- Carga del Motor de Renderizado Dinámico con Cache-Busting -->
-  <script type="module" src="js/antigravity-renderer.js?v=versus_highconv_v15"></script>
+  <script type="module" src="js/antigravity-renderer.js?v=interactive_ux_v17"></script>
 
 </body>
 </html>

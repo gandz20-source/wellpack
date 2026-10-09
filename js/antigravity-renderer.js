@@ -97,7 +97,10 @@ class AntigravityRenderer {
       <!-- 3. Pie de Página -->
       ${this.renderFooter()}
 
-      <!-- 4. Modales y Notificaciones -->
+      <!-- 4. Floating Action Dock B2B (Acción Rápida & Micro-interacciones) -->
+      ${this.renderFloatingActionDock()}
+
+      <!-- 5. Modales y Notificaciones -->
       ${this.renderSampleModal()}
       ${this.renderConfigModal()}
       <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3"></div>
@@ -106,6 +109,50 @@ class AntigravityRenderer {
     if (window.lucide) {
       window.lucide.createIcons();
     }
+  }
+
+  renderFloatingActionDock() {
+    return `
+      <!-- Floating B2B Action Dock (Micro-interacción & Conversión Inmediata) -->
+      <aside id="floating-b2b-dock" aria-label="Acciones rápidas WellPack" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-xl transition-all duration-300">
+        <div class="bg-neutral-900/90 backdrop-blur-xl border border-neutral-700/70 p-2 sm:p-2.5 rounded-2xl shadow-2xl shadow-black/80 flex items-center justify-between gap-2.5 sm:gap-4 ring-1 ring-white/10 hover:border-amber-500/50 transition-all">
+          
+          <!-- Indicador Operacional Planta Flexográfica -->
+          <div class="flex items-center gap-2.5 pl-2 sm:pl-3">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+            </span>
+            <div class="leading-none hidden xs:block sm:block">
+              <span class="text-[11px] font-mono font-bold text-white tracking-wider uppercase block">Línea Flexo Activa</span>
+              <span class="text-[9px] text-neutral-400 font-mono">Tirajes desde 10.000 un.</span>
+            </div>
+          </div>
+
+          <!-- Acciones Rápidas -->
+          <div class="flex items-center gap-2">
+            <!-- Botón WhatsApp Directo -->
+            <a 
+              href="https://wa.me/56987654321?text=Hola%20WellPack%2C%20quisiera%20asesor%C3%ADa%20r%C3%A1pida%20para%20cotizar%20empaques%20industriales" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="btn-spring inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-neutral-800 hover:bg-neutral-750 text-emerald-400 border border-emerald-500/30 text-xs font-mono font-bold">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+              <span class="hidden sm:inline">WhatsApp</span>
+            </a>
+
+            <!-- Botón Cotizar Inmediato (Abre Alibaba Modal) -->
+            <button 
+              data-open-variation="any" 
+              class="btn-open-variation btn-spring inline-flex items-center gap-2 px-4 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-[#FF6B00] text-neutral-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-amber-500/25">
+              <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5 text-neutral-950"></i>
+              <span>Cotizar Ahora</span>
+            </button>
+          </div>
+
+        </div>
+      </aside>
+    `;
   }
 
   renderNavbar() {
@@ -430,15 +477,23 @@ class AntigravityRenderer {
             </p>
           </div>
 
-          <!-- Rejilla de Tarjetas con Fotografía Real de Empaque -->
+          <!-- Rejilla de Tarjetas con Fotografía Real de Empaque (Con efecto Spotlight & Micro-interacciones) -->
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
             ${items.map(item => {
               const normalizedImg = item.image.startsWith('/') ? item.image.slice(1) : item.image;
               return `
-                <div class="group relative rounded-3xl overflow-hidden bg-[#181818] border border-neutral-800 hover:border-amber-500/60 shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:shadow-amber-500/15 flex flex-col justify-between">
+                <div class="spotlight-card group relative rounded-3xl overflow-hidden bg-[#181818] border border-neutral-800 hover:border-amber-500/70 shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:shadow-amber-500/20 flex flex-col justify-between">
                   
-                  <!-- Imagen con hover zoom -->
+                  <!-- Imagen con hover zoom y badge flotante -->
                   <div class="relative w-full h-64 overflow-hidden bg-[#101010]">
+                    <!-- Badge Flotante de Especificación Técnica -->
+                    <div class="absolute top-3.5 left-3.5 z-10">
+                      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-black/80 backdrop-blur-md text-[10px] font-mono font-bold text-amber-400 border border-amber-500/30 shadow-lg">
+                        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-amber-400"></i>
+                        Alta Barrera
+                      </span>
+                    </div>
+
                     <img 
                       src="${normalizedImg}" 
                       alt="${item.title}" 
@@ -449,7 +504,7 @@ class AntigravityRenderer {
                   </div>
 
                   <!-- Contenido de la tarjeta -->
-                  <div class="p-6 flex-1 flex flex-col justify-between">
+                  <div class="p-6 flex-1 flex flex-col justify-between relative z-10">
                     <div>
                       <h3 class="text-lg font-bold text-white leading-snug group-hover:text-amber-300 transition-colors">
                         ${item.title}
@@ -467,7 +522,7 @@ class AntigravityRenderer {
                     <div class="mt-5 pt-4 border-t border-neutral-800 flex items-center justify-between">
                       <button 
                         data-open-variation="any"
-                        class="btn-open-variation w-full inline-flex items-center justify-center gap-2 bg-neutral-900 hover:bg-amber-500 hover:text-neutral-950 text-amber-400 border border-amber-500/40 text-xs font-mono font-bold py-2.5 px-4 rounded-xl transition-all">
+                        class="btn-open-variation btn-spring w-full inline-flex items-center justify-center gap-2 bg-neutral-900 hover:bg-amber-500 hover:text-neutral-950 text-amber-400 border border-amber-500/40 text-xs font-mono font-bold py-2.5 px-4 rounded-xl transition-all">
                         <span>Configurar Medidas</span>
                         <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5"></i>
                       </button>
@@ -544,6 +599,28 @@ class AntigravityRenderer {
             </p>
           </div>
 
+          <!-- Selector Rápido de Volumen (Tabs Interactivos de Simulación) -->
+          <div class="flex items-center justify-center gap-2.5 mb-10 overflow-x-auto pb-2 px-2">
+            <button 
+              type="button" 
+              data-tier-target="tier_scale" 
+              class="btn-tier-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-[#FF6B00] bg-[#FF6B00] text-neutral-950 shadow-lg shadow-orange-950/40">
+              ⚡ 10.000 un. (Escala)
+            </button>
+            <button 
+              type="button" 
+              data-tier-target="tier_wholesale" 
+              class="btn-tier-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-neutral-700 bg-neutral-900/90 text-neutral-300 hover:border-neutral-500">
+              📦 20.000 un. (Mayorista)
+            </button>
+            <button 
+              type="button" 
+              data-tier-target="tier_industrial" 
+              class="btn-tier-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-neutral-700 bg-neutral-900/90 text-neutral-300 hover:border-neutral-500">
+              🏭 40.000+ un. (Industrial)
+            </button>
+          </div>
+
           <!-- Tiers de Precios (3 Columnas Centradas) -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-20 items-stretch max-w-6xl mx-auto">
             ${cards.map(card => {
@@ -551,7 +628,7 @@ class AntigravityRenderer {
               const hasBadge = !!card.badge;
 
               return `
-                <div class="bg-[#1E293B] p-6 rounded-2xl flex flex-col justify-between transition-all duration-300 hover:border-gray-500 shadow-xl ${
+                <div id="tier-card-${card.id}" data-card-id="${card.id}" class="spotlight-card tier-card bg-[#1E293B] p-6 rounded-2xl flex flex-col justify-between transition-all duration-300 hover:border-gray-500 shadow-xl ${
                   isHighlighted 
                     ? 'border-2 border-[#FF6B00] relative shadow-2xl shadow-orange-950/30 transform lg:-translate-y-4 ring-1 ring-[#FF6B00]/40' 
                     : 'border border-gray-700 hover:-translate-y-1'
@@ -2404,6 +2481,44 @@ class AntigravityRenderer {
     });
     document.getElementById('btn-banner-open-variations')?.addEventListener('click', () => {
       alibabaModal.open();
+    });
+
+    // Micro-interacción Spotlight: Seguir puntero del mouse dinámicamente
+    document.querySelectorAll('.spotlight-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+
+    // Quick Volume Switcher Tabs (Interacción en tiempo real)
+    document.querySelectorAll('.btn-tier-tab').forEach(tab => {
+      tab.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = tab.getAttribute('data-tier-target');
+        
+        // Actualizar estado visual de los tabs
+        document.querySelectorAll('.btn-tier-tab').forEach(t => {
+          t.className = 'btn-tier-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-neutral-700 bg-neutral-900/90 text-neutral-300 hover:border-neutral-500';
+        });
+        tab.className = 'btn-tier-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-[#FF6B00] bg-[#FF6B00] text-neutral-950 shadow-lg shadow-orange-950/40';
+
+        // Resaltar suavemente la tarjeta seleccionada
+        document.querySelectorAll('.tier-card').forEach(c => {
+          c.classList.remove('ring-4', 'ring-[#FF6B00]', 'scale-[1.03]');
+        });
+        const targetCard = document.getElementById(`tier-card-${targetId}`);
+        if (targetCard) {
+          targetCard.classList.add('ring-4', 'ring-[#FF6B00]', 'scale-[1.03]');
+          targetCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          setTimeout(() => {
+            targetCard.classList.remove('scale-[1.03]');
+          }, 600);
+        }
+      });
     });
 
     this.updatePricingSummary();
