@@ -19,6 +19,7 @@ class AntigravityRenderer {
     this.uploadedLogo = null;
     this.threeViewerInstance = null;
     this.currentCategory = 'all';
+    this.pageMode = document.body?.dataset?.pageMode || new URLSearchParams(window.location.search).get('page') || 'packaging';
     
     // Estado del Escaparate B2B Alibaba incrustado en la página
     this.alibabaState = {
@@ -41,8 +42,12 @@ class AntigravityRenderer {
       if (!res.ok) throw new Error(`No se pudo cargar el schema JSON: ${res.statusText}`);
       this.schema = await res.json();
       
-      if (this.schema.meta) {
-        document.title = this.schema.meta.title || document.title;
+      if (this.pageMode === 'meat_machinery') {
+        document.title = 'WellPack Cárnico | Maquinaria y Líneas para Rubro Cárnico & Cecinas';
+      } else if (this.pageMode === 'fishery_machinery') {
+        document.title = 'WellPack Pesquero | Maquinaria y Líneas para Proceso Pesquero & Acuícola';
+      } else if (this.schema.meta) {
+        document.title = 'WellPack | Envases Flexibles de Alta Barrera & Impresión HD';
       }
 
       // Cargar productos de Supabase
@@ -54,7 +59,7 @@ class AntigravityRenderer {
       // Inicializar Selector de Variaciones Estilo Alibaba
       alibabaModal.init();
 
-      // Renderizar vistas dinámicas
+      // Renderizar vistas dinámicas según la división activa
       this.renderApp();
 
       // Inicializar animaciones GSAP y Three.js
@@ -63,7 +68,7 @@ class AntigravityRenderer {
       // Enlazar interactividad del cotizador y filtros
       this.bindInteractiveEvents();
 
-      console.log('🌊 Antigravity Engine: Interfaz oceánica renderizada con éxito');
+      console.log(`🌊 Antigravity Engine [${this.pageMode}]: Interfaz renderizada con éxito`);
     } catch (err) {
       console.error('Error inicializando AntigravityRenderer:', err);
       this.renderError(err.message);
@@ -71,27 +76,43 @@ class AntigravityRenderer {
   }
 
   renderApp() {
-    const isDark = this.schema?.theme === 'premium_industrial_food' || this.schema?.colors?.background === '#121212';
-    if (isDark) {
+    if (this.pageMode === 'meat_machinery') {
+      document.body.style.backgroundColor = '#120606';
+      document.body.style.color = '#FFFFFF';
+      this.container.className = 'relative bg-[#120606] text-white min-h-screen';
+    } else if (this.pageMode === 'fishery_machinery') {
+      document.body.style.backgroundColor = '#03101f';
+      document.body.style.color = '#FFFFFF';
+      this.container.className = 'relative bg-[#03101f] text-white min-h-screen';
+    } else {
       document.body.style.backgroundColor = '#121212';
       document.body.style.color = '#FFFFFF';
       this.container.className = 'relative bg-[#121212] text-white min-h-screen';
-    } else {
-      this.container.className = 'relative ocean-gradient-canvas min-h-screen';
     }
 
-    this.container.innerHTML = `
-      <!-- 1. Barra de Navegación Industrial -->
-      ${this.renderNavbar()}
-
-      <!-- 2. Contenedor de Secciones Dinámicas -->
-      <main class="relative z-10 w-full overflow-hidden">
-        ${this.schema && this.schema.layout ? this.schema.layout.map(section => this.renderSection(section)).join('') : `
+    let mainContentHtml = '';
+    if (this.pageMode === 'meat_machinery') {
+      mainContentHtml = this.renderMeatMachineryPage();
+    } else if (this.pageMode === 'fishery_machinery') {
+      mainContentHtml = this.renderFisheryMachineryPage();
+    } else {
+      mainContentHtml = this.schema && this.schema.layout
+        ? this.schema.layout.map(section => this.renderSection(section)).join('')
+        : `
           ${this.renderHeroSection()}
           ${this.renderCatalogSection()}
           ${this.renderFactoryShowcaseSection()}
           ${this.renderCheckoutSection()}
-        `}
+        `;
+    }
+
+    this.container.innerHTML = `
+      <!-- 1. Barra de Navegación Industrial Multi-División -->
+      ${this.renderNavbar()}
+
+      <!-- 2. Contenedor de Secciones Dinámicas -->
+      <main class="relative z-10 w-full overflow-hidden">
+        ${mainContentHtml}
       </main>
 
       <!-- 3. Pie de Página -->
@@ -113,6 +134,78 @@ class AntigravityRenderer {
   }
 
   renderFloatingActionDock() {
+    if (this.pageMode === 'meat_machinery') {
+      return `
+        <aside id="floating-b2b-dock" aria-label="Acciones rápidas Maquinaria Cárnica" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-xl transition-all duration-300">
+          <div class="bg-[#1a0808]/95 backdrop-blur-xl border border-red-700/60 p-2 sm:p-2.5 rounded-2xl shadow-2xl shadow-black/90 flex items-center justify-between gap-2.5 sm:gap-4 ring-1 ring-red-500/20 hover:border-red-500 transition-all">
+            <div class="flex items-center gap-2.5 pl-2 sm:pl-3">
+              <span class="relative flex h-2.5 w-2.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
+              </span>
+              <div class="leading-none hidden xs:block sm:block">
+                <span class="text-[11px] font-mono font-bold text-white tracking-wider uppercase block">División Rubro Cárnico</span>
+                <span class="text-[9px] text-red-300 font-mono">12 Equipos SUS304 • Soporte Chile</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <a 
+                href="https://wa.me/56987654321?text=Hola%20WellPack%2C%20quisiera%20cotizar%20maquinaria%20para%20el%20rubro%20c%C3%A1rnico%20y%20cecinas" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="btn-spring inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-emerald-400 border border-emerald-500/30 text-xs font-mono font-bold">
+                <i data-lucide="message-circle" class="w-4 h-4"></i>
+                <span class="hidden sm:inline">WhatsApp</span>
+              </a>
+              <button 
+                type="button"
+                data-machine-title="Línea Industrial Rubro Cárnico & Cecinas"
+                class="btn-machinery-quote btn-spring inline-flex items-center gap-2 px-4 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-amber-500 text-white font-black text-xs uppercase tracking-wider shadow-lg shadow-red-600/35">
+                <i data-lucide="flame" class="w-3.5 h-3.5 text-white"></i>
+                <span>Cotizar Maquinaria</span>
+              </button>
+            </div>
+          </div>
+        </aside>
+      `;
+    }
+
+    if (this.pageMode === 'fishery_machinery') {
+      return `
+        <aside id="floating-b2b-dock" aria-label="Acciones rápidas Maquinaria Pesquera" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-xl transition-all duration-300">
+          <div class="bg-[#05182e]/95 backdrop-blur-xl border border-cyan-500/50 p-2 sm:p-2.5 rounded-2xl shadow-2xl shadow-black/90 flex items-center justify-between gap-2.5 sm:gap-4 ring-1 ring-cyan-400/20 hover:border-cyan-400 transition-all">
+            <div class="flex items-center gap-2.5 pl-2 sm:pl-3">
+              <span class="relative flex h-2.5 w-2.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-400"></span>
+              </span>
+              <div class="leading-none hidden xs:block sm:block">
+                <span class="text-[11px] font-mono font-bold text-white tracking-wider uppercase block">División Proceso Pesquero</span>
+                <span class="text-[9px] text-cyan-300 font-mono">Acero Marino AISI 316L • IQF -40°C</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <a 
+                href="https://wa.me/56987654321?text=Hola%20WellPack%2C%20quisiera%20cotizar%20maquinaria%20para%20proceso%20pesquero%20y%20salmonero" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="btn-spring inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-emerald-500/30 text-xs font-mono font-bold">
+                <i data-lucide="message-circle" class="w-4 h-4"></i>
+                <span class="hidden sm:inline">WhatsApp</span>
+              </a>
+              <button 
+                type="button"
+                data-machine-title="Línea Industrial Proceso Pesquero & Acuícola"
+                class="btn-machinery-quote btn-spring inline-flex items-center gap-2 px-4 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-cyan-500/35">
+                <i data-lucide="fish" class="w-3.5 h-3.5 text-slate-950"></i>
+                <span>Cotizar Línea Pesquera</span>
+              </button>
+            </div>
+          </div>
+        </aside>
+      `;
+    }
+
     return `
       <!-- Floating B2B Action Dock (Micro-interacción & Conversión Inmediata) -->
       <aside id="floating-b2b-dock" aria-label="Acciones rápidas WellPack" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-xl transition-all duration-300">
@@ -159,154 +252,189 @@ class AntigravityRenderer {
   renderNavbar() {
     const config = getConfig();
     const isConfigured = config.supabaseUrl && !config.supabaseUrl.includes('xyzcompany');
-    const isDark = this.schema?.theme === 'premium_industrial_food' || this.schema?.colors?.background === '#121212';
+    const isPkg = this.pageMode === 'packaging';
+    const isMeat = this.pageMode === 'meat_machinery';
+    const isFish = this.pageMode === 'fishery_machinery';
 
-    if (isDark) {
-      return `
-        <header class="sticky top-0 z-40 backdrop-blur-2xl bg-[#0b0c10]/85 border-b border-white/[0.08] shadow-[0_4px_30px_rgba(0,0,0,0.6)] transition-all">
-          <!-- Cyber Hairline Gradient Top Accent -->
-          <div class="h-[1.5px] w-full bg-gradient-to-r from-transparent via-amber-500/60 to-transparent"></div>
+    // Estilo temático de la barra superior según el rubro activo
+    const headerBg = isMeat
+      ? 'bg-[#140606]/90 border-red-900/50'
+      : isFish
+      ? 'bg-[#031224]/90 border-cyan-900/50'
+      : 'bg-[#0b0c10]/85 border-white/[0.08]';
 
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[74px] flex items-center justify-between gap-4">
-            
-            <!-- 1. Logo Oficial WellPack (WP Glowing Mark + Tipografía Tecnológica) -->
-            <a href="#hero" class="flex items-center gap-3 sm:gap-3.5 group shrink-0 transition-transform active:scale-95">
-              <div class="relative w-10 h-10 sm:w-11 sm:h-11 rounded-full p-[1.5px] bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 shadow-[0_0_15px_rgba(245,158,11,0.35)] group-hover:shadow-[0_0_25px_rgba(245,158,11,0.6)] transition-all duration-300">
-                <img 
-                  src="/assets/images/logo_wp_badge.png" 
-                  alt="WellPack Official Logo" 
-                  class="w-full h-full object-contain rounded-full bg-[#121212]"
-                />
+    const hairlineGradient = isMeat
+      ? 'via-red-500/80'
+      : isFish
+      ? 'via-cyan-400/80'
+      : 'via-amber-500/60';
+
+    const badgeText = isMeat ? 'CÁRNICO' : isFish ? 'PESQUERO' : 'ENVASES';
+    const badgeClasses = isMeat
+      ? 'bg-red-500/20 border-red-500/40 text-red-300'
+      : isFish
+      ? 'bg-cyan-500/20 border-cyan-400/40 text-cyan-300'
+      : 'bg-amber-500/15 border-amber-500/30 text-amber-400';
+
+    const subtitleText = isMeat
+      ? 'División Maquinaria Rubro Cárnico'
+      : isFish
+      ? 'División Maquinaria Proceso Pesquero'
+      : 'Digital Flexible Packaging';
+
+    // Target blank cuando se abre una página de maquinaria desde la página principal de envases
+    const meatTarget = isPkg ? 'target="_blank" rel="noopener"' : '';
+    const fishTarget = isPkg ? 'target="_blank" rel="noopener"' : '';
+
+    return `
+      <header class="sticky top-0 z-40 backdrop-blur-2xl ${headerBg} border-b shadow-[0_4px_30px_rgba(0,0,0,0.6)] transition-all">
+        <!-- Cyber Hairline Gradient Top Accent -->
+        <div class="h-[2px] w-full bg-gradient-to-r from-transparent ${hairlineGradient} to-transparent"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[76px] flex items-center justify-between gap-3">
+          
+          <!-- 1. Logo Oficial WellPack -->
+          <a href="index.html" class="flex items-center gap-3 sm:gap-3.5 group shrink-0 transition-transform active:scale-95">
+            <div class="relative w-10 h-10 sm:w-11 sm:h-11 rounded-full p-[1.5px] bg-gradient-to-br ${isMeat ? 'from-red-500 via-rose-500 to-amber-500 shadow-[0_0_15px_rgba(239,68,68,0.45)]' : isFish ? 'from-cyan-400 via-sky-500 to-blue-600 shadow-[0_0_15px_rgba(6,182,212,0.45)]' : 'from-amber-400 via-amber-500 to-amber-600 shadow-[0_0_15px_rgba(245,158,11,0.35)]'} transition-all duration-300">
+              <img 
+                src="/assets/images/logo_wp_badge.png" 
+                alt="WellPack Official Logo" 
+                class="w-full h-full object-contain rounded-full bg-[#121212]"
+              />
+            </div>
+            <div class="flex flex-col">
+              <div class="flex items-center gap-2">
+                <span class="text-xl sm:text-[22px] font-black tracking-wider text-white font-heading uppercase group-hover:text-amber-400 transition-colors leading-none">WellPack</span>
+                <span class="text-[8.5px] font-mono px-1.5 py-0.5 rounded border ${badgeClasses} font-bold tracking-widest hidden xs:inline-block">${badgeText}</span>
               </div>
-              <div class="flex flex-col">
-                <div class="flex items-center gap-2">
-                  <span class="text-xl sm:text-[22px] font-black tracking-wider text-white font-heading uppercase group-hover:text-amber-400 transition-colors leading-none">WellPack</span>
-                  <span class="text-[8.5px] font-mono px-1.5 py-0.5 rounded bg-amber-500/15 border border-amber-500/30 text-amber-400 font-bold tracking-widest hidden xs:inline-block">TECH</span>
-                </div>
-                <span class="text-[8.5px] sm:text-[9.5px] font-mono tracking-[0.24em] text-neutral-400 uppercase font-semibold mt-1 group-hover:text-neutral-200 transition-colors leading-none">
-                  Digital Flexible Packaging
-                </span>
-              </div>
+              <span class="text-[8.5px] sm:text-[9.5px] font-mono tracking-[0.20em] text-neutral-400 uppercase font-semibold mt-1 group-hover:text-neutral-200 transition-colors leading-none">
+                ${subtitleText}
+              </span>
+            </div>
+          </a>
+
+          <!-- 2. Pestañas de División + Navegación Central (Pill Dock Tecnológico) -->
+          <nav class="hidden lg:flex items-center gap-1.5 px-2.5 py-1.5 rounded-2xl bg-black/45 border border-white/10 backdrop-blur-md shadow-inner">
+            <!-- Pestaña 1: Envases Flexibles (Página Principal) -->
+            <a 
+              href="index.html" 
+              class="px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all ${
+                isPkg
+                  ? 'bg-amber-500 text-neutral-950 shadow-[0_0_15px_rgba(245,158,11,0.4)]'
+                  : 'text-neutral-300 hover:text-amber-300 hover:bg-white/5'
+              }">
+              <i data-lucide="package" class="w-3.5 h-3.5 ${isPkg ? 'text-neutral-950' : 'text-amber-400'}"></i>
+              <span>Envases Flexibles</span>
             </a>
 
-            <!-- 2. Menú de Navegación Central (Pill Dock Tecnológico) -->
-            <nav class="hidden lg:flex items-center gap-1 px-2 py-1 rounded-2xl bg-neutral-900/60 border border-neutral-800/80 backdrop-blur-md shadow-inner">
-              <a href="#hero" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-neutral-300 hover:text-white hover:bg-neutral-800/70 transition-all">Inicio</a>
-              <a href="#packaging_types_gallery" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-neutral-300 hover:text-white hover:bg-neutral-800/70 transition-all">Formatos</a>
-              <a href="#machinery_showcase" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-amber-300 bg-amber-500/15 border border-amber-500/40 hover:bg-amber-500/25 hover:border-amber-400 flex items-center gap-1.5 transition-all shadow-[0_0_12px_rgba(245,158,11,0.25)]">
-                <i data-lucide="cpu" class="w-3.5 h-3.5 text-amber-400"></i>
-                <span>Maquinaria</span>
-              </a>
-              <a href="#tiered_pricing_offers" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-neutral-300 hover:text-white hover:bg-neutral-800/70 transition-all">Precios & Planes</a>
-              <a href="#industries_served" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-neutral-300 hover:text-white hover:bg-neutral-800/70 transition-all">Sectores</a>
-            </nav>
+            <!-- Pestaña 2: Maquinaria Rubro Cárnico (Se abre en nueva pestaña desde Envases) -->
+            <a 
+              href="maquinaria-carnica.html" 
+              ${meatTarget}
+              class="px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all ${
+                isMeat
+                  ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white border border-red-400/50 shadow-[0_0_18px_rgba(220,38,38,0.5)]'
+                  : 'text-red-300 bg-red-950/40 border border-red-500/30 hover:bg-red-900/50 hover:border-red-400'
+              }">
+              <span>🥩 Maquinaria Cárnica</span>
+              ${isPkg ? '<i data-lucide="external-link" class="w-3 h-3 text-red-400"></i>' : ''}
+            </a>
 
-            <!-- 3. Acciones de Cabecera (Botones con Separaciones y Estética Tecnológica) -->
-            <div class="flex items-center gap-2 sm:gap-3">
-              <!-- Telemetría / Estado Activo -->
-              <div class="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-neutral-900/80 border border-neutral-800/90 text-neutral-300 text-xs font-mono shadow-sm">
-                <span class="relative flex h-2 w-2">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full ${isConfigured ? 'bg-emerald-400' : 'bg-amber-400'} opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2 w-2 ${isConfigured ? 'bg-emerald-500' : 'bg-amber-500'}"></span>
-                </span>
-                <span class="text-[10px] font-bold tracking-widest uppercase ${isConfigured ? 'text-emerald-400' : 'text-amber-300'}">
-                  ${isConfigured ? 'API ONLINE' : 'CATÁLOGO V2.4'}
-                </span>
-              </div>
+            <!-- Pestaña 3: Maquinaria Proceso Pesquero (Se abre en nueva pestaña desde Envases) -->
+            <a 
+              href="maquinaria-pesquera.html" 
+              ${fishTarget}
+              class="px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all ${
+                isFish
+                  ? 'bg-gradient-to-r from-cyan-400 to-sky-500 text-slate-950 border border-cyan-300 shadow-[0_0_18px_rgba(6,182,212,0.5)]'
+                  : 'text-cyan-300 bg-cyan-950/40 border border-cyan-500/30 hover:bg-cyan-900/50 hover:border-cyan-400'
+              }">
+              <span>🐟 Maquinaria Pesquera</span>
+              ${isPkg ? '<i data-lucide="external-link" class="w-3 h-3 text-cyan-400"></i>' : ''}
+            </a>
 
-              <!-- Configuración Webhook/Supabase -->
-              <button 
-                id="btn-open-config" 
-                title="Configuración de Sistema & Webhooks" 
-                class="p-2.5 rounded-xl bg-neutral-900/80 hover:bg-neutral-800 text-neutral-400 hover:text-amber-400 border border-neutral-800 hover:border-amber-500/40 transition-all shadow-sm hover:shadow-[0_0_12px_rgba(245,158,11,0.2)] active:scale-95">
-                <i data-lucide="settings" class="w-4 h-4"></i>
-              </button>
+            <!-- Separador -->
+            <span class="h-4 w-[1px] bg-white/10 mx-1"></span>
 
+            ${isPkg ? `
+              <a href="#packaging_types_gallery" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-neutral-300 hover:text-white hover:bg-neutral-800/70 transition-all">Formatos</a>
+              <a href="#tiered_pricing_offers" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-neutral-300 hover:text-white hover:bg-neutral-800/70 transition-all">Precios</a>
+            ` : isMeat ? `
+              <a href="#machinery_showcase" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-red-200 hover:text-white hover:bg-red-900/40 transition-all">12 Equipos Cárnicos</a>
+            ` : `
+              <a href="#fishery_machinery_showcase" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-cyan-200 hover:text-white hover:bg-cyan-900/40 transition-all">10 Equipos Pesqueros</a>
+            `}
+          </nav>
+
+          <!-- 3. Acciones de Cabecera -->
+          <div class="flex items-center gap-2 sm:gap-2.5">
+            <!-- Configuración Webhook/Supabase -->
+            <button 
+              id="btn-open-config" 
+              title="Configuración de Sistema & Webhooks" 
+              class="p-2.5 rounded-xl bg-black/50 hover:bg-neutral-800 text-neutral-400 hover:text-amber-400 border border-white/10 transition-all active:scale-95">
+              <i data-lucide="settings" class="w-4 h-4"></i>
+            </button>
+
+            ${isPkg ? `
               <!-- Selector de Variaciones Estilo Alibaba -->
               <button 
                 id="btn-open-variations-nav" 
-                class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-neutral-900/90 hover:bg-neutral-800/90 text-amber-300 hover:text-amber-200 border border-amber-500/30 hover:border-amber-400/80 text-xs font-mono font-bold tracking-wider transition-all shadow-sm hover:shadow-[0_0_15px_rgba(245,158,11,0.25)] active:scale-95">
+                class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-neutral-900/90 hover:bg-neutral-800/90 text-amber-300 hover:text-amber-200 border border-amber-500/30 hover:border-amber-400/80 text-xs font-mono font-bold tracking-wider transition-all shadow-sm active:scale-95">
                 <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5 text-amber-400"></i>
                 <span class="hidden sm:inline">VARIACIONES</span>
               </button>
 
-              <!-- CTA Principal de Cotización Tecnológica -->
+              <!-- CTA Principal de Cotización de Empaque -->
               <button 
                 data-open-variation="any"
-                class="btn-open-variation group relative inline-flex items-center gap-2.5 bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 hover:from-amber-400 hover:to-yellow-300 text-neutral-950 font-black text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-xl shadow-[0_0_20px_rgba(245,158,11,0.4)] hover:shadow-[0_0_30px_rgba(245,158,11,0.65)] border border-amber-300/60 transition-all hover:scale-[1.03] active:scale-95 font-mono tracking-wider uppercase shrink-0">
-                <i data-lucide="file-text" class="w-4 h-4 text-neutral-950 group-hover:rotate-6 transition-transform"></i>
+                class="btn-open-variation group relative inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 hover:from-amber-400 hover:to-yellow-300 text-neutral-950 font-black text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-xl shadow-[0_0_20px_rgba(245,158,11,0.4)] border border-amber-300/60 transition-all hover:scale-[1.03] active:scale-95 font-mono tracking-wider uppercase shrink-0">
+                <i data-lucide="file-text" class="w-4 h-4 text-neutral-950"></i>
                 <span>Cotizar Empaque</span>
               </button>
-
-              <!-- Botón Menú Móvil -->
+            ` : isMeat ? `
               <button 
-                id="btn-mobile-nav-toggle" 
-                aria-label="Abrir menú" 
-                class="lg:hidden p-2.5 rounded-xl bg-neutral-900/80 text-neutral-300 hover:text-amber-400 border border-neutral-800 hover:border-amber-500/40 transition-all active:scale-95">
-                <i data-lucide="menu" class="w-5 h-5"></i>
+                type="button"
+                data-machine-title="Línea Industrial Rubro Cárnico & Cecinas"
+                class="btn-machinery-quote group relative inline-flex items-center gap-2 bg-gradient-to-r from-red-600 via-rose-600 to-amber-500 hover:from-red-500 hover:to-amber-400 text-white font-black text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-xl shadow-[0_0_20px_rgba(220,38,38,0.45)] border border-red-400/50 transition-all hover:scale-[1.03] active:scale-95 font-mono tracking-wider uppercase shrink-0">
+                <i data-lucide="flame" class="w-4 h-4 text-white"></i>
+                <span>Cotizar Línea Cárnica</span>
               </button>
-            </div>
-          </div>
+            ` : `
+              <button 
+                type="button"
+                data-machine-title="Línea Industrial Proceso Pesquero & Acuícola"
+                class="btn-machinery-quote group relative inline-flex items-center gap-2 bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-500 hover:from-cyan-300 hover:to-sky-400 text-slate-950 font-black text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-xl shadow-[0_0_20px_rgba(6,182,212,0.45)] border border-cyan-300/60 transition-all hover:scale-[1.03] active:scale-95 font-mono tracking-wider uppercase shrink-0">
+                <i data-lucide="fish" class="w-4 h-4 text-slate-950"></i>
+                <span>Cotizar Línea Pesquera</span>
+              </button>
+            `}
 
-          <!-- Menú Desplegable Móvil -->
-          <div id="mobile-nav-menu" class="hidden lg:hidden border-t border-neutral-800/80 bg-[#0b0c10]/95 backdrop-blur-2xl px-4 py-3 space-y-2">
-            <a href="#hero" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-neutral-300 hover:text-white hover:bg-neutral-800/70">Inicio</a>
-            <a href="#packaging_types_gallery" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-neutral-300 hover:text-white hover:bg-neutral-800/70">Formatos</a>
-            <a href="#machinery_showcase" class="mobile-nav-link flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-bold text-amber-300 bg-amber-500/10 border border-amber-500/30">
-              <i data-lucide="cpu" class="w-4 h-4 text-amber-400"></i>
-              <span>Maquinaria Industrial</span>
-            </a>
-            <a href="#tiered_pricing_offers" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-neutral-300 hover:text-white hover:bg-neutral-800/70">Precios & Planes</a>
-            <a href="#industries_served" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-neutral-300 hover:text-white hover:bg-neutral-800/70">Sectores</a>
-          </div>
-        </header>
-      `;
-    }
-
-    return `
-      <header class="sticky top-0 z-40 backdrop-blur-xl bg-slate-950/85 border-b border-sky-900/50 shadow-md transition-all">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          
-          <!-- Logo WellPack Biobío -->
-          <div class="flex items-center gap-3">
-            <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-sky-500 via-blue-600 to-cyan-400 flex items-center justify-center shadow-lg shadow-cyan-500/25 ring-2 ring-sky-400/40">
-              <i data-lucide="package" class="w-6 h-6 text-white"></i>
-            </div>
-            <div>
-              <span class="text-xl font-extrabold tracking-wider text-white font-mono uppercase">WellPack</span>
-              <span class="text-[11px] block text-cyan-400 font-mono tracking-widest font-bold">BIOBÍO • PESQUEROS & MARISCOS</span>
-            </div>
-          </div>
-
-          <!-- Enlaces de navegación -->
-          <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-300">
-            <a href="#hero" class="hover:text-cyan-400 transition-colors">Inicio</a>
-            <a href="#alibaba_variation_selector" class="hover:text-cyan-400 transition-colors">Variaciones B2B</a>
-            <a href="#product_catalog" class="hover:text-cyan-400 transition-colors">Catálogo Impreso</a>
-            <a href="#visual_gallery" class="hover:text-cyan-400 transition-colors">Aplicaciones Reales</a>
-            <a href="#factory_showcase" class="hover:text-cyan-400 transition-colors">Tecnología de Planta</a>
-            <a href="#checkout_b2b" class="hover:text-cyan-400 transition-colors">Cotizador B2B</a>
-            
-            <span class="text-xs bg-cyan-950/80 text-cyan-300 px-3 py-1 rounded-full border border-cyan-800/60 flex items-center gap-1.5 font-mono font-medium">
-              <span class="w-2 h-2 rounded-full ${isConfigured ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'}"></span>
-              ${isConfigured ? 'Supabase Conectado' : 'Catálogo Biobío Activo'}
-            </span>
-          </nav>
-
-          <!-- Acciones de Cabecera -->
-          <div class="flex items-center gap-2.5">
-            <button id="btn-open-config" title="Configurar Supabase y Make" class="p-2.5 rounded-xl bg-slate-900 text-slate-400 hover:text-cyan-400 hover:bg-slate-800 border border-slate-800 transition shadow-sm">
-              <i data-lucide="settings" class="w-4 h-4"></i>
+            <!-- Botón Menú Móvil -->
+            <button 
+              id="btn-mobile-nav-toggle" 
+              aria-label="Abrir menú" 
+              class="lg:hidden p-2.5 rounded-xl bg-black/60 text-neutral-300 hover:text-amber-400 border border-white/15 transition-all active:scale-95">
+              <i data-lucide="menu" class="w-5 h-5"></i>
             </button>
-            <a href="#alibaba_variation_selector" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-sky-950/80 hover:bg-sky-900 text-cyan-300 border border-cyan-500/40 text-xs font-mono font-bold transition shadow-sm">
-              <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5 text-cyan-400"></i>
-              <span class="hidden sm:inline">Variaciones</span>
-            </a>
-            <a href="#checkout_b2b" class="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 hover:from-cyan-300 hover:to-blue-500 text-slate-950 font-black text-sm px-4 sm:px-5 py-2.5 rounded-xl shadow-lg shadow-cyan-500/25 transition-all hover:scale-[1.03] active:scale-95">
-              <i data-lucide="file-text" class="w-4 h-4"></i>
-              <span>Cotizar Lote</span>
-            </a>
           </div>
+        </div>
+
+        <!-- Menú Desplegable Móvil con las 3 Pestañas de División -->
+        <div id="mobile-nav-menu" class="hidden lg:hidden border-t border-white/10 bg-[#0b0c10]/95 backdrop-blur-2xl px-4 py-3 space-y-2">
+          <div class="text-[10px] font-mono uppercase tracking-widest text-neutral-400 px-2 pb-1">Divisiones WellPack</div>
+          <a href="index.html" class="mobile-nav-link flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-bold ${isPkg ? 'bg-amber-500 text-neutral-950' : 'text-amber-300 bg-amber-500/10 border border-amber-500/30'}">
+            <span>📦 Envases Flexibles (Principal)</span>
+            ${isPkg ? '<span class="text-[10px] font-mono uppercase">Actual</span>' : ''}
+          </a>
+          <a href="maquinaria-carnica.html" ${meatTarget} class="mobile-nav-link flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-bold ${isMeat ? 'bg-red-600 text-white' : 'text-red-300 bg-red-950/50 border border-red-500/30'}">
+            <span>🥩 Maquinaria Rubro Cárnico</span>
+            <i data-lucide="external-link" class="w-4 h-4"></i>
+          </a>
+          <a href="maquinaria-pesquera.html" ${fishTarget} class="mobile-nav-link flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-bold ${isFish ? 'bg-cyan-400 text-slate-950' : 'text-cyan-300 bg-cyan-950/50 border border-cyan-500/30'}">
+            <span>🐟 Maquinaria Proceso Pesquero</span>
+            <i data-lucide="external-link" class="w-4 h-4"></i>
+          </a>
         </div>
       </header>
     `;
@@ -321,7 +449,16 @@ class AntigravityRenderer {
       case 'packaging_types_gallery':
         return this.renderPackagingTypesGallerySection(section.config);
       case 'machinery_showcase':
+        // En la página principal (Envases), mostramos solo el Portal de acceso a las 2 páginas de Maquinaria en pestañas nuevas
+        if (this.pageMode === 'packaging') {
+          return this.renderMachineryDivisionsPortal();
+        }
         return this.renderMachineryShowcaseSection(section.config);
+      case 'fishery_machinery_showcase':
+        if (this.pageMode === 'packaging') {
+          return '';
+        }
+        return this.renderFisheryMachineryShowcaseSection(section.config);
       case 'tiered_pricing_offers':
         return this.renderTieredPricingOffersSection(section.config);
       case 'industries_served':
@@ -632,71 +769,295 @@ class AntigravityRenderer {
   }
 
   // ==========================================================
-  // SECCIÓN UNIVERSAL: MAQUINARIA & LÍNEAS DE PRODUCCIÓN INDUSTRIAL
+  // PORTAL DE DIVISIONES DE MAQUINARIA (EN PÁGINA PRINCIPAL DE ENVASES)
+  // ==========================================================
+  renderMachineryDivisionsPortal() {
+    return `
+      <section id="machinery_divisions_portal" class="py-20 bg-[#0d0e12] text-white relative border-b border-neutral-800 overflow-hidden font-sans">
+        <div class="absolute top-0 left-1/4 w-[500px] h-[300px] bg-red-600/10 blur-[140px] pointer-events-none rounded-full"></div>
+        <div class="absolute bottom-0 right-1/4 w-[500px] h-[300px] bg-cyan-500/10 blur-[140px] pointer-events-none rounded-full"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="text-center max-w-3xl mx-auto mb-12">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-900 border border-amber-500/40 text-amber-400 text-xs font-mono font-bold uppercase mb-3 shadow-sm">
+              <i data-lucide="cpu" class="w-4 h-4 text-amber-400"></i>
+              Catálogos Especializados en Pestaña Independiente
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight">
+              Divisiones de Maquinaria Industrial por Rubro
+            </h2>
+            <p class="mt-3 text-neutral-400 text-sm sm:text-base">
+              Para brindarte una experiencia ágil, hemos separado nuestras líneas de equipamiento industrial en dos portales especializados según tu planta productiva.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+            <!-- Tarjeta Portal 1: Rubro Cárnico & Cecinas -->
+            <a 
+              href="maquinaria-carnica.html" 
+              target="_blank" 
+              rel="noopener"
+              class="group relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#1f0808] via-[#160707] to-[#0f0505] border border-red-500/40 hover:border-red-400 shadow-2xl hover:shadow-red-600/25 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between">
+              <div class="relative h-64 overflow-hidden">
+                <img 
+                  src="assets/images/hero_maquinaria_carnica.jpg" 
+                  alt="Maquinaria Rubro Cárnico y Cecinas" 
+                  loading="lazy"
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#160707] via-[#160707]/40 to-transparent"></div>
+                <div class="absolute top-4 left-4">
+                  <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-red-950/90 backdrop-blur-md text-xs font-mono font-bold text-red-300 border border-red-500/50 shadow-lg">
+                    🥩 DIVISIÓN RUBRO CÁRNICO
+                  </span>
+                </div>
+                <div class="absolute top-4 right-4">
+                  <span class="inline-flex items-center gap-1 px-3 py-1 rounded-xl bg-black/80 text-[11px] font-mono text-amber-400 border border-amber-500/40">
+                    <span>Abrir en nueva pestaña</span>
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+                <div>
+                  <h3 class="text-2xl font-black text-white group-hover:text-red-400 transition-colors">
+                    Maquinaria para Rubro Cárnico, Frigoríficos & Cecinas
+                  </h3>
+                  <p class="mt-2 text-sm text-neutral-300 leading-relaxed">
+                    12 líneas industriales en acero inoxidable SUS304: desmenuzadoras de bloques congelados (-18°C), picadoras pesadas, cutters al vacío de 4.500 RPM, embutidoras con torsión y hornos ahumadores PLC.
+                  </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-red-900/50 flex items-center justify-between">
+                  <span class="text-xs font-mono text-red-300 font-bold">12 Equipos Cárnicos • Fichas Técnicas</span>
+                  <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 text-white font-black text-xs uppercase tracking-wider shadow-lg shadow-red-600/30 group-hover:scale-105 transition-transform">
+                    <span>Explorar Rubro Cárnico</span>
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                  </span>
+                </div>
+              </div>
+            </a>
+
+            <!-- Tarjeta Portal 2: Proceso Pesquero & Acuícola -->
+            <a 
+              href="maquinaria-pesquera.html" 
+              target="_blank" 
+              rel="noopener"
+              class="group relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#06203a] via-[#041527] to-[#020c18] border border-cyan-500/40 hover:border-cyan-300 shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between">
+              <div class="relative h-64 overflow-hidden">
+                <img 
+                  src="assets/images/hero_maquinaria_pesquera.jpg" 
+                  alt="Maquinaria Proceso Pesquero y Salmonero" 
+                  loading="lazy"
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#041527] via-[#041527]/40 to-transparent"></div>
+                <div class="absolute top-4 left-4">
+                  <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-cyan-950/90 backdrop-blur-md text-xs font-mono font-bold text-cyan-300 border border-cyan-400/50 shadow-lg">
+                    🐟 DIVISIÓN PROCESO PESQUERO
+                  </span>
+                </div>
+                <div class="absolute top-4 right-4">
+                  <span class="inline-flex items-center gap-1 px-3 py-1 rounded-xl bg-black/80 text-[11px] font-mono text-cyan-300 border border-cyan-400/40">
+                    <span>Abrir en nueva pestaña</span>
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+                <div>
+                  <h3 class="text-2xl font-black text-white group-hover:text-cyan-300 transition-colors">
+                    Maquinaria para Proceso Pesquero, Salmónidos & Mariscos
+                  </h3>
+                  <p class="mt-2 text-sm text-slate-300 leading-relaxed">
+                    10 líneas en acero inoxidable marino AISI 316L anticorrosión: fileteadoras de salmón, despieladoras, desespinadoras Pin-Bone, porcionadoras láser 3D, túneles IQF -40°C y líneas de choritos.
+                  </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-cyan-900/50 flex items-center justify-between">
+                  <span class="text-xs font-mono text-cyan-300 font-bold">10 Equipos Marinos • Fichas Técnicas</span>
+                  <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-400 to-sky-500 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-cyan-500/30 group-hover:scale-105 transition-transform">
+                    <span>Explorar Proceso Pesquero</span>
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                  </span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+    `;
+  }
+
+  // ==========================================================
+  // PÁGINA COMPLETA: DIVISIÓN MAQUINARIA RUBRO CÁRNICO & CECINAS
+  // ==========================================================
+  renderMeatMachineryPage() {
+    const meatSection = (this.schema?.layout || []).find(s => s.section === 'machinery_showcase');
+    const config = meatSection?.config || {};
+
+    return `
+      <!-- Hero Exclusivo Rubro Cárnico (Colores Carmesí, Terracota, Brasa & Acero SUS304) -->
+      <section id="hero" class="relative min-h-[82vh] flex items-center justify-center overflow-hidden py-16 lg:py-24 bg-[#120606] text-white border-b border-red-900/60">
+        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+          <div id="hero-fluid-track" class="absolute -top-[5%] -left-[18%] w-[136%] h-[110%] animate-hero-pan will-change-transform">
+            <img 
+              id="hero-fluid-img"
+              src="assets/images/hero_maquinaria_carnica.jpg" 
+              alt="Planta de procesamiento cárnico y cecinas WellPack" 
+              class="w-full h-full object-cover object-center filter brightness-[0.95] contrast-[1.15] saturate-[1.2]">
+          </div>
+          <div class="absolute inset-0 bg-[radial-gradient(ellipse_75%_65%_at_50%_50%,rgba(24,7,7,0.55)_0%,rgba(20,5,5,0.40)_55%,rgba(18,6,6,0.92)_100%)]"></div>
+          <div class="absolute inset-0 bg-gradient-to-b from-[#120606]/85 via-transparent to-[#120606]"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-7 hero-content-trigger">
+          <div class="p-6 sm:p-10 rounded-3xl bg-[#180808]/65 backdrop-blur-md border border-red-500/35 shadow-[0_20px_60px_rgba(0,0,0,0.85)] space-y-6">
+            <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-red-950/90 border border-red-500/60 text-red-300 text-xs font-mono font-bold uppercase tracking-wider shadow-lg">
+              <i data-lucide="flame" class="w-4 h-4 text-red-400"></i>
+              <span>División Ingeniería para Frigoríficos, Cecinas & Embutidos</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-white drop-shadow-lg">
+              Maquinaria Industrial para el <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-400 to-amber-400">Rubro Cárnico</span>
+            </h1>
+
+            <p class="text-base sm:text-lg lg:text-xl text-red-100/90 max-w-3xl mx-auto font-normal leading-relaxed">
+              Líneas de alto rendimiento en acero inoxidable SUS304 para desmenuzado de bloques congelados a -18°C, molienda pesada, emulsión en cutter al vacío, embutido continuo y hornos de ahumado inteligente.
+            </p>
+
+            <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+              <a 
+                href="#machinery_showcase" 
+                class="inline-flex items-center gap-2.5 bg-gradient-to-r from-red-600 via-rose-600 to-amber-500 hover:from-red-500 hover:to-amber-400 text-white font-black text-sm sm:text-base px-8 py-4 rounded-2xl shadow-xl shadow-red-600/35 transition-all hover:scale-105 active:scale-95">
+                <i data-lucide="cpu" class="w-5 h-5"></i>
+                <span>Ver los 12 Equipos Cárnicos</span>
+                <i data-lucide="arrow-down" class="w-4 h-4"></i>
+              </a>
+              <button 
+                type="button"
+                data-machine-title="Proyecto de Línea Completa Rubro Cárnico"
+                class="btn-machinery-quote inline-flex items-center gap-2 bg-red-950/80 hover:bg-red-900/80 text-red-100 border border-red-500/50 font-bold text-sm sm:text-base px-7 py-4 rounded-2xl transition-all hover:scale-105 backdrop-blur-md shadow-lg">
+                <i data-lucide="file-text" class="w-5 h-5 text-amber-400"></i>
+                <span>Solicitar Ingeniería de Planta</span>
+              </button>
+            </div>
+
+            <!-- KPIs Técnicos del Rubro Cárnico -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5 pt-6 border-t border-red-900/60 text-left max-w-4xl mx-auto">
+              <div class="bg-[#220a0a]/85 backdrop-blur-md p-3.5 rounded-2xl border border-red-500/30 shadow-lg">
+                <div class="text-lg font-black text-red-400 font-mono">-18°C Directo</div>
+                <div class="text-[11px] text-red-200/80 font-mono uppercase mt-0.5">Corte sin Descongelar</div>
+              </div>
+              <div class="bg-[#220a0a]/85 backdrop-blur-md p-3.5 rounded-2xl border border-red-500/30 shadow-lg">
+                <div class="text-lg font-black text-amber-400 font-mono">800 Nudos/min</div>
+                <div class="text-[11px] text-red-200/80 font-mono uppercase mt-0.5">Llenado & Atado Servo</div>
+              </div>
+              <div class="bg-[#220a0a]/85 backdrop-blur-md p-3.5 rounded-2xl border border-red-500/30 shadow-lg">
+                <div class="text-lg font-black text-rose-400 font-mono">4.500 RPM</div>
+                <div class="text-[11px] text-red-200/80 font-mono uppercase mt-0.5">Cutter Bowl al Vacío</div>
+              </div>
+              <div class="bg-[#220a0a]/85 backdrop-blur-md p-3.5 rounded-2xl border border-red-500/30 shadow-lg">
+                <div class="text-lg font-black text-emerald-400 font-mono">SUS304 + CIP</div>
+                <div class="text-[11px] text-red-200/80 font-mono uppercase mt-0.5">Higiene Grado Frigorífico</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Catálogo Completo de Maquinaria Cárnica -->
+      ${this.renderMachineryShowcaseSection(config)}
+
+      <!-- Banner de Sinergia con Envases Cárnicos y División Pesquera -->
+      <section class="py-16 bg-[#0e0505] border-b border-red-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <a href="index.html" class="group p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#1c0c08] to-[#16120b] border border-amber-500/35 hover:border-amber-400 flex items-center justify-between gap-4 transition-all hover:-translate-y-1">
+            <div>
+              <span class="text-[11px] font-mono uppercase text-amber-400 font-bold block mb-1">📦 Sinergia Bolsas + Máquina</span>
+              <h3 class="text-xl font-black text-white group-hover:text-amber-300">Volver a Envases Flexibles (Bolsas Carnes 120μ & Cryovac)</h3>
+              <p class="text-xs text-neutral-300 mt-1">Bolsas antipunzonamiento para hueso, termoencogibles y tripas tubulares 3 sellos.</p>
+            </div>
+            <i data-lucide="arrow-left" class="w-6 h-6 text-amber-400 shrink-0"></i>
+          </a>
+
+          <a href="maquinaria-pesquera.html" class="group p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#061c33] to-[#041224] border border-cyan-500/35 hover:border-cyan-400 flex items-center justify-between gap-4 transition-all hover:-translate-y-1">
+            <div>
+              <span class="text-[11px] font-mono uppercase text-cyan-400 font-bold block mb-1">🐟 Otra División de Ingeniería</span>
+              <h3 class="text-xl font-black text-white group-hover:text-cyan-300">Ir a Maquinaria para Proceso Pesquero & Acuícola</h3>
+              <p class="text-xs text-slate-300 mt-1">Fileteadoras de salmón, porcionadoras láser 3D, túneles IQF -40°C y líneas de choritos.</p>
+            </div>
+            <i data-lucide="arrow-right" class="w-6 h-6 text-cyan-400 shrink-0"></i>
+          </a>
+        </div>
+      </section>
+    `;
+  }
+
+  // ==========================================================
+  // CATÁLOGO MAQUINARIA RUBRO CÁRNICO (ESTÉTICA CARMESÍ & ACERO SUS304)
   // ==========================================================
   renderMachineryShowcaseSection(config = {}) {
-    const title = config.title || "Maquinaria y Líneas de Producción para Alimentos";
-    const subtitle = config.subtitle || "Equipamiento industrial para procesamiento cárnico, embutidos y plantas alimentarias. Fabricación en acero inoxidable SUS304 y servicio técnico nacional.";
+    const title = config.title || "Catálogo de Maquinaria para Procesamiento Cárnico & Cecinas";
+    const subtitle = config.subtitle || "Equipamiento industrial pesado para frigoríficos, plantas de cecinas y embutidos. Construcción íntegra en acero inoxidable SUS304 y soporte técnico en todo Chile.";
     const items = config.items || [];
 
     return `
-      <section id="machinery_showcase" class="py-24 bg-[#0a0f1d] text-white relative border-b border-gray-800 overflow-hidden font-sans">
+      <section id="machinery_showcase" class="py-24 bg-[#140707] text-white relative border-b border-red-950 overflow-hidden font-sans">
         
-        <!-- Luz ambiental en tonos azul acero y ámbar industrial -->
-        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/10 blur-[150px] pointer-events-none rounded-full"></div>
-        <div class="absolute bottom-10 right-10 w-[500px] h-[300px] bg-amber-500/10 blur-[130px] pointer-events-none rounded-full"></div>
+        <!-- Luz ambiental en tonos rojo carmesí frigorífico y brasa -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[850px] h-[420px] bg-red-600/12 blur-[150px] pointer-events-none rounded-full"></div>
+        <div class="absolute bottom-10 right-10 w-[550px] h-[320px] bg-amber-600/10 blur-[130px] pointer-events-none rounded-full"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           <!-- Encabezado de Sección -->
-          <div class="text-center max-w-3xl mx-auto mb-16">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900 border border-blue-500/40 text-blue-400 text-xs font-mono font-bold uppercase mb-4 shadow-sm">
-              <i data-lucide="cpu" class="w-4 h-4 text-amber-400"></i>
-              Tecnología para Empresas Alimentarias
+          <div class="text-center max-w-3xl mx-auto mb-14">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-950/80 border border-red-500/40 text-red-300 text-xs font-mono font-bold uppercase mb-4 shadow-sm">
+              <i data-lucide="flame" class="w-4 h-4 text-amber-400"></i>
+              Línea Industrial Cárnica & Charcutería • SUS304
             </div>
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
               ${title}
             </h2>
-            <p class="mt-4 text-gray-300 text-base sm:text-lg leading-relaxed">
+            <p class="mt-4 text-red-100/80 text-base sm:text-lg leading-relaxed">
               ${subtitle}
             </p>
           </div>
 
-          <!-- Filtro Interactivo de Maquinaria -->
+          <!-- Filtro Interactivo de Maquinaria Cárnica -->
           <div class="flex items-center justify-center gap-2 mb-12 overflow-x-auto pb-2 px-2" id="machinery-category-filters">
             <button 
               type="button" 
               data-machine-filter="all" 
-              class="btn-machine-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-blue-500 bg-blue-600 text-white shadow-lg shadow-blue-600/30">
-              🌟 Toda la Maquinaria (${items.length})
+              class="btn-machine-tab btn-spring px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-red-500 bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-lg shadow-red-600/35">
+              🥩 Toda la Línea Cárnica (${items.length})
             </button>
             <button 
               type="button" 
               data-machine-filter="procesamiento" 
-              class="btn-machine-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-neutral-700 bg-neutral-900/90 text-neutral-300 hover:border-neutral-500">
-              🥩 Procesamiento & Corte
+              class="btn-machine-tab btn-spring px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-red-900/80 bg-[#210b0b] text-red-200 hover:border-red-500/60">
+              🔪 Molienda, Corte & Cutter Vacío
             </button>
             <button 
               type="button" 
               data-machine-filter="embutido" 
-              class="btn-machine-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-neutral-700 bg-neutral-900/90 text-neutral-300 hover:border-neutral-500">
-              🌭 Embutido & Porcionado
+              class="btn-machine-tab btn-spring px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-red-900/80 bg-[#210b0b] text-red-200 hover:border-red-500/60">
+              🌭 Embutido, Torsión & Atado
             </button>
             <button 
               type="button" 
               data-machine-filter="ahumado" 
-              class="btn-machine-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-neutral-700 bg-neutral-900/90 text-neutral-300 hover:border-neutral-500">
-              💨 Cocción & Ahumado
+              class="btn-machine-tab btn-spring px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-red-900/80 bg-[#210b0b] text-red-200 hover:border-red-500/60">
+              🔥 Hornos de Cocción & Ahumado
             </button>
             <button 
               type="button" 
               data-machine-filter="servicio" 
-              class="btn-machine-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-neutral-700 bg-neutral-900/90 text-neutral-300 hover:border-neutral-500">
-              🛠️ Servicio Técnico
+              class="btn-machine-tab btn-spring px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-red-900/80 bg-[#210b0b] text-red-200 hover:border-red-500/60">
+              🛠️ Servicio Técnico Nacional
             </button>
           </div>
 
-          <!-- Grilla de Tarjetas de Maquinaria -->
+          <!-- Grilla de Tarjetas de Maquinaria Cárnica -->
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch" id="machinery-cards-grid">
             ${items.map(item => {
               const cat = item.category || 'all';
@@ -704,22 +1065,22 @@ class AntigravityRenderer {
               const icon = item.icon || 'settings';
 
               return `
-                <div data-machine-cat="${cat}" class="machinery-card spotlight-card bg-[#111827] border border-gray-700/80 hover:border-blue-400/70 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                <div data-machine-cat="${cat}" class="machinery-card spotlight-card bg-gradient-to-b from-[#210b0b] to-[#170808] border border-red-900/70 hover:border-red-500/80 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-2xl transition-all duration-300 hover:-translate-y-1">
                   
                   <div>
-                    <!-- Fotografía Real del Equipo Industrial -->
+                    <!-- Fotografía Real del Equipo Cárnico -->
                     ${item.image ? `
-                      <div class="relative w-full h-56 sm:h-64 rounded-2xl overflow-hidden bg-slate-950/90 border border-gray-800 mb-6 flex items-center justify-center p-3 group hover:border-blue-500/50 transition-all">
+                      <div class="relative w-full h-60 sm:h-68 rounded-2xl overflow-hidden bg-gradient-to-b from-[#120505] to-[#1c0a0a] border border-red-900/60 mb-6 flex items-center justify-center p-3 group hover:border-red-500/60 transition-all">
                         <img 
                           src="${item.image.startsWith('/') ? item.image.slice(1) : item.image}" 
                           alt="${item.title}" 
                           loading="lazy" 
-                          class="max-h-full max-w-full object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-500 ease-out">
+                          class="max-h-full max-w-full object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.85)] group-hover:scale-105 transition-transform duration-500 ease-out">
                         
                         <!-- Badge de Especificación Flotante -->
                         <div class="absolute top-3 left-3 z-10">
-                          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-black/85 backdrop-blur-md text-[10px] font-mono font-bold text-blue-300 border border-blue-500/40 shadow-lg">
-                            <i data-lucide="${icon}" class="w-3.5 h-3.5 text-blue-400"></i>
+                          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#1a0606]/90 backdrop-blur-md text-[10px] font-mono font-bold text-red-300 border border-red-500/50 shadow-lg">
+                            <i data-lucide="${icon}" class="w-3.5 h-3.5 text-amber-400"></i>
                             ${badge}
                           </span>
                         </div>
@@ -729,14 +1090,14 @@ class AntigravityRenderer {
                     <!-- Header Tarjeta -->
                     <div class="flex items-start justify-between gap-4 mb-4">
                       <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0">
+                        <div class="w-11 h-11 rounded-xl bg-red-600/20 border border-red-500/40 flex items-center justify-center text-red-400 shrink-0">
                           <i data-lucide="${icon}" class="w-5 h-5"></i>
                         </div>
                         <div>
                           <h3 class="text-xl sm:text-2xl font-black text-white leading-tight">
                             ${item.title}
                           </h3>
-                          <span class="text-xs text-blue-300 font-mono block mt-0.5">
+                          <span class="text-xs text-amber-400 font-mono block mt-0.5 font-semibold">
                             ${item.subtitle}
                           </span>
                         </div>
@@ -744,15 +1105,15 @@ class AntigravityRenderer {
                     </div>
 
                     <!-- Descripción -->
-                    <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-6">
+                    <p class="text-red-100/85 text-xs sm:text-sm leading-relaxed mb-6">
                       ${item.description}
                     </p>
 
                     <!-- Lista de Características -->
                     <div class="space-y-2 mb-6">
                       ${(item.features || []).map(f => `
-                        <div class="flex items-start gap-2 text-xs text-gray-300">
-                          <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                        <div class="flex items-start gap-2 text-xs text-red-100/90">
+                          <i data-lucide="check-circle" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
                           <span>${f}</span>
                         </div>
                       `).join('')}
@@ -760,9 +1121,9 @@ class AntigravityRenderer {
 
                     <!-- Tabla de Modelos y Parámetros Técnicos -->
                     ${item.specs && item.specs.length > 0 ? `
-                      <div class="mb-6 overflow-x-auto rounded-xl border border-gray-800 bg-[#0c1220]">
+                      <div class="mb-6 overflow-x-auto rounded-xl border border-red-900/70 bg-[#120505]">
                         <table class="w-full text-[11px] font-mono text-left">
-                          <thead class="bg-gray-800/60 text-gray-400 uppercase text-[10px]">
+                          <thead class="bg-red-950/70 text-red-200 uppercase text-[10px]">
                             <tr>
                               <th class="py-2 px-3">Modelo</th>
                               ${item.specs[0].power ? '<th class="py-2 px-3">Potencia</th>' : ''}
@@ -772,15 +1133,15 @@ class AntigravityRenderer {
                               ${item.specs[0].detail ? '<th class="py-2 px-3">Detalle</th>' : ''}
                             </tr>
                           </thead>
-                          <tbody class="divide-y divide-gray-800/60 text-gray-300">
+                          <tbody class="divide-y divide-red-950/80 text-red-100">
                             ${item.specs.map(sp => `
-                              <tr class="hover:bg-blue-950/20">
+                              <tr class="hover:bg-red-900/25">
                                 <td class="py-2 px-3 font-bold text-amber-400">${sp.model}</td>
                                 ${sp.power ? `<td class="py-2 px-3">${sp.power}</td>` : ''}
-                                ${sp.capacity ? `<td class="py-2 px-3 text-emerald-300 font-semibold">${sp.capacity}</td>` : ''}
+                                ${sp.capacity ? `<td class="py-2 px-3 text-rose-300 font-semibold">${sp.capacity}</td>` : ''}
                                 ${sp.speed ? `<td class="py-2 px-3">${sp.speed}</td>` : ''}
-                                ${sp.dims ? `<td class="py-2 px-3 hidden sm:table-cell text-gray-400 text-[10px]">${sp.dims}</td>` : ''}
-                                ${sp.detail ? `<td class="py-2 px-3 text-gray-300">${sp.detail}</td>` : ''}
+                                ${sp.dims ? `<td class="py-2 px-3 hidden sm:table-cell text-red-300/70 text-[10px]">${sp.dims}</td>` : ''}
+                                ${sp.detail ? `<td class="py-2 px-3 text-red-200">${sp.detail}</td>` : ''}
                               </tr>
                             `).join('')}
                           </tbody>
@@ -790,15 +1151,15 @@ class AntigravityRenderer {
                   </div>
 
                   <!-- Footer Botón CTA -->
-                  <div class="pt-4 border-t border-gray-800 flex items-center justify-between gap-3">
-                    <span class="text-[11px] font-mono text-gray-400 flex items-center gap-1.5">
-                      <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                      Cotización y Soporte en Todo Chile
+                  <div class="pt-4 border-t border-red-900/60 flex items-center justify-between gap-3">
+                    <span class="text-[11px] font-mono text-red-200/80 flex items-center gap-1.5">
+                      <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                      Soporte e Instalación en Todo Chile
                     </span>
                     <button 
                       type="button" 
-                      data-machine-title="${item.title}"
-                      class="btn-machinery-quote btn-spring inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-blue-600/30">
+                      data-machine-title="[RUBRO CÁRNICO] ${item.title}"
+                      class="btn-machinery-quote btn-spring inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-red-600/35">
                       <span>Cotizar Equipo</span>
                       <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                     </button>
@@ -809,24 +1170,333 @@ class AntigravityRenderer {
             }).join('')}
           </div>
 
-          <!-- Banner Inferior de Servicio Técnico y Líneas Llave en Mano -->
-          <div class="mt-16 p-8 rounded-3xl bg-gradient-to-r from-blue-950/60 via-slate-900 to-amber-950/40 border border-blue-500/30 backdrop-blur-xl flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
+          <!-- Banner Inferior de Proyectos Cárnicos Llave en Mano -->
+          <div class="mt-16 p-8 rounded-3xl bg-gradient-to-r from-red-950/80 via-[#1f0a0a] to-amber-950/50 border border-red-500/40 backdrop-blur-xl flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
             <div class="flex items-center gap-4">
-              <div class="w-14 h-14 rounded-2xl bg-blue-500/20 flex items-center justify-center text-blue-400 shrink-0 border border-blue-500/40">
-                <i data-lucide="wrench" class="w-7 h-7 text-blue-400"></i>
+              <div class="w-14 h-14 rounded-2xl bg-red-500/20 flex items-center justify-center text-red-400 shrink-0 border border-red-500/40">
+                <i data-lucide="flame" class="w-7 h-7 text-amber-400"></i>
               </div>
               <div>
-                <h4 class="text-xl font-black text-white">¿Necesitas una Línea de Producción Completa o Asesoría de Planta?</h4>
-                <p class="text-xs sm:text-sm text-gray-300 mt-1 max-w-2xl">
-                  Dimensionamos la capacidad exacta de tu planta desde la molienda hasta el empaque al vacío final. Incluye instalación, puesta en marcha y soporte técnico preventivo a nivel nacional.
+                <h4 class="text-xl font-black text-white">¿Proyectas una Planta de Cecinas, Frigorífico o Sala de Proceso Cárnico?</h4>
+                <p class="text-xs sm:text-sm text-red-100/85 mt-1 max-w-2xl">
+                  Dimensionamos tu línea completa desde la recepción de bloques congelados hasta el ahumado y envasado al vacío con bolsas WellPack de 120 micras.
                 </p>
               </div>
             </div>
             <button 
               type="button"
-              data-machine-title="Línea de Producción Completa Llave en Mano"
-              class="btn-machinery-quote btn-spring px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-[#FF6B00] text-neutral-950 font-black text-xs sm:text-sm uppercase tracking-wider shrink-0 shadow-xl shadow-amber-500/25">
-              Solicitar Asesoría de Planta
+              data-machine-title="Línea Completa Llave en Mano - Rubro Cárnico & Cecinas"
+              class="btn-machinery-quote btn-spring px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-[#FF6B00] text-neutral-950 font-black text-xs sm:text-sm uppercase tracking-wider shrink-0 shadow-xl shadow-amber-500/30">
+              Solicitar Ingeniería Cárnica
+            </button>
+          </div>
+
+        </div>
+      </section>
+    `;
+  }
+
+  // ==========================================================
+  // PÁGINA COMPLETA: DIVISIÓN MAQUINARIA PROCESO PESQUERO & ACUÍCOLA
+  // ==========================================================
+  renderFisheryMachineryPage() {
+    const fishSection = (this.schema?.layout || []).find(s => s.section === 'fishery_machinery_showcase');
+    const config = fishSection?.config || {};
+
+    return `
+      <!-- Hero Exclusivo Proceso Pesquero (Colores Azul Abisal, Cian Glaciar & Acero Marino AISI 316L) -->
+      <section id="hero" class="relative min-h-[82vh] flex items-center justify-center overflow-hidden py-16 lg:py-24 bg-[#03101f] text-white border-b border-cyan-900/60">
+        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+          <div id="hero-fluid-track" class="absolute -top-[5%] -left-[18%] w-[136%] h-[110%] animate-hero-pan will-change-transform">
+            <img 
+              id="hero-fluid-img"
+              src="assets/images/hero_maquinaria_pesquera.jpg" 
+              alt="Planta de procesamiento pesquero y salmonero WellPack" 
+              class="w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.14] saturate-[1.18]">
+          </div>
+          <div class="absolute inset-0 bg-[radial-gradient(ellipse_75%_65%_at_50%_50%,rgba(3,16,31,0.50)_0%,rgba(4,22,42,0.38)_55%,rgba(3,16,31,0.92)_100%)]"></div>
+          <div class="absolute inset-0 bg-gradient-to-b from-[#03101f]/85 via-transparent to-[#03101f]"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-7 hero-content-trigger">
+          <div class="p-6 sm:p-10 rounded-3xl bg-[#04182e]/65 backdrop-blur-md border border-cyan-400/35 shadow-[0_20px_60px_rgba(0,0,0,0.85)] space-y-6">
+            <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-cyan-950/90 border border-cyan-400/60 text-cyan-300 text-xs font-mono font-bold uppercase tracking-wider shadow-lg">
+              <i data-lucide="fish" class="w-4 h-4 text-cyan-400"></i>
+              <span>División Ingeniería para Plantas Salmoneras, Pesqueras & Mitílidos</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-white drop-shadow-lg">
+              Maquinaria Industrial para <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-400 to-blue-400">Proceso Pesquero</span>
+            </h1>
+
+            <p class="text-base sm:text-lg lg:text-xl text-cyan-100/90 max-w-3xl mx-auto font-normal leading-relaxed">
+              Equipamiento en acero inoxidable grado marino AISI 316L resistente a la corrosión salina: fileteadoras automáticas de salmónidos, desespinadoras Pin-Bone, porcionadoras láser 3D, túneles IQF a -40°C y líneas de choritos.
+            </p>
+
+            <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+              <a 
+                href="#fishery_machinery_showcase" 
+                class="inline-flex items-center gap-2.5 bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 hover:from-cyan-300 hover:to-blue-500 text-slate-950 font-black text-sm sm:text-base px-8 py-4 rounded-2xl shadow-xl shadow-cyan-500/35 transition-all hover:scale-105 active:scale-95">
+                <i data-lucide="waves" class="w-5 h-5 text-slate-950"></i>
+                <span>Ver los 10 Equipos Pesqueros</span>
+                <i data-lucide="arrow-down" class="w-4 h-4 text-slate-950"></i>
+              </a>
+              <button 
+                type="button"
+                data-machine-title="Proyecto de Línea Completa Proceso Pesquero"
+                class="btn-machinery-quote inline-flex items-center gap-2 bg-cyan-950/80 hover:bg-cyan-900/80 text-cyan-100 border border-cyan-400/50 font-bold text-sm sm:text-base px-7 py-4 rounded-2xl transition-all hover:scale-105 backdrop-blur-md shadow-lg">
+                <i data-lucide="file-text" class="w-5 h-5 text-cyan-300"></i>
+                <span>Solicitar Ingeniería Pesquera</span>
+              </button>
+            </div>
+
+            <!-- KPIs Técnicos del Proceso Pesquero -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5 pt-6 border-t border-cyan-900/60 text-left max-w-4xl mx-auto">
+              <div class="bg-[#06203c]/85 backdrop-blur-md p-3.5 rounded-2xl border border-cyan-400/30 shadow-lg">
+                <div class="text-lg font-black text-cyan-300 font-mono">AISI 316L</div>
+                <div class="text-[11px] text-cyan-100/80 font-mono uppercase mt-0.5">Acero Marino Anticorrosión</div>
+              </div>
+              <div class="bg-[#06203c]/85 backdrop-blur-md p-3.5 rounded-2xl border border-cyan-400/30 shadow-lg">
+                <div class="text-lg font-black text-sky-300 font-mono">Láser 3D ±1g</div>
+                <div class="text-[11px] text-cyan-100/80 font-mono uppercase mt-0.5">Porcionado de Salmón</div>
+              </div>
+              <div class="bg-[#06203c]/85 backdrop-blur-md p-3.5 rounded-2xl border border-cyan-400/30 shadow-lg">
+                <div class="text-lg font-black text-emerald-400 font-mono">-40°C IQF</div>
+                <div class="text-[11px] text-cyan-100/80 font-mono uppercase mt-0.5">Ultracongelación Cero Goteo</div>
+              </div>
+              <div class="bg-[#06203c]/85 backdrop-blur-md p-3.5 rounded-2xl border border-cyan-400/30 shadow-lg">
+                <div class="text-lg font-black text-amber-400 font-mono">IP69K CIP</div>
+                <div class="text-[11px] text-cyan-100/80 font-mono uppercase mt-0.5">Normativa Sernapesca / FDA</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Catálogo Completo de Maquinaria Proceso Pesquero -->
+      ${this.renderFisheryMachineryShowcaseSection(config)}
+
+      <!-- Banner de Sinergia con Envases Pesqueros y División Cárnica -->
+      <section class="py-16 bg-[#020b16] border-b border-cyan-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <a href="index.html" class="group p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#071d33] to-[#14120a] border border-amber-500/35 hover:border-amber-400 flex items-center justify-between gap-4 transition-all hover:-translate-y-1">
+            <div>
+              <span class="text-[11px] font-mono uppercase text-amber-400 font-bold block mb-1">📦 Sinergia Bolsas + Máquina</span>
+              <h3 class="text-xl font-black text-white group-hover:text-amber-300">Volver a Envases Flexibles (Bolsas Salmón EVOH & Mariscos IQF)</h3>
+              <p class="text-xs text-slate-300 mt-1">Bolsas al vacío con ventana, películas para termoformado y Doypack para túneles -35°C.</p>
+            </div>
+            <i data-lucide="arrow-left" class="w-6 h-6 text-amber-400 shrink-0"></i>
+          </a>
+
+          <a href="maquinaria-carnica.html" class="group p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#210909] to-[#140606] border border-red-500/35 hover:border-red-400 flex items-center justify-between gap-4 transition-all hover:-translate-y-1">
+            <div>
+              <span class="text-[11px] font-mono uppercase text-red-400 font-bold block mb-1">🥩 Otra División de Ingeniería</span>
+              <h3 class="text-xl font-black text-white group-hover:text-red-300">Ir a Maquinaria para Rubro Cárnico & Cecinas</h3>
+              <p class="text-xs text-red-200/80 mt-1">Desmenuzadoras de congelados, cutters al vacío de 4.500 RPM, embutidoras y ahumadores.</p>
+            </div>
+            <i data-lucide="arrow-right" class="w-6 h-6 text-red-400 shrink-0"></i>
+          </a>
+        </div>
+      </section>
+    `;
+  }
+
+  // ==========================================================
+  // CATÁLOGO MAQUINARIA PROCESO PESQUERO (ESTÉTICA OCÉANO ABISAL & CIAN GLACIAR)
+  // ==========================================================
+  renderFisheryMachineryShowcaseSection(config = {}) {
+    const title = config.title || "Maquinaria y Líneas para Proceso Pesquero & Acuícola";
+    const subtitle = config.subtitle || "Equipamiento industrial en acero inoxidable grado marino AISI 316L resistente a la salinidad. Soluciones integrales para plantas de salmónidos, merluza, jibia, pelágicos y mitílidos.";
+    const items = config.items || [];
+
+    return `
+      <section id="fishery_machinery_showcase" class="py-24 bg-[#041426] text-white relative border-b border-cyan-950 overflow-hidden font-sans">
+        
+        <!-- Luz ambiental en tonos cian glaciar y azul marino profundo -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[850px] h-[420px] bg-cyan-500/12 blur-[150px] pointer-events-none rounded-full"></div>
+        <div class="absolute bottom-10 right-10 w-[550px] h-[320px] bg-sky-600/12 blur-[130px] pointer-events-none rounded-full"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
+          <!-- Encabezado de Sección -->
+          <div class="text-center max-w-3xl mx-auto mb-14">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-400/40 text-cyan-300 text-xs font-mono font-bold uppercase mb-4 shadow-sm">
+              <i data-lucide="waves" class="w-4 h-4 text-cyan-400"></i>
+              Tecnología Pesquera & Salmonera • Acero Marino AISI 316L
+            </div>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+              ${title}
+            </h2>
+            <p class="mt-4 text-cyan-100/80 text-base sm:text-lg leading-relaxed">
+              ${subtitle}
+            </p>
+          </div>
+
+          <!-- Filtro Interactivo de Maquinaria Pesquera -->
+          <div class="flex items-center justify-center gap-2 mb-12 overflow-x-auto pb-2 px-2" id="machinery-category-filters">
+            <button 
+              type="button" 
+              data-machine-filter="all" 
+              class="btn-machine-tab btn-spring px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-cyan-400 bg-gradient-to-r from-cyan-400 to-sky-500 text-slate-950 shadow-lg shadow-cyan-500/35">
+              🌊 Toda la Línea Pesquera (${items.length})
+            </button>
+            <button 
+              type="button" 
+              data-machine-filter="fileteado" 
+              class="btn-machine-tab btn-spring px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-cyan-800/80 bg-[#07203b] text-cyan-200 hover:border-cyan-400/60">
+              🐟 Fileteado, Despielado & Pin-Bone
+            </button>
+            <button 
+              type="button" 
+              data-machine-filter="porcionado" 
+              class="btn-machine-tab btn-spring px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-cyan-800/80 bg-[#07203b] text-cyan-200 hover:border-cyan-400/60">
+              🎯 Porcionado Láser 3D, Grader & Inyección
+            </button>
+            <button 
+              type="button" 
+              data-machine-filter="congelacion" 
+              class="btn-machine-tab btn-spring px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-cyan-800/80 bg-[#07203b] text-cyan-200 hover:border-cyan-400/60">
+              ❄️ Túneles IQF -40°C & Línea Choritos
+            </button>
+            <button 
+              type="button" 
+              data-machine-filter="envasado" 
+              class="btn-machine-tab btn-spring px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-cyan-800/80 bg-[#07203b] text-cyan-200 hover:border-cyan-400/60">
+              🛡️ Termoformado Vacío & Soporte
+            </button>
+          </div>
+
+          <!-- Grilla de Tarjetas de Maquinaria Pesquera -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch" id="machinery-cards-grid">
+            ${items.map(item => {
+              const cat = item.category || 'all';
+              const badge = item.badge || 'AISI 316L Marino';
+              const icon = item.icon || 'fish';
+
+              return `
+                <div data-machine-cat="${cat}" class="machinery-card spotlight-card bg-gradient-to-b from-[#07223f] to-[#05182d] border border-cyan-800/70 hover:border-cyan-400/80 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                  
+                  <div>
+                    <!-- Fotografía Real del Equipo Pesquero -->
+                    ${item.image ? `
+                      <div class="relative w-full h-60 sm:h-68 rounded-2xl overflow-hidden bg-gradient-to-b from-[#03101f] to-[#061d36] border border-cyan-800/60 mb-6 flex items-center justify-center p-3 group hover:border-cyan-400/60 transition-all">
+                        <img 
+                          src="${item.image.startsWith('/') ? item.image.slice(1) : item.image}" 
+                          alt="${item.title}" 
+                          loading="lazy" 
+                          class="max-h-full max-w-full object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.85)] group-hover:scale-105 transition-transform duration-500 ease-out">
+                        
+                        <!-- Badge de Especificación Flotante -->
+                        <div class="absolute top-3 left-3 z-10">
+                          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#041528]/90 backdrop-blur-md text-[10px] font-mono font-bold text-cyan-300 border border-cyan-400/50 shadow-lg">
+                            <i data-lucide="${icon}" class="w-3.5 h-3.5 text-cyan-400"></i>
+                            ${badge}
+                          </span>
+                        </div>
+                      </div>
+                    ` : ''}
+
+                    <!-- Header Tarjeta -->
+                    <div class="flex items-start justify-between gap-4 mb-4">
+                      <div class="flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-xl bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 shrink-0">
+                          <i data-lucide="${icon}" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                          <h3 class="text-xl sm:text-2xl font-black text-white leading-tight">
+                            ${item.title}
+                          </h3>
+                          <span class="text-xs text-cyan-300 font-mono block mt-0.5 font-semibold">
+                            ${item.subtitle}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Descripción -->
+                    <p class="text-cyan-50/85 text-xs sm:text-sm leading-relaxed mb-6">
+                      ${item.description}
+                    </p>
+
+                    <!-- Lista de Características -->
+                    <div class="space-y-2 mb-6">
+                      ${(item.features || []).map(f => `
+                        <div class="flex items-start gap-2 text-xs text-cyan-50/90">
+                          <i data-lucide="check-circle" class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5"></i>
+                          <span>${f}</span>
+                        </div>
+                      `).join('')}
+                    </div>
+
+                    <!-- Tabla de Modelos y Parámetros Técnicos -->
+                    ${item.specs && item.specs.length > 0 ? `
+                      <div class="mb-6 overflow-x-auto rounded-xl border border-cyan-900/70 bg-[#03101f]">
+                        <table class="w-full text-[11px] font-mono text-left">
+                          <thead class="bg-cyan-950/70 text-cyan-200 uppercase text-[10px]">
+                            <tr>
+                              <th class="py-2 px-3">Modelo</th>
+                              ${item.specs[0].power ? '<th class="py-2 px-3">Potencia</th>' : ''}
+                              ${item.specs[0].capacity ? '<th class="py-2 px-3">Capacidad</th>' : ''}
+                              ${item.specs[0].speed ? '<th class="py-2 px-3">Rango / Precisión</th>' : ''}
+                              ${item.specs[0].dims ? '<th class="py-2 px-3 hidden sm:table-cell">Dimensiones</th>' : ''}
+                              ${item.specs[0].detail ? '<th class="py-2 px-3">Detalle</th>' : ''}
+                            </tr>
+                          </thead>
+                          <tbody class="divide-y divide-cyan-950/80 text-cyan-100">
+                            ${item.specs.map(sp => `
+                              <tr class="hover:bg-cyan-900/25">
+                                <td class="py-2 px-3 font-bold text-cyan-300">${sp.model}</td>
+                                ${sp.power ? `<td class="py-2 px-3">${sp.power}</td>` : ''}
+                                ${sp.capacity ? `<td class="py-2 px-3 text-emerald-300 font-semibold">${sp.capacity}</td>` : ''}
+                                ${sp.speed ? `<td class="py-2 px-3">${sp.speed}</td>` : ''}
+                                ${sp.dims ? `<td class="py-2 px-3 hidden sm:table-cell text-cyan-300/70 text-[10px]">${sp.dims}</td>` : ''}
+                                ${sp.detail ? `<td class="py-2 px-3 text-cyan-200">${sp.detail}</td>` : ''}
+                              </tr>
+                            `).join('')}
+                          </tbody>
+                        </table>
+                      </div>
+                    ` : ''}
+                  </div>
+
+                  <!-- Footer Botón CTA -->
+                  <div class="pt-4 border-t border-cyan-900/60 flex items-center justify-between gap-3">
+                    <span class="text-[11px] font-mono text-cyan-200/80 flex items-center gap-1.5">
+                      <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                      Soporte e Instalación en Todo Chile
+                    </span>
+                    <button 
+                      type="button" 
+                      data-machine-title="[PROCESO PESQUERO] ${item.title}"
+                      class="btn-machinery-quote btn-spring inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-400 to-sky-500 hover:from-cyan-300 hover:to-sky-400 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-cyan-500/35">
+                      <span>Cotizar Equipo</span>
+                      <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                    </button>
+                  </div>
+
+                </div>
+              `;
+            }).join('')}
+          </div>
+
+          <!-- Banner Inferior de Proyectos Pesqueros Llave en Mano -->
+          <div class="mt-16 p-8 rounded-3xl bg-gradient-to-r from-cyan-950/80 via-[#061f38] to-blue-950/60 border border-cyan-400/40 backdrop-blur-xl flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-cyan-500/20 flex items-center justify-center text-cyan-300 shrink-0 border border-cyan-400/40">
+                <i data-lucide="anchor" class="w-7 h-7 text-cyan-300"></i>
+              </div>
+              <div>
+                <h4 class="text-xl font-black text-white">¿Proyectas una Planta Pesquera, Salmonera o Línea de Mitílidos?</h4>
+                <p class="text-xs sm:text-sm text-cyan-100/85 mt-1 max-w-2xl">
+                  Integramos el diseño sanitario de línea (fileteado, porcionado láser, túnel IQF y termoformado) junto con el abastecimiento de films y bolsas de alta barrera EVOH para exportación.
+                </p>
+              </div>
+            </div>
+            <button 
+              type="button"
+              data-machine-title="Línea Completa Llave en Mano - Proceso Pesquero & Acuícola"
+              class="btn-machinery-quote btn-spring px-6 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-400 to-sky-500 text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider shrink-0 shadow-xl shadow-cyan-500/30">
+              Solicitar Ingeniería Pesquera
             </button>
           </div>
 
@@ -2945,17 +3615,24 @@ class AntigravityRenderer {
       });
     });
 
-    // Filtro interactivo de maquinaria industrial
+    // Filtro interactivo de maquinaria industrial (adaptado por rubro Cárnico o Pesquero)
     document.querySelectorAll('.btn-machine-tab').forEach(tab => {
       tab.addEventListener('click', (e) => {
         e.preventDefault();
         const cat = tab.getAttribute('data-machine-filter');
+        const isFish = this.pageMode === 'fishery_machinery';
+        const inactiveClass = isFish
+          ? 'btn-machine-tab btn-spring px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-cyan-800/80 bg-[#07203b] text-cyan-200 hover:border-cyan-400/60'
+          : 'btn-machine-tab btn-spring px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-red-900/80 bg-[#210b0b] text-red-200 hover:border-red-500/60';
+        const activeClass = isFish
+          ? 'btn-machine-tab btn-spring px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-cyan-400 bg-gradient-to-r from-cyan-400 to-sky-500 text-slate-950 shadow-lg shadow-cyan-500/35'
+          : 'btn-machine-tab btn-spring px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-red-500 bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-lg shadow-red-600/35';
         
         // Actualizar estado visual de los tabs
         document.querySelectorAll('.btn-machine-tab').forEach(t => {
-          t.className = 'btn-machine-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-neutral-700 bg-neutral-900/90 text-neutral-300 hover:border-neutral-500';
+          t.className = inactiveClass;
         });
-        tab.className = 'btn-machine-tab btn-spring px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-blue-500 bg-blue-600 text-white shadow-lg shadow-blue-600/30';
+        tab.className = activeClass;
 
         // Filtrar tarjetas
         document.querySelectorAll('.machinery-card').forEach(card => {

@@ -602,6 +602,350 @@
       }
     },
     {
+      "section": "fishery_machinery_showcase",
+      "config": {
+        "title": "Maquinaria y Líneas para Proceso Pesquero & Acuícola",
+        "subtitle": "Equipamiento industrial en acero inoxidable grado marino AISI 316L resistente a la salinidad. Soluciones integrales para plantas de salmónidos, merluza, jibia, pelágicos y mitílidos.",
+        "items": [
+          {
+            "id": "fileteadora_salmon_aisi316",
+            "category": "fileteado",
+            "badge": "25 a 40 pescados/min • AISI 316L",
+            "icon": "fish",
+            "title": "Fileteadora Automática de Salmónidos y Pelágicos",
+            "subtitle": "Corte dorsal y ventral de alta precisión con máximo rendimiento de carne (Yield +3.5%)",
+            "description": "Sistema automático de fileteado continuo para salmón Atlántico, Coho, trucha y merluza. Equipada con cuchillas circulares dobles autoajustables según el calibre del pescado y estructura anticorrosiva en acero inoxidable marino AISI 316L.",
+            "features": [
+              "Procesamiento continuo de 25 a 40 pescados por minuto (calibres de 1.5 a 8 kg)",
+              "Ajuste automático de cuchillas por sensores ópticos de espina central",
+              "Incremento de rendimiento (Yield) de hasta +3.5% respecto al fileteado manual",
+              "Chasis sanitario abierto con lavado CIP integrado y protección IP69K",
+              "Construcción íntegra en acero inoxidable marino AISI 316L"
+            ],
+            "specs": [
+              {
+                "model": "WP-FIL-2800",
+                "power": "5.5 kW",
+                "capacity": "25~35 pescados/min",
+                "speed": "Calibre 1.5 - 7.5 kg",
+                "dims": "3450×1250×1680 mm"
+              },
+              {
+                "model": "WP-FIL-4000 Pro",
+                "power": "7.5 kW",
+                "capacity": "35~45 pescados/min",
+                "speed": "Calibre 2.0 - 9.0 kg",
+                "dims": "3800×1320×1750 mm"
+              }
+            ],
+            "image": "/assets/images/machinery_pesquera/fileteadora_salmon.jpg"
+          },
+          {
+            "id": "despieladora_skinner_dsp300",
+            "category": "fileteado",
+            "badge": "Despielado Silver Skin & Profundo",
+            "icon": "layers",
+            "title": "Despieladora Automática de Filetes de Pescado y Jibia",
+            "subtitle": "Extracción limpia de piel con regulación micrométrica de espesor sin dañar el músculo",
+            "description": "Despieladora industrial de cinta y rodillo dentado para filetes de salmón, reineta, merluza, tilapia y manto de jibia. Permite seleccionar entre despielado superficial (conservando capa plateada Silver Skin) o despielado profundo.",
+            "features": [
+              "Regulación micrométrica de cuchilla para despielado superficial o profundo",
+              "Rodillo prensor neumático suave que evita desgarros en filetes delicados",
+              "Sistema de rociado de agua continuo para limpieza de cuchilla en operación",
+              "Desmontaje sin herramientas en menos de 90 segundos para sanitización",
+              "Rendimiento superior al 99% en filetes frescos o temperados"
+            ],
+            "specs": [
+              {
+                "model": "WP-SKN-300",
+                "power": "1.5 kW",
+                "capacity": "40~60 filetes/min",
+                "speed": "Ancho útil 360 mm",
+                "dims": "1450×820×1180 mm"
+              },
+              {
+                "model": "WP-SKN-500 Dual",
+                "power": "2.2 kW",
+                "capacity": "70~90 filetes/min",
+                "speed": "Ancho útil 520 mm",
+                "dims": "1820×980×1250 mm"
+              }
+            ],
+            "image": "/assets/images/machinery_pesquera/despieladora_skinner.jpg"
+          },
+          {
+            "id": "desespinadora_pinbone_salmon",
+            "category": "fileteado",
+            "badge": "98.5% Extracción Pin-Bone",
+            "icon": "locate-fixed",
+            "title": "Desespinadora Automática Pin-Bone Remover para Salmón",
+            "subtitle": "Extracción rotativa de espinas intramusculares sin marcar ni romper el filete",
+            "description": "Equipo de doble cabezal o carril simple para la extracción automatizada de espinas intramusculares (Pin-Bones) en filetes de salmón y trucha pre-rigor y post-rigor, reemplazando hasta 8 operarios de pinzado manual.",
+            "features": [
+              "Eficacia de extracción de hasta 98.5% de espinas intramusculares",
+              "Sensores de presión adaptativos que siguen el perfil anatómico del filete",
+              "Cabezales rotativos con limpieza automática por chorro de agua y aire",
+              "Ahorro directo de mano de obra intensiva en línea de trimming",
+              "Cinta modular sanitaria azul de grado alimenticio FDA"
+            ],
+            "specs": [
+              {
+                "model": "WP-PBR-100 (1 Carril)",
+                "power": "1.8 kW",
+                "capacity": "18~22 filetes/min",
+                "speed": "Pre & Post-Rigor",
+                "dims": "1650×850×1320 mm"
+              },
+              {
+                "model": "WP-PBR-200 (Doble Carril)",
+                "power": "3.2 kW",
+                "capacity": "35~42 filetes/min",
+                "speed": "Pre & Post-Rigor",
+                "dims": "1950×1280×1380 mm"
+              }
+            ],
+            "image": "/assets/images/machinery_pesquera/desespinadora_pinbone.jpg"
+          },
+          {
+            "id": "porcionadora_laser_3d",
+            "category": "porcionado",
+            "badge": "Visión Láser 3D • Precisión ±1g",
+            "icon": "scan-line",
+            "title": "Porcionadora Inteligente por Visión Láser 3D (OptiLase)",
+            "subtitle": "Escaneo volumétrico 3D y corte de porciones a peso fijo y ángulo programable",
+            "description": "Sistema de porcionado de alta velocidad guiado por cámara de visión artificial y láser 3D. Calcula en milisegundos el volumen y densidad del filete de salmón o pescado blanco para ejecutar cortes exactos al gramo con cuchilla servo-ultrasónica.",
+            "features": [
+              "Escaneo láser 3D de alta resolución para cálculo volumétrico en tiempo real",
+              "Porcionado a peso fijo con tolerancia de ±1 a ±2 gramos por porción",
+              "Corte en ángulo variable (de 30° a 90°) para presentaciones retail y Horeca",
+              "Software HMI con recetas para lomos, porciones centrales, colas y sashimi",
+              "Reducción drástica del sobrepeso (Give-away) en bandejas de exportación"
+            ],
+            "specs": [
+              {
+                "model": "WP-LASER-400",
+                "power": "8.5 kW",
+                "capacity": "Hasta 280 cortes/min",
+                "speed": "Precisión ±1.5 g",
+                "dims": "3200×1180×1750 mm"
+              },
+              {
+                "model": "WP-LASER-600 Twin",
+                "power": "14 kW",
+                "capacity": "Hasta 520 cortes/min",
+                "speed": "Precisión ±1.0 g",
+                "dims": "3850×1520×1820 mm"
+              }
+            ],
+            "image": "/assets/images/machinery_pesquera/porcionadora_laser.jpg"
+          },
+          {
+            "id": "inyectora_salmuera_marinado",
+            "category": "porcionado",
+            "badge": "Multi-Agujas • Salmón Ahumado & Filetes",
+            "icon": "droplets",
+            "title": "Inyectora Automática de Salmuera Multi-Agujas (IS-400)",
+            "subtitle": "Inyección homogénea de baja presión para salmón ahumado, filetes y pesca blanca",
+            "description": "Inyectora de agujas múltiples en acero inoxidable AISI 316 con cabezal de suspensión neumática independiente. Garantiza una distribución uniforme de salmuera, antioxidantes o marinados sin romper la estructura laminar del filete de pescado.",
+            "features": [
+              "Agujas ultrafinas de ø1.5 a ø2.0 mm especiales para tejido de pescado",
+              "Presión de inyección regulable electrónicamente (0.5 a 3.5 bar)",
+              "Sistema de triple filtrado rotativo con tanque de recirculación enfriado",
+              "Porcentaje de inyección ajustable del 8% al 35% según receta PLC",
+              "Agujas con resorte individual: se detienen al tocar espina o cartílago"
+            ],
+            "specs": [
+              {
+                "model": "WP-IS-160 (160 Agujas)",
+                "power": "5.5 kW",
+                "capacity": "1.500~2.500 kg/h",
+                "speed": "Cinta 450 mm",
+                "dims": "1950×1050×1980 mm"
+              },
+              {
+                "model": "WP-IS-320 (320 Agujas)",
+                "power": "9.0 kW",
+                "capacity": "3.000~5.000 kg/h",
+                "speed": "Cinta 650 mm",
+                "dims": "2450×1300×2100 mm"
+              }
+            ],
+            "image": "/assets/images/machinery_pesquera/inyectora_salmuera.jpg"
+          },
+          {
+            "id": "clasificadora_grader_glaseadora",
+            "category": "porcionado",
+            "badge": "Grader Dinámico IP69K + Glaseado",
+            "icon": "scale",
+            "title": "Clasificadora Dinámica por Peso (Grader) & Glaseadora IQF",
+            "subtitle": "Pesaje dinámico de alta velocidad, clasificación en 8 a 14 estaciones y baño de glaseo",
+            "description": "Línea combinada de glaseado protector de hielo y clasificador dinámico por peso (Checkweigher & Grader) para filetes, porciones y pescado entero congelado. Brazos desviadores neumáticos suaves y celdas de carga impermeables IP69K.",
+            "features": [
+              "Clasificación automática en 8, 10, 12 o 14 estaciones de empaque por calibre",
+              "Glaseadora por inmersión o cortina de niebla helada (glaseo regulable 5% a 25%)",
+              "Celdas de carga digitales de alta velocidad (hasta 140 piezas/minuto)",
+              "Generación de lotes a peso fijo para cajas master de exportación (10 kg / 20 lb)",
+              "Reporte de rendimiento y trazabilidad en tiempo real vía Ethernet/Modbus"
+            ],
+            "specs": [
+              {
+                "model": "WP-GRD-8 (8 Salidas)",
+                "power": "3.5 kW",
+                "capacity": "120~140 pzas/min",
+                "speed": "Precisión ±1.5 g",
+                "dims": "5200×1350×1550 mm"
+              },
+              {
+                "model": "WP-GRD-12 + Glaseadora",
+                "power": "6.8 kW",
+                "capacity": "Hasta 3.500 kg/h",
+                "speed": "12 Estaciones + Glaseo",
+                "dims": "7800×1450×1650 mm"
+              }
+            ],
+            "image": "/assets/images/machinery_pesquera/glaseadora_grader.jpg"
+          },
+          {
+            "id": "tunel_iqf_ultracongelacion",
+            "category": "congelacion",
+            "badge": "Ultracongelación -40°C • Cero Goteo",
+            "icon": "snowflake",
+            "title": "Túnel Continuo de Ultracongelación Rápida IQF (-40°C)",
+            "subtitle": "Congelación individual rápida en malla o espiral para filetes, camarones y mariscos",
+            "description": "Túnel industrial de ultracongelación rápida (Individual Quick Freezing) con flujo de aire laminar de alta velocidad a -40°C. Forma microcristales en el núcleo del alimento en minutos, evitando la rotura celular y la pérdida por goteo (Drip Loss < 0.8%).",
+            "features": [
+              "Temperatura de trabajo de -35°C a -42°C en núcleo de producto (-18°C final)",
+              "Evaporadores en aluminio-magnesio y acero inoxidable con desescarche ADF",
+              "Paneles isotérmicos PIR de 150 mm con revestimiento inoxidable sanitario",
+              "Malla transportadora modular o en espiral de velocidad variable",
+              "Compatible con refrigerantes NH3 (Amoníaco), CO2 transcrítico o Freón R404A/R507"
+            ],
+            "specs": [
+              {
+                "model": "WP-IQF-500 Lineal",
+                "power": "22 kW (Vent.)",
+                "capacity": "500~750 kg/h",
+                "speed": "Cap. Frigorífica 95 kW",
+                "dims": "8500×2400×2650 mm"
+              },
+              {
+                "model": "WP-IQF-1500 Espiral",
+                "power": "45 kW (Vent.)",
+                "capacity": "1.500~2.000 kg/h",
+                "speed": "Cap. Frigorífica 240 kW",
+                "dims": "6800×5200×4100 mm"
+              },
+              {
+                "model": "WP-IQF-3000 Industrial",
+                "power": "75 kW (Vent.)",
+                "capacity": "3.000~3.500 kg/h",
+                "speed": "Cap. Frigorífica 460 kW",
+                "dims": "9200×6400×4500 mm"
+              }
+            ],
+            "image": "/assets/images/machinery_pesquera/tunel_iqf.jpg"
+          },
+          {
+            "id": "linea_choritos_moluscos",
+            "category": "congelacion",
+            "badge": "Mitílidos, Almejas & Camarones",
+            "icon": "waves",
+            "title": "Línea Continua de Lavado, Desbische y Cocción de Choritos",
+            "subtitle": "Procesamiento integral de mitílidos y mariscos desde recepción hasta carne cocida IQF",
+            "description": "Línea industrial completa para plantas procesadoras de choritos (mejillón chileno), almejas, ostiones y crustáceos. Integra tambor rotativo de lavado, desgranadora, desbisadora de rodillos contrarrotantes, cocedor continuo a vapor y enfriador.",
+            "features": [
+              "Desbisadora de alta eficiencia con rodillos en acero templado y lavado a presión",
+              "Cocedor continuo a vapor saturado con control PID de temperatura para máximo rendimiento",
+              "Separador vibratorio de concha y carne (vianda) de doble zaranda",
+              "Construcción pesada en acero inoxidable marino AISI 316 resistente al agua de mar",
+              "Sincronización directa con túnel IQF y envasadora multicabezal Doypack"
+            ],
+            "specs": [
+              {
+                "model": "WP-MIT-3000",
+                "power": "18.5 kW",
+                "capacity": "3.000 kg/h (Materia Prima)",
+                "speed": "Vapor 650 kg/h",
+                "dims": "Línea Modular 14m"
+              },
+              {
+                "model": "WP-MIT-6000 Export",
+                "power": "34 kW",
+                "capacity": "6.000~8.000 kg/h",
+                "speed": "Vapor 1.300 kg/h",
+                "dims": "Línea Modular 22m"
+              }
+            ],
+            "image": "/assets/images/machinery_pesquera/linea_choritos.jpg"
+          },
+          {
+            "id": "termoformadora_vacio_marina",
+            "category": "envasado",
+            "badge": "Vacío + MAP + Skin Pack • Bomba Busch",
+            "icon": "package-check",
+            "title": "Termoformadora Automática al Vacío & Skin Pack Marino",
+            "subtitle": "Envasado continuo de alta velocidad con film flexible o rígido para filetes de exportación",
+            "description": "Termoformadora horizontal de acero inoxidable IP65 para envasado automático de porciones de salmón, filetes ahumados, pulpo y mariscos. Equipada con bomba de vacío alemana Busch R5 de 300 m³/h y registro óptico para film impreso WellPack.",
+            "features": [
+              "Bomba de vacío industrial Busch (Alemania) de 250 a 300 m³/h de alto caudal",
+              "Compatible con film flexible PA/PE EVOH, film rígido y tecnología Darfresh Skin",
+              "Sensor fotocélula de alta precisión para centrado de film impreso a todo color",
+              "Cambio rápido de moldes en menos de 15 minutos según formato de porción",
+              "Opción de inyección de atmósfera modificada (MAP CO2/N2) integrada"
+            ],
+            "specs": [
+              {
+                "model": "WP-TF-420 Marina",
+                "power": "14 kW",
+                "capacity": "6~9 ciclos/min",
+                "speed": "Ancho Film 420 mm",
+                "dims": "4800×1050×1720 mm"
+              },
+              {
+                "model": "WP-TF-520 Skin Pro",
+                "power": "18 kW",
+                "capacity": "8~11 ciclos/min",
+                "speed": "Ancho Film 520 mm",
+                "dims": "5600×1180×1800 mm"
+              }
+            ],
+            "image": "/assets/images/machinery_pesquera/termoformadora_vacio.jpg"
+          },
+          {
+            "id": "ingenieria_soporte_pesquero",
+            "category": "envasado",
+            "badge": "Soporte de Puerto a Planta en Todo Chile",
+            "icon": "wrench",
+            "title": "Ingeniería Pesquera, Montaje & Servicio Técnico Nacional",
+            "subtitle": "Proyectos llave en mano, repuestos marinos AISI 316 y compatibilidad total con envases WellPack",
+            "description": "Nuestro equipo de ingeniería proyecta, instala y mantiene líneas completas de proceso pesquero y acuícola en todo el litoral chileno. Integramos la maquinaria exacta con el suministro continuo de film y bolsas de alta barrera WellPack.",
+            "features": [
+              "Asistencia técnica en terreno para plantas pesqueras y salmoneras en todo Chile",
+              "Stock permanente de cuchillas circulares, agujas de inyección, sellos y correas",
+              "Calibración de termoformadoras y campanas de vacío con nuestros films EVOH",
+              "Diseño de layout sanitario 3D bajo normativa Sernapesca, HACCP, BRC y FDA",
+              "Contratos de mantenimiento preventivo programado pre-temporada"
+            ],
+            "specs": [
+              {
+                "model": "Ingeniería de Planta 3D",
+                "detail": "Layout sanitario Sernapesca / FDA / BRC"
+              },
+              {
+                "model": "Puesta en Marcha & Postventa",
+                "detail": "Cobertura en Todo el Litoral Chileno"
+              },
+              {
+                "model": "Sinergia Maquinaria + Film",
+                "detail": "Calibración con envases WellPack EVOH"
+              }
+            ],
+            "image": "/assets/images/fabrica_extrusion_evoh.jpg"
+          }
+        ]
+      }
+    },
+    {
       "section": "tiered_pricing_offers",
       "config": {
         "title": "Escala tu Producción, Reduce tus Costos",
