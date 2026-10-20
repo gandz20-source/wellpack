@@ -604,343 +604,1187 @@
     {
       "section": "fishery_machinery_showcase",
       "config": {
-        "title": "Maquinaria y Líneas para Proceso Pesquero & Acuícola",
-        "subtitle": "Equipamiento industrial en acero inoxidable grado marino AISI 316L resistente a la salinidad. Soluciones integrales para plantas de salmónidos, merluza, jibia, pelágicos y mitílidos.",
+        "title": "Línea Completa de Maquinaria para Proceso Pesquero (12 Equipos)",
+        "subtitle": "Doce máquinas especializadas para cada etapa de la línea — desde el pescado entero con escamas hasta el filete porcionado, pesado, clasificado y glaseado para exportación. Elige equipos individuales o integra una línea continua.",
         "items": [
           {
-            "id": "fileteadora_salmon_aisi316",
-            "category": "fileteado",
-            "badge": "25 a 40 pescados/min • AISI 316L",
-            "icon": "fish",
-            "title": "Fileteadora Automática de Salmónidos y Pelágicos",
-            "subtitle": "Corte dorsal y ventral de alta precisión con máximo rendimiento de carne (Yield +3.5%)",
-            "description": "Sistema automático de fileteado continuo para salmón Atlántico, Coho, trucha y merluza. Equipada con cuchillas circulares dobles autoajustables según el calibre del pescado y estructura anticorrosiva en acero inoxidable marino AISI 316L.",
-            "features": [
-              "Procesamiento continuo de 25 a 40 pescados por minuto (calibres de 1.5 a 8 kg)",
-              "Ajuste automático de cuchillas por sensores ópticos de espina central",
-              "Incremento de rendimiento (Yield) de hasta +3.5% respecto al fileteado manual",
-              "Chasis sanitario abierto con lavado CIP integrado y protección IP69K",
-              "Construcción íntegra en acero inoxidable marino AISI 316L"
-            ],
-            "specs": [
-              {
-                "model": "WP-FIL-2800",
-                "power": "5.5 kW",
-                "capacity": "25~35 pescados/min",
-                "speed": "Calibre 1.5 - 7.5 kg",
-                "dims": "3450×1250×1680 mm"
-              },
-              {
-                "model": "WP-FIL-4000 Pro",
-                "power": "7.5 kW",
-                "capacity": "35~45 pescados/min",
-                "speed": "Calibre 2.0 - 9.0 kg",
-                "dims": "3800×1320×1750 mm"
-              }
-            ],
-            "image": "/assets/images/machinery_pesquera/fileteadora_salmon.jpg"
-          },
-          {
-            "id": "despieladora_skinner_dsp300",
-            "category": "fileteado",
-            "badge": "Despielado Silver Skin & Profundo",
-            "icon": "layers",
-            "title": "Despieladora Automática de Filetes de Pescado y Jibia",
-            "subtitle": "Extracción limpia de piel con regulación micrométrica de espesor sin dañar el músculo",
-            "description": "Despieladora industrial de cinta y rodillo dentado para filetes de salmón, reineta, merluza, tilapia y manto de jibia. Permite seleccionar entre despielado superficial (conservando capa plateada Silver Skin) o despielado profundo.",
-            "features": [
-              "Regulación micrométrica de cuchilla para despielado superficial o profundo",
-              "Rodillo prensor neumático suave que evita desgarros en filetes delicados",
-              "Sistema de rociado de agua continuo para limpieza de cuchilla en operación",
-              "Desmontaje sin herramientas en menos de 90 segundos para sanitización",
-              "Rendimiento superior al 99% en filetes frescos o temperados"
-            ],
-            "specs": [
-              {
-                "model": "WP-SKN-300",
-                "power": "1.5 kW",
-                "capacity": "40~60 filetes/min",
-                "speed": "Ancho útil 360 mm",
-                "dims": "1450×820×1180 mm"
-              },
-              {
-                "model": "WP-SKN-500 Dual",
-                "power": "2.2 kW",
-                "capacity": "70~90 filetes/min",
-                "speed": "Ancho útil 520 mm",
-                "dims": "1820×980×1250 mm"
-              }
-            ],
-            "image": "/assets/images/machinery_pesquera/despieladora_skinner.jpg"
-          },
-          {
-            "id": "desespinadora_pinbone_salmon",
-            "category": "fileteado",
-            "badge": "98.5% Extracción Pin-Bone",
-            "icon": "locate-fixed",
-            "title": "Desespinadora Automática Pin-Bone Remover para Salmón",
-            "subtitle": "Extracción rotativa de espinas intramusculares sin marcar ni romper el filete",
-            "description": "Equipo de doble cabezal o carril simple para la extracción automatizada de espinas intramusculares (Pin-Bones) en filetes de salmón y trucha pre-rigor y post-rigor, reemplazando hasta 8 operarios de pinzado manual.",
-            "features": [
-              "Eficacia de extracción de hasta 98.5% de espinas intramusculares",
-              "Sensores de presión adaptativos que siguen el perfil anatómico del filete",
-              "Cabezales rotativos con limpieza automática por chorro de agua y aire",
-              "Ahorro directo de mano de obra intensiva en línea de trimming",
-              "Cinta modular sanitaria azul de grado alimenticio FDA"
-            ],
-            "specs": [
-              {
-                "model": "WP-PBR-100 (1 Carril)",
-                "power": "1.8 kW",
-                "capacity": "18~22 filetes/min",
-                "speed": "Pre & Post-Rigor",
-                "dims": "1650×850×1320 mm"
-              },
-              {
-                "model": "WP-PBR-200 (Doble Carril)",
-                "power": "3.2 kW",
-                "capacity": "35~42 filetes/min",
-                "speed": "Pre & Post-Rigor",
-                "dims": "1950×1280×1380 mm"
-              }
-            ],
-            "image": "/assets/images/machinery_pesquera/desespinadora_pinbone.jpg"
-          },
-          {
-            "id": "porcionadora_laser_3d",
-            "category": "porcionado",
-            "badge": "Visión Láser 3D • Precisión ±1g",
-            "icon": "scan-line",
-            "title": "Porcionadora Inteligente por Visión Láser 3D (OptiLase)",
-            "subtitle": "Escaneo volumétrico 3D y corte de porciones a peso fijo y ángulo programable",
-            "description": "Sistema de porcionado de alta velocidad guiado por cámara de visión artificial y láser 3D. Calcula en milisegundos el volumen y densidad del filete de salmón o pescado blanco para ejecutar cortes exactos al gramo con cuchilla servo-ultrasónica.",
-            "features": [
-              "Escaneo láser 3D de alta resolución para cálculo volumétrico en tiempo real",
-              "Porcionado a peso fijo con tolerancia de ±1 a ±2 gramos por porción",
-              "Corte en ángulo variable (de 30° a 90°) para presentaciones retail y Horeca",
-              "Software HMI con recetas para lomos, porciones centrales, colas y sashimi",
-              "Reducción drástica del sobrepeso (Give-away) en bandejas de exportación"
-            ],
-            "specs": [
-              {
-                "model": "WP-LASER-400",
-                "power": "8.5 kW",
-                "capacity": "Hasta 280 cortes/min",
-                "speed": "Precisión ±1.5 g",
-                "dims": "3200×1180×1750 mm"
-              },
-              {
-                "model": "WP-LASER-600 Twin",
-                "power": "14 kW",
-                "capacity": "Hasta 520 cortes/min",
-                "speed": "Precisión ±1.0 g",
-                "dims": "3850×1520×1820 mm"
-              }
-            ],
-            "image": "/assets/images/machinery_pesquera/porcionadora_laser.jpg"
-          },
-          {
-            "id": "inyectora_salmuera_marinado",
-            "category": "porcionado",
-            "badge": "Multi-Agujas • Salmón Ahumado & Filetes",
+            "id": "01_descamadora_rl_fdm080",
+            "step_num": "01",
+            "model_code": "RL-FDM080",
+            "stage_label": "01 DESCAMADO",
+            "category": "preparacion",
+            "badge": "40–60 pescados/min • Hidrojets 90 bar",
             "icon": "droplets",
-            "title": "Inyectora Automática de Salmuera Multi-Agujas (IS-400)",
-            "subtitle": "Inyección homogénea de baja presión para salmón ahumado, filetes y pesca blanca",
-            "description": "Inyectora de agujas múltiples en acero inoxidable AISI 316 con cabezal de suspensión neumática independiente. Garantiza una distribución uniforme de salmuera, antioxidantes o marinados sin romper la estructura laminar del filete de pescado.",
+            "title": "Descamadora Continua por Hidrojets (RL-FDM080)",
+            "subtitle": "Remueve las escamas del pescado entero mediante chorros de agua a alta presión sin contacto mecánico",
+            "description": "Elimina las escamas del pescado entero utilizando exclusivamente jets de agua a presión (hasta 90 bar). El pescado avanza sobre una cinta de malla de acero inoxidable a través de una cabina cerrada y sale entero, intacto y descamado, listo para el corte de cabeza y eviscerado.",
+            "input_text": "Pescado entero con escamas",
+            "output_text": "Pescado entero descamado e intacto",
+            "species": [
+              "Salmón",
+              "Trucha",
+              "Tilapia",
+              "Corvina / Róbalo",
+              "Besugo / Reineta",
+              "Carpa"
+            ],
+            "kpis": [
+              {
+                "label": "Capacidad",
+                "value": "40–60",
+                "unit": "pescados / min"
+              },
+              {
+                "label": "Bombas",
+                "value": "2 × 5.5",
+                "unit": "kW (Italianas)"
+              },
+              {
+                "label": "Presión Agua",
+                "value": "Hasta 90",
+                "unit": "bar"
+              },
+              {
+                "label": "Consumo Agua",
+                "value": "50",
+                "unit": "L / min"
+              }
+            ],
             "features": [
-              "Agujas ultrafinas de ø1.5 a ø2.0 mm especiales para tejido de pescado",
-              "Presión de inyección regulable electrónicamente (0.5 a 3.5 bar)",
-              "Sistema de triple filtrado rotativo con tanque de recirculación enfriado",
-              "Porcentaje de inyección ajustable del 8% al 35% según receta PLC",
-              "Agujas con resorte individual: se detienen al tocar espina o cartílago"
+              "Descamado sin contacto mecánico: solo el agua a presión toca la piel del pescado",
+              "Equipada con dos bombas italianas importadas con jets de hasta 90 bar",
+              "Cinta transportadora de malla de acero inoxidable para 40 a 60 pescados/minuto",
+              "Control PLC con pantalla táctil, variador de frecuencia, manómetros y parada de emergencia",
+              "Cabina cerrada en acero inoxidable SUS304 con doble puerta de inspección y filtros de entrada"
+            ],
+            "notes": [
+              "Solo para pescados con escamas (no apto para bagre, pangasius o especies sin escamas)",
+              "Opera con pescado fresco o completamente descongelado cargado a mano (no congelado)",
+              "Realiza únicamente descamado: no corta cabeza, no eviscera ni filetea",
+              "No recomendado para especies muy pequeñas como sardina"
             ],
             "specs": [
               {
-                "model": "WP-IS-160 (160 Agujas)",
-                "power": "5.5 kW",
-                "capacity": "1.500~2.500 kg/h",
-                "speed": "Cinta 450 mm",
-                "dims": "1950×1050×1980 mm"
-              },
-              {
-                "model": "WP-IS-320 (320 Agujas)",
-                "power": "9.0 kW",
-                "capacity": "3.000~5.000 kg/h",
-                "speed": "Cinta 650 mm",
-                "dims": "2450×1300×2100 mm"
+                "model": "RL-FDM080",
+                "power": "2×5.5 kW + 0.5 kW",
+                "capacity": "40–60 pescados/min",
+                "speed": "Jets hasta 90 bar (50 L/min)",
+                "dims": "2000×1100×1600 mm (550 kg)"
               }
             ],
-            "image": "/assets/images/machinery_pesquera/inyectora_salmuera.jpg"
+            "tech_details": [
+              {
+                "label": "Voltaje",
+                "value": "380 V trifásico 50 Hz estándar (400–480 V a pedido)"
+              },
+              {
+                "label": "Control",
+                "value": "PLC con pantalla táctil, variador de frecuencia, manómetros"
+              },
+              {
+                "label": "Transporte",
+                "value": "Cinta de malla de acero inoxidable, motor 0.5 kW"
+              },
+              {
+                "label": "Estructura",
+                "value": "Cabina cerrada SUS304 con doble puerta, ruedas y patas ajustables"
+              },
+              {
+                "label": "Dimensiones / Peso",
+                "value": "2000 × 1100 × 1600 mm · Peso neto: 550 kg"
+              }
+            ],
+            "image": "/assets/images/machinery_pesquera/01_descaling_rl_fdm080.jpg",
+            "detail_images": [
+              {
+                "url": "/assets/images/machinery_pesquera/01_descaling_rl_fdm080_detail_1.jpg",
+                "caption": "Filtros de entrada de agua de alta presión"
+              }
+            ]
           },
           {
-            "id": "clasificadora_grader_glaseadora",
-            "category": "porcionado",
-            "badge": "Grader Dinámico IP69K + Glaseado",
+            "id": "02_evisceradora_rl_fgm060",
+            "step_num": "02",
+            "model_code": "RL-FGM060",
+            "stage_label": "02 EVISCERADO",
+            "category": "preparacion",
+            "badge": "60 pescados/min • Calibre 200–2000 g",
+            "icon": "scissors",
+            "title": "Evisceradora Automática de Pescado (RL-FGM060)",
+            "subtitle": "Abre el vientre, extrae las vísceras y enjuaga la cavidad abdominal en una sola pasada",
+            "description": "Abre longitudinalmente el vientre del pescado, retira las vísceras y lava la cavidad interna con boquillas de aspersión en un solo paso continuo. El pescado sale entero y limpio conservando su forma natural.",
+            "input_text": "Pescado entero (200 a 2.000 g)",
+            "output_text": "Pescado entero eviscerado y lavado",
+            "species": [
+              "Tilapia",
+              "Corvina / Róbalo",
+              "Caballa / Jurel",
+              "Carpa",
+              "Bagre / Catfish",
+              "Pangasius"
+            ],
+            "kpis": [
+              {
+                "label": "Capacidad",
+                "value": "60",
+                "unit": "pescados / min"
+              },
+              {
+                "label": "Potencia",
+                "value": "8",
+                "unit": "kW"
+              },
+              {
+                "label": "Dimensiones",
+                "value": "2240 × 820 × 1640",
+                "unit": "mm"
+              },
+              {
+                "label": "Peso Neto",
+                "value": "420",
+                "unit": "kg"
+              }
+            ],
+            "features": [
+              "Apertura ventral, extracción de vísceras y lavado interno en una sola pasada",
+              "Velocidad nominal de 60 pescados por minuto con velocidad de cinta regulable",
+              "Controles independientes de arranque/parada para bomba, cinta y cuchilla + parada de emergencia",
+              "Procesa tanto pescado con escamas como pescado previamente descamado",
+              "Sistema de agua integrado con bomba, filtro, manómetro y 4 boquillas de acero inoxidable"
+            ],
+            "notes": [
+              "Para pescado enfriado o totalmente descongelado (no bloques congelados)",
+              "Alimentación manual uno a uno sobre la mesa de entrada con guía",
+              "Solo eviscerado: no descama, no descabeza ni filetea",
+              "No apto para calamar/jibia, camarón, anguila ni salmón/atún entero de gran calibre"
+            ],
+            "specs": [
+              {
+                "model": "RL-FGM060",
+                "power": "8 kW",
+                "capacity": "60 pescados/min",
+                "speed": "Rango 200–2000 g (otros a pedido)",
+                "dims": "2240×820×1640 mm (420 kg)"
+              }
+            ],
+            "tech_details": [
+              {
+                "label": "Voltaje",
+                "value": "380 V trifásico 50 Hz estándar (400–480 V a pedido)"
+              },
+              {
+                "label": "Calibre Pescado",
+                "value": "200–2000 g estándar; otros rangos fabricados a medida"
+              },
+              {
+                "label": "Controles",
+                "value": "Mandos separados para bomba, cinta y cuchilla; dial de velocidad y temporizador"
+              },
+              {
+                "label": "Sistema de Agua",
+                "value": "Bomba con filtro, manómetro y 4 boquillas rociadoras inoxidables"
+              },
+              {
+                "label": "Estructura",
+                "value": "Acero inoxidable SUS304, ventana de inspección, estanque y ruedas con freno"
+              }
+            ],
+            "image": "/assets/images/machinery_pesquera/02_gutting_rl_fgm060.jpg",
+            "detail_images": [
+              {
+                "url": "/assets/images/machinery_pesquera/02_gutting_rl_fgm060_detail_1.jpg",
+                "caption": "Mesa de alimentación y canal guía de centrado"
+              }
+            ]
+          },
+          {
+            "id": "03_descabezadora_rl_fhc",
+            "step_num": "03",
+            "model_code": "RL-FHC",
+            "stage_label": "03 DESCABEZADO",
+            "category": "preparacion",
+            "badge": "60 pescados/min • Largo hasta 800 mm",
+            "icon": "axe",
+            "title": "Cortadora de Cabeza de Pescado (RL-FHC)",
+            "subtitle": "Corta la cabeza con un corte transversal limpio en bolsillos tipo V con descarga separada",
+            "description": "Separa la cabeza del pescado entero mediante un corte transversal preciso. Cada pescado viaja alojado en su propio bolsillo en V de acero inoxidable, descargando cabezas y cuerpos por ductos independientes.",
+            "input_text": "Pescado entero colocado transversalmente",
+            "output_text": "Pescado sin cabeza + cabezas separadas",
+            "species": [
+              "Sardina",
+              "Caballa / Jurel",
+              "Arenque",
+              "Tilapia",
+              "Corvina",
+              "Pescado Blanco"
+            ],
+            "kpis": [
+              {
+                "label": "Capacidad",
+                "value": "60",
+                "unit": "pescados / min"
+              },
+              {
+                "label": "Potencia",
+                "value": "1.5",
+                "unit": "kW"
+              },
+              {
+                "label": "Largo Pescado",
+                "value": "Hasta 800",
+                "unit": "mm"
+              },
+              {
+                "label": "Peso Neto",
+                "value": "200",
+                "unit": "kg"
+              }
+            ],
+            "features": [
+              "Ángulo de corte de cabeza ajustable para adaptarse a distintas especies y rendimiento",
+              "Bolsillos en forma de V que mantienen cada pescado en la misma posición exacta de corte",
+              "Descarga automática separada para cuerpos útiles y cabezas (subproducto)",
+              "Enjuague continuo del transportador de bolsillos durante toda la operación",
+              "Bajo consumo energético (1.5 kW) montada sobre ruedas giratorias con freno"
+            ],
+            "notes": [
+              "Realiza únicamente corte de cabeza: no descama, no eviscera ni filetea",
+              "Apto para pescado enfriado o semi-congelado (el pescado congelado duro debe atemperarse antes)",
+              "Carga manual a razón de un pescado por bolsillo en V",
+              "No apto para anguilas o especies extremadamente largas y delgadas"
+            ],
+            "specs": [
+              {
+                "model": "RL-FHC",
+                "power": "1.5 kW",
+                "capacity": "60 pescados/min",
+                "speed": "Largo máx. 800 mm",
+                "dims": "1500×900×1550 mm (200 kg)"
+              }
+            ],
+            "tech_details": [
+              {
+                "label": "Voltaje",
+                "value": "380 V trifásico 50 Hz estándar (400–480 V a pedido)"
+              },
+              {
+                "label": "Material",
+                "value": "Acero inoxidable SUS304 con transportador de bolsillos inoxidables"
+              },
+              {
+                "label": "Alimentación",
+                "value": "Un pescado por bolsillo en V, colocado manualmente"
+              },
+              {
+                "label": "Controles",
+                "value": "Caja de interruptores ON / OFF a prueba de agua (Waterproof)"
+              },
+              {
+                "label": "Dimensiones / Peso",
+                "value": "1500 × 900 × 1550 mm · Peso neto: 200 kg"
+              }
+            ],
+            "image": "/assets/images/machinery_pesquera/03_heading_rl_fhc.jpg",
+            "detail_images": [
+              {
+                "url": "/assets/images/machinery_pesquera/03_heading_rl_fhc_detail_1.jpg",
+                "caption": "Bolsillos inoxidables en forma de V"
+              },
+              {
+                "url": "/assets/images/machinery_pesquera/03_heading_rl_fhc_detail_2.jpg",
+                "caption": "Ductos separados para cabeza y cuerpo"
+              }
+            ]
+          },
+          {
+            "id": "04_abridora_mariposa_rl_fsp",
+            "step_num": "04",
+            "model_code": "RL-FSP",
+            "stage_label": "04 APERTURA MARIPOSA",
+            "category": "preparacion",
+            "badge": "40–80 pescados/min • Corte Dorsal o Ventral",
+            "icon": "book-open",
+            "title": "Abridora de Pescado Tipo Mariposa (RL-FSP)",
+            "subtitle": "Abre el pescado descabezado a lo largo de la espina dorsal en una pieza plana tipo mariposa",
+            "description": "Abre el pescado sin cabeza a lo largo del espinazo en una sola pieza plana tipo mariposa (Butterfly Split). Ambos lados permanecen unidos con la espina central y la cavidad abierta se enjuaga simultáneamente mientras corta el disco.",
+            "input_text": "Pescado sin cabeza (200 a 3.000 g)",
+            "output_text": "Pescado abierto en mariposa (con espina)",
+            "species": [
+              "Tilapia",
+              "Corvina / Sea Bass",
+              "Besugo / Reineta",
+              "Caballa / Jurel",
+              "Roncador / Croaker"
+            ],
+            "kpis": [
+              {
+                "label": "Capacidad",
+                "value": "40–80",
+                "unit": "pescados / min"
+              },
+              {
+                "label": "Peso Pescado",
+                "value": "200–3000",
+                "unit": "g"
+              },
+              {
+                "label": "Tipo Apertura",
+                "value": "Dorsal / Ventral",
+                "unit": "profundidad regulable"
+              },
+              {
+                "label": "Dimensiones",
+                "value": "1600 × 900 × 1400",
+                "unit": "mm"
+              }
+            ],
+            "features": [
+              "Abre el pescado plano en una sola pasada dejando la espina en el centro",
+              "Configuración para apertura por el lomo (dorsal) o por el vientre (ventral) con profundidad regulable",
+              "Doble correa de sujeción de grado alimenticio que mantiene cada pescado alineado",
+              "Barra de aspersión que lava la cavidad durante el corte y drena residuos a la tolva inferior",
+              "Ventana de inspección superior, ruedas de desplazamiento y patas niveladoras"
+            ],
+            "notes": [
+              "Abre el pescado en mariposa pero no realiza eviscerado previo",
+              "La espina dorsal permanece en la pieza (para separar 2 filetes sin espina, ver modelo RL-FFM)",
+              "Para pescado fresco, enfriado o ligeramente atemperado cargado a mano (no congelado)",
+              "No diseñado para salmón, trucha, atún o bacalao de gran porte"
+            ],
+            "specs": [
+              {
+                "model": "RL-FSP",
+                "power": "8 kW",
+                "capacity": "40–80 pescados/min",
+                "speed": "Calibre 200–3000 g",
+                "dims": "1600×900×1400 mm (300 kg)"
+              }
+            ],
+            "tech_details": [
+              {
+                "label": "Voltaje",
+                "value": "380 V trifásico 50 Hz estándar (400–480 V a pedido)"
+              },
+              {
+                "label": "Materiales",
+                "value": "Acero inoxidable SUS304, correas de agarre grado alimenticio y rodillos de nylon"
+              },
+              {
+                "label": "Cuchilla",
+                "value": "Disco de corte con ajuste de profundidad por tornillo"
+              },
+              {
+                "label": "Lavado",
+                "value": "Barra rociadora en cavidad; drenaje de residuos a tolva inferior"
+              },
+              {
+                "label": "Potencia / Peso",
+                "value": "8 kW · Peso neto: 300 kg"
+              }
+            ],
+            "image": "/assets/images/machinery_pesquera/04_splitting_rl_fsp.jpg",
+            "detail_images": [
+              {
+                "url": "/assets/images/machinery_pesquera/04_splitting_rl_fsp_detail_1.jpg",
+                "caption": "Disco de corte y barra de aspersión"
+              },
+              {
+                "url": "/assets/images/machinery_pesquera/04_splitting_rl_fsp_detail_2.jpg",
+                "caption": "Correas dobles de sujeción y rodillos prensores"
+              }
+            ]
+          },
+          {
+            "id": "05_fileteadora_rl_ffm",
+            "step_num": "05",
+            "model_code": "RL-FFM",
+            "stage_label": "05 FILETEADO",
+            "category": "fileteado",
+            "badge": "~30 pescados/min • 2 Filetes + Espinazo",
+            "icon": "fish",
+            "title": "Fileteadora Automática de Pescado (RL-FFM)",
+            "subtitle": "Separa el pescado sin cabeza en filete izquierdo, filete derecho y espinazo central en una pasada",
+            "description": "Corta el pescado descabezado obteniendo simultáneamente el filete izquierdo, el filete derecho y la espina dorsal en una sola pasada. Los dos filetes y el espinazo salen de la máquina por conductos independientes.",
+            "input_text": "Pescado sin cabeza (altura lomo-vientre 5–12 cm)",
+            "output_text": "Dos filetes limpios + espina central separada",
+            "species": [
+              "Trucha",
+              "Tilapia",
+              "Pangasius / Basa",
+              "Bagre / Catfish",
+              "Carpa",
+              "Pescado Blanco"
+            ],
+            "kpis": [
+              {
+                "label": "Capacidad",
+                "value": "~30",
+                "unit": "pescados/min (300–600g)"
+              },
+              {
+                "label": "Potencia",
+                "value": "1.5",
+                "unit": "kW"
+              },
+              {
+                "label": "Cuchilla",
+                "value": "Ø 350",
+                "unit": "mm circular"
+              },
+              {
+                "label": "Dimensiones",
+                "value": "1600 × 900 × 1450",
+                "unit": "mm"
+              }
+            ],
+            "features": [
+              "Obtiene filete izquierdo, filete derecho y espinazo central en una sola pasada",
+              "Salidas independientes para los filetes y para el hueso/espinazo",
+              "Cuchilla circular de Ø 350 mm con cinta de entrada de PVC de 90 mm de ancho (11 m/min)",
+              "Regulación independiente de velocidad de cinta y velocidad de cuchilla según especie",
+              "Chasis en acero inoxidable SUS304 sobre ruedas giratorias con freno y patas ajustables"
+            ],
+            "notes": [
+              "Requiere pescado previamente descabezado y eviscerado (no descama, no eviscera ni despiela)",
+              "Para pescado fresco o totalmente descongelado alimentado a mano (no congelado)",
+              "Los filetes conservan la piel y pueden mantener espinas finas (Pin-bones)",
+              "No apto para anguila, pez sable, sardina o pescados muy pequeños/delgados"
+            ],
+            "specs": [
+              {
+                "model": "RL-FFM",
+                "power": "1.5 kW",
+                "capacity": "~30 pescados/min (mayor en calibre pequeño)",
+                "speed": "Alto cuerpo: 5–12 cm (lomo a vientre)",
+                "dims": "1600×900×1450 mm"
+              }
+            ],
+            "tech_details": [
+              {
+                "label": "Voltaje",
+                "value": "AC 380 V / 50 Hz trifásico estándar (otros voltajes a pedido)"
+              },
+              {
+                "label": "Capacidad",
+                "value": "~30 pescados/min en calibre 300–600 g (más rápida en pescado menor)"
+              },
+              {
+                "label": "Tamaño Pescado",
+                "value": "Profundidad de cuerpo de 5 a 12 cm (de lomo a vientre)"
+              },
+              {
+                "label": "Cinta Entrada",
+                "value": "Cinta PVC de 90 mm de ancho, velocidad 11 m/min"
+              },
+              {
+                "label": "Controles",
+                "value": "Control separado de velocidad de cinta y cuchilla + parada de emergencia"
+              }
+            ],
+            "image": "/assets/images/machinery_pesquera/05_filleting_rl_ffm.jpg",
+            "detail_images": [
+              {
+                "url": "/assets/images/machinery_pesquera/05_filleting_rl_ffm_detail_1.jpg",
+                "caption": "Alimentación del pescado hacia el canal de fileteado"
+              },
+              {
+                "url": "/assets/images/machinery_pesquera/05_filleting_rl_ffm_detail_2.jpg",
+                "caption": "Ruedas industriales con freno y patas niveladoras"
+              }
+            ]
+          },
+          {
+            "id": "06_despieladora_rl_fsk",
+            "step_num": "06",
+            "model_code": "RL-FSK",
+            "stage_label": "06 DESPIELADO",
+            "category": "fileteado",
+            "badge": "40–60 filetes/min • Salmón, Bacalao & Merluza",
+            "icon": "layers",
+            "title": "Despieladora de Filetes de Pescado (RL-FSK)",
+            "subtitle": "Retira la piel de los filetes en una sola pieza entera dejando el músculo intacto y enjuagado",
+            "description": "Extrae la piel de los filetes con piel en una sola pieza continua. El filete sin piel sale intacto por la bandeja de descarga frontal mientras la piel se evacúa por su propia salida inferior, con lavado en línea durante el proceso.",
+            "input_text": "Filetes de pescado con piel",
+            "output_text": "Filetes sin piel intactos + piel entera separada",
+            "species": [
+              "Salmón",
+              "Bacalao / Cod",
+              "Merluza / Pollock",
+              "Tilapia",
+              "Pangasius / Basa",
+              "Bagre"
+            ],
+            "kpis": [
+              {
+                "label": "Capacidad",
+                "value": "40–60",
+                "unit": "filetes / min"
+              },
+              {
+                "label": "Potencia",
+                "value": "1.1",
+                "unit": "kW"
+              },
+              {
+                "label": "Dimensiones",
+                "value": "730 × 750 × 980",
+                "unit": "mm"
+              },
+              {
+                "label": "Peso Neto",
+                "value": "150",
+                "unit": "kg"
+              }
+            ],
+            "features": [
+              "Desprende la piel en una sola pieza entera manteniendo la integridad del filete",
+              "Salida independiente de piel que mantiene separados los filetes limpios del subproducto",
+              "Enjuague con agua integrado durante el despielado: no requiere volver a lavar el filete",
+              "Doble eje pelador en espiral con portacuchillas de ajuste milimétrico",
+              "Diseño compacto de alta eficiencia (solo 1.1 kW) en acero inoxidable SUS304 con ruedas"
+            ],
+            "notes": [
+              "La entrada debe ser exclusivamente filetes con piel (no pescado entero)",
+              "Solo para filetes frescos o enfriados (no bloques congelados)",
+              "Realiza únicamente despielado: no descama, no eviscera ni filetea",
+              "En pescados pequeños de piel extremadamente fina, la piel puede no salir en una sola tira"
+            ],
+            "specs": [
+              {
+                "model": "RL-FSK",
+                "power": "1.1 kW",
+                "capacity": "40–60 filetes/min",
+                "speed": "Doble eje espiral + lavado húmedo",
+                "dims": "730×750×980 mm (150 kg)"
+              }
+            ],
+            "tech_details": [
+              {
+                "label": "Voltaje",
+                "value": "380 V trifásico 50 Hz estándar (400–480 V a pedido)"
+              },
+              {
+                "label": "Material",
+                "value": "Acero inoxidable SUS304"
+              },
+              {
+                "label": "Alimentación",
+                "value": "Filetes colocados planos y empujados manualmente uno a la vez"
+              },
+              {
+                "label": "Conexión Agua",
+                "value": "Entrada y salida de agua integradas para operación húmeda"
+              },
+              {
+                "label": "Embalaje",
+                "value": "Caja de madera exportación 830 × 850 × 1080 mm (175 kg bruto)"
+              }
+            ],
+            "image": "/assets/images/machinery_pesquera/06_skinning_rl_fsk.jpg",
+            "detail_images": [
+              {
+                "url": "/assets/images/machinery_pesquera/06_skinning_rl_fsk_detail_1.jpg",
+                "caption": "Ejes peladores dobles en espiral"
+              },
+              {
+                "url": "/assets/images/machinery_pesquera/06_skinning_rl_fsk_detail_2.jpg",
+                "caption": "Mesa de entrada y portacuchillas regulable"
+              },
+              {
+                "url": "/assets/images/machinery_pesquera/06_skinning_rl_fsk_detail_3.jpg",
+                "caption": "Cámara de pelado y bandeja de salida"
+              }
+            ]
+          },
+          {
+            "id": "07_cortadora_segmentos_rl_fcm",
+            "step_num": "07",
+            "model_code": "RL-FCM",
+            "stage_label": "07 CORTE EN RODAJAS",
+            "category": "fileteado",
+            "badge": "60 pescados/min • Cortes Rectos o en Ángulo",
+            "icon": "utensils",
+            "title": "Cortadora de Pescado en Rodajas y Segmentos (RL-FCM)",
+            "subtitle": "Corta transversalmente pescados redondos enteros en medallones o segmentos uniformes en una pasada",
+            "description": "Realiza cortes transversales en pescados de cuerpo cilíndrico/redondo para obtener rodajas (steaks) o trozos uniformes en una sola pasada, con opción de corte recto o en ángulo. Las piezas de cabeza, cuerpo central y cola se descargan en pistas separadas sobre la cinta de salida.",
+            "input_text": "Pescado entero de cuerpo redondo",
+            "output_text": "Segmentos uniformes o rodajas (steaks) con cabeza y cola separadas",
+            "species": [
+              "Caballa / Jurel",
+              "Bonito",
+              "Sardina",
+              "Pez Sable / Hairtail",
+              "Paparda / Saury",
+              "Chanos"
+            ],
+            "kpis": [
+              {
+                "label": "Capacidad",
+                "value": "60",
+                "unit": "pescados / min"
+              },
+              {
+                "label": "Potencia",
+                "value": "1.5",
+                "unit": "kW"
+              },
+              {
+                "label": "Dimensiones",
+                "value": "2700 × 900 × 1000",
+                "unit": "mm"
+              },
+              {
+                "label": "Peso Neto",
+                "value": "~200",
+                "unit": "kg"
+              }
+            ],
+            "features": [
+              "Corta el pescado entero en segmentos uniformes en una sola pasada continua",
+              "Permite cortes rectos (90°) o cortes oblicuos desde el mismo grupo de cuchillas tipo peine",
+              "Largo de segmento configurado a medida según tu requerimiento antes del embarque",
+              "Cinta de salida con pistas independientes que separan cabeza, trozos centrales y cola",
+              "Accionamiento eficiente de 1.5 kW y estructura en acero inoxidable SUS304"
+            ],
+            "notes": [
+              "Realiza únicamente corte en segmentos: no descama, no eviscera ni cubica",
+              "Para pescado enfriado o semi-congelado (no bloques ultracongelados duros)",
+              "Alimentación manual sobre el transportador de entrada",
+              "No apto para pescados planos como lenguado o palometa (pomfret)"
+            ],
+            "specs": [
+              {
+                "model": "RL-FCM",
+                "power": "1.5 kW",
+                "capacity": "60 pescados/min",
+                "speed": "Corte recto o angulado (espaciado a pedido)",
+                "dims": "2700×900×1000 mm (~200 kg)"
+              }
+            ],
+            "tech_details": [
+              {
+                "label": "Voltaje",
+                "value": "380 V trifásico 50 Hz estándar (400–480 V a pedido)"
+              },
+              {
+                "label": "Cuchillas",
+                "value": "Grupo de cuchillas tipo peine; largo de trozo fijado por espaciado"
+              },
+              {
+                "label": "Tipo de Corte",
+                "value": "Cortes rectos o en ángulo"
+              },
+              {
+                "label": "Descarga",
+                "value": "Cinta transportadora con carriles separados para cabeza, cuerpo y cola"
+              },
+              {
+                "label": "Material",
+                "value": "Acero inoxidable SUS304"
+              }
+            ],
+            "image": "/assets/images/machinery_pesquera/07_cutting_rl_fcm.jpg",
+            "detail_images": [
+              {
+                "url": "/assets/images/machinery_pesquera/07_cutting_rl_fcm_detail_1.jpg",
+                "caption": "Grupo de cuchillas múltiples y cinta de salida"
+              }
+            ]
+          },
+          {
+            "id": "08_rebanadora_filetes_rl_fsl",
+            "step_num": "08",
+            "model_code": "RL-FSL",
+            "stage_label": "08 REBANADO SASHIMI",
+            "category": "fileteado",
+            "badge": "280 kg/h • Láminas Oblicuas & Sashimi",
+            "icon": "scan-line",
+            "title": "Rebanadora Oblicua de Filetes de Salmón y Pescado (RL-FSL)",
+            "subtitle": "Corta filetes sin espinas en láminas oblicuas uniformes para sashimi, bandejas retail y porciones finas",
+            "description": "Rebana filetes deshuesados en láminas anguladas uniformes en una sola pasada, ideal para sashimi de salmón, láminas tipo carpaccio/hot-pot y bandejas retail. El filete avanza firme sobre correas dentadas bajo un cabezal doble de cuchillas en ángulo que cortan en direcciones opuestas para un bisel perfecto.",
+            "input_text": "Filetes sin espinas (enfriados o atemperados -5 a -8°C)",
+            "output_text": "Láminas oblicuas uniformes de corte limpio",
+            "species": [
+              "Salmón",
+              "Trucha",
+              "Tilapia",
+              "Pangasius / Basa",
+              "Bagre",
+              "Pescado Blanco"
+            ],
+            "kpis": [
+              {
+                "label": "Capacidad",
+                "value": "280",
+                "unit": "kg / h"
+              },
+              {
+                "label": "Potencia",
+                "value": "2",
+                "unit": "kW"
+              },
+              {
+                "label": "Espesor Lámina",
+                "value": "A Pedido",
+                "unit": "1 espesor/ángulo por equipo"
+              },
+              {
+                "label": "Dimensiones",
+                "value": "2000 × 1500 × 1300",
+                "unit": "mm"
+              }
+            ],
+            "features": [
+              "Rebana el filete completo sin espinas en una sola pasada continua",
+              "Doble grupo de cuchillas que cortan en direcciones opuestas logrando un corte biselado limpio",
+              "Espesor de rebanada y ángulo de corte fabricados exactamente a la medida de tu formato",
+              "Correas de alimentación dentadas que sujetan cada filete sin deslizamiento durante el corte",
+              "Control por pantalla táctil con dial de velocidad y parada de emergencia"
+            ],
+            "notes": [
+              "Exclusivo para filetes sin espinas (no pescado entero ni cortes con hueso)",
+              "Opera con filetes enfriados o atemperados entre -5°C y -8°C (no bloques congelados duros)",
+              "Cada máquina se fabrica con un espesor y ángulo fijo (para dos espesores distintos se requieren dos unidades)",
+              "Requiere conexión a compresor de aire estándar de planta (no incluido)"
+            ],
+            "specs": [
+              {
+                "model": "RL-FSL",
+                "power": "2 kW",
+                "capacity": "280 kg/h",
+                "speed": "Espesor y ángulo configurados a pedido",
+                "dims": "2000×1500×1300 mm (550 kg)"
+              }
+            ],
+            "tech_details": [
+              {
+                "label": "Voltaje",
+                "value": "380 V trifásico 50 Hz estándar (400–480 V a pedido)"
+              },
+              {
+                "label": "Cuchillas",
+                "value": "Doble grupo de cuchillas en ángulo fijo con corte contrarrotante"
+              },
+              {
+                "label": "Espesor",
+                "value": "Un espesor de lámina y un ángulo de corte por máquina, a medida"
+              },
+              {
+                "label": "Aire Comprimido",
+                "value": "Requiere suministro neumático estándar de taller"
+              },
+              {
+                "label": "Estructura",
+                "value": "Acero inoxidable SUS304, correas dentadas, ruedas y patas ajustables (550 kg)"
+              }
+            ],
+            "image": "/assets/images/machinery_pesquera/08_slicing_rl_fsl.jpg",
+            "detail_images": [
+              {
+                "url": "/assets/images/machinery_pesquera/08_slicing_rl_fsl_detail_1.jpg",
+                "caption": "Set de cuchillas dobles en ángulo"
+              },
+              {
+                "url": "/assets/images/machinery_pesquera/08_slicing_rl_fsl_detail_2.jpg",
+                "caption": "Correas dentadas de sujeción de filetes"
+              }
+            ]
+          },
+          {
+            "id": "09_separadora_carne_hueso_rl_fms",
+            "step_num": "09",
+            "model_code": "RL-FMS500 / 600",
+            "stage_label": "09 SEPARACIÓN CARNE–ESPINA",
+            "category": "subproductos",
+            "badge": "400 a 600 kg/h • Pulpa, Surimi & Recortes",
+            "icon": "recycle",
+            "title": "Separadora de Carne y Espinas / Deshuesadora (RL-FMS500 / 600)",
+            "subtitle": "Recupera pulpa limpia de pescado a partir de pescado pequeño, espinazos de fileteado y recortes",
+            "description": "Maximiza la rentabilidad de tu planta recuperando carne picada libre de espinas desde pescados pequeños, esqueletos/espinazos del fileteado (frames) y recortes (trimmings). Un tambor perforado y una banda de presión de caucho prensan la carne blanda hacia el interior del tambor mientras las espinas, piel y aletas se descargan por separado.",
+            "input_text": "Pescado pequeño, espinazos (frames) y recortes",
+            "output_text": "Pulpa de pescado picada (Minced Fish) + espinas y piel separadas",
+            "species": [
+              "Merluza / Pollock",
+              "Tilapia",
+              "Pangasius",
+              "Bagre",
+              "Carpa Plateada",
+              "Pez Sable"
+            ],
+            "kpis": [
+              {
+                "label": "Capacidad FMS500",
+                "value": "400–500",
+                "unit": "kg / h (2.2 kW)"
+              },
+              {
+                "label": "Capacidad FMS600",
+                "value": "500–600",
+                "unit": "kg / h (3.0 kW)"
+              },
+              {
+                "label": "Orificio Tambor",
+                "value": "3 a 8",
+                "unit": "mm (a elección)"
+              },
+              {
+                "label": "Material",
+                "value": "SUS304 / 316",
+                "unit": "inoxidable"
+              }
+            ],
+            "features": [
+              "Separa la carne blanda de las espinas, piel y aletas en una sola pasada continua",
+              "Salidas independientes para la pulpa limpia de pescado y para el descarte óseo",
+              "Transforma recortes y subproductos en materia prima de alto valor para hamburguesas, croquetas, surimi y albóndigas",
+              "Diámetro de perforación del tambor a elección según textura final (típicamente 3 a 8 mm)",
+              "Disponible en dos capacidades (400–500 kg/h y 500–600 kg/h) en SUS304 o full SUS316 a pedido"
+            ],
+            "notes": [
+              "Opera con materia prima enfriada o semi-descongelada (no bloques congelados duros)",
+              "El pescado con escamas debe descamarse previamente para evitar escamas en la pulpa",
+              "Carga manual en la tolva superior; ajuste de presión de banda mediante volantes",
+              "No diseñado para pescados enteros grandes (atún/salmón entero sin trozar) ni para jibia/calamar"
+            ],
+            "specs": [
+              {
+                "model": "RL-FMS500",
+                "power": "2.2 kW",
+                "capacity": "400–500 kg/h",
+                "speed": "Tambor ø3–8 mm",
+                "dims": "980×580×1090 mm (400 kg)"
+              },
+              {
+                "model": "RL-FMS600",
+                "power": "3.0 kW",
+                "capacity": "500–600 kg/h",
+                "speed": "Tambor ø3–8 mm",
+                "dims": "1210×500×1280 mm (450 kg)"
+              }
+            ],
+            "tech_details": [
+              {
+                "label": "Voltaje",
+                "value": "380 V trifásico 50 Hz estándar (400–480 V a pedido)"
+              },
+              {
+                "label": "Tambor",
+                "value": "Tambor perforado inoxidable con diámetro de orificio a pedido (3–8 mm)"
+              },
+              {
+                "label": "Presión",
+                "value": "Banda de presión de caucho sanitario regulable por volantes"
+              },
+              {
+                "label": "Material",
+                "value": "Acero inoxidable SUS304 estándar · Full SUS316 marino disponible a pedido"
+              }
+            ],
+            "image": "/assets/images/machinery_pesquera/09_separator_rl_fms.jpg",
+            "detail_images": [
+              {
+                "url": "/assets/images/machinery_pesquera/09_separator_rl_fms_detail_1.jpg",
+                "caption": "Tambor perforado y banda de presión"
+              },
+              {
+                "url": "/assets/images/machinery_pesquera/09_separator_rl_fms_detail_2.jpg",
+                "caption": "Salida continua de pulpa de pescado limpia"
+              }
+            ]
+          },
+          {
+            "id": "10_clasificadora_rotativa_rl_wg",
+            "step_num": "10",
+            "model_code": "RL-WG-S / L",
+            "stage_label": "10 CLASIFICACIÓN POR PESO",
+            "category": "clasificacion",
+            "badge": "320–420 piezas/min • 6 a 8 Calibres",
             "icon": "scale",
-            "title": "Clasificadora Dinámica por Peso (Grader) & Glaseadora IQF",
-            "subtitle": "Pesaje dinámico de alta velocidad, clasificación en 8 a 14 estaciones y baño de glaseo",
-            "description": "Línea combinada de glaseado protector de hielo y clasificador dinámico por peso (Checkweigher & Grader) para filetes, porciones y pescado entero congelado. Brazos desviadores neumáticos suaves y celdas de carga impermeables IP69K.",
+            "title": "Clasificadora Rotativa por Peso en Bandejas (RL-WG-S / L)",
+            "subtitle": "Pesa cada pieza en su propia bandeja individual y la descarga en 6, 7 u 8 rangos de peso",
+            "description": "Sistema rotativo de clasificación dinámica por peso (Weight Grader) de ultra alta velocidad: procesa entre 320 y 420 piezas por minuto. Cada filete, marisco o porción viaja en su propia bandeja individual y se vuelca suavemente en la estación correspondiente a su calibre (6, 7 u 8 salidas).",
+            "input_text": "Piezas individuales cargadas manualmente (5 a 5.000 g)",
+            "output_text": "Piezas clasificadas automáticamente en 6 a 8 calibres de peso",
+            "species": [
+              "Filetes de Pescado",
+              "Camarones / Langostinos",
+              "Medallones / Steaks",
+              "Ostiones / Scallops",
+              "Ostras",
+              "Porciones IQF"
+            ],
+            "kpis": [
+              {
+                "label": "Velocidad",
+                "value": "320–420",
+                "unit": "piezas / min"
+              },
+              {
+                "label": "Salidas",
+                "value": "6, 7 u 8",
+                "unit": "canales de calibre"
+              },
+              {
+                "label": "Rango RL-WG-S",
+                "value": "5–500 g",
+                "unit": "precisión 0.1 g"
+              },
+              {
+                "label": "Rango RL-WG-L",
+                "value": "50–5000 g",
+                "unit": "bandeja grande"
+              }
+            ],
             "features": [
-              "Clasificación automática en 8, 10, 12 o 14 estaciones de empaque por calibre",
-              "Glaseadora por inmersión o cortina de niebla helada (glaseo regulable 5% a 25%)",
-              "Celdas de carga digitales de alta velocidad (hasta 140 piezas/minuto)",
-              "Generación de lotes a peso fijo para cajas master de exportación (10 kg / 20 lb)",
-              "Reporte de rendimiento y trazabilidad en tiempo real vía Ethernet/Modbus"
+              "Clasifica de 320 a 420 piezas por minuto en 6, 7 u 8 canales de descarga por peso",
+              "Modelo bandeja pequeña (RL-WG-S): pesa piezas de 5 a 500 g con resolución de 0.1 g",
+              "Modelo bandeja grande (RL-WG-L): maneja filetes y piezas desde 50 g hasta 5.000 g",
+              "Configuración rápida de rangos de peso mediante pantalla táctil PLC",
+              "Consumo eléctrico ultra bajo: solo 200 W en RL-WG-S y 400 W en RL-WG-L"
+            ],
+            "notes": [
+              "Las piezas se colocan manualmente una a una sobre las bandejas en movimiento",
+              "Clasifica por peso individual: no combina a peso fijo (para combinación ver modelo RL-CW12)",
+              "Apto para piezas frescas, enfriadas o ultracongeladas IQF individuales (no bloques)",
+              "El peso máximo admisible por pieza individual es de 5 kg"
             ],
             "specs": [
               {
-                "model": "WP-GRD-8 (8 Salidas)",
-                "power": "3.5 kW",
-                "capacity": "120~140 pzas/min",
-                "speed": "Precisión ±1.5 g",
-                "dims": "5200×1350×1550 mm"
+                "model": "RL-WG-S (Bandeja Pequeña)",
+                "power": "200 W",
+                "capacity": "320–420 pzas/min",
+                "speed": "Rango 5–500 g (Precisión 0.1 g)",
+                "dims": "3200×1000×1470 mm (200 kg)"
               },
               {
-                "model": "WP-GRD-12 + Glaseadora",
-                "power": "6.8 kW",
-                "capacity": "Hasta 3.500 kg/h",
-                "speed": "12 Estaciones + Glaseo",
-                "dims": "7800×1450×1650 mm"
+                "model": "RL-WG-L (Bandeja Grande)",
+                "power": "400 W",
+                "capacity": "320–420 pzas/min",
+                "speed": "Rango 50–5000 g (6–8 grados)",
+                "dims": "4600×1000×1500 mm (300 kg)"
               }
             ],
-            "image": "/assets/images/machinery_pesquera/glaseadora_grader.jpg"
+            "tech_details": [
+              {
+                "label": "Voltaje",
+                "value": "380 V trifásico 50 Hz estándar (400–480 V a pedido)"
+              },
+              {
+                "label": "Velocidad",
+                "value": "320 a 420 piezas por minuto en ambos modelos"
+              },
+              {
+                "label": "Canales",
+                "value": "6, 7 u 8 estaciones de descarga por peso"
+              },
+              {
+                "label": "Control",
+                "value": "PLC con pantalla táctil para programar bandas de calibre"
+              },
+              {
+                "label": "Material",
+                "value": "Estructura sanitaria en acero inoxidable SUS304"
+              }
+            ],
+            "image": "/assets/images/machinery_pesquera/10_grader_rl_wg.jpg",
+            "detail_images": [
+              {
+                "url": "/assets/images/machinery_pesquera/10_grader_rl_wg_detail_1.jpg",
+                "caption": "Configuración RL-WG-L de bandeja grande"
+              },
+              {
+                "url": "/assets/images/machinery_pesquera/10_grader_rl_wg_detail_2.jpg",
+                "caption": "Disposición rotativa de bandejas y canales"
+              }
+            ]
           },
           {
-            "id": "tunel_iqf_ultracongelacion",
-            "category": "congelacion",
-            "badge": "Ultracongelación -40°C • Cero Goteo",
+            "id": "11_balanza_combinada_cinta_rl_cw12",
+            "step_num": "11",
+            "model_code": "RL-CW12",
+            "stage_label": "11 PESAJE COMBINADO A PESO FIJO",
+            "category": "clasificacion",
+            "badge": "12 Cintas Pesadoras • 20–30 packs/min",
+            "icon": "combine",
+            "title": "Balanza Combinadora Multicabezal de Cintas (RL-CW12)",
+            "subtitle": "Doce cintas pesadoras calculan la combinación exacta para entregar paquetes a peso fijo sin caídas bruscas",
+            "description": "Doce cintas de pesaje independientes encuentran instantáneamente la combinación de piezas más cercana a tu peso objetivo, logrando que cada bolsa o caja salga con un peso fijo exacto y mínimo sobrepeso (give-away). Las piezas reposan planas sobre las cintas, evitando caídas desde torres de cangilones que dañan filetes delicados.",
+            "input_text": "Piezas o filetes cortados (5 a 5.000 g por pieza)",
+            "output_text": "Porciones agrupadas a peso fijo exacto para empaque",
+            "species": [
+              "Filetes de Pescado",
+              "Medallones / Steaks",
+              "Camarones",
+              "Jibia / Calamar",
+              "Ostiones",
+              "Cortes Húmedos o Frágiles"
+            ],
+            "kpis": [
+              {
+                "label": "Cabezales",
+                "value": "12",
+                "unit": "cintas en 2 filas"
+              },
+              {
+                "label": "Velocidad",
+                "value": "20–30",
+                "unit": "paquetes / min"
+              },
+              {
+                "label": "Peso por Pieza",
+                "value": "5–5000",
+                "unit": "g (resolución 0.1g)"
+              },
+              {
+                "label": "Dimensiones",
+                "value": "2500 × 1200 × 1700",
+                "unit": "mm"
+              }
+            ],
+            "features": [
+              "12 cintas pesadoras combinan piezas automáticamente hasta alcanzar el peso objetivo del envase",
+              "Sistema por cintas planas: ideal para filetes grandes, húmedos, pegajosos o frágiles que no pueden caer",
+              "Admite piezas individuales desde 5 g hasta 5.000 g con lectura de 0.1 g por cinta",
+              "Pantalla táctil a color con memoria para 100 recetas de productos",
+              "Reduce drásticamente el sobrepeso (overfill) frente al pesaje manual en planta"
+            ],
+            "notes": [
+              "Operación semiautomática: las piezas se colocan manualmente en las 12 cintas; el pesaje y combinación son automáticos",
+              "Realiza pesaje y combinación: no corta, no clasifica por calibre individual ni sella bolsas",
+              "En productos congelados, deben ser piezas individuales IQF (no bloques congelados)"
+            ],
+            "specs": [
+              {
+                "model": "RL-CW12",
+                "power": "7.5 kW",
+                "capacity": "20–30 packs/min",
+                "speed": "12 cintas (5–5000 g, res. 0.1 g)",
+                "dims": "2500×1200×1700 mm (560 kg)"
+              }
+            ],
+            "tech_details": [
+              {
+                "label": "Voltaje",
+                "value": "380 V trifásico 50 Hz estándar (400–480 V a pedido)"
+              },
+              {
+                "label": "Control",
+                "value": "PLC con pantalla táctil a color, memoria para 100 recetas"
+              },
+              {
+                "label": "Resolución",
+                "value": "Lectura de 0.1 g en cada una de las 12 cintas de pesaje"
+              },
+              {
+                "label": "Material",
+                "value": "Acero inoxidable sanitario SUS304"
+              },
+              {
+                "label": "Potencia / Peso",
+                "value": "7.5 kW · Peso neto: 560 kg"
+              }
+            ],
+            "image": "/assets/images/machinery_pesquera/11_weigher_rl_cw12.jpg",
+            "detail_images": [
+              {
+                "url": "/assets/images/machinery_pesquera/11_weigher_rl_cw12_detail_1.jpg",
+                "caption": "Doble fila de 12 cintas pesadoras sanitarias"
+              }
+            ]
+          },
+          {
+            "id": "12_glaseadora_iqf_rl_igm1000",
+            "step_num": "12",
+            "model_code": "RL-IGM1000",
+            "stage_label": "12 GLASEADO DE HIELO IQF",
+            "category": "clasificacion",
+            "badge": "300–1.000 kg/h • Glaseo Exportación 5–20%",
             "icon": "snowflake",
-            "title": "Túnel Continuo de Ultracongelación Rápida IQF (-40°C)",
-            "subtitle": "Congelación individual rápida en malla o espiral para filetes, camarones y mariscos",
-            "description": "Túnel industrial de ultracongelación rápida (Individual Quick Freezing) con flujo de aire laminar de alta velocidad a -40°C. Forma microcristales en el núcleo del alimento en minutos, evitando la rotura celular y la pérdida por goteo (Drip Loss < 0.8%).",
+            "title": "Glaseadora Continua de Hielo para Productos IQF (RL-IGM1000)",
+            "subtitle": "Recubre productos ultracongelados IQF con una capa protectora uniforme de hielo a la salida del túnel",
+            "description": "Aplica una película protectora y homogénea de hielo sobre productos ultracongelados IQF inmediatamente después del túnel de congelación. Los filetes o mariscos se sumergen bajo el baño de agua helada, reciben aspersión superior mientras suben por la cinta inclinada con empujadores y drenan el exceso para garantizar un porcentaje de glaseo exacto de exportación.",
+            "input_text": "Productos ultracongelados duros (IQF)",
+            "output_text": "Productos con glaseo de hielo uniforme contra deshidratación",
+            "species": [
+              "Filetes Congelados",
+              "Pescado Entero IQF",
+              "Camarones IQF",
+              "Jibia / Calamar",
+              "Ostiones",
+              "Porciones Marinas"
+            ],
+            "kpis": [
+              {
+                "label": "Capacidad",
+                "value": "300–1000",
+                "unit": "kg / h"
+              },
+              {
+                "label": "Nivel de Glaseo",
+                "value": "5–20%",
+                "unit": "típico, regulable"
+              },
+              {
+                "label": "Dimensiones",
+                "value": "4000 × 1000 × 1450",
+                "unit": "mm"
+              },
+              {
+                "label": "Peso Neto",
+                "value": "400",
+                "unit": "kg"
+              }
+            ],
             "features": [
-              "Temperatura de trabajo de -35°C a -42°C en núcleo de producto (-18°C final)",
-              "Evaporadores en aluminio-magnesio y acero inoxidable con desescarche ADF",
-              "Paneles isotérmicos PIR de 150 mm con revestimiento inoxidable sanitario",
-              "Malla transportadora modular o en espiral de velocidad variable",
-              "Compatible con refrigerantes NH3 (Amoníaco), CO2 transcrítico o Freón R404A/R507"
+              "Instalación en línea a la salida de tu túnel IQF: inmersión, aspersión y drenaje en una sola pasada",
+              "Porcentaje de glaseo ajustable (típicamente del 5% al 20%) según tiempo de residencia y temperatura del agua",
+              "Rendimiento continuo de 300 a 1.000 kg por hora",
+              "Glaseo uniforme para cumplimiento estricto de peso neto de exportación y prevención de quemadura por frío",
+              "Opera con el suministro de hielo o agua helada de la propia planta"
+            ],
+            "notes": [
+              "Exclusivo para productos ya ultracongelados duros (no apto para pescado fresco o enfriado)",
+              "No incluye unidad de refrigeración interna: el hielo o agua helada es suministrado por la planta",
+              "Realiza únicamente glaseado: no congela, no clasifica ni empaca"
             ],
             "specs": [
               {
-                "model": "WP-IQF-500 Lineal",
-                "power": "22 kW (Vent.)",
-                "capacity": "500~750 kg/h",
-                "speed": "Cap. Frigorífica 95 kW",
-                "dims": "8500×2400×2650 mm"
-              },
-              {
-                "model": "WP-IQF-1500 Espiral",
-                "power": "45 kW (Vent.)",
-                "capacity": "1.500~2.000 kg/h",
-                "speed": "Cap. Frigorífica 240 kW",
-                "dims": "6800×5200×4100 mm"
-              },
-              {
-                "model": "WP-IQF-3000 Industrial",
-                "power": "75 kW (Vent.)",
-                "capacity": "3.000~3.500 kg/h",
-                "speed": "Cap. Frigorífica 460 kW",
-                "dims": "9200×6400×4500 mm"
+                "model": "RL-IGM1000",
+                "power": "8 kW",
+                "capacity": "300–1.000 kg/h",
+                "speed": "Glaseo regulable 5% a 20%",
+                "dims": "4000×1000×1450 mm (400 kg)"
               }
             ],
-            "image": "/assets/images/machinery_pesquera/tunel_iqf.jpg"
-          },
-          {
-            "id": "linea_choritos_moluscos",
-            "category": "congelacion",
-            "badge": "Mitílidos, Almejas & Camarones",
-            "icon": "waves",
-            "title": "Línea Continua de Lavado, Desbische y Cocción de Choritos",
-            "subtitle": "Procesamiento integral de mitílidos y mariscos desde recepción hasta carne cocida IQF",
-            "description": "Línea industrial completa para plantas procesadoras de choritos (mejillón chileno), almejas, ostiones y crustáceos. Integra tambor rotativo de lavado, desgranadora, desbisadora de rodillos contrarrotantes, cocedor continuo a vapor y enfriador.",
-            "features": [
-              "Desbisadora de alta eficiencia con rodillos en acero templado y lavado a presión",
-              "Cocedor continuo a vapor saturado con control PID de temperatura para máximo rendimiento",
-              "Separador vibratorio de concha y carne (vianda) de doble zaranda",
-              "Construcción pesada en acero inoxidable marino AISI 316 resistente al agua de mar",
-              "Sincronización directa con túnel IQF y envasadora multicabezal Doypack"
-            ],
-            "specs": [
+            "tech_details": [
               {
-                "model": "WP-MIT-3000",
-                "power": "18.5 kW",
-                "capacity": "3.000 kg/h (Materia Prima)",
-                "speed": "Vapor 650 kg/h",
-                "dims": "Línea Modular 14m"
+                "label": "Voltaje",
+                "value": "380 V trifásico 50 Hz estándar (400–480 V a pedido)"
               },
               {
-                "model": "WP-MIT-6000 Export",
-                "power": "34 kW",
-                "capacity": "6.000~8.000 kg/h",
-                "speed": "Vapor 1.300 kg/h",
-                "dims": "Línea Modular 22m"
+                "label": "Control de Glaseo",
+                "value": "Regulado por velocidad de cinta (tiempo de inmersión) y temperatura del agua"
+              },
+              {
+                "label": "Estructura",
+                "value": "Estanque de agua-hielo, bomba de recirculación, cinta inclinada con tacos y patas ajustables"
+              },
+              {
+                "label": "Material",
+                "value": "Acero inoxidable sanitario SUS304"
+              },
+              {
+                "label": "Potencia / Peso",
+                "value": "8 kW · Peso neto: 400 kg"
               }
             ],
-            "image": "/assets/images/machinery_pesquera/linea_choritos.jpg"
-          },
-          {
-            "id": "termoformadora_vacio_marina",
-            "category": "envasado",
-            "badge": "Vacío + MAP + Skin Pack • Bomba Busch",
-            "icon": "package-check",
-            "title": "Termoformadora Automática al Vacío & Skin Pack Marino",
-            "subtitle": "Envasado continuo de alta velocidad con film flexible o rígido para filetes de exportación",
-            "description": "Termoformadora horizontal de acero inoxidable IP65 para envasado automático de porciones de salmón, filetes ahumados, pulpo y mariscos. Equipada con bomba de vacío alemana Busch R5 de 300 m³/h y registro óptico para film impreso WellPack.",
-            "features": [
-              "Bomba de vacío industrial Busch (Alemania) de 250 a 300 m³/h de alto caudal",
-              "Compatible con film flexible PA/PE EVOH, film rígido y tecnología Darfresh Skin",
-              "Sensor fotocélula de alta precisión para centrado de film impreso a todo color",
-              "Cambio rápido de moldes en menos de 15 minutos según formato de porción",
-              "Opción de inyección de atmósfera modificada (MAP CO2/N2) integrada"
-            ],
-            "specs": [
+            "image": "/assets/images/machinery_pesquera/12_glazing_rl_igm1000.jpg",
+            "detail_images": [
               {
-                "model": "WP-TF-420 Marina",
-                "power": "14 kW",
-                "capacity": "6~9 ciclos/min",
-                "speed": "Ancho Film 420 mm",
-                "dims": "4800×1050×1720 mm"
-              },
-              {
-                "model": "WP-TF-520 Skin Pro",
-                "power": "18 kW",
-                "capacity": "8~11 ciclos/min",
-                "speed": "Ancho Film 520 mm",
-                "dims": "5600×1180×1800 mm"
+                "url": "/assets/images/machinery_pesquera/12_glazing_rl_igm1000_detail_1.jpg",
+                "caption": "Acabado de glaseo cristalino sobre filetes congelados"
               }
-            ],
-            "image": "/assets/images/machinery_pesquera/termoformadora_vacio.jpg"
-          },
-          {
-            "id": "ingenieria_soporte_pesquero",
-            "category": "envasado",
-            "badge": "Soporte de Puerto a Planta en Todo Chile",
-            "icon": "wrench",
-            "title": "Ingeniería Pesquera, Montaje & Servicio Técnico Nacional",
-            "subtitle": "Proyectos llave en mano, repuestos marinos AISI 316 y compatibilidad total con envases WellPack",
-            "description": "Nuestro equipo de ingeniería proyecta, instala y mantiene líneas completas de proceso pesquero y acuícola en todo el litoral chileno. Integramos la maquinaria exacta con el suministro continuo de film y bolsas de alta barrera WellPack.",
-            "features": [
-              "Asistencia técnica en terreno para plantas pesqueras y salmoneras en todo Chile",
-              "Stock permanente de cuchillas circulares, agujas de inyección, sellos y correas",
-              "Calibración de termoformadoras y campanas de vacío con nuestros films EVOH",
-              "Diseño de layout sanitario 3D bajo normativa Sernapesca, HACCP, BRC y FDA",
-              "Contratos de mantenimiento preventivo programado pre-temporada"
-            ],
-            "specs": [
-              {
-                "model": "Ingeniería de Planta 3D",
-                "detail": "Layout sanitario Sernapesca / FDA / BRC"
-              },
-              {
-                "model": "Puesta en Marcha & Postventa",
-                "detail": "Cobertura en Todo el Litoral Chileno"
-              },
-              {
-                "model": "Sinergia Maquinaria + Film",
-                "detail": "Calibración con envases WellPack EVOH"
-              }
-            ],
-            "image": "/assets/images/fabrica_extrusion_evoh.jpg"
+            ]
           }
         ]
       }

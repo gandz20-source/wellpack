@@ -362,7 +362,7 @@ class AntigravityRenderer {
             ` : isMeat ? `
               <a href="#machinery_showcase" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-red-200 hover:text-white hover:bg-red-900/40 transition-all">12 Equipos Cárnicos</a>
             ` : `
-              <a href="#fishery_machinery_showcase" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-cyan-200 hover:text-white hover:bg-cyan-900/40 transition-all">10 Equipos Pesqueros</a>
+              <a href="#fishery_machinery_showcase" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-cyan-200 hover:text-white hover:bg-cyan-900/40 transition-all">12 Equipos Pesqueros</a>
             `}
           </nav>
 
@@ -866,14 +866,14 @@ class AntigravityRenderer {
               <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
                 <div>
                   <h3 class="text-2xl font-black text-white group-hover:text-cyan-300 transition-colors">
-                    Maquinaria para Proceso Pesquero, Salmónidos & Mariscos
+                    Maquinaria para Proceso Pesquero: De Pescado Entero a Producto Empacado
                   </h3>
                   <p class="mt-2 text-sm text-slate-300 leading-relaxed">
-                    10 líneas en acero inoxidable marino AISI 316L anticorrosión: fileteadoras de salmón, despieladoras, desespinadoras Pin-Bone, porcionadoras láser 3D, túneles IQF -40°C y líneas de choritos.
+                    12 máquinas para cada etapa de la línea: descamadora por hidrojets (90 bar), evisceradora, descabezadora, abridora mariposa, fileteadora, despieladora, cortadora de rodajas, rebanadora sashimi, separadora carne-espina, clasificadora por peso, balanza de 12 cintas y glaseadora IQF.
                   </p>
                 </div>
                 <div class="mt-6 pt-4 border-t border-cyan-900/50 flex items-center justify-between">
-                  <span class="text-xs font-mono text-cyan-300 font-bold">10 Equipos Marinos • Fichas Técnicas</span>
+                  <span class="text-xs font-mono text-cyan-300 font-bold">12 Equipos Pesqueros • Fichas + Mapa de Línea</span>
                   <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-400 to-sky-500 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-cyan-500/30 group-hover:scale-105 transition-transform">
                     <span>Explorar Proceso Pesquero</span>
                     <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
@@ -1202,10 +1202,11 @@ class AntigravityRenderer {
   renderFisheryMachineryPage() {
     const fishSection = (this.schema?.layout || []).find(s => s.section === 'fishery_machinery_showcase');
     const config = fishSection?.config || {};
+    const items = config.items || [];
 
     return `
-      <!-- Hero Exclusivo Proceso Pesquero (Colores Azul Abisal, Cian Glaciar & Acero Marino AISI 316L) -->
-      <section id="hero" class="relative min-h-[82vh] flex items-center justify-center overflow-hidden py-16 lg:py-24 bg-[#03101f] text-white border-b border-cyan-900/60">
+      <!-- Hero Exclusivo Proceso Pesquero (Colores Azul Abisal, Cian Glaciar & Acero Inoxidable) -->
+      <section id="hero" class="relative min-h-[80vh] flex items-center justify-center overflow-hidden py-16 lg:py-24 bg-[#03101f] text-white border-b border-cyan-900/60">
         <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
           <div id="hero-fluid-track" class="absolute -top-[5%] -left-[18%] w-[136%] h-[110%] animate-hero-pan will-change-transform">
             <img 
@@ -1219,26 +1220,26 @@ class AntigravityRenderer {
         </div>
 
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-7 hero-content-trigger">
-          <div class="p-6 sm:p-10 rounded-3xl bg-[#04182e]/65 backdrop-blur-md border border-cyan-400/35 shadow-[0_20px_60px_rgba(0,0,0,0.85)] space-y-6">
+          <div class="p-6 sm:p-10 rounded-3xl bg-[#04182e]/70 backdrop-blur-md border border-cyan-400/35 shadow-[0_20px_60px_rgba(0,0,0,0.85)] space-y-6">
             <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-cyan-950/90 border border-cyan-400/60 text-cyan-300 text-xs font-mono font-bold uppercase tracking-wider shadow-lg">
               <i data-lucide="fish" class="w-4 h-4 text-cyan-400"></i>
-              <span>División Ingeniería para Plantas Salmoneras, Pesqueras & Mitílidos</span>
+              <span>Catálogo Oficial Edición 2026 • 12 Máquinas para Proceso Pesquero</span>
             </div>
 
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-white drop-shadow-lg">
-              Maquinaria Industrial para <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-400 to-blue-400">Proceso Pesquero</span>
+              De Pescado Entero a <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-400 to-blue-400">Producto Empacado</span>
             </h1>
 
             <p class="text-base sm:text-lg lg:text-xl text-cyan-100/90 max-w-3xl mx-auto font-normal leading-relaxed">
-              Equipamiento en acero inoxidable grado marino AISI 316L resistente a la corrosión salina: fileteadoras automáticas de salmónidos, desespinadoras Pin-Bone, porcionadoras láser 3D, túneles IQF a -40°C y líneas de choritos.
+              Doce máquinas especializadas para cada etapa de la línea: descamado por hidrojets, eviscerado, descabezado, apertura mariposa, fileteado, despielado, corte en rodajas, rebanado sashimi, recuperación de pulpa, clasificación por peso y glaseado IQF.
             </p>
 
             <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
               <a 
-                href="#fishery_machinery_showcase" 
+                href="#line_at_a_glance" 
                 class="inline-flex items-center gap-2.5 bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 hover:from-cyan-300 hover:to-blue-500 text-slate-950 font-black text-sm sm:text-base px-8 py-4 rounded-2xl shadow-xl shadow-cyan-500/35 transition-all hover:scale-105 active:scale-95">
-                <i data-lucide="waves" class="w-5 h-5 text-slate-950"></i>
-                <span>Ver los 10 Equipos Pesqueros</span>
+                <i data-lucide="git-branch" class="w-5 h-5 text-slate-950"></i>
+                <span>Ver Mapa de Línea (Etapas 01 a 12)</span>
                 <i data-lucide="arrow-down" class="w-4 h-4 text-slate-950"></i>
               </a>
               <button 
@@ -1246,35 +1247,308 @@ class AntigravityRenderer {
                 data-machine-title="Proyecto de Línea Completa Proceso Pesquero"
                 class="btn-machinery-quote inline-flex items-center gap-2 bg-cyan-950/80 hover:bg-cyan-900/80 text-cyan-100 border border-cyan-400/50 font-bold text-sm sm:text-base px-7 py-4 rounded-2xl transition-all hover:scale-105 backdrop-blur-md shadow-lg">
                 <i data-lucide="file-text" class="w-5 h-5 text-cyan-300"></i>
-                <span>Solicitar Ingeniería Pesquera</span>
+                <span>Cotizar Línea o Máquina Individual</span>
               </button>
             </div>
 
             <!-- KPIs Técnicos del Proceso Pesquero -->
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5 pt-6 border-t border-cyan-900/60 text-left max-w-4xl mx-auto">
               <div class="bg-[#06203c]/85 backdrop-blur-md p-3.5 rounded-2xl border border-cyan-400/30 shadow-lg">
-                <div class="text-lg font-black text-cyan-300 font-mono">AISI 316L</div>
-                <div class="text-[11px] text-cyan-100/80 font-mono uppercase mt-0.5">Acero Marino Anticorrosión</div>
+                <div class="text-lg font-black text-cyan-300 font-mono">12 Etapas</div>
+                <div class="text-[11px] text-cyan-100/80 font-mono uppercase mt-0.5">Equipos Individuales o en Línea</div>
               </div>
               <div class="bg-[#06203c]/85 backdrop-blur-md p-3.5 rounded-2xl border border-cyan-400/30 shadow-lg">
-                <div class="text-lg font-black text-sky-300 font-mono">Láser 3D ±1g</div>
-                <div class="text-[11px] text-cyan-100/80 font-mono uppercase mt-0.5">Porcionado de Salmón</div>
+                <div class="text-lg font-black text-sky-300 font-mono">SUS304 / 316</div>
+                <div class="text-[11px] text-cyan-100/80 font-mono uppercase mt-0.5">Acero Inoxidable Cert. CE</div>
               </div>
               <div class="bg-[#06203c]/85 backdrop-blur-md p-3.5 rounded-2xl border border-cyan-400/30 shadow-lg">
-                <div class="text-lg font-black text-emerald-400 font-mono">-40°C IQF</div>
-                <div class="text-[11px] text-cyan-100/80 font-mono uppercase mt-0.5">Ultracongelación Cero Goteo</div>
+                <div class="text-lg font-black text-emerald-400 font-mono">380V / 50Hz</div>
+                <div class="text-[11px] text-cyan-100/80 font-mono uppercase mt-0.5">Estándar Industrial Chile</div>
               </div>
               <div class="bg-[#06203c]/85 backdrop-blur-md p-3.5 rounded-2xl border border-cyan-400/30 shadow-lg">
-                <div class="text-lg font-black text-amber-400 font-mono">IP69K CIP</div>
-                <div class="text-[11px] text-cyan-100/80 font-mono uppercase mt-0.5">Normativa Sernapesca / FDA</div>
+                <div class="text-lg font-black text-amber-400 font-mono">Test Video</div>
+                <div class="text-[11px] text-cyan-100/80 font-mono uppercase mt-0.5">Prueba en Planta y Garantía 12M</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Catálogo Completo de Maquinaria Proceso Pesquero -->
+      <!-- SECCIÓN MAPA DE LÍNEA DE UN VISTAZO (PÁGINA 2 DEL CATÁLOGO) -->
+      <section id="line_at_a_glance" class="py-20 bg-[#031224] text-white border-b border-cyan-950 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-950 border border-cyan-400/40 text-cyan-300 text-xs font-mono font-bold uppercase mb-3">
+              LA LÍNEA DE UN VISTAZO (THE LINE AT A GLANCE)
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight">
+              Flujo de Proceso: De Pescado Entero a Producto Empacado
+            </h2>
+            <p class="mt-3 text-cyan-100/80 text-sm sm:text-base">
+              Elige máquinas individuales o combínalas en una línea continua. Cada ficha técnica muestra exactamente qué entra, qué sale y cuáles son sus límites operativos.
+            </p>
+          </div>
+
+          <!-- 4 Columnas de Etapas de la Línea -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+            <!-- Etapa 1: Preparación -->
+            <div class="rounded-3xl bg-[#061d36]/90 border border-cyan-500/30 p-5 flex flex-col justify-between shadow-xl">
+              <div>
+                <div class="flex items-center justify-between pb-3 mb-4 border-b border-cyan-800/60">
+                  <span class="text-xs font-mono font-black uppercase tracking-wider text-cyan-300">1. PREPARACIÓN</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-200">Etapas 01–04</span>
+                </div>
+                <div class="space-y-2.5">
+                  <a href="#machine-card-01_descamadora_rl_fdm080" class="flex items-center gap-3 p-2.5 rounded-2xl bg-[#041324] hover:bg-cyan-950/80 border border-cyan-900/60 hover:border-cyan-400 transition group">
+                    <span class="w-8 h-8 rounded-xl bg-cyan-500 text-slate-950 font-mono font-black text-xs flex items-center justify-center shrink-0">01</span>
+                    <div>
+                      <div class="text-xs font-bold text-white group-hover:text-cyan-300">Descamado (Descaling)</div>
+                      <div class="text-[10px] font-mono text-cyan-400">RL-FDM080 • Hidrojets 90 bar</div>
+                    </div>
+                  </a>
+                  <a href="#machine-card-02_evisceradora_rl_fgm060" class="flex items-center gap-3 p-2.5 rounded-2xl bg-[#041324] hover:bg-cyan-950/80 border border-cyan-900/60 hover:border-cyan-400 transition group">
+                    <span class="w-8 h-8 rounded-xl bg-cyan-500 text-slate-950 font-mono font-black text-xs flex items-center justify-center shrink-0">02</span>
+                    <div>
+                      <div class="text-xs font-bold text-white group-hover:text-cyan-300">Eviscerado (Gutting)</div>
+                      <div class="text-[10px] font-mono text-cyan-400">RL-FGM060 • 60 pescados/min</div>
+                    </div>
+                  </a>
+                  <a href="#machine-card-03_descabezadora_rl_fhc" class="flex items-center gap-3 p-2.5 rounded-2xl bg-[#041324] hover:bg-cyan-950/80 border border-cyan-900/60 hover:border-cyan-400 transition group">
+                    <span class="w-8 h-8 rounded-xl bg-cyan-500 text-slate-950 font-mono font-black text-xs flex items-center justify-center shrink-0">03</span>
+                    <div>
+                      <div class="text-xs font-bold text-white group-hover:text-cyan-300">Descabezado (Heading)</div>
+                      <div class="text-[10px] font-mono text-cyan-400">RL-FHC • Bolsillos en V</div>
+                    </div>
+                  </a>
+                  <a href="#machine-card-04_abridora_mariposa_rl_fsp" class="flex items-center gap-3 p-2.5 rounded-2xl bg-[#041324] hover:bg-cyan-950/80 border border-cyan-900/60 hover:border-cyan-400 transition group">
+                    <span class="w-8 h-8 rounded-xl bg-cyan-500 text-slate-950 font-mono font-black text-xs flex items-center justify-center shrink-0">04</span>
+                    <div>
+                      <div class="text-xs font-bold text-white group-hover:text-cyan-300">Apertura Mariposa (Splitting)</div>
+                      <div class="text-[10px] font-mono text-cyan-400">RL-FSP • Dorsal o Ventral</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Etapa 2: Filetes y Porciones -->
+            <div class="rounded-3xl bg-[#061d36]/90 border border-cyan-500/30 p-5 flex flex-col justify-between shadow-xl">
+              <div>
+                <div class="flex items-center justify-between pb-3 mb-4 border-b border-cyan-800/60">
+                  <span class="text-xs font-mono font-black uppercase tracking-wider text-cyan-300">2. FILETES & PORCIONES</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-200">Etapas 05–08</span>
+                </div>
+                <div class="space-y-2.5">
+                  <a href="#machine-card-05_fileteadora_rl_ffm" class="flex items-center gap-3 p-2.5 rounded-2xl bg-[#041324] hover:bg-cyan-950/80 border border-cyan-900/60 hover:border-cyan-400 transition group">
+                    <span class="w-8 h-8 rounded-xl bg-sky-400 text-slate-950 font-mono font-black text-xs flex items-center justify-center shrink-0">05</span>
+                    <div>
+                      <div class="text-xs font-bold text-white group-hover:text-cyan-300">Fileteado (Filleting)</div>
+                      <div class="text-[10px] font-mono text-cyan-400">RL-FFM • 2 Filetes + Espina</div>
+                    </div>
+                  </a>
+                  <a href="#machine-card-06_despieladora_rl_fsk" class="flex items-center gap-3 p-2.5 rounded-2xl bg-[#041324] hover:bg-cyan-950/80 border border-cyan-900/60 hover:border-cyan-400 transition group">
+                    <span class="w-8 h-8 rounded-xl bg-sky-400 text-slate-950 font-mono font-black text-xs flex items-center justify-center shrink-0">06</span>
+                    <div>
+                      <div class="text-xs font-bold text-white group-hover:text-cyan-300">Despielado (Skinning)</div>
+                      <div class="text-[10px] font-mono text-cyan-400">RL-FSK • 40–60 filetes/min</div>
+                    </div>
+                  </a>
+                  <a href="#machine-card-07_cortadora_segmentos_rl_fcm" class="flex items-center gap-3 p-2.5 rounded-2xl bg-[#041324] hover:bg-cyan-950/80 border border-cyan-900/60 hover:border-cyan-400 transition group">
+                    <span class="w-8 h-8 rounded-xl bg-sky-400 text-slate-950 font-mono font-black text-xs flex items-center justify-center shrink-0">07</span>
+                    <div>
+                      <div class="text-xs font-bold text-white group-hover:text-cyan-300">Corte en Rodajas (Cutting)</div>
+                      <div class="text-[10px] font-mono text-cyan-400">RL-FCM • Recto o Oblicuo</div>
+                    </div>
+                  </a>
+                  <a href="#machine-card-08_rebanadora_filetes_rl_fsl" class="flex items-center gap-3 p-2.5 rounded-2xl bg-[#041324] hover:bg-cyan-950/80 border border-cyan-900/60 hover:border-cyan-400 transition group">
+                    <span class="w-8 h-8 rounded-xl bg-sky-400 text-slate-950 font-mono font-black text-xs flex items-center justify-center shrink-0">08</span>
+                    <div>
+                      <div class="text-xs font-bold text-white group-hover:text-cyan-300">Rebanado Sashimi (Slicing)</div>
+                      <div class="text-[10px] font-mono text-cyan-400">RL-FSL • 280 kg/h Biselado</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Etapa 3: Subproductos -->
+            <div class="rounded-3xl bg-[#061d36]/90 border border-cyan-500/30 p-5 flex flex-col justify-between shadow-xl">
+              <div>
+                <div class="flex items-center justify-between pb-3 mb-4 border-b border-cyan-800/60">
+                  <span class="text-xs font-mono font-black uppercase tracking-wider text-cyan-300">3. SUBPRODUCTOS</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">Etapa 09</span>
+                </div>
+                <div class="space-y-3">
+                  <a href="#machine-card-09_separadora_carne_hueso_rl_fms" class="flex items-center gap-3 p-3.5 rounded-2xl bg-[#041324] hover:bg-cyan-950/80 border border-emerald-500/40 hover:border-emerald-400 transition group">
+                    <span class="w-9 h-9 rounded-xl bg-emerald-400 text-slate-950 font-mono font-black text-xs flex items-center justify-center shrink-0">09</span>
+                    <div>
+                      <div class="text-xs font-bold text-white group-hover:text-emerald-300">Separación Carne–Espina</div>
+                      <div class="text-[10px] font-mono text-emerald-300">RL-FMS500 / 600 • 400–600 kg/h</div>
+                    </div>
+                  </a>
+                  <div class="p-3.5 rounded-2xl bg-[#041324]/70 border border-cyan-900/50 text-xs text-cyan-100/80 leading-relaxed">
+                    <strong class="text-emerald-300 block font-mono text-[11px] uppercase mb-1">Máximo Aprovechamiento:</strong>
+                    Recupera pulpa limpia de pescado (Minced Fish) a partir de espinazos del fileteado, recortes y pescado pequeño para elaborar hamburguesas, croquetas, surimi y albóndigas marinas.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Etapa 4: Clasificación, Pesaje y Glaseado -->
+            <div class="rounded-3xl bg-[#061d36]/90 border border-cyan-500/30 p-5 flex flex-col justify-between shadow-xl">
+              <div>
+                <div class="flex items-center justify-between pb-3 mb-4 border-b border-cyan-800/60">
+                  <span class="text-xs font-mono font-black uppercase tracking-wider text-cyan-300">4. PESO & GLASEADO</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-200">Etapas 10–12</span>
+                </div>
+                <div class="space-y-2.5">
+                  <a href="#machine-card-10_clasificadora_rotativa_rl_wg" class="flex items-center gap-3 p-2.5 rounded-2xl bg-[#041324] hover:bg-cyan-950/80 border border-cyan-900/60 hover:border-cyan-400 transition group">
+                    <span class="w-8 h-8 rounded-xl bg-amber-400 text-slate-950 font-mono font-black text-xs flex items-center justify-center shrink-0">10</span>
+                    <div>
+                      <div class="text-xs font-bold text-white group-hover:text-cyan-300">Clasificadora por Peso (Grader)</div>
+                      <div class="text-[10px] font-mono text-cyan-400">RL-WG-S / L • 320–420 pzas/min</div>
+                    </div>
+                  </a>
+                  <a href="#machine-card-11_balanza_combinada_cinta_rl_cw12" class="flex items-center gap-3 p-2.5 rounded-2xl bg-[#041324] hover:bg-cyan-950/80 border border-cyan-900/60 hover:border-cyan-400 transition group">
+                    <span class="w-8 h-8 rounded-xl bg-amber-400 text-slate-950 font-mono font-black text-xs flex items-center justify-center shrink-0">11</span>
+                    <div>
+                      <div class="text-xs font-bold text-white group-hover:text-cyan-300">Pesaje Combinado 12 Cintas</div>
+                      <div class="text-[10px] font-mono text-cyan-400">RL-CW12 • Packs a Peso Fijo</div>
+                    </div>
+                  </a>
+                  <a href="#machine-card-12_glaseadora_iqf_rl_igm1000" class="flex items-center gap-3 p-2.5 rounded-2xl bg-[#041324] hover:bg-cyan-950/80 border border-cyan-900/60 hover:border-cyan-400 transition group">
+                    <span class="w-8 h-8 rounded-xl bg-amber-400 text-slate-950 font-mono font-black text-xs flex items-center justify-center shrink-0">12</span>
+                    <div>
+                      <div class="text-xs font-bold text-white group-hover:text-cyan-300">Glaseadora de Hielo IQF</div>
+                      <div class="text-[10px] font-mono text-cyan-400">RL-IGM1000 • 300–1000 kg/h</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabla Resumen de las 12 Máquinas (Input -> Output) -->
+          <div class="rounded-3xl overflow-hidden border border-cyan-800/70 bg-[#041528] shadow-2xl">
+            <div class="px-6 py-4 bg-cyan-950/80 border-b border-cyan-800/70 flex flex-wrap items-center justify-between gap-2">
+              <span class="text-xs font-mono font-black uppercase tracking-wider text-cyan-300">Tabla Resumen de Línea (Haz clic en cualquier equipo para ir a su ficha técnica)</span>
+              <span class="text-[11px] font-mono text-cyan-200/80">12 Modelos Industriales SUS304 / SUS316</span>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-xs font-mono text-left">
+                <thead class="bg-[#03101f] text-cyan-400 uppercase text-[10px] border-b border-cyan-900/80">
+                  <tr>
+                    <th class="py-3 px-4">Nº</th>
+                    <th class="py-3 px-4">Máquina / Etapa</th>
+                    <th class="py-3 px-4">Modelo</th>
+                    <th class="py-3 px-4">Flujo de Proceso (Entrada → Salida)</th>
+                    <th class="py-3 px-4 text-right">Ficha</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-cyan-900/40 text-cyan-100">
+                  ${items.map(it => `
+                    <tr class="hover:bg-cyan-900/30 transition cursor-pointer" onclick="document.getElementById('machine-card-${it.id}')?.scrollIntoView({behavior:'smooth'})">
+                      <td class="py-2.5 px-4 font-black text-cyan-400">${it.step_num || ''}</td>
+                      <td class="py-2.5 px-4 font-bold text-white font-sans">${it.title}</td>
+                      <td class="py-2.5 px-4 text-amber-300 font-bold">${it.model_code || ''}</td>
+                      <td class="py-2.5 px-4 text-cyan-100/90 font-sans">
+                        <span class="text-cyan-300">${it.input_text || ''}</span>
+                        <span class="text-amber-400 font-bold mx-1.5">→</span>
+                        <span class="text-emerald-300 font-semibold">${it.output_text || ''}</span>
+                      </td>
+                      <td class="py-2.5 px-4 text-right">
+                        <span class="inline-flex items-center gap-1 text-[10px] px-2.5 py-1 rounded-lg bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
+                          Ver <i data-lucide="arrow-down" class="w-3 h-3"></i>
+                        </span>
+                      </td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Catálogo Completo de las 12 Máquinas de Proceso Pesquero -->
       ${this.renderFisheryMachineryShowcaseSection(config)}
+
+      <!-- SECCIÓN CÓMO COTIZAMOS Y DESPACHAMOS (PÁGINA 15 DEL CATÁLOGO ADAPTADA A WELLPACK) -->
+      <section class="py-20 bg-[#031224] text-white border-b border-cyan-950 font-sans">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+            
+            <!-- Columna Izquierda: Condiciones Técnicas y Garantía -->
+            <div class="lg:col-span-7 space-y-6">
+              <div>
+                <span class="text-xs font-mono uppercase tracking-widest text-cyan-400 font-bold block mb-2">INGENIERÍA Y SUMINISTRO WELLPACK</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight">Cómo Cotizamos, Configuramos y Despachamos tu Equipamiento</h2>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="p-5 rounded-2xl bg-[#061d36] border border-cyan-800/60">
+                  <div class="text-xs font-mono font-bold text-cyan-300 uppercase mb-1">1. Dimensionamiento a Medida</div>
+                  <p class="text-xs text-cyan-100/85 leading-relaxed">Indícanos tu especie hidrobiológica, volumen diario y voltaje en planta para configurar el modelo exacto, paso de cuchillas o diámetro de tambor.</p>
+                </div>
+                <div class="p-5 rounded-2xl bg-[#061d36] border border-cyan-800/60">
+                  <div class="text-xs font-mono font-bold text-cyan-300 uppercase mb-1">2. Voltaje Industrial en Chile</div>
+                  <p class="text-xs text-cyan-100/85 leading-relaxed">380 V / 50 Hz trifásico como estándar para plantas en Chile. También disponibles configuraciones en 400, 415, 440 y 480 V (50/60 Hz) a pedido.</p>
+                </div>
+                <div class="p-5 rounded-2xl bg-[#061d36] border border-cyan-800/60">
+                  <div class="text-xs font-mono font-bold text-cyan-300 uppercase mb-1">3. Tiempo de Fabricación & Envío</div>
+                  <p class="text-xs text-cyan-100/85 leading-relaxed">Aproximadamente 35 días de producción para máquinas estándar, embaladas en cajas de madera contrachapada de exportación sin requerir fumigación.</p>
+                </div>
+                <div class="p-5 rounded-2xl bg-[#061d36] border border-cyan-800/60">
+                  <div class="text-xs font-mono font-bold text-cyan-300 uppercase mb-1">4. Garantía 12 Meses & Test Video</div>
+                  <p class="text-xs text-cyan-100/85 leading-relaxed">12 meses de garantía sobre estructura principal y componentes mayores. Enviamos video de prueba en marcha (Running Test Video) antes del embarque y soporte de puesta en marcha.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Columna Derecha: Los 6 Datos para Cotizar Rápido -->
+            <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-[#072442] to-[#041528] border border-cyan-400/40 shadow-2xl">
+              <h3 class="text-xl font-black text-white mb-2">Solicita tu Cotización con estos 6 Datos</h3>
+              <p class="text-xs text-cyan-200/85 mb-6">Envíanos estos parámetros en el formulario o por WhatsApp para entregarte la propuesta técnica exacta:</p>
+              
+              <div class="grid grid-cols-2 gap-3 mb-6">
+                <div class="p-3.5 rounded-2xl bg-[#03101f] border border-cyan-800/70">
+                  <span class="text-sm font-mono font-black text-cyan-400 block">01</span>
+                  <span class="text-xs font-bold text-white">Especie de pescado</span>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-[#03101f] border border-cyan-800/70">
+                  <span class="text-sm font-mono font-black text-cyan-400 block">02</span>
+                  <span class="text-xs font-bold text-white">Peso o calibre de filete</span>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-[#03101f] border border-cyan-800/70">
+                  <span class="text-sm font-mono font-black text-cyan-400 block">03</span>
+                  <span class="text-xs font-bold text-white">Volumen diario (kg/h)</span>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-[#03101f] border border-cyan-800/70">
+                  <span class="text-sm font-mono font-black text-cyan-400 block">04</span>
+                  <span class="text-xs font-bold text-white">Fresco, enfriado o IQF</span>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-[#03101f] border border-cyan-800/70">
+                  <span class="text-sm font-mono font-black text-cyan-400 block">05</span>
+                  <span class="text-xs font-bold text-white">Voltaje en tu planta</span>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-[#03101f] border border-cyan-800/70">
+                  <span class="text-sm font-mono font-black text-cyan-400 block">06</span>
+                  <span class="text-xs font-bold text-white">Ciudad / Planta destino</span>
+                </div>
+              </div>
+
+              <button 
+                type="button"
+                data-machine-title="Cotización a Medida Línea Proceso Pesquero"
+                class="btn-machinery-quote w-full py-4 rounded-2xl bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-500 hover:from-cyan-300 hover:to-sky-400 text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider shadow-xl shadow-cyan-500/30 transition hover:scale-[1.02] flex items-center justify-center gap-2">
+                <i data-lucide="send" class="w-4 h-4"></i>
+                <span>Cotizar mi Equipo o Línea Pesquera</span>
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </section>
 
       <!-- Banner de Sinergia con Envases Pesqueros y División Cárnica -->
       <section class="py-16 bg-[#020b16] border-b border-cyan-950">
@@ -1302,11 +1576,11 @@ class AntigravityRenderer {
   }
 
   // ==========================================================
-  // CATÁLOGO MAQUINARIA PROCESO PESQUERO (ESTÉTICA OCÉANO ABISAL & CIAN GLACIAR)
+  // CATÁLOGO MAQUINARIA PROCESO PESQUERO (12 EQUIPOS CON FICHA COMPLETA)
   // ==========================================================
   renderFisheryMachineryShowcaseSection(config = {}) {
-    const title = config.title || "Maquinaria y Líneas para Proceso Pesquero & Acuícola";
-    const subtitle = config.subtitle || "Equipamiento industrial en acero inoxidable grado marino AISI 316L resistente a la salinidad. Soluciones integrales para plantas de salmónidos, merluza, jibia, pelágicos y mitílidos.";
+    const title = config.title || "Línea Completa de Maquinaria para Proceso Pesquero (12 Equipos)";
+    const subtitle = config.subtitle || "Doce máquinas especializadas para cada etapa de la línea — desde el pescado entero con escamas hasta el filete porcionado, pesado, clasificado y glaseado para exportación.";
     const items = config.items || [];
 
     return `
@@ -1322,7 +1596,7 @@ class AntigravityRenderer {
           <div class="text-center max-w-3xl mx-auto mb-14">
             <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-400/40 text-cyan-300 text-xs font-mono font-bold uppercase mb-4 shadow-sm">
               <i data-lucide="waves" class="w-4 h-4 text-cyan-400"></i>
-              Tecnología Pesquera & Salmonera • Acero Marino AISI 316L
+              Fichas Técnicas Detalladas • Etapas 01 a 12
             </div>
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
               ${title}
@@ -1332,172 +1606,274 @@ class AntigravityRenderer {
             </p>
           </div>
 
-          <!-- Filtro Interactivo de Maquinaria Pesquera -->
+          <!-- Filtro Interactivo por Las 4 Etapas del Catálogo -->
           <div class="flex items-center justify-center gap-2 mb-12 overflow-x-auto pb-2 px-2" id="machinery-category-filters">
             <button 
               type="button" 
               data-machine-filter="all" 
               class="btn-machine-tab btn-spring px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-cyan-400 bg-gradient-to-r from-cyan-400 to-sky-500 text-slate-950 shadow-lg shadow-cyan-500/35">
-              🌊 Toda la Línea Pesquera (${items.length})
+              🌊 Las 12 Máquinas (${items.length})
+            </button>
+            <button 
+              type="button" 
+              data-machine-filter="preparacion" 
+              class="btn-machine-tab btn-spring px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-cyan-800/80 bg-[#07203b] text-cyan-200 hover:border-cyan-400/60">
+              01–04 Preparación (Descamado, Eviscerado, Cabeza, Mariposa)
             </button>
             <button 
               type="button" 
               data-machine-filter="fileteado" 
               class="btn-machine-tab btn-spring px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-cyan-800/80 bg-[#07203b] text-cyan-200 hover:border-cyan-400/60">
-              🐟 Fileteado, Despielado & Pin-Bone
+              05–08 Filetes, Despielado, Rodajas & Sashimi
             </button>
             <button 
               type="button" 
-              data-machine-filter="porcionado" 
+              data-machine-filter="subproductos" 
               class="btn-machine-tab btn-spring px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-cyan-800/80 bg-[#07203b] text-cyan-200 hover:border-cyan-400/60">
-              🎯 Porcionado Láser 3D, Grader & Inyección
+              09 Separación Carne–Espina
             </button>
             <button 
               type="button" 
-              data-machine-filter="congelacion" 
+              data-machine-filter="clasificacion" 
               class="btn-machine-tab btn-spring px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-cyan-800/80 bg-[#07203b] text-cyan-200 hover:border-cyan-400/60">
-              ❄️ Túneles IQF -40°C & Línea Choritos
-            </button>
-            <button 
-              type="button" 
-              data-machine-filter="envasado" 
-              class="btn-machine-tab btn-spring px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border border-cyan-800/80 bg-[#07203b] text-cyan-200 hover:border-cyan-400/60">
-              🛡️ Termoformado Vacío & Soporte
+              10–12 Clasificación Peso, Combinadora & Glaseado IQF
             </button>
           </div>
 
-          <!-- Grilla de Tarjetas de Maquinaria Pesquera -->
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch" id="machinery-cards-grid">
+          <!-- Listado de las 12 Fichas Técnicas de Maquinaria Pesquera -->
+          <div class="space-y-10" id="machinery-cards-grid">
             ${items.map(item => {
               const cat = item.category || 'all';
-              const badge = item.badge || 'AISI 316L Marino';
+              const badge = item.badge || 'SUS304 Inoxidable';
               const icon = item.icon || 'fish';
+              const kpis = item.kpis || [];
+              const species = item.species || [];
+              const notes = item.notes || [];
+              const techDetails = item.tech_details || [];
+              const detailImages = item.detail_images || [];
 
               return `
-                <div data-machine-cat="${cat}" class="machinery-card spotlight-card bg-gradient-to-b from-[#07223f] to-[#05182d] border border-cyan-800/70 hover:border-cyan-400/80 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                <article id="machine-card-${item.id}" data-machine-cat="${cat}" class="machinery-card spotlight-card bg-gradient-to-b from-[#07223f] to-[#04172b] border border-cyan-800/70 hover:border-cyan-400/80 rounded-3xl p-6 sm:p-8 lg:p-10 flex flex-col justify-between shadow-2xl transition-all duration-300">
                   
-                  <div>
-                    <!-- Fotografía Real del Equipo Pesquero -->
-                    ${item.image ? `
-                      <div class="relative w-full h-60 sm:h-68 rounded-2xl overflow-hidden bg-gradient-to-b from-[#03101f] to-[#061d36] border border-cyan-800/60 mb-6 flex items-center justify-center p-3 group hover:border-cyan-400/60 transition-all">
+                  <!-- Cabecera Superior de la Ficha: Etapa + Título + Modelo -->
+                  <div class="flex flex-wrap items-center justify-between gap-4 pb-6 mb-6 border-b border-cyan-800/60">
+                    <div class="space-y-1">
+                      <div class="flex flex-wrap items-center gap-2.5">
+                        <span class="px-3 py-1 rounded-lg bg-cyan-500 text-slate-950 font-mono font-black text-xs uppercase tracking-wider">
+                          ${item.stage_label || `ETAPA ${item.step_num || ''}`}
+                        </span>
+                        <span class="px-3 py-1 rounded-lg bg-[#03101f] border border-cyan-400/50 text-cyan-300 font-mono font-bold text-xs">
+                          MODELO: ${item.model_code || ''}
+                        </span>
+                        <span class="px-3 py-1 rounded-lg bg-cyan-950/80 border border-cyan-700/50 text-amber-300 font-mono font-bold text-xs">
+                          ${badge}
+                        </span>
+                      </div>
+                      <h3 class="text-2xl sm:text-3xl font-black text-white pt-1">
+                        ${item.title}
+                      </h3>
+                      <p class="text-sm sm:text-base text-cyan-300 font-medium">
+                        ${item.subtitle}
+                      </p>
+                    </div>
+
+                    <button 
+                      type="button" 
+                      data-machine-title="[PROCESO PESQUERO ${item.model_code || ''}] ${item.title}"
+                      class="btn-machinery-quote btn-spring inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-cyan-400 to-sky-500 hover:from-cyan-300 hover:to-sky-400 text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider shadow-lg shadow-cyan-500/35 shrink-0">
+                      <i data-lucide="file-text" class="w-4 h-4"></i>
+                      <span>Cotizar ${item.model_code || 'Equipo'}</span>
+                    </button>
+                  </div>
+
+                  <!-- Cuerpo Central en 2 Columnas (Visual + Flujo / Datos Técnicos) -->
+                  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- Columna Izquierda (5 cols): Foto Principal Real + Fotos de Detalle + Flujo Input/Output + Especies -->
+                    <div class="lg:col-span-5 space-y-5">
+                      
+                      <!-- Fotografía Principal Extraída del Catálogo -->
+                      <div class="relative w-full h-72 sm:h-80 rounded-2xl overflow-hidden bg-white border-2 border-cyan-500/40 flex items-center justify-center p-4 shadow-xl group">
                         <img 
                           src="${item.image.startsWith('/') ? item.image.slice(1) : item.image}" 
                           alt="${item.title}" 
                           loading="lazy" 
-                          class="max-h-full max-w-full object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.85)] group-hover:scale-105 transition-transform duration-500 ease-out">
-                        
-                        <!-- Badge de Especificación Flotante -->
-                        <div class="absolute top-3 left-3 z-10">
-                          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#041528]/90 backdrop-blur-md text-[10px] font-mono font-bold text-cyan-300 border border-cyan-400/50 shadow-lg">
-                            <i data-lucide="${icon}" class="w-3.5 h-3.5 text-cyan-400"></i>
-                            ${badge}
+                          class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3">
+                          <span class="px-2.5 py-1 rounded-lg bg-slate-950/90 text-cyan-300 font-mono font-bold text-[11px] border border-cyan-500/40">
+                            ${item.model_code || ''}
                           </span>
                         </div>
                       </div>
-                    ` : ''}
 
-                    <!-- Header Tarjeta -->
-                    <div class="flex items-start justify-between gap-4 mb-4">
-                      <div class="flex items-center gap-3">
-                        <div class="w-11 h-11 rounded-xl bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 shrink-0">
-                          <i data-lucide="${icon}" class="w-5 h-5"></i>
+                      <!-- Miniaturas de Detalle Constructivo (del Catálogo) -->
+                      ${detailImages.length > 0 ? `
+                        <div class="grid grid-cols-${Math.min(detailImages.length, 3)} gap-3">
+                          ${detailImages.map(det => `
+                            <div class="rounded-xl overflow-hidden bg-[#03101f] border border-cyan-800/70 p-2 flex flex-col justify-between">
+                              <div class="h-28 rounded-lg overflow-hidden bg-white flex items-center justify-center">
+                                <img src="${det.url.startsWith('/') ? det.url.slice(1) : det.url}" alt="${det.caption}" loading="lazy" class="w-full h-full object-cover">
+                              </div>
+                              <span class="text-[10px] font-mono text-cyan-200/90 mt-1.5 block leading-tight text-center">${det.caption}</span>
+                            </div>
+                          `).join('')}
                         </div>
-                        <div>
-                          <h3 class="text-xl sm:text-2xl font-black text-white leading-tight">
-                            ${item.title}
-                          </h3>
-                          <span class="text-xs text-cyan-300 font-mono block mt-0.5 font-semibold">
-                            ${item.subtitle}
-                          </span>
+                      ` : ''}
+
+                      <!-- Video Operativo (si el equipo cuenta con video integrado) -->
+                      ${item.video ? `
+                        <div class="rounded-2xl overflow-hidden bg-[#03101f] border-2 border-cyan-400/60 p-3 shadow-xl">
+                          <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-mono font-black uppercase text-cyan-300 flex items-center gap-1.5">
+                              <i data-lucide="play-circle" class="w-4 h-4 text-cyan-400"></i>
+                              Video Operativo en Planta (${item.model_code || ''})
+                            </span>
+                            <span class="text-[10px] font-mono text-emerald-400">En Operación Real</span>
+                          </div>
+                          <video controls preload="metadata" class="w-full rounded-xl bg-black max-h-64">
+                            <source src="${item.video.startsWith('/') ? item.video.slice(1) : item.video}" type="video/mp4">
+                          </video>
+                          ${item.video_caption ? `<p class="text-[11px] text-cyan-100/85 mt-2 leading-relaxed">${item.video_caption}</p>` : ''}
+                        </div>
+                      ` : ''}
+
+                      <!-- Caja de Transformación: ENTRADA -> SALIDA -->
+                      <div class="p-4 rounded-2xl bg-[#03101f] border border-cyan-500/40 space-y-2">
+                        <div class="flex items-center justify-between">
+                          <span class="text-[10px] font-mono uppercase tracking-widest text-cyan-400 font-bold">ENTRADA (INPUT)</span>
+                          <span class="text-xs font-bold text-white">${item.input_text || ''}</span>
+                        </div>
+                        <div class="flex justify-center">
+                          <i data-lucide="arrow-down" class="w-4 h-4 text-amber-400"></i>
+                        </div>
+                        <div class="flex items-center justify-between pt-1 border-t border-cyan-900/60">
+                          <span class="text-[10px] font-mono uppercase tracking-widest text-emerald-400 font-bold">SALIDA (OUTPUT)</span>
+                          <span class="text-xs font-bold text-emerald-300 text-right">${item.output_text || ''}</span>
                         </div>
                       </div>
-                    </div>
 
-                    <!-- Descripción -->
-                    <p class="text-cyan-50/85 text-xs sm:text-sm leading-relaxed mb-6">
-                      ${item.description}
-                    </p>
-
-                    <!-- Lista de Características -->
-                    <div class="space-y-2 mb-6">
-                      ${(item.features || []).map(f => `
-                        <div class="flex items-start gap-2 text-xs text-cyan-50/90">
-                          <i data-lucide="check-circle" class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5"></i>
-                          <span>${f}</span>
-                        </div>
-                      `).join('')}
-                    </div>
-
-                    <!-- Tabla de Modelos y Parámetros Técnicos -->
-                    ${item.specs && item.specs.length > 0 ? `
-                      <div class="mb-6 overflow-x-auto rounded-xl border border-cyan-900/70 bg-[#03101f]">
-                        <table class="w-full text-[11px] font-mono text-left">
-                          <thead class="bg-cyan-950/70 text-cyan-200 uppercase text-[10px]">
-                            <tr>
-                              <th class="py-2 px-3">Modelo</th>
-                              ${item.specs[0].power ? '<th class="py-2 px-3">Potencia</th>' : ''}
-                              ${item.specs[0].capacity ? '<th class="py-2 px-3">Capacidad</th>' : ''}
-                              ${item.specs[0].speed ? '<th class="py-2 px-3">Rango / Precisión</th>' : ''}
-                              ${item.specs[0].dims ? '<th class="py-2 px-3 hidden sm:table-cell">Dimensiones</th>' : ''}
-                              ${item.specs[0].detail ? '<th class="py-2 px-3">Detalle</th>' : ''}
-                            </tr>
-                          </thead>
-                          <tbody class="divide-y divide-cyan-950/80 text-cyan-100">
-                            ${item.specs.map(sp => `
-                              <tr class="hover:bg-cyan-900/25">
-                                <td class="py-2 px-3 font-bold text-cyan-300">${sp.model}</td>
-                                ${sp.power ? `<td class="py-2 px-3">${sp.power}</td>` : ''}
-                                ${sp.capacity ? `<td class="py-2 px-3 text-emerald-300 font-semibold">${sp.capacity}</td>` : ''}
-                                ${sp.speed ? `<td class="py-2 px-3">${sp.speed}</td>` : ''}
-                                ${sp.dims ? `<td class="py-2 px-3 hidden sm:table-cell text-cyan-300/70 text-[10px]">${sp.dims}</td>` : ''}
-                                ${sp.detail ? `<td class="py-2 px-3 text-cyan-200">${sp.detail}</td>` : ''}
-                              </tr>
+                      <!-- Especies Hidrobiológicas Recomendadas -->
+                      ${species.length > 0 ? `
+                        <div class="p-4 rounded-2xl bg-[#041528] border border-cyan-900/60">
+                          <span class="text-[10px] font-mono uppercase tracking-widest text-cyan-300 font-bold block mb-2.5">
+                            🐟 ESPECIES RECOMENDADAS (BEST SUITED FOR):
+                          </span>
+                          <div class="flex flex-wrap gap-1.5">
+                            ${species.map(sp => `
+                              <span class="px-2.5 py-1 rounded-full bg-cyan-500/15 border border-cyan-400/35 text-cyan-200 text-xs font-semibold">
+                                ${sp}
+                              </span>
                             `).join('')}
-                          </tbody>
-                        </table>
+                          </div>
+                        </div>
+                      ` : ''}
+
+                    </div>
+
+                    <!-- Columna Derecha (7 cols): 4 KPIs + Explicación + Características + Notas Importantes + Tabla Técnica -->
+                    <div class="lg:col-span-7 space-y-6">
+                      
+                      <!-- 4 Tarjetas de Indicadores Clave (KPIs del Catálogo) -->
+                      ${kpis.length > 0 ? `
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                          ${kpis.map(k => `
+                            <div class="p-3.5 rounded-2xl bg-[#03101f] border-t-2 border-t-cyan-400 border-x border-b border-cyan-900/60 shadow-md">
+                              <span class="text-[10px] font-mono uppercase tracking-wider text-cyan-400 block">${k.label}</span>
+                              <span class="text-lg sm:text-xl font-black text-white font-mono mt-0.5 block">${k.value}</span>
+                              <span class="text-[10px] text-cyan-200/75 font-mono block">${k.unit || ''}</span>
+                            </div>
+                          `).join('')}
+                        </div>
+                      ` : ''}
+
+                      <!-- Explicación Detallada del Proceso -->
+                      <div class="p-4 rounded-2xl bg-[#051b33]/70 border border-cyan-800/50">
+                        <span class="text-[10px] font-mono uppercase tracking-widest text-cyan-400 font-bold block mb-1">Descripción y Funcionamiento en Línea:</span>
+                        <p class="text-cyan-50/90 text-xs sm:text-sm leading-relaxed">
+                          ${item.description}
+                        </p>
                       </div>
-                    ` : ''}
+
+                      <!-- Características Principales (Key Features) -->
+                      <div>
+                        <h4 class="text-xs font-mono uppercase tracking-widest text-cyan-300 font-bold mb-3">
+                          ✓ Características Principales (Key Features)
+                        </h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                          ${(item.features || []).map(f => `
+                            <div class="flex items-start gap-2 text-xs text-cyan-50/90 bg-[#041528]/70 p-2.5 rounded-xl border border-cyan-900/40">
+                              <i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5"></i>
+                              <span>${f}</span>
+                            </div>
+                          `).join('')}
+                        </div>
+                      </div>
+
+                      <!-- Consideraciones Operativas (Please Note / Límites de la Máquina) -->
+                      ${notes.length > 0 ? `
+                        <div class="p-4 rounded-2xl bg-amber-950/35 border-l-4 border-l-amber-400 border border-amber-500/30">
+                          <div class="flex items-center gap-2 text-xs font-mono font-bold text-amber-300 uppercase mb-2">
+                            <i data-lucide="alert-circle" class="w-4 h-4 text-amber-400"></i>
+                            <span>Consideraciones Operativas (Tener en Cuenta / Please Note)</span>
+                          </div>
+                          <ul class="space-y-1 text-xs text-amber-100/90 list-disc list-inside">
+                            ${notes.map(n => `<li>${n}</li>`).join('')}
+                          </ul>
+                        </div>
+                      ` : ''}
+
+                      <!-- Tabla de Especificaciones Técnicas (Technical Data) -->
+                      ${techDetails.length > 0 ? `
+                        <div class="rounded-2xl overflow-hidden border border-cyan-800/70 bg-[#03101f]">
+                          <div class="px-4 py-2.5 bg-cyan-950/70 border-b border-cyan-900/70 text-[11px] font-mono font-bold text-cyan-300 uppercase">
+                            Ficha de Datos Técnicos (${item.model_code || ''})
+                          </div>
+                          <div class="divide-y divide-cyan-950/80 text-xs">
+                            ${techDetails.map(td => `
+                              <div class="grid grid-cols-1 sm:grid-cols-3 py-2.5 px-4 hover:bg-cyan-900/20">
+                                <span class="font-mono font-bold text-cyan-400">${td.label}</span>
+                                <span class="sm:col-span-2 text-cyan-100">${td.value}</span>
+                              </div>
+                            `).join('')}
+                          </div>
+                        </div>
+                      ` : ''}
+
+                      <!-- Tabla comparativa cuando el equipo tiene múltiples sub-modelos (ej. FMS500/600 o WG-S/L) -->
+                      ${item.specs && item.specs.length > 1 ? `
+                        <div class="overflow-x-auto rounded-xl border border-cyan-800/70 bg-[#03101f]">
+                          <table class="w-full text-[11px] font-mono text-left">
+                            <thead class="bg-cyan-950/70 text-cyan-200 uppercase text-[10px]">
+                              <tr>
+                                <th class="py-2 px-3">Modelo</th>
+                                <th class="py-2 px-3">Potencia</th>
+                                <th class="py-2 px-3">Capacidad</th>
+                                <th class="py-2 px-3">Rango / Detalle</th>
+                                <th class="py-2 px-3 hidden sm:table-cell">Dimensiones y Peso</th>
+                              </tr>
+                            </thead>
+                            <tbody class="divide-y divide-cyan-950/80 text-cyan-100">
+                              ${item.specs.map(sp => `
+                                <tr class="hover:bg-cyan-900/25">
+                                  <td class="py-2 px-3 font-bold text-cyan-300">${sp.model}</td>
+                                  <td class="py-2 px-3">${sp.power || ''}</td>
+                                  <td class="py-2 px-3 text-emerald-300 font-semibold">${sp.capacity || ''}</td>
+                                  <td class="py-2 px-3">${sp.speed || ''}</td>
+                                  <td class="py-2 px-3 hidden sm:table-cell text-cyan-300/80">${sp.dims || ''}</td>
+                                </tr>
+                              `).join('')}
+                            </tbody>
+                          </table>
+                        </div>
+                      ` : ''}
+
+                    </div>
+
                   </div>
 
-                  <!-- Footer Botón CTA -->
-                  <div class="pt-4 border-t border-cyan-900/60 flex items-center justify-between gap-3">
-                    <span class="text-[11px] font-mono text-cyan-200/80 flex items-center gap-1.5">
-                      <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                      Soporte e Instalación en Todo Chile
-                    </span>
-                    <button 
-                      type="button" 
-                      data-machine-title="[PROCESO PESQUERO] ${item.title}"
-                      class="btn-machinery-quote btn-spring inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-400 to-sky-500 hover:from-cyan-300 hover:to-sky-400 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-cyan-500/35">
-                      <span>Cotizar Equipo</span>
-                      <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                    </button>
-                  </div>
-
-                </div>
+                </article>
               `;
             }).join('')}
-          </div>
-
-          <!-- Banner Inferior de Proyectos Pesqueros Llave en Mano -->
-          <div class="mt-16 p-8 rounded-3xl bg-gradient-to-r from-cyan-950/80 via-[#061f38] to-blue-950/60 border border-cyan-400/40 backdrop-blur-xl flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
-            <div class="flex items-center gap-4">
-              <div class="w-14 h-14 rounded-2xl bg-cyan-500/20 flex items-center justify-center text-cyan-300 shrink-0 border border-cyan-400/40">
-                <i data-lucide="anchor" class="w-7 h-7 text-cyan-300"></i>
-              </div>
-              <div>
-                <h4 class="text-xl font-black text-white">¿Proyectas una Planta Pesquera, Salmonera o Línea de Mitílidos?</h4>
-                <p class="text-xs sm:text-sm text-cyan-100/85 mt-1 max-w-2xl">
-                  Integramos el diseño sanitario de línea (fileteado, porcionado láser, túnel IQF y termoformado) junto con el abastecimiento de films y bolsas de alta barrera EVOH para exportación.
-                </p>
-              </div>
-            </div>
-            <button 
-              type="button"
-              data-machine-title="Línea Completa Llave en Mano - Proceso Pesquero & Acuícola"
-              class="btn-machinery-quote btn-spring px-6 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-400 to-sky-500 text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider shrink-0 shadow-xl shadow-cyan-500/30">
-              Solicitar Ingeniería Pesquera
-            </button>
           </div>
 
         </div>
