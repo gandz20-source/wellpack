@@ -1236,26 +1236,31 @@ class AntigravityRenderer {
 
             <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
               <a 
+                href="#fishery_video_library" 
+                class="inline-flex items-center gap-2.5 bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 hover:from-cyan-300 hover:to-blue-500 text-slate-950 font-black text-sm sm:text-base px-7 py-4 rounded-2xl shadow-xl shadow-cyan-500/35 transition-all hover:scale-105 active:scale-95">
+                <i data-lucide="play-circle" class="w-5 h-5 text-slate-950"></i>
+                <span>Ver Videoteca en Operación (12 Videos)</span>
+              </a>
+              <a 
                 href="#line_at_a_glance" 
-                class="inline-flex items-center gap-2.5 bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 hover:from-cyan-300 hover:to-blue-500 text-slate-950 font-black text-sm sm:text-base px-8 py-4 rounded-2xl shadow-xl shadow-cyan-500/35 transition-all hover:scale-105 active:scale-95">
-                <i data-lucide="git-branch" class="w-5 h-5 text-slate-950"></i>
-                <span>Ver Mapa de Línea (Etapas 01 a 12)</span>
-                <i data-lucide="arrow-down" class="w-4 h-4 text-slate-950"></i>
+                class="inline-flex items-center gap-2 bg-[#062342]/90 hover:bg-[#083059] text-cyan-200 border border-cyan-400/50 font-bold text-sm sm:text-base px-6 py-4 rounded-2xl transition-all hover:scale-105 backdrop-blur-md shadow-lg">
+                <i data-lucide="git-branch" class="w-5 h-5 text-cyan-300"></i>
+                <span>Mapa de Línea (01–12)</span>
               </a>
               <button 
                 type="button"
                 data-machine-title="Proyecto de Línea Completa Proceso Pesquero"
-                class="btn-machinery-quote inline-flex items-center gap-2 bg-cyan-950/80 hover:bg-cyan-900/80 text-cyan-100 border border-cyan-400/50 font-bold text-sm sm:text-base px-7 py-4 rounded-2xl transition-all hover:scale-105 backdrop-blur-md shadow-lg">
-                <i data-lucide="file-text" class="w-5 h-5 text-cyan-300"></i>
-                <span>Cotizar Línea o Máquina Individual</span>
+                class="btn-machinery-quote inline-flex items-center gap-2 bg-cyan-950/80 hover:bg-cyan-900/80 text-amber-300 border border-amber-400/50 font-bold text-sm sm:text-base px-6 py-4 rounded-2xl transition-all hover:scale-105 backdrop-blur-md shadow-lg">
+                <i data-lucide="file-text" class="w-5 h-5 text-amber-400"></i>
+                <span>Cotizar Línea o Máquina</span>
               </button>
             </div>
 
             <!-- KPIs Técnicos del Proceso Pesquero -->
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5 pt-6 border-t border-cyan-900/60 text-left max-w-4xl mx-auto">
               <div class="bg-[#06203c]/85 backdrop-blur-md p-3.5 rounded-2xl border border-cyan-400/30 shadow-lg">
-                <div class="text-lg font-black text-cyan-300 font-mono">12 Etapas</div>
-                <div class="text-[11px] text-cyan-100/80 font-mono uppercase mt-0.5">Equipos Individuales o en Línea</div>
+                <div class="text-lg font-black text-cyan-300 font-mono">12 Videos + Fichas</div>
+                <div class="text-[11px] text-cyan-100/80 font-mono uppercase mt-0.5">Demos Reales en Planta</div>
               </div>
               <div class="bg-[#06203c]/85 backdrop-blur-md p-3.5 rounded-2xl border border-cyan-400/30 shadow-lg">
                 <div class="text-lg font-black text-sky-300 font-mono">SUS304 / 316</div>
@@ -1266,8 +1271,8 @@ class AntigravityRenderer {
                 <div class="text-[11px] text-cyan-100/80 font-mono uppercase mt-0.5">Estándar Industrial Chile</div>
               </div>
               <div class="bg-[#06203c]/85 backdrop-blur-md p-3.5 rounded-2xl border border-cyan-400/30 shadow-lg">
-                <div class="text-lg font-black text-amber-400 font-mono">Test Video</div>
-                <div class="text-[11px] text-cyan-100/80 font-mono uppercase mt-0.5">Prueba en Planta y Garantía 12M</div>
+                <div class="text-lg font-black text-amber-400 font-mono">Garantía 12M</div>
+                <div class="text-[11px] text-cyan-100/80 font-mono uppercase mt-0.5">Prueba en Marcha Pre-Embarque</div>
               </div>
             </div>
           </div>
@@ -1285,7 +1290,7 @@ class AntigravityRenderer {
               Flujo de Proceso: De Pescado Entero a Producto Empacado
             </h2>
             <p class="mt-3 text-cyan-100/80 text-sm sm:text-base">
-              Elige máquinas individuales o combínalas en una línea continua. Cada ficha técnica muestra exactamente qué entra, qué sale y cuáles son sus límites operativos.
+              Elige máquinas individuales o combínalas en una línea continua. Cada ficha técnica muestra exactamente qué entra, qué sale, su video en operación y cuáles son sus límites operativos.
             </p>
           </div>
 
@@ -1431,7 +1436,7 @@ class AntigravityRenderer {
           <!-- Tabla Resumen de las 12 Máquinas (Input -> Output) -->
           <div class="rounded-3xl overflow-hidden border border-cyan-800/70 bg-[#041528] shadow-2xl">
             <div class="px-6 py-4 bg-cyan-950/80 border-b border-cyan-800/70 flex flex-wrap items-center justify-between gap-2">
-              <span class="text-xs font-mono font-black uppercase tracking-wider text-cyan-300">Tabla Resumen de Línea (Haz clic en cualquier equipo para ir a su ficha técnica)</span>
+              <span class="text-xs font-mono font-black uppercase tracking-wider text-cyan-300">Tabla Resumen de Línea (Haz clic en cualquier equipo para ir a su ficha técnica y video)</span>
               <span class="text-[11px] font-mono text-cyan-200/80">12 Modelos Industriales SUS304 / SUS316</span>
             </div>
             <div class="overflow-x-auto">
@@ -1442,7 +1447,7 @@ class AntigravityRenderer {
                     <th class="py-3 px-4">Máquina / Etapa</th>
                     <th class="py-3 px-4">Modelo</th>
                     <th class="py-3 px-4">Flujo de Proceso (Entrada → Salida)</th>
-                    <th class="py-3 px-4 text-right">Ficha</th>
+                    <th class="py-3 px-4 text-right">Ficha + Video</th>
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-cyan-900/40 text-cyan-100">
@@ -1458,7 +1463,7 @@ class AntigravityRenderer {
                       </td>
                       <td class="py-2.5 px-4 text-right">
                         <span class="inline-flex items-center gap-1 text-[10px] px-2.5 py-1 rounded-lg bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
-                          Ver <i data-lucide="arrow-down" class="w-3 h-3"></i>
+                          <i data-lucide="play" class="w-3 h-3"></i> Ver
                         </span>
                       </td>
                     </tr>
@@ -1466,6 +1471,100 @@ class AntigravityRenderer {
                 </tbody>
               </table>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIDEOTECA INDUSTRIAL EN OPERACIÓN REAL (LOS 12 VIDEOS DEMOSTRATIVOS CON SU EXPLICACIÓN) -->
+      <section id="fishery_video_library" class="py-20 bg-[#020e1c] text-white border-b border-cyan-950 relative overflow-hidden font-sans">
+        <div class="absolute top-10 left-1/3 w-[650px] h-[350px] bg-cyan-500/10 blur-[140px] pointer-events-none rounded-full"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="text-center max-w-3xl mx-auto mb-12">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950 border border-cyan-400/50 text-cyan-300 text-xs font-mono font-bold uppercase mb-3 shadow-lg">
+              <i data-lucide="video" class="w-4 h-4 text-cyan-400"></i>
+              <span>Videoteca Oficial en Planta • 12 Demos Reales de Operación</span>
+            </div>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+              Máquinas en Operación Real con Explicación Técnica
+            </h2>
+            <p class="mt-3 text-cyan-100/85 text-sm sm:text-base leading-relaxed">
+              Reproduce aquí mismo los videos demostrativos de cada equipo trabajando en planta. Cada video incluye la explicación exacta del proceso mecánico y enlace directo a su ficha de ingeniería.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            ${items.filter(it => it.video).map(it => {
+              const vSrc = it.video.startsWith('/') ? it.video.slice(1) : it.video;
+              const vPoster = it.video_poster ? (it.video_poster.startsWith('/') ? it.video_poster.slice(1) : it.video_poster) : (it.image.startsWith('/') ? it.image.slice(1) : it.image);
+              return `
+                <article class="rounded-3xl overflow-hidden bg-gradient-to-b from-[#07213e] to-[#041427] border border-cyan-800/70 hover:border-cyan-400/80 shadow-2xl flex flex-col justify-between transition-all duration-300">
+                  <div>
+                    <!-- Reproductor de Video con Póster y Badges -->
+                    <div class="relative bg-[#010811] aspect-square overflow-hidden flex items-center justify-center border-b border-cyan-900/70">
+                      <video 
+                        controls 
+                        preload="none" 
+                        playsinline 
+                        poster="${vPoster}" 
+                        src="${vSrc}"
+                        onplay="document.querySelectorAll('video').forEach(v=>{if(v!==this)v.pause()})"
+                        class="w-full h-full object-contain bg-[#010811]">
+                      </video>
+                      <div class="absolute top-3 left-3 pointer-events-none flex items-center gap-1.5">
+                        <span class="px-2.5 py-1 rounded-lg bg-cyan-500 text-slate-950 font-mono font-black text-xs shadow-lg">
+                          ${it.step_num || ''}
+                        </span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-950/90 text-cyan-300 border border-cyan-400/40 font-mono font-bold text-[11px] shadow-lg">
+                          ${it.model_code || ''}
+                        </span>
+                      </div>
+                      ${it.video_duration ? `
+                        <div class="absolute top-3 right-3 pointer-events-none">
+                          <span class="px-2.5 py-1 rounded-lg bg-slate-950/90 text-amber-300 border border-amber-400/40 font-mono font-bold text-[11px] shadow-lg">
+                            ⏱ ${it.video_duration}
+                          </span>
+                        </div>
+                      ` : ''}
+                    </div>
+
+                    <!-- Explicación del Video -->
+                    <div class="p-5 space-y-3">
+                      <div class="text-[11px] font-mono uppercase tracking-wider text-cyan-400 font-bold">
+                        ${it.stage_label || ''} • ${it.badge || ''}
+                      </div>
+                      <h3 class="text-lg font-black text-white leading-snug">
+                        ${it.video_title || it.title}
+                      </h3>
+                      <p class="text-xs text-cyan-100/85 leading-relaxed">
+                        ${it.video_caption || it.description}
+                      </p>
+                      <div class="p-2.5 rounded-xl bg-[#03101f] border border-cyan-900/70 text-[11px] font-mono flex items-center justify-between gap-2">
+                        <span class="text-cyan-300 truncate">${it.input_text || ''}</span>
+                        <span class="text-amber-400 font-bold shrink-0">→</span>
+                        <span class="text-emerald-300 font-semibold truncate text-right">${it.output_text || ''}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Botones Inferiores: Ir a Ficha Técnica + Cotizar -->
+                  <div class="px-5 pb-5 pt-2 flex items-center justify-between gap-2.5">
+                    <a 
+                      href="#machine-card-${it.id}" 
+                      class="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-[#03101f] hover:bg-cyan-950 text-cyan-300 border border-cyan-500/40 font-mono font-bold text-xs transition">
+                      <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+                      <span>Ver Ficha Técnica</span>
+                    </a>
+                    <button 
+                      type="button"
+                      data-machine-title="[PROCESO PESQUERO ${it.model_code || ''}] ${it.title}"
+                      class="btn-machinery-quote inline-flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl bg-gradient-to-r from-cyan-400 to-sky-500 hover:from-cyan-300 hover:to-sky-400 text-slate-950 font-black text-xs uppercase tracking-wider shadow-md transition">
+                      <span>Cotizar</span>
+                      <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                    </button>
+                  </div>
+                </article>
+              `;
+            }).join('')}
           </div>
         </div>
       </section>
@@ -1720,20 +1819,31 @@ class AntigravityRenderer {
                         </div>
                       ` : ''}
 
-                      <!-- Video Operativo (si el equipo cuenta con video integrado) -->
+                      <!-- Video Operativo (integrado en la ficha técnica con póster y explicación) -->
                       ${item.video ? `
-                        <div class="rounded-2xl overflow-hidden bg-[#03101f] border-2 border-cyan-400/60 p-3 shadow-xl">
-                          <div class="flex items-center justify-between mb-2">
+                        <div class="rounded-2xl overflow-hidden bg-[#020d1a] border-2 border-cyan-400/70 p-3.5 shadow-xl space-y-2.5">
+                          <div class="flex items-center justify-between gap-2">
                             <span class="text-xs font-mono font-black uppercase text-cyan-300 flex items-center gap-1.5">
                               <i data-lucide="play-circle" class="w-4 h-4 text-cyan-400"></i>
-                              Video Operativo en Planta (${item.model_code || ''})
+                              <span>Video en Planta • ${item.model_code || ''}</span>
                             </span>
-                            <span class="text-[10px] font-mono text-emerald-400">En Operación Real</span>
+                            <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[10px] font-mono font-bold">
+                              ${item.video_duration ? `⏱ ${item.video_duration} • ` : ''}Operación Real
+                            </span>
                           </div>
-                          <video controls preload="metadata" class="w-full rounded-xl bg-black max-h-64">
-                            <source src="${item.video.startsWith('/') ? item.video.slice(1) : item.video}" type="video/mp4">
-                          </video>
-                          ${item.video_caption ? `<p class="text-[11px] text-cyan-100/85 mt-2 leading-relaxed">${item.video_caption}</p>` : ''}
+                          <div class="relative rounded-xl overflow-hidden bg-black aspect-video flex items-center justify-center border border-cyan-900/70">
+                            <video 
+                              controls 
+                              preload="none" 
+                              playsinline 
+                              poster="${item.video_poster ? (item.video_poster.startsWith('/') ? item.video_poster.slice(1) : item.video_poster) : ''}"
+                              src="${item.video.startsWith('/') ? item.video.slice(1) : item.video}"
+                              onplay="document.querySelectorAll('video').forEach(v=>{if(v!==this)v.pause()})"
+                              class="w-full h-full object-contain bg-black">
+                            </video>
+                          </div>
+                          ${item.video_title ? `<div class="text-xs font-bold text-white">${item.video_title}</div>` : ''}
+                          ${item.video_caption ? `<p class="text-[11px] text-cyan-100/90 leading-relaxed bg-[#04172b] p-2.5 rounded-xl border border-cyan-800/50">${item.video_caption}</p>` : ''}
                         </div>
                       ` : ''}
 

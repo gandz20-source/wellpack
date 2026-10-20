@@ -700,7 +700,13 @@
                 "url": "/assets/images/machinery_pesquera/01_descaling_rl_fdm080_detail_1.jpg",
                 "caption": "Filtros de entrada de agua de alta presión"
               }
-            ]
+            ],
+            "video": "/assets/videos/machinery_pesquera/01_descaling_rl_fdm080.mp4",
+            "video_poster": "/assets/videos/machinery_pesquera/01_descaling_rl_fdm080_poster.jpg",
+            "video_duration": "1:06",
+            "video_aspect": "9:16",
+            "video_title": "Descamadora por Hidrojets de Alta Presión (RL-FDM080)",
+            "video_caption": "Los chorros de agua a alta presión (hasta 90 bar) desprenden el 100% de las escamas del pescado entero a 40–60 pescados por minuto sin que cuchillas ni cepillos toquen la piel, entregando el pescado intacto en la bandeja de salida."
           },
           {
             "id": "02_evisceradora_rl_fgm060",
@@ -795,7 +801,13 @@
                 "url": "/assets/images/machinery_pesquera/02_gutting_rl_fgm060_detail_1.jpg",
                 "caption": "Mesa de alimentación y canal guía de centrado"
               }
-            ]
+            ],
+            "video": "/assets/videos/machinery_pesquera/02_gutting_rl_fgm060.mp4",
+            "video_poster": "/assets/videos/machinery_pesquera/02_gutting_rl_fgm060_poster.jpg",
+            "video_duration": "0:16",
+            "video_aspect": "16:9",
+            "video_title": "Evisceradora Automática con Lavado de Cavidad (RL-FGM060)",
+            "video_caption": "El operario alimenta el pescado por el canal guía central; la máquina abre longitudinalmente el vientre, extrae todas las vísceras y enjuaga a presión la cavidad abdominal en una sola pasada continua (60 pescados/min)."
           },
           {
             "id": "03_descabezadora_rl_fhc",
@@ -894,7 +906,13 @@
                 "url": "/assets/images/machinery_pesquera/03_heading_rl_fhc_detail_2.jpg",
                 "caption": "Ductos separados para cabeza y cuerpo"
               }
-            ]
+            ],
+            "video": "/assets/videos/machinery_pesquera/03_heading_rl_fhc.mp4",
+            "video_poster": "/assets/videos/machinery_pesquera/03_heading_rl_fhc_poster.jpg",
+            "video_duration": "1:28",
+            "video_aspect": "16:9",
+            "video_title": "Cortadora Automática de Cabeza en Bolsillos Tipo V (RL-FHC)",
+            "video_caption": "Los operarios posicionan cada pescado entero en los bolsillos inoxidables en forma de V; el disco transversal realiza un corte limpio detrás de la agalla a 60 pescados/minuto, separando automáticamente las cabezas del tronco útil."
           },
           {
             "id": "04_abridora_mariposa_rl_fsp",
@@ -992,7 +1010,13 @@
                 "url": "/assets/images/machinery_pesquera/04_splitting_rl_fsp_detail_2.jpg",
                 "caption": "Correas dobles de sujeción y rodillos prensores"
               }
-            ]
+            ],
+            "video": "/assets/videos/machinery_pesquera/04_splitting_rl_fsp.mp4",
+            "video_poster": "/assets/videos/machinery_pesquera/04_splitting_rl_fsp_poster.jpg",
+            "video_duration": "0:19",
+            "video_aspect": "16:9",
+            "video_title": "Abridora de Pescado Tipo Mariposa en Una Pasada (RL-FSP)",
+            "video_caption": "Las correas de sujeción conducen el pescado descabezado a través del disco divisor y la barra de aspersión, abriéndolo a lo largo de la espina dorsal y limpiando la cavidad en una sola pasada para entregar un corte mariposa plano."
           },
           {
             "id": "05_fileteadora_rl_ffm",
@@ -1091,7 +1115,13 @@
                 "url": "/assets/images/machinery_pesquera/05_filleting_rl_ffm_detail_2.jpg",
                 "caption": "Ruedas industriales con freno y patas niveladoras"
               }
-            ]
+            ],
+            "video": "/assets/videos/machinery_pesquera/05_filleting_rl_ffm.mp4",
+            "video_poster": "/assets/videos/machinery_pesquera/05_filleting_rl_ffm_poster.jpg",
+            "video_duration": "0:31",
+            "video_aspect": "16:9",
+            "video_title": "Fileteadora de Tres Piezas: 2 Filetes + Espinazo (RL-FFM)",
+            "video_caption": "El pescado sin cabeza ingresa por la cinta guía hacia las cuchillas circulares de Ø 350 mm, separando simultáneamente el filete izquierdo, el filete derecho y el espinazo central en una sola pasada con descargas independientes."
           },
           {
             "id": "06_despieladora_rl_fsk",
@@ -1194,7 +1224,13 @@
                 "url": "/assets/images/machinery_pesquera/06_skinning_rl_fsk_detail_3.jpg",
                 "caption": "Cámara de pelado y bandeja de salida"
               }
-            ]
+            ],
+            "video": "/assets/videos/machinery_pesquera/06_skinning_rl_fsk.mp4",
+            "video_poster": "/assets/videos/machinery_pesquera/06_skinning_rl_fsk_poster.jpg",
+            "video_duration": "1:04",
+            "video_aspect": "9:16",
+            "video_title": "Despieladora Continua de Filetes con Lavado en Línea (RL-FSK)",
+            "video_caption": "El filete con piel se apoya plano sobre la mesa de entrada; el doble eje espiral desprende la piel en una sola pieza entera mientras el agua enjuaga el músculo, entregando de 40 a 60 filetes sin piel por minuto sin merma de carne."
           },
           {
             "id": "07_cortadora_segmentos_rl_fcm",
@@ -1289,7 +1325,13 @@
                 "url": "/assets/images/machinery_pesquera/07_cutting_rl_fcm_detail_1.jpg",
                 "caption": "Grupo de cuchillas múltiples y cinta de salida"
               }
-            ]
+            ],
+            "video": "/assets/videos/machinery_pesquera/07_cutting_rl_fcm.mp4",
+            "video_poster": "/assets/videos/machinery_pesquera/07_cutting_rl_fcm_poster.jpg",
+            "video_duration": "1:08",
+            "video_aspect": "9:16",
+            "video_title": "Cortadora de Pescado Entero en Rodajas y Postas (RL-FCM)",
+            "video_caption": "El pescado avanza en los casilleros transversales a 60 pescados por minuto hacia el peine de cuchillas múltiples, cortándolo en medallones o segmentos de espesor uniforme y separando cabeza, postas centrales y cola en carriles independientes."
           },
           {
             "id": "08_rebanadora_filetes_rl_fsl",
@@ -1388,7 +1430,13 @@
                 "url": "/assets/images/machinery_pesquera/08_slicing_rl_fsl_detail_2.jpg",
                 "caption": "Correas dentadas de sujeción de filetes"
               }
-            ]
+            ],
+            "video": "/assets/videos/machinery_pesquera/08_slicing_rl_fsl.mp4",
+            "video_poster": "/assets/videos/machinery_pesquera/08_slicing_rl_fsl_poster.jpg",
+            "video_duration": "1:23",
+            "video_aspect": "9:16",
+            "video_title": "Rebanadora Oblicua de Filetes de Salmón tipo Sashimi (RL-FSL)",
+            "video_caption": "El filete de salmón sin espinas avanza sujeto por las correas dentadas bajo el cabezal doble de cuchillas contrarrotantes en ángulo, obteniendo láminas biseladas uniformes en una sola pasada continua (hasta 280 kg/h)."
           },
           {
             "id": "09_separadora_carne_hueso_rl_fms",
@@ -1490,7 +1538,13 @@
                 "url": "/assets/images/machinery_pesquera/09_separator_rl_fms_detail_2.jpg",
                 "caption": "Salida continua de pulpa de pescado limpia"
               }
-            ]
+            ],
+            "video": "/assets/videos/machinery_pesquera/09_separator_rl_fms.mp4",
+            "video_poster": "/assets/videos/machinery_pesquera/09_separator_rl_fms_poster.jpg",
+            "video_duration": "0:45",
+            "video_aspect": "16:9",
+            "video_title": "Separadora de Carne y Espinas para Recuperación de Pulpa (RL-FMS500/600)",
+            "video_caption": "Los espinazos del fileteado (frames), recortes y pescado pequeño pasan entre la banda de caucho sanitario y el tambor perforado: la pulpa limpia de pescado (Minced Fish) fluye libre de espinas mientras el descarte óseo se evacúa por separado."
           },
           {
             "id": "10_clasificadora_rotativa_rl_wg",
@@ -1596,7 +1650,13 @@
                 "url": "/assets/images/machinery_pesquera/10_grader_rl_wg_detail_2.jpg",
                 "caption": "Disposición rotativa de bandejas y canales"
               }
-            ]
+            ],
+            "video": "/assets/videos/machinery_pesquera/10_grader_rl_wg.mp4",
+            "video_poster": "/assets/videos/machinery_pesquera/10_grader_rl_wg_poster.jpg",
+            "video_duration": "0:10",
+            "video_aspect": "16:9",
+            "video_title": "Clasificadora Rotativa por Peso en Bandejas (RL-WG-S / RL-WG-L)",
+            "video_caption": "Cada pieza viaja en su propia bandeja individual a 320–420 piezas/minuto (Modelo S: 5–500 g / Modelo L: 50–5000 g) y se vuelca automáticamente en la estación correspondiente a su rango de peso programado en el PLC."
           },
           {
             "id": "11_balanza_combinada_cinta_rl_cw12",
@@ -1690,7 +1750,13 @@
                 "url": "/assets/images/machinery_pesquera/11_weigher_rl_cw12_detail_1.jpg",
                 "caption": "Doble fila de 12 cintas pesadoras sanitarias"
               }
-            ]
+            ],
+            "video": "/assets/videos/machinery_pesquera/11_weigher_rl_cw12.mp4",
+            "video_poster": "/assets/videos/machinery_pesquera/11_weigher_rl_cw12_poster.jpg",
+            "video_duration": "0:14",
+            "video_aspect": "16:9",
+            "video_title": "Balanza Combinadora de 12 Cintas a Peso Objetivo (RL-CW12)",
+            "video_caption": "Las 12 cintas pesadoras leen el peso individual con resolución de 0.1 g y accionan únicamente la combinación exacta de cintas que suma el peso objetivo del paquete (20–30 packs/min), transportando las piezas sin golpes hacia el empaque."
           },
           {
             "id": "12_glaseadora_iqf_rl_igm1000",
@@ -1784,7 +1850,13 @@
                 "url": "/assets/images/machinery_pesquera/12_glazing_rl_igm1000_detail_1.jpg",
                 "caption": "Acabado de glaseo cristalino sobre filetes congelados"
               }
-            ]
+            ],
+            "video": "/assets/videos/machinery_pesquera/12_bubble_washer_rl_bwm.mp4",
+            "video_poster": "/assets/videos/machinery_pesquera/12_bubble_washer_rl_bwm_poster.jpg",
+            "video_duration": "1:10",
+            "video_aspect": "9:16",
+            "video_title": "Tina Continua de Inmersión, Lavado por Burbujas y Glaseado (RL-IGM1000 / RL-BWM)",
+            "video_caption": "Demostración en planta del sistema de estanque en acero inoxidable SUS304 con agitación por burbujas de aire, tanque lateral de filtrado con bomba de recirculación, cinta de malla inclinada y tren de boquillas rociadoras superiores."
           }
         ]
       }
