@@ -34,6 +34,29 @@ class AntigravityRenderer {
         '150um': 0
       }
     };
+
+    // Estado Reactivo del Wizard Evaluador de Proyectos Corfo (5 Pasos)
+    this.corfoWizardState = {
+      currentStep: 1,
+      sector: 'Pesquero y Acuícola',
+      focusKey: 'A',
+      focusTitle: 'Tecnología Verde, Agua, Residuos y Energía',
+      corfoProgram: 'Crédito Verde Corfo',
+      selectedTechs: [
+        'Planta recicladora/valorizadora de residuos orgánicos (pescado, cárnicos, subproductos).',
+        'Sistema recuperador y planta de tratamiento/recirculación de agua industrial.'
+      ],
+      investmentRange: '$20.000.000 a $60.000.000 CLP',
+      revenueLevel: 'Mediana (25.000 a 100.000 UF)',
+      supportType: 'Maquinaria + Gestión Financiamiento Corfo',
+      contactName: '',
+      companyName: '',
+      companyRut: '',
+      contactPhone: '',
+      contactEmail: '',
+      plantRegion: '',
+      notes: ''
+    };
   }
 
   async init(schemaUrl = 'schema.json') {
@@ -46,6 +69,8 @@ class AntigravityRenderer {
         document.title = 'WellPack Cárnico | Maquinaria y Líneas para Rubro Cárnico & Cecinas';
       } else if (this.pageMode === 'fishery_machinery') {
         document.title = 'WellPack Pesquero | Maquinaria y Líneas para Proceso Pesquero & Acuícola';
+      } else if (this.pageMode === 'industrial_projects') {
+        document.title = 'WellPack Proyectos & Corfo | Ingeniería Llave en Mano, Tecnología Verde y Financiamiento Industrial';
       } else if (this.schema.meta) {
         document.title = 'WellPack | Envases Flexibles de Alta Barrera & Impresión HD';
       }
@@ -84,6 +109,10 @@ class AntigravityRenderer {
       document.body.style.backgroundColor = '#03101f';
       document.body.style.color = '#FFFFFF';
       this.container.className = 'relative bg-[#03101f] text-white min-h-screen';
+    } else if (this.pageMode === 'industrial_projects') {
+      document.body.style.backgroundColor = '#041310';
+      document.body.style.color = '#FFFFFF';
+      this.container.className = 'relative bg-[#041310] text-white min-h-screen';
     } else {
       document.body.style.backgroundColor = '#121212';
       document.body.style.color = '#FFFFFF';
@@ -95,6 +124,8 @@ class AntigravityRenderer {
       mainContentHtml = this.renderMeatMachineryPage();
     } else if (this.pageMode === 'fishery_machinery') {
       mainContentHtml = this.renderFisheryMachineryPage();
+    } else if (this.pageMode === 'industrial_projects') {
+      mainContentHtml = this.renderIndustrialProjectsPage();
     } else {
       mainContentHtml = this.schema && this.schema.layout
         ? this.schema.layout.map(section => this.renderSection(section)).join('')
@@ -181,7 +212,7 @@ class AntigravityRenderer {
               </span>
               <div class="leading-none hidden xs:block sm:block">
                 <span class="text-[11px] font-mono font-bold text-white tracking-wider uppercase block">División Proceso Pesquero</span>
-                <span class="text-[9px] text-cyan-300 font-mono">Acero Marino AISI 316L • IQF -40°C</span>
+                <span class="text-[9px] text-cyan-300 font-mono">12 Máquinas + Videoteca • SUS304/316</span>
               </div>
             </div>
             <div class="flex items-center gap-2">
@@ -200,6 +231,41 @@ class AntigravityRenderer {
                 <i data-lucide="fish" class="w-3.5 h-3.5 text-slate-950"></i>
                 <span>Cotizar Línea Pesquera</span>
               </button>
+            </div>
+          </div>
+        </aside>
+      `;
+    }
+
+    if (this.pageMode === 'industrial_projects') {
+      return `
+        <aside id="floating-b2b-dock" aria-label="Acciones rápidas Proyectos y Corfo" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-xl transition-all duration-300">
+          <div class="bg-[#051b16]/95 backdrop-blur-xl border border-emerald-500/50 p-2 sm:p-2.5 rounded-2xl shadow-2xl shadow-black/90 flex items-center justify-between gap-2.5 sm:gap-4 ring-1 ring-emerald-400/20 hover:border-emerald-400 transition-all">
+            <div class="flex items-center gap-2.5 pl-2 sm:pl-3">
+              <span class="relative flex h-2.5 w-2.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+              </span>
+              <div class="leading-none hidden xs:block sm:block">
+                <span class="text-[11px] font-mono font-bold text-white tracking-wider uppercase block">División Proyectos & Corfo</span>
+                <span class="text-[9px] text-emerald-300 font-mono">Crédito Verde • MiPyme • Ley I+D 35%</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <a 
+                href="https://wa.me/56987654321?text=Hola%20WellPack%2C%20quisiera%20evaluar%20un%20Proyecto%20Industrial%20y%20Financiamiento%20Corfo" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="btn-spring inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-emerald-500/30 text-xs font-mono font-bold">
+                <i data-lucide="message-circle" class="w-4 h-4"></i>
+                <span class="hidden sm:inline">WhatsApp</span>
+              </a>
+              <a 
+                href="#corfo_wizard_section"
+                class="btn-spring inline-flex items-center gap-2 px-4 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-emerald-400 via-teal-400 to-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-emerald-500/35">
+                <i data-lucide="compass" class="w-3.5 h-3.5 text-slate-950"></i>
+                <span>Evaluar Proyecto Corfo</span>
+              </a>
             </div>
           </div>
         </aside>
@@ -255,36 +321,46 @@ class AntigravityRenderer {
     const isPkg = this.pageMode === 'packaging';
     const isMeat = this.pageMode === 'meat_machinery';
     const isFish = this.pageMode === 'fishery_machinery';
+    const isProj = this.pageMode === 'industrial_projects';
 
     // Estilo temático de la barra superior según el rubro activo
     const headerBg = isMeat
       ? 'bg-[#140606]/90 border-red-900/50'
       : isFish
       ? 'bg-[#031224]/90 border-cyan-900/50'
+      : isProj
+      ? 'bg-[#041612]/90 border-emerald-900/60'
       : 'bg-[#0b0c10]/85 border-white/[0.08]';
 
     const hairlineGradient = isMeat
       ? 'via-red-500/80'
       : isFish
       ? 'via-cyan-400/80'
+      : isProj
+      ? 'via-emerald-400/85'
       : 'via-amber-500/60';
 
-    const badgeText = isMeat ? 'CÁRNICO' : isFish ? 'PESQUERO' : 'ENVASES';
+    const badgeText = isMeat ? 'CÁRNICO' : isFish ? 'PESQUERO' : isProj ? 'PROYECTOS & CORFO' : 'ENVASES';
     const badgeClasses = isMeat
       ? 'bg-red-500/20 border-red-500/40 text-red-300'
       : isFish
       ? 'bg-cyan-500/20 border-cyan-400/40 text-cyan-300'
+      : isProj
+      ? 'bg-emerald-500/20 border-emerald-400/40 text-emerald-300'
       : 'bg-amber-500/15 border-amber-500/30 text-amber-400';
 
     const subtitleText = isMeat
       ? 'División Maquinaria Rubro Cárnico'
       : isFish
       ? 'División Maquinaria Proceso Pesquero'
+      : isProj
+      ? 'Proyectos Llave en Mano & Corfo'
       : 'Digital Flexible Packaging';
 
-    // Target blank cuando se abre una página de maquinaria desde la página principal de envases
+    // Target blank cuando se abre una página especializada desde la página principal de envases
     const meatTarget = isPkg ? 'target="_blank" rel="noopener"' : '';
     const fishTarget = isPkg ? 'target="_blank" rel="noopener"' : '';
+    const projTarget = isPkg ? 'target="_blank" rel="noopener"' : '';
 
     return `
       <header class="sticky top-0 z-40 backdrop-blur-2xl ${headerBg} border-b shadow-[0_4px_30px_rgba(0,0,0,0.6)] transition-all">
@@ -295,7 +371,7 @@ class AntigravityRenderer {
           
           <!-- 1. Logo Oficial WellPack -->
           <a href="index.html" class="flex items-center gap-3 sm:gap-3.5 group shrink-0 transition-transform active:scale-95">
-            <div class="relative w-10 h-10 sm:w-11 sm:h-11 rounded-full p-[1.5px] bg-gradient-to-br ${isMeat ? 'from-red-500 via-rose-500 to-amber-500 shadow-[0_0_15px_rgba(239,68,68,0.45)]' : isFish ? 'from-cyan-400 via-sky-500 to-blue-600 shadow-[0_0_15px_rgba(6,182,212,0.45)]' : 'from-amber-400 via-amber-500 to-amber-600 shadow-[0_0_15px_rgba(245,158,11,0.35)]'} transition-all duration-300">
+            <div class="relative w-10 h-10 sm:w-11 sm:h-11 rounded-full p-[1.5px] bg-gradient-to-br ${isMeat ? 'from-red-500 via-rose-500 to-amber-500 shadow-[0_0_15px_rgba(239,68,68,0.45)]' : isFish ? 'from-cyan-400 via-sky-500 to-blue-600 shadow-[0_0_15px_rgba(6,182,212,0.45)]' : isProj ? 'from-emerald-400 via-teal-500 to-amber-400 shadow-[0_0_15px_rgba(16,185,129,0.45)]' : 'from-amber-400 via-amber-500 to-amber-600 shadow-[0_0_15px_rgba(245,158,11,0.35)]'} transition-all duration-300">
               <img 
                 src="/assets/images/logo_wp_badge.png" 
                 alt="WellPack Official Logo" 
@@ -318,20 +394,20 @@ class AntigravityRenderer {
             <!-- Pestaña 1: Envases Flexibles (Página Principal) -->
             <a 
               href="index.html" 
-              class="px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all ${
+              class="px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all ${
                 isPkg
                   ? 'bg-amber-500 text-neutral-950 shadow-[0_0_15px_rgba(245,158,11,0.4)]'
                   : 'text-neutral-300 hover:text-amber-300 hover:bg-white/5'
               }">
               <i data-lucide="package" class="w-3.5 h-3.5 ${isPkg ? 'text-neutral-950' : 'text-amber-400'}"></i>
-              <span>Envases Flexibles</span>
+              <span>Envases</span>
             </a>
 
-            <!-- Pestaña 2: Maquinaria Rubro Cárnico (Se abre en nueva pestaña desde Envases) -->
+            <!-- Pestaña 2: Maquinaria Rubro Cárnico -->
             <a 
               href="maquinaria-carnica.html" 
               ${meatTarget}
-              class="px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all ${
+              class="px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all ${
                 isMeat
                   ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white border border-red-400/50 shadow-[0_0_18px_rgba(220,38,38,0.5)]'
                   : 'text-red-300 bg-red-950/40 border border-red-500/30 hover:bg-red-900/50 hover:border-red-400'
@@ -340,11 +416,11 @@ class AntigravityRenderer {
               ${isPkg ? '<i data-lucide="external-link" class="w-3 h-3 text-red-400"></i>' : ''}
             </a>
 
-            <!-- Pestaña 3: Maquinaria Proceso Pesquero (Se abre en nueva pestaña desde Envases) -->
+            <!-- Pestaña 3: Maquinaria Proceso Pesquero -->
             <a 
               href="maquinaria-pesquera.html" 
               ${fishTarget}
-              class="px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all ${
+              class="px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all ${
                 isFish
                   ? 'bg-gradient-to-r from-cyan-400 to-sky-500 text-slate-950 border border-cyan-300 shadow-[0_0_18px_rgba(6,182,212,0.5)]'
                   : 'text-cyan-300 bg-cyan-950/40 border border-cyan-500/30 hover:bg-cyan-900/50 hover:border-cyan-400'
@@ -353,17 +429,18 @@ class AntigravityRenderer {
               ${isPkg ? '<i data-lucide="external-link" class="w-3 h-3 text-cyan-400"></i>' : ''}
             </a>
 
-            <!-- Separador -->
-            <span class="h-4 w-[1px] bg-white/10 mx-1"></span>
-
-            ${isPkg ? `
-              <a href="#packaging_types_gallery" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-neutral-300 hover:text-white hover:bg-neutral-800/70 transition-all">Formatos</a>
-              <a href="#tiered_pricing_offers" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-neutral-300 hover:text-white hover:bg-neutral-800/70 transition-all">Precios</a>
-            ` : isMeat ? `
-              <a href="#machinery_showcase" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-red-200 hover:text-white hover:bg-red-900/40 transition-all">12 Equipos Cárnicos</a>
-            ` : `
-              <a href="#fishery_machinery_showcase" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-cyan-200 hover:text-white hover:bg-cyan-900/40 transition-all">12 Equipos Pesqueros</a>
-            `}
+            <!-- Pestaña 4: Proyectos y Asesorías Industriales / Corfo -->
+            <a 
+              href="proyectos-asesorias.html" 
+              ${projTarget}
+              class="px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all ${
+                isProj
+                  ? 'bg-gradient-to-r from-emerald-400 via-teal-400 to-amber-400 text-slate-950 border border-emerald-300 shadow-[0_0_18px_rgba(16,185,129,0.5)]'
+                  : 'text-emerald-300 bg-emerald-950/45 border border-emerald-500/35 hover:bg-emerald-900/55 hover:border-emerald-400'
+              }">
+              <span>🌱 Proyectos & Corfo</span>
+              ${isPkg ? '<i data-lucide="external-link" class="w-3 h-3 text-emerald-400"></i>' : ''}
+            </a>
           </nav>
 
           <!-- 3. Acciones de Cabecera -->
@@ -400,7 +477,7 @@ class AntigravityRenderer {
                 <i data-lucide="flame" class="w-4 h-4 text-white"></i>
                 <span>Cotizar Línea Cárnica</span>
               </button>
-            ` : `
+            ` : isFish ? `
               <button 
                 type="button"
                 data-machine-title="Línea Industrial Proceso Pesquero & Acuícola"
@@ -408,6 +485,13 @@ class AntigravityRenderer {
                 <i data-lucide="fish" class="w-4 h-4 text-slate-950"></i>
                 <span>Cotizar Línea Pesquera</span>
               </button>
+            ` : `
+              <a 
+                href="#corfo_wizard_section"
+                class="group relative inline-flex items-center gap-2 bg-gradient-to-r from-emerald-400 via-teal-400 to-amber-400 hover:from-emerald-300 hover:to-amber-300 text-slate-950 font-black text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-xl shadow-[0_0_20px_rgba(16,185,129,0.45)] border border-emerald-300/60 transition-all hover:scale-[1.03] active:scale-95 font-mono tracking-wider uppercase shrink-0">
+                <i data-lucide="compass" class="w-4 h-4 text-slate-950"></i>
+                <span>Evaluador Corfo</span>
+              </a>
             `}
 
             <!-- Botón Menú Móvil -->
@@ -420,7 +504,7 @@ class AntigravityRenderer {
           </div>
         </div>
 
-        <!-- Menú Desplegable Móvil con las 3 Pestañas de División -->
+        <!-- Menú Desplegable Móvil con las 4 Pestañas de División -->
         <div id="mobile-nav-menu" class="hidden lg:hidden border-t border-white/10 bg-[#0b0c10]/95 backdrop-blur-2xl px-4 py-3 space-y-2">
           <div class="text-[10px] font-mono uppercase tracking-widest text-neutral-400 px-2 pb-1">Divisiones WellPack</div>
           <a href="index.html" class="mobile-nav-link flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-bold ${isPkg ? 'bg-amber-500 text-neutral-950' : 'text-amber-300 bg-amber-500/10 border border-amber-500/30'}">
@@ -433,6 +517,10 @@ class AntigravityRenderer {
           </a>
           <a href="maquinaria-pesquera.html" ${fishTarget} class="mobile-nav-link flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-bold ${isFish ? 'bg-cyan-400 text-slate-950' : 'text-cyan-300 bg-cyan-950/50 border border-cyan-500/30'}">
             <span>🐟 Maquinaria Proceso Pesquero</span>
+            <i data-lucide="external-link" class="w-4 h-4"></i>
+          </a>
+          <a href="proyectos-asesorias.html" ${projTarget} class="mobile-nav-link flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-bold ${isProj ? 'bg-emerald-400 text-slate-950' : 'text-emerald-300 bg-emerald-950/50 border border-emerald-500/30'}">
+            <span>🌱 Proyectos y Asesorías Corfo</span>
             <i data-lucide="external-link" class="w-4 h-4"></i>
           </a>
         </div>
@@ -769,36 +857,37 @@ class AntigravityRenderer {
   }
 
   // ==========================================================
-  // PORTAL DE DIVISIONES DE MAQUINARIA (EN PÁGINA PRINCIPAL DE ENVASES)
+  // PORTAL DE DIVISIONES DE MAQUINARIA Y PROYECTOS CORFO (EN PÁGINA PRINCIPAL DE ENVASES)
   // ==========================================================
   renderMachineryDivisionsPortal() {
     return `
       <section id="machinery_divisions_portal" class="py-20 bg-[#0d0e12] text-white relative border-b border-neutral-800 overflow-hidden font-sans">
         <div class="absolute top-0 left-1/4 w-[500px] h-[300px] bg-red-600/10 blur-[140px] pointer-events-none rounded-full"></div>
         <div class="absolute bottom-0 right-1/4 w-[500px] h-[300px] bg-cyan-500/10 blur-[140px] pointer-events-none rounded-full"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[320px] bg-emerald-500/10 blur-[150px] pointer-events-none rounded-full"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div class="text-center max-w-3xl mx-auto mb-12">
             <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-900 border border-amber-500/40 text-amber-400 text-xs font-mono font-bold uppercase mb-3 shadow-sm">
               <i data-lucide="cpu" class="w-4 h-4 text-amber-400"></i>
-              Catálogos Especializados en Pestaña Independiente
+              Portales Especializados en Pestaña Independiente
             </div>
             <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight">
-              Divisiones de Maquinaria Industrial por Rubro
+              Divisiones de Maquinaria Industrial & Proyectos Corfo
             </h2>
             <p class="mt-3 text-neutral-400 text-sm sm:text-base">
-              Para brindarte una experiencia ágil, hemos separado nuestras líneas de equipamiento industrial en dos portales especializados según tu planta productiva.
+              Explora nuestras líneas de equipamiento industrial por rubro o utiliza nuestro Evaluador Interactivo de Proyectos Llave en Mano y Financiamiento Corfo.
             </p>
           </div>
 
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-7 items-stretch">
             <!-- Tarjeta Portal 1: Rubro Cárnico & Cecinas -->
             <a 
               href="maquinaria-carnica.html" 
               target="_blank" 
               rel="noopener"
               class="group relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#1f0808] via-[#160707] to-[#0f0505] border border-red-500/40 hover:border-red-400 shadow-2xl hover:shadow-red-600/25 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between">
-              <div class="relative h-64 overflow-hidden">
+              <div class="relative h-56 overflow-hidden">
                 <img 
                   src="assets/images/hero_maquinaria_carnica.jpg" 
                   alt="Maquinaria Rubro Cárnico y Cecinas" 
@@ -806,32 +895,32 @@ class AntigravityRenderer {
                   class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#160707] via-[#160707]/40 to-transparent"></div>
                 <div class="absolute top-4 left-4">
-                  <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-red-950/90 backdrop-blur-md text-xs font-mono font-bold text-red-300 border border-red-500/50 shadow-lg">
-                    🥩 DIVISIÓN RUBRO CÁRNICO
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-red-950/90 backdrop-blur-md text-[11px] font-mono font-bold text-red-300 border border-red-500/50 shadow-lg">
+                    🥩 RUBRO CÁRNICO
                   </span>
                 </div>
                 <div class="absolute top-4 right-4">
-                  <span class="inline-flex items-center gap-1 px-3 py-1 rounded-xl bg-black/80 text-[11px] font-mono text-amber-400 border border-amber-500/40">
-                    <span>Abrir en nueva pestaña</span>
-                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                  <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl bg-black/80 text-[10px] font-mono text-amber-400 border border-amber-500/40">
+                    <span>Nueva pestaña</span>
+                    <i data-lucide="external-link" class="w-3 h-3"></i>
                   </span>
                 </div>
               </div>
 
-              <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+              <div class="p-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 class="text-2xl font-black text-white group-hover:text-red-400 transition-colors">
+                  <h3 class="text-xl font-black text-white group-hover:text-red-400 transition-colors">
                     Maquinaria para Rubro Cárnico, Frigoríficos & Cecinas
                   </h3>
-                  <p class="mt-2 text-sm text-neutral-300 leading-relaxed">
-                    12 líneas industriales en acero inoxidable SUS304: desmenuzadoras de bloques congelados (-18°C), picadoras pesadas, cutters al vacío de 4.500 RPM, embutidoras con torsión y hornos ahumadores PLC.
+                  <p class="mt-2 text-xs sm:text-sm text-neutral-300 leading-relaxed">
+                    12 líneas en acero inoxidable SUS304: desmenuzadoras de congelados (-18°C), picadoras, cutters al vacío de 4.500 RPM, embutidoras y hornos ahumadores PLC.
                   </p>
                 </div>
                 <div class="mt-6 pt-4 border-t border-red-900/50 flex items-center justify-between">
-                  <span class="text-xs font-mono text-red-300 font-bold">12 Equipos Cárnicos • Fichas Técnicas</span>
-                  <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 text-white font-black text-xs uppercase tracking-wider shadow-lg shadow-red-600/30 group-hover:scale-105 transition-transform">
-                    <span>Explorar Rubro Cárnico</span>
-                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                  <span class="text-[11px] font-mono text-red-300 font-bold">12 Equipos Cárnicos</span>
+                  <span class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 text-white font-black text-xs uppercase tracking-wider shadow-lg shadow-red-600/30 group-hover:scale-105 transition-transform">
+                    <span>Ver Catálogo</span>
+                    <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
                   </span>
                 </div>
               </div>
@@ -843,7 +932,7 @@ class AntigravityRenderer {
               target="_blank" 
               rel="noopener"
               class="group relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#06203a] via-[#041527] to-[#020c18] border border-cyan-500/40 hover:border-cyan-300 shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between">
-              <div class="relative h-64 overflow-hidden">
+              <div class="relative h-56 overflow-hidden">
                 <img 
                   src="assets/images/hero_maquinaria_pesquera.jpg" 
                   alt="Maquinaria Proceso Pesquero y Salmonero" 
@@ -851,32 +940,77 @@ class AntigravityRenderer {
                   class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#041527] via-[#041527]/40 to-transparent"></div>
                 <div class="absolute top-4 left-4">
-                  <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-cyan-950/90 backdrop-blur-md text-xs font-mono font-bold text-cyan-300 border border-cyan-400/50 shadow-lg">
-                    🐟 DIVISIÓN PROCESO PESQUERO
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-cyan-950/90 backdrop-blur-md text-[11px] font-mono font-bold text-cyan-300 border border-cyan-400/50 shadow-lg">
+                    🐟 PROCESO PESQUERO
                   </span>
                 </div>
                 <div class="absolute top-4 right-4">
-                  <span class="inline-flex items-center gap-1 px-3 py-1 rounded-xl bg-black/80 text-[11px] font-mono text-cyan-300 border border-cyan-400/40">
-                    <span>Abrir en nueva pestaña</span>
-                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                  <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl bg-black/80 text-[10px] font-mono text-cyan-300 border border-cyan-400/40">
+                    <span>Nueva pestaña</span>
+                    <i data-lucide="external-link" class="w-3 h-3"></i>
                   </span>
                 </div>
               </div>
 
-              <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+              <div class="p-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 class="text-2xl font-black text-white group-hover:text-cyan-300 transition-colors">
-                    Maquinaria para Proceso Pesquero: De Pescado Entero a Producto Empacado
+                  <h3 class="text-xl font-black text-white group-hover:text-cyan-300 transition-colors">
+                    Maquinaria para Proceso Pesquero + Videoteca Real
                   </h3>
-                  <p class="mt-2 text-sm text-slate-300 leading-relaxed">
-                    12 máquinas para cada etapa de la línea: descamadora por hidrojets (90 bar), evisceradora, descabezadora, abridora mariposa, fileteadora, despieladora, cortadora de rodajas, rebanadora sashimi, separadora carne-espina, clasificadora por peso, balanza de 12 cintas y glaseadora IQF.
+                  <p class="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    12 máquinas con videos en planta: descamadora por hidrojets (90 bar), evisceradora, descabezadora, fileteadora, despieladora, sashimi, separadora de pulpa y glaseo IQF.
                   </p>
                 </div>
                 <div class="mt-6 pt-4 border-t border-cyan-900/50 flex items-center justify-between">
-                  <span class="text-xs font-mono text-cyan-300 font-bold">12 Equipos Pesqueros • Fichas + Mapa de Línea</span>
-                  <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-400 to-sky-500 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-cyan-500/30 group-hover:scale-105 transition-transform">
-                    <span>Explorar Proceso Pesquero</span>
-                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                  <span class="text-[11px] font-mono text-cyan-300 font-bold">12 Equipos + 12 Videos</span>
+                  <span class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-cyan-400 to-sky-500 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-cyan-500/30 group-hover:scale-105 transition-transform">
+                    <span>Ver Catálogo</span>
+                    <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                  </span>
+                </div>
+              </div>
+            </a>
+
+            <!-- Tarjeta Portal 3: Proyectos Llave en Mano & Asesorías Corfo -->
+            <a 
+              href="proyectos-asesorias.html" 
+              target="_blank" 
+              rel="noopener"
+              class="group relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#06261e] via-[#041914] to-[#020e0b] border border-emerald-500/45 hover:border-emerald-300 shadow-2xl hover:shadow-emerald-500/25 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between">
+              <div class="relative h-56 overflow-hidden">
+                <img 
+                  src="assets/images/hero_proyectos_corfo.jpg" 
+                  alt="Proyectos Llave en Mano y Financiamiento Corfo" 
+                  loading="lazy"
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#041914] via-[#041914]/40 to-transparent"></div>
+                <div class="absolute top-4 left-4">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-emerald-950/90 backdrop-blur-md text-[11px] font-mono font-bold text-emerald-300 border border-emerald-400/50 shadow-lg">
+                    🌱 PROYECTOS & CORFO
+                  </span>
+                </div>
+                <div class="absolute top-4 right-4">
+                  <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl bg-black/80 text-[10px] font-mono text-emerald-300 border border-emerald-400/40">
+                    <span>Wizard 5 Pasos</span>
+                    <i data-lucide="external-link" class="w-3 h-3"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div class="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                  <h3 class="text-xl font-black text-white group-hover:text-emerald-300 transition-colors">
+                    Proyectos Llave en Mano, Tecnología Verde & Incentivos Corfo
+                  </h3>
+                  <p class="mt-2 text-xs sm:text-sm text-emerald-100/85 leading-relaxed">
+                    Economía circular (valorización de residuos y agua), Industria 4.0, importación directa de maquinaria y estructuración Corfo (Crédito Verde, MiPyme, Ley I+D 35%).
+                  </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-emerald-900/60 flex items-center justify-between">
+                  <span class="text-[11px] font-mono text-emerald-300 font-bold">Evaluador Corfo Online</span>
+                  <span class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-emerald-400 via-teal-400 to-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-emerald-500/30 group-hover:scale-105 transition-transform">
+                    <span>Evaluar Proyecto</span>
+                    <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
                   </span>
                 </div>
               </div>
@@ -884,6 +1018,992 @@ class AntigravityRenderer {
           </div>
         </div>
       </section>
+    `;
+  }
+
+  // ==========================================================
+  // CONFIGURACIÓN DE DATOS DEL WIZARD INTERACTIVO CORFO (5 PASOS)
+  // ==========================================================
+  getCorfoFocusConfig() {
+    return {
+      A: {
+        key: 'A',
+        optionCode: 'Opción A',
+        title: 'Tecnología Verde, Agua, Residuos y Energía',
+        corfoProgram: 'Crédito Verde Corfo',
+        badge: 'Economía Circular & Mitigación Ambiental',
+        icon: 'leaf',
+        colorClass: 'emerald',
+        summaryDesc: 'Financiamiento de largo plazo con condiciones preferenciales para inversiones en economía circular, valorización de subproductos orgánicos, reúso de agua industrial y energías limpias en planta.',
+        financialBenefits: [
+          'Elegible para línea Crédito Verde Corfo (banca comercial / no bancaria con fondeo verde)',
+          'Plazos extendidos de amortización alineados al retorno energético e hídrico del activo',
+          'Cumplimiento normativo ambiental, reducción de RILES y valorización comercial de descartes'
+        ],
+        techOptions: [
+          'Planta recicladora/valorizadora de residuos orgánicos (pescado, cárnicos, subproductos).',
+          'Sistema recuperador y planta de tratamiento/recirculación de agua industrial.',
+          'Sistemas de energía renovable en planta (Solar fotovoltaica / Eólica).',
+          'Equipos de eficiencia térmica y energética.'
+        ]
+      },
+      B: {
+        key: 'B',
+        optionCode: 'Opción B',
+        title: 'Maquinaria de Proceso, Frío y Envasado',
+        corfoProgram: 'Crédito Corfo MiPyme (Leasing / Inversión)',
+        badge: 'Capacidad Productiva & Cadena de Frío',
+        icon: 'cpu',
+        colorClass: 'cyan',
+        summaryDesc: 'Estructuración de inversión en activo fijo productivo, túneles IQF, cámaras frigoríficas y líneas de envasado de alta barrera mediante Leasing o Crédito de Inversión con cobertura estatal Corfo.',
+        financialBenefits: [
+          'Acceso a Crédito Corfo MiPyme y Garantía Estatal Pro-Inversión / Fogain (hasta 70%–80% de cobertura)',
+          'Estructuración vía Leasing Financiero u Operativo para optimizar flujo de caja y escudo fiscal',
+          'Importación directa llave en mano con especificación técnica validada para bancos e intermediarios'
+        ],
+        techOptions: [
+          'Máquinas de envasado al vacío de alta barrera / Doypack / Termoselladoras.',
+          'Cámaras de frío modulares / Túneles de congelado rápido (IQF).',
+          'Maquinaria de procesamiento (clasificadoras, cortadoras, líneas de lavado).'
+        ]
+      },
+      C: {
+        key: 'C',
+        optionCode: 'Opción C',
+        title: 'Automatización, IoT e Innovación de Procesos',
+        corfoProgram: 'Incentivo Tributario Ley I+D (35% rebaja impuestos)',
+        badge: 'Industria 4.0 & Franquicia Tributaria SII',
+        icon: 'bot',
+        colorClass: 'amber',
+        summaryDesc: 'Certificación de proyectos de innovación tecnológica, automatización avanzada, sensórica IoT y visión artificial acogidos a la Ley de Incentivo Tributario a la Inversión en I+D (Ley Nº 20.241).',
+        financialBenefits: [
+          'Crédito tributario del 35% contra el Impuesto de Primera Categoría del SII sobre el monto certificado',
+          'El 65% restante se reconoce como gasto necesario para producir la renta (deducible de impuestos)',
+          'Aplica a empresas de todo tamaño (Micro, Pyme y Gran Empresa tributando en Primera Categoría)'
+        ],
+        techOptions: [
+          'Automatización de líneas productivas, pesaje y dosificación.',
+          'Sensórica IoT para monitoreo de cadena de frío y eficiencia en tiempo real.',
+          'Sistemas de visión artificial para control de calidad y seguridad.'
+        ]
+      },
+      D: {
+        key: 'D',
+        optionCode: 'Opción D',
+        title: 'Asesoría Industrial Integral y Estructuración',
+        corfoProgram: 'Consultoría Llave en Mano + Mix Corfo / Excepción Rentas Pasivas',
+        badge: 'Ingeniería de Planta, Sourcing & Estructuración',
+        icon: 'briefcase',
+        colorClass: 'teal',
+        summaryDesc: 'Acompañamiento integral desde el levantamiento de cuellos de botella en terreno y búsqueda de maquinaria de especialidad hasta la estructuración de carpetas Corfo y conversión de capital en activo productivo.',
+        financialBenefits: [
+          'Combinación estratégica de instrumentos Corfo (Crédito Verde + MiPyme + Ley I+D 35%)',
+          'Estructuración de inversión en activos industriales reales para Sociedades de Inversión (Excepción Rentas Pasivas)',
+          'Ingeniería de layout, selección de proveedores de fábrica, importación directa y puesta en marcha'
+        ],
+        techOptions: [
+          'Diagnóstico en terreno de cuellos de botella y optimización de planta.',
+          'Ingeniería y búsqueda de maquinaria de especialidad para importación directa.',
+          'Formulación técnica y financiera de carpetas para postulación Corfo.'
+        ]
+      }
+    };
+  }
+
+  // ==========================================================
+  // PÁGINA COMPLETA: PROYECTOS LLAVE EN MANO Y ASESORÍAS INDUSTRIALES CORFO
+  // ==========================================================
+  renderIndustrialProjectsPage() {
+    const focusMap = this.getCorfoFocusConfig();
+
+    return `
+      <!-- 1. HERO SECTION CORPORATIVO DE ALTO IMPACTO -->
+      <section id="hero_projects" class="relative min-h-[82vh] flex items-center justify-center overflow-hidden py-16 lg:py-24 bg-[#041310] text-white border-b border-emerald-900/60">
+        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+          <div id="hero-fluid-track" class="absolute -top-[5%] -left-[18%] w-[136%] h-[110%] animate-hero-pan will-change-transform">
+            <img 
+              id="hero-fluid-img"
+              src="assets/images/hero_proyectos_corfo.jpg" 
+              alt="Proyectos Llave en Mano, Tecnología Verde y Financiamiento Corfo WellPack" 
+              class="w-full h-full object-cover object-center filter brightness-[0.92] contrast-[1.14] saturate-[1.15]">
+          </div>
+          <div class="absolute inset-0 bg-[radial-gradient(ellipse_75%_65%_at_50%_50%,rgba(4,24,19,0.52)_0%,rgba(4,19,16,0.45)_55%,rgba(4,19,16,0.94)_100%)]"></div>
+          <div class="absolute inset-0 bg-gradient-to-b from-[#041310]/85 via-transparent to-[#041310]"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-7 hero-content-trigger">
+          <div class="p-6 sm:p-10 lg:p-12 rounded-3xl bg-[#051b16]/75 backdrop-blur-md border border-emerald-400/35 shadow-[0_20px_60px_rgba(0,0,0,0.85)] space-y-6">
+            <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-950/90 border border-emerald-400/60 text-emerald-300 text-xs font-mono font-bold uppercase tracking-wider shadow-lg">
+              <i data-lucide="compass" class="w-4 h-4 text-emerald-400"></i>
+              <span>División Ingeniería de Procesos, Importación Directa & Financiamiento Corfo</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-white drop-shadow-lg">
+              Proyectos Llave en Mano y <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-300 to-amber-400">Asesorías Industriales</span>
+            </h1>
+
+            <p class="text-base sm:text-lg lg:text-xl text-emerald-50/90 max-w-4xl mx-auto font-normal leading-relaxed">
+              Integramos <strong>ingeniería de procesos en terreno</strong>, <strong>importación directa de maquinaria de especialidad</strong> (tecnología verde, frío IQF, procesamiento y automatización 4.0) y la <strong>estructuración técnica-financiera de incentivos Corfo</strong> para maximizar el retorno de tu inversión industrial en Chile.
+            </p>
+
+            <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+              <a 
+                href="#corfo_wizard_section" 
+                class="inline-flex items-center gap-2.5 bg-gradient-to-r from-emerald-400 via-teal-400 to-amber-400 hover:from-emerald-300 hover:to-amber-300 text-slate-950 font-black text-sm sm:text-base px-8 py-4 rounded-2xl shadow-xl shadow-emerald-500/35 transition-all hover:scale-105 active:scale-95">
+                <i data-lucide="sliders" class="w-5 h-5 text-slate-950"></i>
+                <span>Iniciar Evaluador de Proyectos Corfo (5 Pasos)</span>
+                <i data-lucide="arrow-down" class="w-4 h-4 text-slate-950"></i>
+              </a>
+              <a 
+                href="#four_service_pillars" 
+                class="inline-flex items-center gap-2 bg-[#07261f]/90 hover:bg-[#0a362c] text-emerald-200 border border-emerald-400/50 font-bold text-sm sm:text-base px-7 py-4 rounded-2xl transition-all hover:scale-105 backdrop-blur-md shadow-lg">
+                <i data-lucide="layers" class="w-5 h-5 text-emerald-300"></i>
+                <span>Ver las 4 Áreas de Servicio</span>
+              </a>
+            </div>
+
+            <!-- 4 KPIs Ejecutivos del Módulo -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5 pt-6 border-t border-emerald-900/70 text-left max-w-5xl mx-auto">
+              <div class="bg-[#07241e]/85 backdrop-blur-md p-3.5 rounded-2xl border border-emerald-400/30 shadow-lg">
+                <div class="text-lg font-black text-emerald-300 font-mono">Crédito Verde</div>
+                <div class="text-[11px] text-emerald-100/80 font-mono uppercase mt-0.5">Agua, Residuos & Energía</div>
+              </div>
+              <div class="bg-[#07241e]/85 backdrop-blur-md p-3.5 rounded-2xl border border-emerald-400/30 shadow-lg">
+                <div class="text-lg font-black text-cyan-300 font-mono">Corfo MiPyme</div>
+                <div class="text-[11px] text-emerald-100/80 font-mono uppercase mt-0.5">Leasing & Garantía Fogain</div>
+              </div>
+              <div class="bg-[#07241e]/85 backdrop-blur-md p-3.5 rounded-2xl border border-emerald-400/30 shadow-lg">
+                <div class="text-lg font-black text-amber-400 font-mono">35% Ley I+D</div>
+                <div class="text-[11px] text-emerald-100/80 font-mono uppercase mt-0.5">Rebaja Impuesto 1ª Cat.</div>
+              </div>
+              <div class="bg-[#07241e]/85 backdrop-blur-md p-3.5 rounded-2xl border border-emerald-400/30 shadow-lg">
+                <div class="text-lg font-black text-teal-300 font-mono">Rentas Pasivas</div>
+                <div class="text-[11px] text-emerald-100/80 font-mono uppercase mt-0.5">Inversión Activo Productivo</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. GRILLA CON NUESTRAS 4 ÁREAS DE SERVICIO -->
+      <section id="four_service_pillars" class="py-24 bg-[#051814] text-white border-b border-emerald-950 relative overflow-hidden font-sans">
+        <div class="absolute top-1/3 left-1/4 w-[600px] h-[350px] bg-emerald-500/10 blur-[150px] pointer-events-none rounded-full"></div>
+        <div class="absolute bottom-10 right-1/4 w-[500px] h-[300px] bg-amber-500/10 blur-[140px] pointer-events-none rounded-full"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="text-center max-w-3xl mx-auto mb-14">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950 border border-emerald-400/40 text-emerald-300 text-xs font-mono font-bold uppercase mb-3">
+              <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+              <span>Arquitectura de Soluciones B2B • 4 Pilares Estratégicos</span>
+            </div>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+              Nuestras 4 Áreas de Ingeniería y Estructuración
+            </h2>
+            <p class="mt-4 text-emerald-100/80 text-sm sm:text-base leading-relaxed">
+              Desde la selección y fabricación de equipamiento en origen hasta la formulación de la carpeta técnica y financiera ante banca e instrumentos Corfo. Selecciona cualquier área para cargarla directamente en el evaluador.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <!-- Área 1: Tecnología Verde y Economía Circular -->
+            <article class="spotlight-card rounded-3xl bg-gradient-to-b from-[#082921] to-[#051a15] border border-emerald-500/40 hover:border-emerald-400 p-7 sm:p-8 flex flex-col justify-between shadow-2xl">
+              <div>
+                <div class="flex items-center justify-between gap-3 mb-5">
+                  <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-300 shadow-lg">
+                    <i data-lucide="leaf" class="w-7 h-7"></i>
+                  </div>
+                  <span class="px-3.5 py-1.5 rounded-full bg-emerald-950 border border-emerald-400/50 text-emerald-300 font-mono font-bold text-xs uppercase">
+                    Ruta: Crédito Verde Corfo
+                  </span>
+                </div>
+                <div class="text-xs font-mono uppercase tracking-widest text-emerald-400 font-bold mb-1">ÁREA DE SERVICIO 01</div>
+                <h3 class="text-2xl font-black text-white mb-3">
+                  Tecnología Verde y Economía Circular
+                </h3>
+                <p class="text-sm text-emerald-100/85 leading-relaxed mb-5">
+                  Transformamos pasivos ambientales y descartes orgánicos en rentabilidad operativa mediante tecnología de valorización, recuperación de recursos hídricos y autogeneración energética en planta.
+                </p>
+                <ul class="space-y-2.5 text-xs sm:text-sm text-emerald-50/90 mb-6">
+                  <li class="flex items-start gap-2.5 bg-[#041410]/80 p-3 rounded-xl border border-emerald-800/50">
+                    <i data-lucide="recycle" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                    <span><strong>Recicladores y valorizadores de residuos pesqueros/cárnicos:</strong> conversión de vísceras, espinazos, conchas y subproductos en harina proteica, hidrolizados o biofertilizantes.</span>
+                  </li>
+                  <li class="flex items-start gap-2.5 bg-[#041410]/80 p-3 rounded-xl border border-emerald-800/50">
+                    <i data-lucide="droplets" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                    <span><strong>Plantas recuperadoras y tratamiento de agua industrial:</strong> filtración avanzada, abatimiento de RILES y recirculación para reducir hasta un 70% el consumo hídrico.</span>
+                  </li>
+                  <li class="flex items-start gap-2.5 bg-[#041410]/80 p-3 rounded-xl border border-emerald-800/50">
+                    <i data-lucide="sun" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                    <span><strong>Energía solar fotovoltaica / eólica y eficiencia térmica:</strong> reducción de costos de potencia en horas punta para frigoríficos y salas de proceso.</span>
+                  </li>
+                </ul>
+              </div>
+              <button 
+                type="button"
+                data-preset-focus="A"
+                class="btn-preset-corfo-focus btn-spring w-full py-3.5 px-5 rounded-2xl bg-emerald-500/20 hover:bg-emerald-400 hover:text-slate-950 text-emerald-300 border border-emerald-400/50 font-mono font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all">
+                <span>Configurar Proyecto de Tecnología Verde en el Wizard</span>
+                <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+              </button>
+            </article>
+
+            <!-- Área 2: Equipamiento de Proceso, Frío y Envasado de Alta Barrera -->
+            <article class="spotlight-card rounded-3xl bg-gradient-to-b from-[#062436] to-[#041622] border border-cyan-500/40 hover:border-cyan-400 p-7 sm:p-8 flex flex-col justify-between shadow-2xl">
+              <div>
+                <div class="flex items-center justify-between gap-3 mb-5">
+                  <div class="w-14 h-14 rounded-2xl bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 shadow-lg">
+                    <i data-lucide="snowflake" class="w-7 h-7"></i>
+                  </div>
+                  <span class="px-3.5 py-1.5 rounded-full bg-cyan-950 border border-cyan-400/50 text-cyan-300 font-mono font-bold text-xs uppercase">
+                    Ruta: Crédito Corfo MiPyme
+                  </span>
+                </div>
+                <div class="text-xs font-mono uppercase tracking-widest text-cyan-400 font-bold mb-1">ÁREA DE SERVICIO 02</div>
+                <h3 class="text-2xl font-black text-white mb-3">
+                  Equipamiento de Proceso, Frío y Envasado de Alta Barrera
+                </h3>
+                <p class="text-sm text-cyan-100/85 leading-relaxed mb-5">
+                  Suministro e integración de líneas continuas en acero inoxidable SUS304/316, sistemas de ultracongelación y envasado al vacío para extender el shelf-life y abrir mercados de exportación.
+                </p>
+                <ul class="space-y-2.5 text-xs sm:text-sm text-cyan-50/90 mb-6">
+                  <li class="flex items-start gap-2.5 bg-[#03111b]/80 p-3 rounded-xl border border-cyan-800/50">
+                    <i data-lucide="package-check" class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5"></i>
+                    <span><strong>Envasado de alta barrera:</strong> máquinas de campana doble, termoformadoras, termoselladoras de bandejas y llenadoras Doypack + films coextruidos PA/EVOH/PE.</span>
+                  </li>
+                  <li class="flex items-start gap-2.5 bg-[#03111b]/80 p-3 rounded-xl border border-cyan-800/50">
+                    <i data-lucide="thermometer-snowflake" class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5"></i>
+                    <span><strong>Frío industrial e IQF:</strong> cámaras de frío modulares, túneles espirales y lineales de congelado rápido (-40°C) y glaseadoras continuas.</span>
+                  </li>
+                  <li class="flex items-start gap-2.5 bg-[#03111b]/80 p-3 rounded-xl border border-cyan-800/50">
+                    <i data-lucide="settings-2" class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5"></i>
+                    <span><strong>Maquinaria de procesamiento:</strong> líneas completas de corte, fileteado, molienda, emulsión al vacío, lavado por burbujas y clasificación.</span>
+                  </li>
+                </ul>
+              </div>
+              <button 
+                type="button"
+                data-preset-focus="B"
+                class="btn-preset-corfo-focus btn-spring w-full py-3.5 px-5 rounded-2xl bg-cyan-500/20 hover:bg-cyan-400 hover:text-slate-950 text-cyan-300 border border-cyan-400/50 font-mono font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all">
+                <span>Configurar Maquinaria de Proceso y Frío en el Wizard</span>
+                <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+              </button>
+            </article>
+
+            <!-- Área 3: Automatización Industrial e Industria 4.0 -->
+            <article class="spotlight-card rounded-3xl bg-gradient-to-b from-[#291d07] to-[#191104] border border-amber-500/40 hover:border-amber-400 p-7 sm:p-8 flex flex-col justify-between shadow-2xl">
+              <div>
+                <div class="flex items-center justify-between gap-3 mb-5">
+                  <div class="w-14 h-14 rounded-2xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-300 shadow-lg">
+                    <i data-lucide="bot" class="w-7 h-7"></i>
+                  </div>
+                  <span class="px-3.5 py-1.5 rounded-full bg-amber-950 border border-amber-400/50 text-amber-300 font-mono font-bold text-xs uppercase">
+                    Ruta: Ley I+D (35% Rebaja SII)
+                  </span>
+                </div>
+                <div class="text-xs font-mono uppercase tracking-widest text-amber-400 font-bold mb-1">ÁREA DE SERVICIO 03</div>
+                <h3 class="text-2xl font-black text-white mb-3">
+                  Automatización Industrial e Industria 4.0
+                </h3>
+                <p class="text-sm text-amber-100/85 leading-relaxed mb-5">
+                  Digitalización y robotización de salas de proceso para eliminar mermas por sobrepeso (give-away), asegurar trazabilidad térmica en tiempo real y acogerse al beneficio tributario Ley I+D.
+                </p>
+                <ul class="space-y-2.5 text-xs sm:text-sm text-amber-50/90 mb-6">
+                  <li class="flex items-start gap-2.5 bg-[#120c02]/80 p-3 rounded-xl border border-amber-800/50">
+                    <i data-lucide="scale" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+                    <span><strong>Automatización de pesaje y dosificación:</strong> clasificadoras rotativas dinámicas (320–420 pzas/min) y balanzas combinadoras asociativas multicabezal.</span>
+                  </li>
+                  <li class="flex items-start gap-2.5 bg-[#120c02]/80 p-3 rounded-xl border border-amber-800/50">
+                    <i data-lucide="wifi" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+                    <span><strong>Sensórica IoT y telemetría en tiempo real:</strong> monitoreo continuo de cadena de frío, consumo eléctrico/vapor por lote y alertas predictivas OEE.</span>
+                  </li>
+                  <li class="flex items-start gap-2.5 bg-[#120c02]/80 p-3 rounded-xl border border-amber-800/50">
+                    <i data-lucide="scan-eye" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+                    <span><strong>Visión artificial y control de calidad:</strong> inspección óptica de defectos, calibre, coloración e integridad de sellado en línea.</span>
+                  </li>
+                </ul>
+              </div>
+              <button 
+                type="button"
+                data-preset-focus="C"
+                class="btn-preset-corfo-focus btn-spring w-full py-3.5 px-5 rounded-2xl bg-amber-500/20 hover:bg-amber-400 hover:text-slate-950 text-amber-300 border border-amber-400/50 font-mono font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all">
+                <span>Configurar Automatización & Ley I+D en el Wizard</span>
+                <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+              </button>
+            </article>
+
+            <!-- Área 4: Asesoría Industrial y Gestión de Financiamiento Corfo -->
+            <article class="spotlight-card rounded-3xl bg-gradient-to-b from-[#092826] to-[#051817] border border-teal-400/40 hover:border-teal-300 p-7 sm:p-8 flex flex-col justify-between shadow-2xl">
+              <div>
+                <div class="flex items-center justify-between gap-3 mb-5">
+                  <div class="w-14 h-14 rounded-2xl bg-teal-500/20 border border-teal-400/40 flex items-center justify-center text-teal-300 shadow-lg">
+                    <i data-lucide="landmark" class="w-7 h-7"></i>
+                  </div>
+                  <span class="px-3.5 py-1.5 rounded-full bg-teal-950 border border-teal-400/50 text-teal-300 font-mono font-bold text-xs uppercase">
+                    Ruta: Mix Corfo + Rentas Pasivas
+                  </span>
+                </div>
+                <div class="text-xs font-mono uppercase tracking-widest text-teal-400 font-bold mb-1">ÁREA DE SERVICIO 04</div>
+                <h3 class="text-2xl font-black text-white mb-3">
+                  Asesoría Industrial y Gestión de Financiamiento Corfo
+                </h3>
+                <p class="text-sm text-teal-100/85 leading-relaxed mb-5">
+                  Ingeniería financiera y técnica llave en mano: auditamos tu planta en terreno, cotizamos directo en fábrica y estructuramos la carpeta completa para apalancar subsidios, créditos y franquicias tributarias.
+                </p>
+                <ul class="space-y-2.5 text-xs sm:text-sm text-teal-50/90 mb-6">
+                  <li class="flex items-start gap-2.5 bg-[#031211]/80 p-3 rounded-xl border border-teal-800/50">
+                    <i data-lucide="file-check-2" class="w-4 h-4 text-teal-400 shrink-0 mt-0.5"></i>
+                    <span><strong>Crédito Verde y Crédito MiPyme Corfo:</strong> preparación de memorias de cálculo de ahorro hídrico/energético, cotizaciones formales y evaluación de garantías Fogain / Pro-Inversión.</span>
+                  </li>
+                  <li class="flex items-start gap-2.5 bg-[#031211]/80 p-3 rounded-xl border border-teal-800/50">
+                    <i data-lucide="percent" class="w-4 h-4 text-teal-400 shrink-0 mt-0.5"></i>
+                    <span><strong>Ley I+D (35% Rebaja Impuestos) y Excepción de Rentas Pasivas:</strong> estructuración de inversión en maquinaria industrial productiva para sociedades operativas o de inversión.</span>
+                  </li>
+                  <li class="flex items-start gap-2.5 bg-[#031211]/80 p-3 rounded-xl border border-teal-800/50">
+                    <i data-lucide="ship" class="w-4 h-4 text-teal-400 shrink-0 mt-0.5"></i>
+                    <span><strong>Sourcing e Importación Directa Llave en Mano:</strong> validación en fábrica (Running Test Video), logística marítima, internación aduanera y puesta en marcha en Chile.</span>
+                  </li>
+                </ul>
+              </div>
+              <button 
+                type="button"
+                data-preset-focus="D"
+                class="btn-preset-corfo-focus btn-spring w-full py-3.5 px-5 rounded-2xl bg-teal-500/20 hover:bg-teal-400 hover:text-slate-950 text-teal-300 border border-teal-400/50 font-mono font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all">
+                <span>Solicitar Estructuración Integral Corfo en el Wizard</span>
+                <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+              </button>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. CONFIGURADOR Y EVALUADOR INTERACTIVO DE PROYECTOS CORFO (WIZARD DE 5 PASOS) -->
+      <section id="corfo_wizard_section" class="py-24 bg-[#03100d] text-white border-b border-emerald-950 relative overflow-hidden font-sans">
+        <div class="absolute top-1/4 right-10 w-[650px] h-[400px] bg-emerald-500/12 blur-[160px] pointer-events-none rounded-full"></div>
+        <div class="absolute bottom-10 left-10 w-[550px] h-[350px] bg-teal-500/10 blur-[140px] pointer-events-none rounded-full"></div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <!-- Encabezado del Wizard -->
+          <div class="text-center max-w-3xl mx-auto mb-10">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950 border border-emerald-400/50 text-emerald-300 text-xs font-mono font-bold uppercase mb-3 shadow-lg">
+              <i data-lucide="cpu" class="w-4 h-4 text-amber-400"></i>
+              <span>Configurador & Evaluador Interactivo B2B • 5 Pasos</span>
+            </div>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+              Evaluador de Proyectos e Incentivos Corfo
+            </h2>
+            <p class="mt-3 text-emerald-100/85 text-sm sm:text-base">
+              Completa estos 5 pasos en menos de 1 minuto para obtener la ruta de financiamiento recomendada (Crédito Verde, Crédito MiPyme, Ley I+D 35% o Excepción de Rentas Pasivas) y el equipamiento técnico para tu planta.
+            </p>
+          </div>
+
+          <!-- Contenedor Reactivo del Wizard -->
+          <div id="corfo-wizard-container" class="rounded-3xl bg-gradient-to-b from-[#07221c] to-[#041511] border-2 border-emerald-500/45 shadow-[0_25px_70px_rgba(0,0,0,0.85)] overflow-hidden">
+            ${this.renderCorfoWizardInner()}
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. BANNER DE CONEXIÓN CON CATÁLOGOS DE MAQUINARIA Y ENVASES -->
+      <section class="py-16 bg-[#020a08] border-b border-emerald-950 font-sans">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <a href="index.html" class="group p-6 rounded-3xl bg-gradient-to-r from-[#1a1408] to-[#120e06] border border-amber-500/35 hover:border-amber-400 flex items-center justify-between gap-4 transition-all hover:-translate-y-1">
+            <div>
+              <span class="text-[10px] font-mono uppercase text-amber-400 font-bold block mb-1">📦 División Principal</span>
+              <h3 class="text-lg font-black text-white group-hover:text-amber-300">Envases Flexibles de Alta Barrera</h3>
+              <p class="text-xs text-neutral-300 mt-1">Bolsas al vacío, Doypack, Retort y films impresos HD.</p>
+            </div>
+            <i data-lucide="arrow-up-right" class="w-5 h-5 text-amber-400 shrink-0"></i>
+          </a>
+
+          <a href="maquinaria-carnica.html" class="group p-6 rounded-3xl bg-gradient-to-r from-[#210909] to-[#140606] border border-red-500/35 hover:border-red-400 flex items-center justify-between gap-4 transition-all hover:-translate-y-1">
+            <div>
+              <span class="text-[10px] font-mono uppercase text-red-400 font-bold block mb-1">🥩 Catálogo de Equipos</span>
+              <h3 class="text-lg font-black text-white group-hover:text-red-300">Maquinaria Rubro Cárnico & Cecinas</h3>
+              <p class="text-xs text-red-200/80 mt-1">12 máquinas SUS304: cutters vacío, embutidoras y hornos.</p>
+            </div>
+            <i data-lucide="arrow-up-right" class="w-5 h-5 text-red-400 shrink-0"></i>
+          </a>
+
+          <a href="maquinaria-pesquera.html" class="group p-6 rounded-3xl bg-gradient-to-r from-[#061c33] to-[#041224] border border-cyan-500/35 hover:border-cyan-400 flex items-center justify-between gap-4 transition-all hover:-translate-y-1">
+            <div>
+              <span class="text-[10px] font-mono uppercase text-cyan-400 font-bold block mb-1">🐟 Catálogo + Videoteca</span>
+              <h3 class="text-lg font-black text-white group-hover:text-cyan-300">Maquinaria Proceso Pesquero</h3>
+              <p class="text-xs text-cyan-200/80 mt-1">12 máquinas en operación: descamado, fileteado e IQF.</p>
+            </div>
+            <i data-lucide="arrow-up-right" class="w-5 h-5 text-cyan-400 shrink-0"></i>
+          </a>
+        </div>
+      </section>
+    `;
+  }
+
+  renderCorfoWizardInner() {
+    const st = this.corfoWizardState;
+    const step = st.currentStep || 1;
+    const progressPct = step * 20;
+    const focusMap = this.getCorfoFocusConfig();
+    const activeFocus = focusMap[st.focusKey] || focusMap.A;
+
+    const stepsMeta = [
+      { num: 1, label: '1. Sector Industrial' },
+      { num: 2, label: '2. Enfoque & Filtro Corfo' },
+      { num: 3, label: '3. Tecnología Requerida' },
+      { num: 4, label: '4. Dimensionamiento' },
+      { num: 5, label: '5. Diagnóstico y Envío' }
+    ];
+
+    return `
+      <!-- Barra Superior de Estado y Progreso -->
+      <div class="p-6 sm:p-8 bg-[#041511] border-b border-emerald-800/70">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <div class="flex items-center gap-2.5">
+            <span class="px-3 py-1 rounded-lg bg-emerald-400 text-slate-950 font-mono font-black text-xs uppercase">
+              PASO ${step} DE 5 (${progressPct}%)
+            </span>
+            <span class="text-xs sm:text-sm font-mono text-emerald-200 font-bold">
+              ${stepsMeta[step - 1].label}
+            </span>
+          </div>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-emerald-950/90 border border-emerald-400/40 text-xs font-mono">
+            <span class="text-emerald-400 font-bold">Ruta Activa:</span>
+            <span class="text-amber-300 font-black">${st.corfoProgram}</span>
+          </div>
+        </div>
+
+        <!-- Barra de Progreso Animada -->
+        <div class="w-full h-2.5 bg-[#020b09] rounded-full overflow-hidden border border-emerald-900/80 mb-5">
+          <div class="h-full bg-gradient-to-r from-emerald-400 via-teal-400 to-amber-400 transition-all duration-500 rounded-full" style="width: ${progressPct}%"></div>
+        </div>
+
+        <!-- Navegador de los 5 Pasos -->
+        <div class="grid grid-cols-5 gap-2">
+          ${stepsMeta.map(s => {
+            const isCurrent = s.num === step;
+            const isDone = s.num < step;
+            return `
+              <button 
+                type="button"
+                data-wizard-goto="${s.num}"
+                class="btn-wizard-goto text-left p-2.5 rounded-xl border transition-all ${
+                  isCurrent
+                    ? 'bg-emerald-500/20 border-emerald-400 text-white shadow-md'
+                    : isDone
+                    ? 'bg-[#06211b] border-emerald-700/60 text-emerald-300 hover:border-emerald-400'
+                    : 'bg-[#03100d] border-emerald-900/50 text-emerald-200/50 hover:border-emerald-700'
+                }">
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-mono font-black uppercase ${isCurrent ? 'text-amber-300' : isDone ? 'text-emerald-400' : 'text-emerald-600'}">
+                    Paso 0${s.num}
+                  </span>
+                  ${isDone ? '<i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-400"></i>' : ''}
+                </div>
+                <div class="text-[11px] font-bold truncate mt-0.5 hidden sm:block">${s.label.replace(/^\d+\.\s*/, '')}</div>
+              </button>
+            `;
+          }).join('')}
+        </div>
+      </div>
+
+      <!-- Cuerpo Dinámico del Paso Actual -->
+      <div class="p-6 sm:p-8 lg:p-10 space-y-8">
+        ${this.renderCorfoWizardStepBody(step, st, activeFocus, focusMap)}
+
+        <!-- Barra Inferior de Navegación (Anterior / Siguiente) -->
+        <div class="pt-6 border-t border-emerald-800/60 flex flex-wrap items-center justify-between gap-4">
+          ${step > 1 ? `
+            <button 
+              type="button"
+              id="btn-wizard-prev"
+              class="btn-spring inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-[#041511] hover:bg-emerald-950 text-emerald-200 border border-emerald-600/50 font-mono font-bold text-xs sm:text-sm uppercase tracking-wider">
+              <i data-lucide="arrow-left" class="w-4 h-4"></i>
+              <span>Paso Anterior</span>
+            </button>
+          ` : `
+            <div class="text-xs font-mono text-emerald-300/70">
+              Selecciona una opción para avanzar en tu evaluación
+            </div>
+          `}
+
+          ${step < 5 ? `
+            <button 
+              type="button"
+              id="btn-wizard-next"
+              class="btn-spring inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-400 via-teal-400 to-amber-400 hover:from-emerald-300 hover:to-amber-300 text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider shadow-xl shadow-emerald-500/30">
+              <span>Continuar al Paso ${step + 1}</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+          ` : ''}
+        </div>
+      </div>
+    `;
+  }
+
+  renderCorfoWizardStepBody(step, st, activeFocus, focusMap) {
+    // ==========================================================
+    // PASO 1: SECTOR INDUSTRIAL (Selección única con tarjetas e íconos)
+    // ==========================================================
+    if (step === 1) {
+      const sectors = [
+        {
+          name: 'Pesquero y Acuícola',
+          icon: 'fish',
+          badge: 'Salmón, Pesca Pelágica/Demersal & Mitílidos',
+          desc: 'Plantas de proceso primario y secundario, frigoríficos marinos, plantas reductoras/valorizadoras de descartes y centros de cultivo.'
+        },
+        {
+          name: 'Cárnico y Frigoríficos',
+          icon: 'flame',
+          badge: 'Faenadoras, Desposte, Cecinas & Embutidos',
+          desc: 'Salas de procesamiento cárnico, fábricas de cecinas, cámaras modulares de congelación, tratamiento de RILES y subproductos.'
+        },
+        {
+          name: 'Agroindustrial y Alimentos',
+          icon: 'sprout',
+          badge: 'Packing, Congelados IQF, Lácteos & Alimentos',
+          desc: 'Procesadoras de frutas/hortalizas, alimentos preparados, deshidratados, granos, panificación industrial y bebidas.'
+        },
+        {
+          name: 'Otro Sector Industrial',
+          icon: 'factory',
+          badge: 'Manufactura, Logística Frío o Soc. Inversión',
+          desc: 'Centros de distribución refrigerados, manufactura industrial, eficiencia hídrica/energética o sociedades de inversión productiva.'
+        }
+      ];
+
+      return `
+        <div class="space-y-6">
+          <div>
+            <span class="text-xs font-mono uppercase tracking-widest text-emerald-400 font-bold block mb-1">PASO 1 DE 5 • IDENTIFICACIÓN DE PLANTA</span>
+            <h3 class="text-2xl sm:text-3xl font-black text-white">¿A qué Sector Industrial pertenece tu proyecto?</h3>
+            <p class="text-xs sm:text-sm text-emerald-100/80 mt-1">Selecciona el rubro principal de tu empresa para ajustar los parámetros técnicos y normativos.</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            ${sectors.map(sec => {
+              const selected = st.sector === sec.name;
+              return `
+                <button 
+                  type="button"
+                  data-wizard-sector="${sec.name}"
+                  class="btn-wizard-sector text-left p-6 rounded-2xl border-2 transition-all flex flex-col justify-between gap-4 ${
+                    selected
+                      ? 'bg-emerald-500/20 border-emerald-400 ring-2 ring-emerald-400/40 shadow-xl'
+                      : 'bg-[#041410] border-emerald-900/70 hover:border-emerald-500/60'
+                  }">
+                  <div class="flex items-start justify-between gap-3 w-full">
+                    <div class="w-12 h-12 rounded-2xl ${selected ? 'bg-emerald-400 text-slate-950' : 'bg-emerald-950 text-emerald-300 border border-emerald-700/60'} flex items-center justify-center shrink-0">
+                      <i data-lucide="${sec.icon}" class="w-6 h-6"></i>
+                    </div>
+                    <span class="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold ${selected ? 'bg-amber-400 text-slate-950' : 'bg-emerald-950/90 text-emerald-300 border border-emerald-800'}">
+                      ${selected ? '✓ SELECCIONADO' : sec.badge}
+                    </span>
+                  </div>
+                  <div>
+                    <h4 class="text-lg font-black text-white">${sec.name}</h4>
+                    <p class="text-xs text-emerald-100/80 mt-1 leading-relaxed">${sec.desc}</p>
+                  </div>
+                </button>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    // ==========================================================
+    // PASO 2: ENFOQUE DEL PROYECTO / FILTRO DE FINANCIAMIENTO CORFO
+    // ==========================================================
+    if (step === 2) {
+      const options = Object.values(focusMap);
+      return `
+        <div class="space-y-6">
+          <div>
+            <span class="text-xs font-mono uppercase tracking-widest text-emerald-400 font-bold block mb-1">PASO 2 DE 5 • FILTRO LÓGICO DE FINANCIAMIENTO</span>
+            <h3 class="text-2xl sm:text-3xl font-black text-white">¿Cuál es el enfoque principal de tu inversión?</h3>
+            <p class="text-xs sm:text-sm text-emerald-100/80 mt-1">Tu elección asigna automáticamente el instrumento Corfo o franquicia tributaria óptima y filtra las tecnologías del Paso 3.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            ${options.map(opt => {
+              const selected = st.focusKey === opt.key;
+              return `
+                <button 
+                  type="button"
+                  data-wizard-focus="${opt.key}"
+                  class="btn-wizard-focus text-left p-6 rounded-2xl border-2 transition-all flex flex-col justify-between gap-4 ${
+                    selected
+                      ? 'bg-emerald-500/20 border-emerald-400 ring-2 ring-emerald-400/40 shadow-xl'
+                      : 'bg-[#041410] border-emerald-900/70 hover:border-emerald-500/60'
+                  }">
+                  <div class="w-full space-y-3">
+                    <div class="flex items-center justify-between gap-2">
+                      <span class="px-3 py-1 rounded-lg font-mono font-black text-xs ${selected ? 'bg-emerald-400 text-slate-950' : 'bg-emerald-950 text-emerald-300 border border-emerald-700'}">
+                        ${opt.optionCode}
+                      </span>
+                      <div class="w-10 h-10 rounded-xl ${selected ? 'bg-amber-400 text-slate-950' : 'bg-emerald-950 text-emerald-300'} flex items-center justify-center">
+                        <i data-lucide="${opt.icon}" class="w-5 h-5"></i>
+                      </div>
+                    </div>
+                    <h4 class="text-lg font-black text-white leading-snug">${opt.title}</h4>
+                    <p class="text-xs text-emerald-100/80 leading-relaxed">${opt.summaryDesc}</p>
+                  </div>
+
+                  <div class="w-full pt-3 border-t border-emerald-800/60 flex items-center justify-between gap-2">
+                    <span class="text-[10px] font-mono uppercase text-emerald-300 font-bold">Instrumento Asignado:</span>
+                    <span class="text-xs font-mono font-black text-amber-300 text-right">${opt.corfoProgram}</span>
+                  </div>
+                </button>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    // ==========================================================
+    // PASO 3: TECNOLOGÍA Y EQUIPAMIENTO REQUERIDO (Dinámico según Paso 2)
+    // ==========================================================
+    if (step === 3) {
+      const availableTechs = activeFocus.techOptions || [];
+      return `
+        <div class="space-y-6">
+          <div class="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-widest text-emerald-400 font-bold block mb-1">
+                PASO 3 DE 5 • SELECCIÓN MÚLTIPLE (${activeFocus.optionCode}: ${activeFocus.title})
+              </span>
+              <h3 class="text-2xl sm:text-3xl font-black text-white">Selecciona las Tecnologías o Equipos Requeridos</h3>
+              <p class="text-xs sm:text-sm text-emerald-100/80 mt-1">Puedes marcar una o varias soluciones para integrarlas en tu carpeta técnica de evaluación.</p>
+            </div>
+            <span class="px-3.5 py-1.5 rounded-xl bg-amber-500/20 border border-amber-400/50 text-amber-300 font-mono font-bold text-xs">
+              ${st.corfoProgram}
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 gap-3.5">
+            ${availableTechs.map((techText, idx) => {
+              const isChecked = st.selectedTechs.includes(techText);
+              return `
+                <label 
+                  data-wizard-tech="${techText.replace(/"/g, '&quot;')}"
+                  class="btn-wizard-tech cursor-pointer p-5 rounded-2xl border-2 transition-all flex items-center justify-between gap-4 ${
+                    isChecked
+                      ? 'bg-emerald-500/20 border-emerald-400 ring-1 ring-emerald-400/40 shadow-lg'
+                      : 'bg-[#041410] border-emerald-900/70 hover:border-emerald-500/60'
+                  }">
+                  <div class="flex items-center gap-4">
+                    <div class="w-7 h-7 rounded-lg border-2 flex items-center justify-center shrink-0 transition-all ${
+                      isChecked
+                        ? 'bg-emerald-400 border-emerald-300 text-slate-950'
+                        : 'bg-[#020b09] border-emerald-700 text-transparent'
+                    }">
+                      <i data-lucide="check" class="w-4 h-4 stroke-[3]"></i>
+                    </div>
+                    <div>
+                      <span class="text-[10px] font-mono uppercase text-emerald-400 font-bold block">SOLUCIÓN TÉCNICA 0${idx + 1}</span>
+                      <span class="text-sm sm:text-base font-bold text-white">${techText}</span>
+                    </div>
+                  </div>
+                  <span class="text-[11px] font-mono font-bold px-2.5 py-1 rounded-lg shrink-0 hidden sm:inline-block ${
+                    isChecked ? 'bg-emerald-400 text-slate-950' : 'bg-emerald-950 text-emerald-400'
+                  }">
+                    ${isChecked ? 'Incluido' : 'Seleccionar'}
+                  </span>
+                </label>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    // ==========================================================
+    // PASO 4: DIMENSIONAMIENTO Y MODALIDAD
+    // ==========================================================
+    if (step === 4) {
+      const investmentRanges = [
+        'Hasta $20.000.000 CLP',
+        '$20.000.000 a $60.000.000 CLP',
+        'Más de $60.000.000 CLP'
+      ];
+      const revenueLevels = [
+        'Micro/Pequeña (Hasta 25.000 UF)',
+        'Mediana (25.000 a 100.000 UF)',
+        'Grande (+100.000 UF) / Sociedad de Inversión'
+      ];
+      const supportTypes = [
+        'Maquinaria + Gestión Financiamiento Corfo',
+        'Solo Cotización de Maquinaria',
+        'Asesoría y Diagnóstico en Terreno'
+      ];
+
+      return `
+        <div class="space-y-7">
+          <div>
+            <span class="text-xs font-mono uppercase tracking-widest text-emerald-400 font-bold block mb-1">PASO 4 DE 5 • PERFIL FINANCIERO Y MODALIDAD</span>
+            <h3 class="text-2xl sm:text-3xl font-black text-white">Dimensionamiento de Inversión y Tramo de Empresa</h3>
+            <p class="text-xs sm:text-sm text-emerald-100/80 mt-1">Estos tres parámetros determinan los topes de garantía Corfo, plazos de leasing y elegibilidad tributaria.</p>
+          </div>
+
+          <!-- 4.1 Rango de Inversión Estimada -->
+          <div class="space-y-3">
+            <label class="text-xs font-mono uppercase tracking-wider text-emerald-300 font-bold block">
+              1. Rango de Inversión Estimada del Proyecto:
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              ${investmentRanges.map(inv => {
+                const active = st.investmentRange === inv;
+                return `
+                  <button 
+                    type="button"
+                    data-wizard-investment="${inv}"
+                    class="btn-wizard-investment p-4 rounded-2xl border-2 text-left transition-all ${
+                      active
+                        ? 'bg-emerald-500/20 border-emerald-400 text-white font-black shadow-lg'
+                        : 'bg-[#041410] border-emerald-900/70 text-emerald-100/85 hover:border-emerald-500/60 font-semibold'
+                    }">
+                    <div class="flex items-center justify-between mb-1">
+                      <i data-lucide="dollar-sign" class="w-4 h-4 ${active ? 'text-amber-400' : 'text-emerald-500'}"></i>
+                      ${active ? '<span class="text-[10px] font-mono text-amber-300 font-bold">ACTIVO</span>' : ''}
+                    </div>
+                    <div class="text-xs sm:text-sm">${inv}</div>
+                  </button>
+                `;
+              }).join('')}
+            </div>
+          </div>
+
+          <!-- 4.2 Nivel de Facturación Anual -->
+          <div class="space-y-3">
+            <label class="text-xs font-mono uppercase tracking-wider text-emerald-300 font-bold block">
+              2. Nivel de Facturación Anual de la Empresa (Tramo UF):
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              ${revenueLevels.map(rev => {
+                const active = st.revenueLevel === rev;
+                return `
+                  <button 
+                    type="button"
+                    data-wizard-revenue="${rev}"
+                    class="btn-wizard-revenue p-4 rounded-2xl border-2 text-left transition-all ${
+                      active
+                        ? 'bg-emerald-500/20 border-emerald-400 text-white font-black shadow-lg'
+                        : 'bg-[#041410] border-emerald-900/70 text-emerald-100/85 hover:border-emerald-500/60 font-semibold'
+                    }">
+                    <div class="flex items-center justify-between mb-1">
+                      <i data-lucide="building-2" class="w-4 h-4 ${active ? 'text-amber-400' : 'text-emerald-500'}"></i>
+                      ${active ? '<span class="text-[10px] font-mono text-amber-300 font-bold">ACTIVO</span>' : ''}
+                    </div>
+                    <div class="text-xs sm:text-sm">${rev}</div>
+                  </button>
+                `;
+              }).join('')}
+            </div>
+          </div>
+
+          <!-- 4.3 Tipo de Apoyo Buscado -->
+          <div class="space-y-3">
+            <label class="text-xs font-mono uppercase tracking-wider text-emerald-300 font-bold block">
+              3. Modalidad de Apoyo Requerida:
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              ${supportTypes.map(sup => {
+                const active = st.supportType === sup;
+                return `
+                  <button 
+                    type="button"
+                    data-wizard-support="${sup}"
+                    class="btn-wizard-support p-4 rounded-2xl border-2 text-left transition-all ${
+                      active
+                        ? 'bg-emerald-500/20 border-emerald-400 text-white font-black shadow-lg'
+                        : 'bg-[#041410] border-emerald-900/70 text-emerald-100/85 hover:border-emerald-500/60 font-semibold'
+                    }">
+                    <div class="flex items-center justify-between mb-1">
+                      <i data-lucide="briefcase" class="w-4 h-4 ${active ? 'text-amber-400' : 'text-emerald-500'}"></i>
+                      ${active ? '<span class="text-[10px] font-mono text-amber-300 font-bold">ACTIVO</span>' : ''}
+                    </div>
+                    <div class="text-xs sm:text-sm">${sup}</div>
+                  </button>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // ==========================================================
+    // PASO 5: DIAGNÓSTICO PRELIMINAR AUTOMÁTICO Y ENVÍO DE SOLICITUD
+    // ==========================================================
+    const isLargeOrHolding = st.revenueLevel.includes('Grande') || st.revenueLevel.includes('Sociedad');
+    const complementaryNote = isLargeOrHolding
+      ? 'Por tu perfil (+100.000 UF / Sociedad de Inversión), además de la línea principal seleccionada, tu proyecto es altamente elegible para estructurar Activo Fijo Productivo bajo Excepción de Rentas Pasivas y Franquicia Tributaria Ley I+D (35% rebaja de Impuesto de 1ª Categoría).'
+      : 'Por tu tramo MiPyme (hasta 100.000 UF), tu proyecto califica para Cobertura de Garantía Estatal Corfo (Fogain / Pro-Inversión hasta 70%–80%) combinable con Leasing de Maquinaria o Crédito Verde.';
+
+    return `
+      <div class="space-y-8">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-widest text-amber-400 font-bold block mb-1">PASO 5 DE 5 • RESULTADO DE EVALUACIÓN Y CAPTURA EJECUTIVA</span>
+          <h3 class="text-2xl sm:text-3xl font-black text-white">Diagnóstico Preliminar de tu Proyecto Corfo</h3>
+          <p class="text-xs sm:text-sm text-emerald-100/80 mt-1">Revisa el dictamen preliminar generado según tu configuración y envíanos tus datos para preparar tu carpeta técnica y cotización formal.</p>
+        </div>
+
+        <!-- Tarjeta de Dictamen Preliminar -->
+        <div class="rounded-3xl bg-gradient-to-br from-[#082c23] via-[#051d17] to-[#03120e] border-2 border-emerald-400/60 p-6 sm:p-8 shadow-2xl space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-4 pb-5 border-b border-emerald-800/70">
+            <div>
+              <span class="text-[11px] font-mono uppercase tracking-widest text-emerald-300 font-bold block">INSTRUMENTO / RUTA FINANCIERA RECOMENDADA</span>
+              <h4 class="text-2xl sm:text-3xl font-black text-amber-300 mt-1">${st.corfoProgram}</h4>
+              <span class="text-xs font-mono text-emerald-200">${activeFocus.optionCode} — ${activeFocus.title}</span>
+            </div>
+            <span class="px-4 py-2 rounded-2xl bg-emerald-400 text-slate-950 font-mono font-black text-xs uppercase shadow-lg">
+              ✓ PROYECTO PRE-ELEGIBLE
+            </span>
+          </div>
+
+          <!-- Resumen de Selección en 4 Celdas -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 text-xs">
+            <div class="p-3.5 rounded-2xl bg-[#03110e] border border-emerald-800/70">
+              <span class="text-[10px] font-mono uppercase text-emerald-400 block">Sector Industrial</span>
+              <strong class="text-white font-bold text-sm mt-0.5 block">${st.sector}</strong>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-[#03110e] border border-emerald-800/70">
+              <span class="text-[10px] font-mono uppercase text-emerald-400 block">Inversión Estimada</span>
+              <strong class="text-amber-300 font-bold text-sm mt-0.5 block">${st.investmentRange}</strong>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-[#03110e] border border-emerald-800/70">
+              <span class="text-[10px] font-mono uppercase text-emerald-400 block">Tramo Facturación</span>
+              <strong class="text-white font-bold text-sm mt-0.5 block">${st.revenueLevel}</strong>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-[#03110e] border border-emerald-800/70">
+              <span class="text-[10px] font-mono uppercase text-emerald-400 block">Modalidad Requerida</span>
+              <strong class="text-emerald-300 font-bold text-sm mt-0.5 block">${st.supportType}</strong>
+            </div>
+          </div>
+
+          <!-- Tecnologías Marcadas en el Paso 3 -->
+          <div class="p-4 rounded-2xl bg-[#03110e]/90 border border-emerald-800/60 space-y-2">
+            <span class="text-[11px] font-mono uppercase tracking-wider text-emerald-300 font-bold block">
+              Tecnologías y Equipamiento Seleccionado (${st.selectedTechs.length}):
+            </span>
+            <ul class="space-y-1.5 text-xs sm:text-sm text-white">
+              ${(st.selectedTechs.length > 0 ? st.selectedTechs : ['Pendiente de especificar en reunión técnica']).map(t => `
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                  <span>${t}</span>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+
+          <!-- Beneficios Financieros y Recomendación Complementaria -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div class="p-4 rounded-2xl bg-emerald-950/50 border border-emerald-700/50 space-y-1.5">
+              <span class="text-[11px] font-mono uppercase text-emerald-300 font-bold block">Ventajas de la Línea Asignada:</span>
+              <ul class="space-y-1 text-xs text-emerald-100/90 list-disc list-inside">
+                ${activeFocus.financialBenefits.map(b => `<li>${b}</li>`).join('')}
+              </ul>
+            </div>
+            <div class="p-4 rounded-2xl bg-amber-950/35 border border-amber-500/40 space-y-1.5">
+              <span class="text-[11px] font-mono uppercase text-amber-300 font-bold flex items-center gap-1.5">
+                <i data-lucide="sparkles" class="w-4 h-4 text-amber-400"></i>
+                <span>Nota de Ingeniería Financiera WellPack:</span>
+              </span>
+              <p class="text-xs text-amber-100/90 leading-relaxed">${complementaryNote}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulario B2B para Recibir Carpeta Preliminar y Agendar Diagnóstico -->
+        <form id="corfo-wizard-submit-form" class="p-6 sm:p-8 rounded-3xl bg-[#041410] border border-emerald-700/60 space-y-5">
+          <h4 class="text-xl font-black text-white flex items-center gap-2">
+            <i data-lucide="send" class="w-5 h-5 text-emerald-400"></i>
+            <span>Datos de Contacto para Envío de Propuesta y Evaluación Corfo</span>
+          </h4>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs font-mono text-emerald-300 uppercase block mb-1">Nombre y Apellido *</label>
+              <input 
+                type="text" 
+                id="corfo-input-name" 
+                required 
+                value="${st.contactName || ''}"
+                placeholder="Ej: Rodrigo Soto" 
+                class="w-full px-4 py-3 rounded-xl bg-[#020b09] border border-emerald-800 text-white text-sm focus:border-emerald-400 focus:outline-none">
+            </div>
+            <div>
+              <label class="text-xs font-mono text-emerald-300 uppercase block mb-1">Empresa / Razón Social *</label>
+              <input 
+                type="text" 
+                id="corfo-input-company" 
+                required 
+                value="${st.companyName || ''}"
+                placeholder="Ej: Pesquera / Frigorífico Austral SpA" 
+                class="w-full px-4 py-3 rounded-xl bg-[#020b09] border border-emerald-800 text-white text-sm focus:border-emerald-400 focus:outline-none">
+            </div>
+            <div>
+              <label class="text-xs font-mono text-emerald-300 uppercase block mb-1">Teléfono / WhatsApp Directo *</label>
+              <input 
+                type="tel" 
+                id="corfo-input-phone" 
+                required 
+                value="${st.contactPhone || ''}"
+                placeholder="Ej: +56 9 8765 4321" 
+                class="w-full px-4 py-3 rounded-xl bg-[#020b09] border border-emerald-800 text-white text-sm focus:border-emerald-400 focus:outline-none">
+            </div>
+            <div>
+              <label class="text-xs font-mono text-emerald-300 uppercase block mb-1">Correo Corporativo *</label>
+              <input 
+                type="email" 
+                id="corfo-input-email" 
+                required 
+                value="${st.contactEmail || ''}"
+                placeholder="gerencia@tuempresa.cl" 
+                class="w-full px-4 py-3 rounded-xl bg-[#020b09] border border-emerald-800 text-white text-sm focus:border-emerald-400 focus:outline-none">
+            </div>
+            <div>
+              <label class="text-xs font-mono text-emerald-300 uppercase block mb-1">Ciudad / Región de la Planta</label>
+              <input 
+                type="text" 
+                id="corfo-input-region" 
+                value="${st.plantRegion || ''}"
+                placeholder="Ej: Concepción / Puerto Montt / RM" 
+                class="w-full px-4 py-3 rounded-xl bg-[#020b09] border border-emerald-800 text-white text-sm focus:border-emerald-400 focus:outline-none">
+            </div>
+            <div>
+              <label class="text-xs font-mono text-emerald-300 uppercase block mb-1">RUT Empresa (Opcional para Pre-Filtro Corfo)</label>
+              <input 
+                type="text" 
+                id="corfo-input-rut" 
+                value="${st.companyRut || ''}"
+                placeholder="Ej: 76.123.456-7" 
+                class="w-full px-4 py-3 rounded-xl bg-[#020b09] border border-emerald-800 text-white text-sm focus:border-emerald-400 focus:outline-none">
+            </div>
+          </div>
+
+          <div>
+            <label class="text-xs font-mono text-emerald-300 uppercase block mb-1">Comentarios Técnicos Adicionales (Capacidad kg/h, requerimiento específico)</label>
+            <textarea 
+              id="corfo-input-notes" 
+              rows="2" 
+              placeholder="Ej: Buscamos valorizar 5 ton/día de descarte pesquero y evaluar paneles solares con Crédito Verde..." 
+              class="w-full px-4 py-3 rounded-xl bg-[#020b09] border border-emerald-800 text-white text-sm focus:border-emerald-400 focus:outline-none">${st.notes || ''}</textarea>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center gap-4 pt-2">
+            <button 
+              type="submit"
+              id="btn-corfo-submit-whatsapp"
+              class="btn-spring w-full sm:flex-1 py-4 px-6 rounded-2xl bg-gradient-to-r from-emerald-400 via-teal-400 to-amber-400 hover:from-emerald-300 hover:to-amber-300 text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider shadow-xl shadow-emerald-500/30 flex items-center justify-center gap-2">
+              <i data-lucide="message-circle" class="w-5 h-5"></i>
+              <span>Enviar Diagnóstico y Solicitar Evaluación (Sistema + WhatsApp)</span>
+            </button>
+          </div>
+        </form>
+      </div>
     `;
   }
 
@@ -4196,6 +5316,232 @@ class AntigravityRenderer {
     this.updatePricingSummary();
     this.bindAlibabaSectionEvents();
     this.updateAlibabaSectionCalculations();
+    this.bindCorfoWizardEvents();
+  }
+
+  preserveCorfoContactInputs() {
+    const st = this.corfoWizardState;
+    const nameEl = document.getElementById('corfo-input-name');
+    const compEl = document.getElementById('corfo-input-company');
+    const phoneEl = document.getElementById('corfo-input-phone');
+    const emailEl = document.getElementById('corfo-input-email');
+    const regEl = document.getElementById('corfo-input-region');
+    const rutEl = document.getElementById('corfo-input-rut');
+    const notesEl = document.getElementById('corfo-input-notes');
+
+    if (nameEl) st.contactName = nameEl.value;
+    if (compEl) st.companyName = compEl.value;
+    if (phoneEl) st.contactPhone = phoneEl.value;
+    if (emailEl) st.contactEmail = emailEl.value;
+    if (regEl) st.plantRegion = regEl.value;
+    if (rutEl) st.companyRut = rutEl.value;
+    if (notesEl) st.notes = notesEl.value;
+  }
+
+  refreshCorfoWizardUI() {
+    const container = document.getElementById('corfo-wizard-container');
+    if (!container) return;
+    this.preserveCorfoContactInputs();
+    container.innerHTML = this.renderCorfoWizardInner();
+    if (window.lucide) window.lucide.createIcons();
+    this.bindCorfoWizardInnerEvents();
+  }
+
+  bindCorfoWizardEvents() {
+    // Botones de las 4 Áreas de Servicio que pre-cargan el enfoque en el Wizard
+    document.querySelectorAll('.btn-preset-corfo-focus').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const fKey = btn.getAttribute('data-preset-focus') || 'A';
+        const focusMap = this.getCorfoFocusConfig();
+        const chosen = focusMap[fKey] || focusMap.A;
+
+        this.corfoWizardState.focusKey = chosen.key;
+        this.corfoWizardState.focusTitle = chosen.title;
+        this.corfoWizardState.corfoProgram = chosen.corfoProgram;
+        this.corfoWizardState.selectedTechs = chosen.techOptions.slice(0, 2);
+        this.corfoWizardState.currentStep = 3;
+
+        this.refreshCorfoWizardUI();
+        document.getElementById('corfo_wizard_section')?.scrollIntoView({ behavior: 'smooth' });
+        this.showToast(`Ruta activada: ${chosen.corfoProgram}`, 'info');
+      });
+    });
+
+    this.bindCorfoWizardInnerEvents();
+  }
+
+  bindCorfoWizardInnerEvents() {
+    const st = this.corfoWizardState;
+    const focusMap = this.getCorfoFocusConfig();
+
+    // Navegación directa a los pasos 1..5
+    document.querySelectorAll('.btn-wizard-goto').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetStep = parseInt(btn.getAttribute('data-wizard-goto'), 10);
+        if (targetStep >= 1 && targetStep <= 5) {
+          st.currentStep = targetStep;
+          this.refreshCorfoWizardUI();
+        }
+      });
+    });
+
+    // Botón Anterior / Siguiente
+    document.getElementById('btn-wizard-prev')?.addEventListener('click', () => {
+      if (st.currentStep > 1) {
+        st.currentStep -= 1;
+        this.refreshCorfoWizardUI();
+      }
+    });
+
+    document.getElementById('btn-wizard-next')?.addEventListener('click', () => {
+      if (st.currentStep === 3 && st.selectedTechs.length === 0) {
+        this.showToast('Selecciona al menos un equipamiento o tecnología en el Paso 3.', 'error');
+        return;
+      }
+      if (st.currentStep < 5) {
+        st.currentStep += 1;
+        this.refreshCorfoWizardUI();
+      }
+    });
+
+    // PASO 1: Sector Industrial
+    document.querySelectorAll('.btn-wizard-sector').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const sec = btn.getAttribute('data-wizard-sector');
+        if (sec) {
+          st.sector = sec;
+          this.refreshCorfoWizardUI();
+        }
+      });
+    });
+
+    // PASO 2: Enfoque del Proyecto -> Asigna internamente la ruta Corfo y actualiza opciones del Paso 3
+    document.querySelectorAll('.btn-wizard-focus').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const fKey = btn.getAttribute('data-wizard-focus');
+        const chosen = focusMap[fKey];
+        if (chosen) {
+          st.focusKey = chosen.key;
+          st.focusTitle = chosen.title;
+          st.corfoProgram = chosen.corfoProgram;
+          st.selectedTechs = chosen.techOptions.slice(0, 2);
+          this.refreshCorfoWizardUI();
+          this.showToast(`Ruta asignada: ${chosen.corfoProgram}`, 'info');
+        }
+      });
+    });
+
+    // PASO 3: Tecnologías (Checkboxes de selección múltiple)
+    document.querySelectorAll('.btn-wizard-tech').forEach(lbl => {
+      lbl.addEventListener('click', (e) => {
+        e.preventDefault();
+        const tech = lbl.getAttribute('data-wizard-tech');
+        if (!tech) return;
+        const idx = st.selectedTechs.indexOf(tech);
+        if (idx >= 0) {
+          st.selectedTechs.splice(idx, 1);
+        } else {
+          st.selectedTechs.push(tech);
+        }
+        this.refreshCorfoWizardUI();
+      });
+    });
+
+    // PASO 4: Dimensionamiento (Inversión, Facturación UF, Modalidad)
+    document.querySelectorAll('.btn-wizard-investment').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const inv = btn.getAttribute('data-wizard-investment');
+        if (inv) {
+          st.investmentRange = inv;
+          this.refreshCorfoWizardUI();
+        }
+      });
+    });
+
+    document.querySelectorAll('.btn-wizard-revenue').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const rev = btn.getAttribute('data-wizard-revenue');
+        if (rev) {
+          st.revenueLevel = rev;
+          this.refreshCorfoWizardUI();
+        }
+      });
+    });
+
+    document.querySelectorAll('.btn-wizard-support').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const sup = btn.getAttribute('data-wizard-support');
+        if (sup) {
+          st.supportType = sup;
+          this.refreshCorfoWizardUI();
+        }
+      });
+    });
+
+    // PASO 5: Envío del Formulario de Evaluación Preliminar Corfo
+    document.getElementById('corfo-wizard-submit-form')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      this.preserveCorfoContactInputs();
+
+      const payload = {
+        event: 'corfo_project_wizard_evaluation',
+        sector: st.sector,
+        focus_option: st.focusKey,
+        focus_title: st.focusTitle,
+        assigned_corfo_program: st.corfoProgram,
+        selected_technologies: st.selectedTechs,
+        investment_range: st.investmentRange,
+        company_revenue_uf: st.revenueLevel,
+        support_modality: st.supportType,
+        contact_name: st.contactName,
+        company_name: st.companyName,
+        company_rut: st.companyRut,
+        contact_phone: st.contactPhone,
+        contact_email: st.contactEmail,
+        plant_region: st.plantRegion,
+        notes: st.notes,
+        timestamp: new Date().toISOString()
+      };
+
+      try {
+        await saveB2BOrder({
+          company_name: st.companyName || 'Empresa Proyecto Corfo',
+          contact_email: st.contactEmail || 'proyectos@empresa.cl',
+          product_name: `[PROYECTO CORFO - ${st.corfoProgram}] ${st.sector} (${st.investmentRange})`,
+          quantity: 1,
+          unit_price: 0,
+          total_price: 0,
+          has_custom_logo: false,
+          status: 'corfo_evaluation_pending'
+        });
+        await triggerMakeWebhook(payload);
+      } catch (err) {
+        console.warn('Registro Corfo notice:', err);
+      }
+
+      this.showToast(`¡Diagnóstico registrado! Abriendo canal directo con Ingeniería y Finanzas WellPack...`, 'success');
+
+      const techsFormatted = (st.selectedTechs || []).map(t => `  - ${t}`).join('\n');
+      const waMessage =
+        `Hola WellPack, he completado el Evaluador de Proyectos e Incentivos Corfo:\n\n` +
+        `1. SECTOR: ${st.sector}\n` +
+        `2. ENFOQUE: ${st.focusTitle}\n` +
+        `3. RUTA ASIGNADA: ${st.corfoProgram}\n` +
+        `4. TECNOLOGÍAS REQUERIDAS:\n${techsFormatted}\n` +
+        `5. INVERSIÓN ESTIMADA: ${st.investmentRange}\n` +
+        `6. FACTURACIÓN EMPRESA: ${st.revenueLevel}\n` +
+        `7. MODALIDAD: ${st.supportType}\n\n` +
+        `DATOS DE CONTACTO:\n` +
+        `• Nombre: ${st.contactName}\n` +
+        `• Empresa: ${st.companyName} ${st.companyRut ? `(RUT: ${st.companyRut})` : ''}\n` +
+        `• Teléfono: ${st.contactPhone}\n` +
+        `• Email: ${st.contactEmail}\n` +
+        `• Ciudad/Planta: ${st.plantRegion || 'Chile'}\n` +
+        (st.notes ? `• Notas: ${st.notes}` : '');
+
+      window.open(`https://wa.me/56987654321?text=${encodeURIComponent(waMessage)}`, '_blank');
+    });
   }
 
   bindAlibabaSectionEvents() {
