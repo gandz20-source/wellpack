@@ -898,6 +898,57 @@ export function initBiogasPage() {
     }
   });
 
+  // ========================================================================
+  // ACORDEÓN INTERACTIVO FAQ (SECCIÓN 5.5) Y FILTRO POR CATEGORÍA
+  // ========================================================================
+  const faqItems = document.querySelectorAll('.biogas-faq-item');
+  const faqFilterBtns = document.querySelectorAll('.biogas-faq-filter-btn');
+
+  faqItems.forEach(item => {
+    const trigger = item.querySelector('.biogas-faq-trigger');
+    const content = item.querySelector('.biogas-faq-content');
+    const icon = item.querySelector('.biogas-faq-icon');
+    if (!trigger || !content || !icon) return;
+
+    trigger.addEventListener('click', () => {
+      const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+      const nextExpanded = !isExpanded;
+      trigger.setAttribute('aria-expanded', String(nextExpanded));
+      content.classList.toggle('hidden', !nextExpanded);
+      icon.textContent = nextExpanded ? '−' : '+';
+
+      if (nextExpanded) {
+        item.classList.remove('border', 'border-slate-200', 'shadow-sm');
+        item.classList.add('border-2', 'border-emerald-500', 'shadow-md');
+        icon.classList.remove('bg-slate-100', 'text-slate-700');
+        icon.classList.add('bg-emerald-500', 'text-slate-950');
+      } else {
+        item.classList.remove('border-2', 'border-emerald-500', 'shadow-md');
+        item.classList.add('border', 'border-slate-200', 'shadow-sm');
+        icon.classList.remove('bg-emerald-500', 'text-slate-950');
+        icon.classList.add('bg-slate-100', 'text-slate-700');
+      }
+    });
+  });
+
+  faqFilterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-faq-filter') || 'all';
+      faqFilterBtns.forEach(b => {
+        const isCurrent = (b.getAttribute('data-faq-filter') || 'all') === filter;
+        b.className = isCurrent
+          ? 'biogas-faq-filter-btn px-3.5 py-2 rounded-lg text-xs font-mono font-bold uppercase bg-[#0F172A] text-emerald-400 border border-[#0F172A] shadow-sm transition-all'
+          : 'biogas-faq-filter-btn px-3.5 py-2 rounded-lg text-xs font-mono font-bold uppercase bg-white text-slate-700 border border-slate-300 hover:border-slate-400 transition-all';
+      });
+
+      faqItems.forEach(item => {
+        const group = item.getAttribute('data-faq-group') || '';
+        const match = filter === 'all' || group === filter;
+        item.classList.toggle('hidden', !match);
+      });
+    });
+  });
+
   // Render inicial
   renderProposalPanel(activeTab);
   updateCalculator();
