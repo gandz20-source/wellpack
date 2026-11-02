@@ -1,0 +1,282 @@
+/* ==========================================================================
+   WELLPACK INDUSTRIAL DESIGN SYSTEM — MANUFAKTUR SOLUTIONS V2
+   - Tipografía Ultra-Nítida: Plus Jakarta Sans (700/800) + Inter (500/600)
+   - Paleta Corporativa Formal: Carbón (#15141C), Acero (#1F1E2B), Naranja (#FF7618)
+   - Bordes Suavizados: 10px en tarjetas, 8px en paneles, 6px en botones/badges
+   - Íconos Vectoriales HD: geometricPrecision, cero pixelado
+   ========================================================================== */
+
+:root {
+  --mk-bg-main: #15141C;
+  --mk-bg-alt: #191822;
+  --mk-bg-card: #1F1E2B;
+  --mk-bg-panel: #14131B;
+  --mk-border: #2E2D3D;
+  --mk-border-strong: #434158;
+  --mk-orange: #FF7618;
+  --mk-orange-hover: #E5630A;
+  --mk-text-white: #FFFFFF;
+  --mk-text-body: #E2E8F0;
+  --mk-text-muted: #94A3B8;
+  --mk-radius-card: 10px;
+  --mk-radius-panel: 8px;
+  --mk-radius-btn: 6px;
+}
+
+/* 1. Nitidez Tipográfica Total (ClearType / DirectWrite / Retina) */
+*, *::before, *::after {
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeLegibility !important;
+}
+
+html, body {
+  background-color: var(--mk-bg-main) !important;
+  color: var(--mk-text-white) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  letter-spacing: -0.025em !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+/* Eliminar textos con gradiente multicolor futurista y dejarlos en Blanco o Naranja Industrial */
+h1 span.bg-clip-text,
+h2 span.bg-clip-text,
+h3 span.bg-clip-text {
+  background: none !important;
+  -webkit-text-fill-color: var(--mk-orange) !important;
+  color: var(--mk-orange) !important;
+}
+
+/* 2. Nitidez Vectorial de Íconos SVG */
+svg, svg * {
+  shape-rendering: geometricPrecision !important;
+}
+svg.lucide {
+  stroke-width: 2.15px !important;
+}
+
+/* 3. Eliminación de Nebulosas y Brillos Futuristas (Neon Blurs) */
+[class*="blur-[100px]"],
+[class*="blur-[120px]"],
+[class*="blur-[130px]"],
+[class*="blur-[140px]"],
+[class*="blur-[150px]"],
+[class*="blur-[160px]"],
+.animate-light-sweep {
+  display: none !important;
+}
+
+/* Detener el movimiento mareador del fondo del Hero para máxima formalidad y nitidez */
+.animate-hero-pan {
+  animation: none !important;
+  transform: none !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* 4. Suavizado Uniforme de Bordes (Adiós burbujas de 24px y cápsulas exageradas) */
+.rounded-3xl {
+  border-radius: var(--mk-radius-card) !important;
+}
+.rounded-2xl {
+  border-radius: var(--mk-radius-panel) !important;
+}
+.rounded-xl {
+  border-radius: var(--mk-radius-btn) !important;
+}
+
+/* Convertir badges tipo cápsula en etiquetas técnicas con esquinas suaves (6px) */
+span.rounded-full:not(.w-2):not(.w-2\.5):not(.w-3):not(.h-2):not(.h-2\.5):not(.h-3),
+div.inline-flex.rounded-full {
+  border-radius: var(--mk-radius-btn) !important;
+}
+
+/* 5. Unificación de Fondos de Sección al Estándar Manufaktur (#15141C y #191822) */
+section.bg-\[\#121212\],
+section.bg-\[\#120606\],
+section.bg-\[\#03101f\],
+section.bg-\[\#041310\],
+section.bg-\[\#03100d\],
+section.bg-\[\#020e1c\] {
+  background-color: var(--mk-bg-main) !important;
+  border-color: var(--mk-border) !important;
+}
+
+section.bg-\[\#141414\],
+section.bg-\[\#0d0e12\],
+section.bg-\[\#140707\],
+section.bg-\[\#0e0505\],
+section.bg-\[\#031224\],
+section.bg-\[\#051814\],
+section.bg-\[\#020a08\] {
+  background-color: var(--mk-bg-alt) !important;
+  border-color: var(--mk-border) !important;
+}
+
+/* 6. Unificación de Tarjetas Técnicas (Sin verdes, rojos ni cianes chillones) */
+.spotlight-card,
+.packaging-format-card,
+.machinery-card,
+article.rounded-3xl,
+#corfo-wizard-container {
+  background: var(--mk-bg-card) !important;
+  border: 1px solid var(--mk-border) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28) !important;
+  border-radius: var(--mk-radius-card) !important;
+}
+
+.spotlight-card:hover,
+.packaging-format-card:hover,
+.machinery-card:hover,
+article.rounded-3xl:hover {
+  border-color: var(--mk-orange) !important;
+  transform: translateY(-2px) !important;
+}
+
+.spotlight-card::before {
+  background: radial-gradient(500px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(255, 118, 24, 0.08), transparent 45%) !important;
+}
+
+/* Cajas internas de tablas, inputs y especificaciones */
+.bg-\[\#120505\],
+.bg-\[\#041528\],
+.bg-\[\#03101f\],
+.bg-\[\#041324\],
+.bg-\[\#041410\]\/80,
+.bg-\[\#03111b\]\/80,
+.bg-\[\#120c02\]\/80,
+.bg-\[\#031211\]\/80,
+.bg-\[\#041511\],
+.bg-\[\#061d36\]\/90,
+.bg-\[\#180808\]\/65,
+.bg-\[\#04182e\]\/70,
+.bg-\[\#051b16\]\/75,
+.bg-\[\#121212\]\/40 {
+  background-color: var(--mk-bg-panel) !important;
+  border-color: var(--mk-border) !important;
+  backdrop-filter: none !important;
+}
+
+/* 7. Botones Principales Unificados en Naranja Industrial Manufaktur (#FF7618) */
+.btn-machinery-quote,
+.btn-open-variation,
+#btn-corfo-submit-whatsapp,
+a[href="#corfo_wizard_section"].bg-gradient-to-r,
+a[href="#fishery_video_library"].bg-gradient-to-r,
+a[href="#machinery_showcase"].bg-gradient-to-r {
+  background: var(--mk-orange) !important;
+  color: #FFFFFF !important;
+  border: 1px solid var(--mk-orange) !important;
+  border-radius: var(--mk-radius-btn) !important;
+  box-shadow: 0 2px 8px rgba(255, 118, 24, 0.25) !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.03em !important;
+}
+
+.btn-machinery-quote:hover,
+.btn-open-variation:hover,
+#btn-corfo-submit-whatsapp:hover,
+a[href="#corfo_wizard_section"].bg-gradient-to-r:hover,
+a[href="#fishery_video_library"].bg-gradient-to-r:hover,
+a[href="#machinery_showcase"].bg-gradient-to-r:hover {
+  background: var(--mk-orange-hover) !important;
+  color: #FFFFFF !important;
+  transform: translateY(-1px) !important;
+}
+
+.btn-machinery-quote i,
+.btn-machinery-quote svg,
+.btn-open-variation i,
+.btn-open-variation svg {
+  color: #FFFFFF !important;
+}
+
+/* 8. Textos secundarios más claros y legibles (Adiós textos lavados o borrosos) */
+.text-red-100\/85,
+.text-red-100\/80,
+.text-red-100\/90,
+.text-cyan-100\/85,
+.text-cyan-100\/80,
+.text-cyan-100\/90,
+.text-emerald-100\/85,
+.text-emerald-100\/80,
+.text-emerald-50\/90,
+.text-neutral-400,
+.text-neutral-300 {
+  color: var(--mk-text-body) !important;
+}
+
+/* Unificar acentos de texto multicolor a Naranja Industrial o Blanco limpio */
+.text-red-400,
+.text-red-300,
+.text-rose-400,
+.text-cyan-400,
+.text-cyan-300,
+.text-sky-300,
+.text-emerald-400,
+.text-emerald-300,
+.text-teal-300,
+.text-amber-400,
+.text-amber-300 {
+  color: var(--mk-orange) !important;
+}
+
+/* Cabeceras de tablas técnicas */
+thead.bg-red-950\/70,
+thead.bg-\[\#03101f\],
+div.bg-cyan-950\/80 {
+  background-color: #191823 !important;
+  border-color: var(--mk-border) !important;
+}
+
+/* Scrollbar Industrial Sobria */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #15141C;
+}
+::-webkit-scrollbar-thumb {
+  background: #FF7618;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   9. PANTALLA DE CARGA INDUSTRIAL EJECUTIVA (PRELOADER MANUFAKTUR)
+   ========================================================================== */
+#mk-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background-color: #15141C;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.42s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.42s;
+}
+
+#mk-preloader.mk-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+@keyframes mkSpinGear {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.mk-animate-gear {
+  animation: mkSpinGear 7s linear infinite;
+}

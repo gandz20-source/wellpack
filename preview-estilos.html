@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Propuesta Manufaktur V2 (Bordes Suaves + HD + Preloader) | WellPack Chile</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tipografía Ultra-Nítida para Windows/Mac: Plus Jakarta Sans + Inter (Pesos medios y gruesos, cero trazos finos borrosos) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --mk-dark: #15141C;
+      --mk-dark-card: #1E1D28;
+      --mk-dark-border: #2E2D3D;
+      --mk-orange: #FF7618;
+      --mk-orange-hover: #E5630A;
+      --mk-light: #FFFFFF;
+      --mk-light-alt: #F4F5F7;
+      --mk-light-border: #DFE3E8;
+      --mk-text-dark: #111827;
+      --mk-text-muted: #4B5563;
+      --mk-radius-card: 10px;
+      --mk-radius-btn: 6px;
+    }
+
+    * {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-weight: 500;
+      color: var(--mk-text-dark);
+      background-color: var(--mk-light);
+      overflow-x: hidden;
+      letter-spacing: -0.01em;
+    }
+
+    h1, h2, h3, h4, h5, h6, .font-heading {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      letter-spacing: -0.025em;
+    }
+
+    /* Iconos SVG siempre ultra nítidos */
+    svg {
+      shape-rendering: geometricPrecision;
+    }
+
+    /* Bordes suavizados configurables */
+    .mk-rounded-card {
+      border-radius: var(--mk-radius-card);
+    }
+    .mk-rounded-btn {
+      border-radius: var(--mk-radius-btn);
+    }
+
+    /* Dark Variant Override */
+    body.mk-all-dark {
+      background-color: #15141C;
+      color: #FFFFFF;
+    }
+    body.mk-all-dark .mk-sec-light {
+      background-color: #15141C !important;
+      color: #FFFFFF !important;
+      border-color: #2E2D3D !important;
+    }
+    body.mk-all-dark .mk-sec-alt {
+      background-color: #1A1924 !important;
+      color: #FFFFFF !important;
+      border-color: #2E2D3D !important;
+    }
+    body.mk-all-dark .mk-card {
+      background-color: #1F1E2B !important;
+      color: #FFFFFF !important;
+      border-color: #323142 !important;
+    }
+    body.mk-all-dark .mk-muted {
+      color: #CBD5E1 !important;
+    }
+    body.mk-all-dark .mk-border {
+      border-color: #2E2D3D !important;
+    }
+
+    /* Botones con bordes suaves (6px) */
+    .mk-btn-orange {
+      background-color: #FF7618;
+      color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      border-radius: var(--mk-radius-btn);
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(255, 118, 24, 0.22);
+    }
+    .mk-btn-orange:hover {
+      background-color: #15141C;
+      color: #FFFFFF;
+      transform: translateY(-1px);
+    }
+    body.mk-all-dark .mk-btn-orange:hover {
+      background-color: #FFFFFF;
+      color: #15141C;
+    }
+
+    .mk-btn-dark {
+      background-color: #15141C;
+      color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      border-radius: var(--mk-radius-btn);
+      transition: all 0.2s ease;
+    }
+    .mk-btn-dark:hover {
+      background-color: #FF7618;
+      color: #FFFFFF;
+    }
+
+    /* Tarjetas de servicio con bordes suaves y transición limpia */
+    .mk-service-col {
+      border-radius: var(--mk-radius-card);
+      transition: all 0.22s ease;
+    }
+    .mk-service-col:hover {
+      background-color: #15141C !important;
+      color: #FFFFFF !important;
+      border-color: #FF7618 !important;
+      transform: translateY(-3px);
+      box-shadow: 0 14px 28px -8px rgba(21, 20, 28, 0.25);
+    }
+    .mk-service-col:hover .mk-muted {
+      color: #E2E8F0 !important;
+    }
+    .mk-service-col:hover .mk-icon-wrap {
+      background-color: #FF7618 !important;
+      color: #FFFFFF !important;
+      border-color: #FF7618 !important;
+    }
+    .mk-service-col:hover .mk-arrow-box {
+      background-color: #FF7618;
+      color: #FFFFFF;
+      border-color: #FF7618;
+    }
+
+    /* ===================================================================== */
+    /* PANTALLA DE CARGA INDUSTRIAL (PRELOADER MANUFAKTUR)                   */
+    /* ===================================================================== */
+    #mk-preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background-color: #15141C;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.45s;
+    }
+    #mk-preloader.mk-hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    @keyframes spinGear {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .animate-gear {
+      animation: spinGear 7s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================================================================== -->
+  <!-- PANTALLA DE CARGA EJECUTIVA (PRELOADER)                               -->
+  <!-- ===================================================================== -->
+  <div id="mk-preloader">
+    <div class="w-full max-w-md px-6 text-center">
+      <!-- Emblema Vectorial HD -->
+      <div class="relative w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+        <!-- Anillo Industrial Giratorio SVG Vectorial -->
+        <svg class="w-20 h-20 text-[#FF7618]/30 animate-gear absolute inset-0" viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="42" stroke="currentColor" stroke-width="2" stroke-dasharray="8 6" />
+          <circle cx="50" cy="50" r="34" stroke="#FF7618" stroke-width="1.5" stroke-opacity="0.5" />
+        </svg>
+        <!-- Cubo / Engranaje Central Nítido -->
+        <div class="w-12 h-12 rounded-lg bg-[#FF7618] flex items-center justify-center shadow-lg">
+          <svg class="w-7 h-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+            <line x1="12" y1="22.08" x2="12" y2="12"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Marca Vectorial -->
+      <div class="font-heading text-2xl font-extrabold tracking-tight text-white mb-1">
+        WELLPACK<span class="text-[#FF7618]">.</span> CHILE
+      </div>
+      <div id="loader-status" class="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-6">
+        Inicializando Ingeniería de Envasado & Maquinaria...
+      </div>
+
+      <!-- Barra de Progreso de Precisión -->
+      <div class="w-full h-2 bg-[#252433] rounded-full overflow-hidden mb-3 border border-[#323144]">
+        <div id="loader-bar" class="h-full bg-[#FF7618] rounded-full transition-all duration-150" style="width: 0%;"></div>
+      </div>
+
+      <div class="flex items-center justify-between text-xs font-heading font-bold">
+        <span class="text-slate-400">SISTEMA B2B INDUSTRIAL</span>
+        <span id="loader-pct" class="text-[#FF7618] text-sm">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- BARRA SUPERIOR DE LABORATORIO (CON BOTÓN PARA REPETIR PRELOADER)      -->
+  <!-- ===================================================================== -->
+  <div class="sticky top-0 z-50 bg-[#0B0A0F] text-white border-b-2 border-[#FF7618] px-4 py-2.5 shadow-xl">
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2">
+      <div class="flex items-center gap-3">
+        <span class="bg-[#FF7618] text-white font-heading text-xs font-bold px-2.5 py-1 rounded uppercase tracking-wider">
+          MANUFAKTUR V2 · HD
+        </span>
+        <span class="text-xs text-slate-200 font-medium">
+          ✔ Bordes suavizados (10px) · ✔ Tipografía Ultra-Nítida (Plus Jakarta + Inter) · ✔ Íconos SVG Vectoriales HD · ✔ Pantalla de Carga
+        </span>
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        <button onclick="replayPreloader()" class="px-3 py-1.5 text-xs font-heading font-bold uppercase tracking-wider bg-emerald-600 hover:bg-emerald-500 text-white rounded flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          <span>Ver Pantalla de Carga</span>
+        </button>
+        <button onclick="setVariant('contrast')" id="var-contrast" class="px-3 py-1.5 text-xs font-heading font-bold uppercase tracking-wider bg-[#FF7618] text-white rounded">
+          1. Blanco + Carbón
+        </button>
+        <button onclick="setVariant('dark')" id="var-dark" class="px-3 py-1.5 text-xs font-heading font-bold uppercase tracking-wider bg-[#22212C] text-slate-200 hover:text-white border border-[#383647] rounded">
+          2. Todo Carbón
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TOPBAR CORPORATIVA + HEADER CON LOGO E ÍCONOS VECTORIALES HD          -->
+  <!-- ===================================================================== -->
+  <div class="bg-[#15141C] text-slate-300 text-xs border-b border-[#2A2935] hidden md:block font-medium">
+    <div class="max-w-7xl mx-auto px-6 h-10 flex items-center justify-between">
+      <div class="flex items-center gap-6">
+        <span class="flex items-center gap-2 text-white font-semibold">
+          <span class="w-2 h-2 rounded-full bg-[#FF7618]"></span>
+          DIVISIÓN INDUSTRIAL B2B CHILE
+        </span>
+        <span>ENVASES DE ALTA BARRERA · MAQUINARIA INOX AISI 304 · PROYECTOS CORFO</span>
+      </div>
+      <div class="flex items-center gap-6 font-heading font-bold text-white">
+        <span class="flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-[#FF7618]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          ventas@wellpack.cl
+        </span>
+        <span class="text-[#FF7618] flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +56 9 7214 6861
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <header class="mk-sec-light bg-white border-b border-[#DFE3E8] mk-border">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <!-- Marca Vectorial Nítida + Logo -->
+      <div class="flex items-center gap-3.5">
+        <div class="w-11 h-11 rounded-lg bg-[#15141C] border border-[#2E2D3D] flex items-center justify-center shadow-sm shrink-0">
+          <svg class="w-6 h-6 text-[#FF7618]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+            <line x1="12" y1="22.08" x2="12" y2="12"/>
+          </svg>
+        </div>
+        <div>
+          <div class="font-heading font-extrabold text-xl tracking-tight leading-none">
+            WELLPACK<span class="text-[#FF7618]">.</span>
+          </div>
+          <div class="text-xs mk-muted text-slate-600 font-semibold uppercase tracking-wider mt-1">
+            Ingeniería & Envasado Industrial
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Links (Nítidos, peso 700, sin emojis borrosos) -->
+      <nav class="hidden xl:flex items-center gap-7 font-heading text-xs font-bold uppercase tracking-wider">
+        <a href="#sec-soluciones" class="border-b-2 border-[#FF7618] pb-1">01. Envases</a>
+        <a href="#sec-catalogo" class="hover:text-[#FF7618] transition-colors pb-1">02. Línea Cárnica</a>
+        <a href="#sec-catalogo" class="hover:text-[#FF7618] transition-colors pb-1">03. Proceso Pesquero</a>
+        <a href="#sec-corfo" class="hover:text-[#FF7618] transition-colors pb-1">04. Proyectos & Corfo</a>
+      </nav>
+
+      <!-- Botón con bordes suavizados (6px) e ícono vectorial nítido -->
+      <div class="flex items-center">
+        <a href="#sec-corfo" class="mk-btn-orange px-5 py-3 text-xs inline-flex items-center gap-2.5">
+          <span>Solicitar Cotización</span>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- 1. HERO PRINCIPAL CON PESTAÑAS SUAVIZADAS                             -->
+  <!-- ===================================================================== -->
+  <section class="relative bg-[#15141C] text-white border-b border-[#2E2D3D]">
+    <div class="absolute inset-0 opacity-35">
+      <img id="hero-bg-img" src="assets/images/hero_proyectos_corfo.jpg" alt="WellPack Industrial" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-r from-[#15141C] via-[#15141C]/90 to-[#15141C]/55"></div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-6 pt-16 pb-14 lg:pt-22 lg:pb-18">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-md bg-[#1F1E2B] border border-[#343346] text-xs font-heading font-bold uppercase tracking-wider text-[#FF7618] mb-5">
+          <span class="w-2 h-2 rounded-full bg-[#FF7618]"></span>
+          <span id="hero-kicker">INGENIERÍA INDUSTRIAL · ABASTECIMIENTO & MAQUINARIA</span>
+        </div>
+        <h1 id="hero-title" class="text-3xl sm:text-5xl lg:text-[52px] font-extrabold tracking-tight leading-[1.12] mb-5 text-white">
+          Soluciones industriales para procesamiento y envasado de alimentos
+        </h1>
+        <p id="hero-desc" class="text-base sm:text-lg text-slate-200 font-normal leading-relaxed mb-8 max-w-2xl">
+          Integramos envases flexibles de alta barrera impresos, equipamiento de proceso en acero inoxidable AISI 304 y estructuración de proyectos llave en mano con incentivos Corfo.
+        </p>
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="#sec-catalogo" class="mk-btn-orange px-7 py-3.5 text-xs inline-flex items-center gap-2.5">
+            <span>Explorar Equipamiento</span>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+          <a href="#sec-corfo" class="mk-rounded-btn border border-slate-500 hover:border-[#FF7618] hover:text-[#FF7618] bg-[#1F1E2B]/80 px-7 py-3.5 text-xs font-heading font-bold uppercase tracking-wider transition-colors">
+            Evaluador de Proyectos Corfo
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barra Inferior del Slider estilo Manufaktur -->
+    <div class="relative border-t border-[#2E2D3D] bg-[#15141C]/95">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[#2E2D3D]">
+        <button onclick="switchHeroSlide(0)" id="slide-tab-0" class="p-6 text-left border-t-2 border-[#FF7618] bg-[#1E1D28] transition-colors">
+          <div class="font-heading text-xs text-[#FF7618] font-bold mb-1">01 // PACKAGING INDUSTRIAL</div>
+          <div class="font-heading text-base font-bold text-white">Envases de Alta Barrera e Impresión</div>
+        </button>
+        <button onclick="switchHeroSlide(1)" id="slide-tab-1" class="p-6 text-left hover:bg-[#1E1D28] transition-colors">
+          <div class="font-heading text-xs text-slate-400 font-bold mb-1">02 // LÍNEA FRIGORÍFICA</div>
+          <div class="font-heading text-base font-bold text-white">Maquinaria para Industria Cárnica</div>
+        </button>
+        <button onclick="switchHeroSlide(2)" id="slide-tab-2" class="p-6 text-left hover:bg-[#1E1D28] transition-colors">
+          <div class="font-heading text-xs text-slate-400 font-bold mb-1">03 // ACUICULTURA & PESCA</div>
+          <div class="font-heading text-base font-bold text-white">Líneas de Proceso Pesquero</div>
+        </button>
+        <button onclick="switchHeroSlide(3)" id="slide-tab-3" class="p-6 text-left hover:bg-[#1E1D28] transition-colors">
+          <div class="font-heading text-xs text-slate-400 font-bold mb-1">04 // LLAVE EN MANO</div>
+          <div class="font-heading text-base font-bold text-white">Tecnología Verde & Gestión Corfo</div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 2. LAS 4 DIVISIONES CON BORDES SUAVES (10PX) E ÍCONOS SVG HD          -->
+  <!-- ===================================================================== -->
+  <section id="sec-soluciones" class="mk-sec-light bg-white border-b border-[#DFE3E8] mk-border">
+    <div class="max-w-7xl mx-auto px-6 py-16 lg:py-20">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
+        <div>
+          <div class="text-xs font-heading font-bold uppercase tracking-widest text-[#FF7618] mb-2">
+            // NUESTRAS DIVISIONES OPERATIVAS
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+            Soluciones diseñadas para rendimiento en planta
+          </h2>
+        </div>
+        <p class="text-sm mk-muted text-slate-600 max-w-md font-medium">
+          Tarjetas con esquinas suavizadas (10px), íconos vectoriales de alta definición y tipografía de alto contraste para lectura nítida.
+        </p>
+      </div>
+
+      <!-- 4 Tarjetas con Bordes Suavizados e Íconos SVG HD -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Col 01 -->
+        <div class="mk-service-col mk-card bg-white border border-[#DFE3E8] mk-border p-7 flex flex-col justify-between min-h-[330px] shadow-sm">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <div class="mk-icon-wrap w-12 h-12 rounded-lg bg-[#FFF4EC] border border-[#FFD8BE] text-[#FF7618] flex items-center justify-center transition-colors">
+                <!-- Icono Vectorial HD: Packaging Multicapa -->
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                  <line x1="12" y1="22.08" x2="12" y2="12"/>
+                </svg>
+              </div>
+              <span class="font-heading text-xs font-extrabold px-2.5 py-1 rounded bg-slate-100 text-slate-700">DIV. 01</span>
+            </div>
+            <h3 class="text-lg font-extrabold mb-2.5 leading-snug">Envases Flexibles y Alta Barrera</h3>
+            <p class="text-sm mk-muted text-slate-600 leading-relaxed font-normal">
+              Bolsas de vacío gofradas y lisas, pouches Doypack, bolsas para congelados IQF y films termoformables con impresión corporativa.
+            </p>
+          </div>
+          <div class="pt-5 mt-6 border-t border-[#DFE3E8] mk-border flex items-center justify-between">
+            <span class="font-heading text-xs font-bold uppercase tracking-wider">Ver Catálogo</span>
+            <span class="mk-arrow-box w-8 h-8 rounded-md border border-[#DFE3E8] mk-border flex items-center justify-center transition-colors">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </span>
+          </div>
+        </div>
+
+        <!-- Col 02 -->
+        <div class="mk-service-col mk-card bg-white border border-[#DFE3E8] mk-border p-7 flex flex-col justify-between min-h-[330px] shadow-sm">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <div class="mk-icon-wrap w-12 h-12 rounded-lg bg-[#FFF4EC] border border-[#FFD8BE] text-[#FF7618] flex items-center justify-center transition-colors">
+                <!-- Icono Vectorial HD: Engranaje / Maquinaria Industrial -->
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
+              </div>
+              <span class="font-heading text-xs font-extrabold px-2.5 py-1 rounded bg-slate-100 text-slate-700">DIV. 02</span>
+            </div>
+            <h3 class="text-lg font-extrabold mb-2.5 leading-snug">Maquinaria para Proceso Cárnico</h3>
+            <p class="text-sm mk-muted text-slate-600 leading-relaxed font-normal">
+              Sierras de cinta, molinos congelados, mezcladoras al vacío, embutidoras continuas y cámaras de envasado doble campana en acero AISI 304.
+            </p>
+          </div>
+          <div class="pt-5 mt-6 border-t border-[#DFE3E8] mk-border flex items-center justify-between">
+            <span class="font-heading text-xs font-bold uppercase tracking-wider">Ver Línea Cárnica</span>
+            <span class="mk-arrow-box w-8 h-8 rounded-md border border-[#DFE3E8] mk-border flex items-center justify-center transition-colors">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </span>
+          </div>
+        </div>
+
+        <!-- Col 03 -->
+        <div class="mk-service-col mk-card bg-white border border-[#DFE3E8] mk-border p-7 flex flex-col justify-between min-h-[330px] shadow-sm">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <div class="mk-icon-wrap w-12 h-12 rounded-lg bg-[#FFF4EC] border border-[#FFD8BE] text-[#FF7618] flex items-center justify-center transition-colors">
+                <!-- Icono Vectorial HD: Línea Automatizada / Precisión -->
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                  <line x1="8" y1="21" x2="16" y2="21"/>
+                  <line x1="12" y1="17" x2="12" y2="21"/>
+                  <polyline points="6 10 10 10 12 7 14 13 16 10 18 10"/>
+                </svg>
+              </div>
+              <span class="font-heading text-xs font-extrabold px-2.5 py-1 rounded bg-slate-100 text-slate-700">DIV. 03</span>
+            </div>
+            <h3 class="text-lg font-extrabold mb-2.5 leading-snug">Equipamiento Proceso Pesquero</h3>
+            <p class="text-sm mk-muted text-slate-600 leading-relaxed font-normal">
+              Líneas continuas de descamado, eviscerado, fileteado de salmón, despielado, extracción de espinas Pin-Bone y porcionado electrónico.
+            </p>
+          </div>
+          <div class="pt-5 mt-6 border-t border-[#DFE3E8] mk-border flex items-center justify-between">
+            <span class="font-heading text-xs font-bold uppercase tracking-wider">Ver Línea Pesquera</span>
+            <span class="mk-arrow-box w-8 h-8 rounded-md border border-[#DFE3E8] mk-border flex items-center justify-center transition-colors">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </span>
+          </div>
+        </div>
+
+        <!-- Col 04 -->
+        <div class="mk-service-col mk-card bg-white border border-[#DFE3E8] mk-border p-7 flex flex-col justify-between min-h-[330px] shadow-sm">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <div class="mk-icon-wrap w-12 h-12 rounded-lg bg-[#FFF4EC] border border-[#FFD8BE] text-[#FF7618] flex items-center justify-center transition-colors">
+                <!-- Icono Vectorial HD: Planta Sustentable & Corfo -->
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="20" x2="18" y2="10"/>
+                  <line x1="12" y1="20" x2="12" y2="4"/>
+                  <line x1="6" y1="20" x2="6" y2="14"/>
+                  <line x1="2" y1="20" x2="22" y2="20"/>
+                </svg>
+              </div>
+              <span class="font-heading text-xs font-extrabold px-2.5 py-1 rounded bg-slate-100 text-slate-700">DIV. 04</span>
+            </div>
+            <h3 class="text-lg font-extrabold mb-2.5 leading-snug">Proyectos Llave en Mano & Corfo</h3>
+            <p class="text-sm mk-muted text-slate-600 leading-relaxed font-normal">
+              Plantas de valorización de residuos orgánicos, recuperación de agua industrial y estructuración de Créditos Corfo y Ley I+D (35%).
+            </p>
+          </div>
+          <div class="pt-5 mt-6 border-t border-[#DFE3E8] mk-border flex items-center justify-between">
+            <span class="font-heading text-xs font-bold uppercase tracking-wider">Evaluar Proyecto</span>
+            <span class="mk-arrow-box w-8 h-8 rounded-md border border-[#DFE3E8] mk-border flex items-center justify-center transition-colors">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 3. CATÁLOGO DE MAQUINARIA Y VIDEOS CON BORDES SUAVES (10PX)           -->
+  <!-- ===================================================================== -->
+  <section id="sec-catalogo" class="mk-sec-alt bg-[#F4F5F7] border-b border-[#DFE3E8] mk-border py-16 lg:py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <div class="text-xs font-heading font-bold uppercase tracking-widest text-[#FF7618] mb-2">
+            // CATÁLOGO TÉCNICO MULTIRUBRO
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+            Maquinaria, Videos Operativos y Envases
+          </h2>
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          <button onclick="filterDemo('all')" id="flt-all" class="px-4 py-2 rounded-md text-xs font-heading font-bold uppercase tracking-wider bg-[#FF7618] text-white">
+            Todos
+          </button>
+          <button onclick="filterDemo('pesca')" id="flt-pesca" class="px-4 py-2 rounded-md text-xs font-heading font-bold uppercase tracking-wider bg-white text-[#15141C] border border-[#DFE3E8]">
+            Proceso Pesquero (Video)
+          </button>
+          <button onclick="filterDemo('carne')" id="flt-carne" class="px-4 py-2 rounded-md text-xs font-heading font-bold uppercase tracking-wider bg-white text-[#15141C] border border-[#DFE3E8]">
+            Maquinaria Cárnica
+          </button>
+          <button onclick="filterDemo('envases')" id="flt-envases" class="px-4 py-2 rounded-md text-xs font-heading font-bold uppercase tracking-wider bg-white text-[#15141C] border border-[#DFE3E8]">
+            Envases Impresos
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+        <!-- Item 1: Fishery Machine with Real Video -->
+        <div data-cat="pesca" class="demo-item mk-card mk-rounded-card overflow-hidden bg-white border border-[#DFE3E8] mk-border flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="relative aspect-video bg-[#15141C] border-b border-[#DFE3E8] mk-border">
+              <video controls preload="metadata" poster="assets/videos/machinery_pesquera/05_salmon_filleting_rl_ffm120.jpg" class="w-full h-full object-cover">
+                <source src="assets/videos/machinery_pesquera/05_salmon_filleting_rl_ffm120.mp4" type="video/mp4" />
+              </video>
+              <span class="absolute top-3 left-3 rounded bg-[#15141C]/95 text-white font-heading text-xs font-bold px-3 py-1 border-l-4 border-[#FF7618] pointer-events-none">
+                VIDEO EN PLANTA · WP-FFM120
+              </span>
+            </div>
+            <div class="p-6">
+              <div class="text-xs font-heading font-bold uppercase tracking-wider text-[#FF7618] mb-1.5">
+                LÍNEA PESQUERA · ACERO INOX AISI 304
+              </div>
+              <h3 class="text-xl font-extrabold mb-2">Fileteadora Automática de Salmón</h3>
+              <p class="text-sm mk-muted text-slate-600 font-normal leading-relaxed mb-4">
+                Sistema de corte simétrico de doble disco con separación limpia de espinazo y velocidad de 15 a 25 pescados por minuto.
+              </p>
+              <div class="rounded-lg bg-slate-50 mk-sec-alt border border-[#DFE3E8] mk-border p-3.5 text-xs space-y-1.5 font-heading">
+                <div class="flex justify-between"><span class="mk-muted text-slate-500">CAPACIDAD:</span> <strong>15 – 25 pescados/min</strong></div>
+                <div class="flex justify-between"><span class="mk-muted text-slate-500">RENDIMIENTO:</span> <strong>Hasta 98.2%</strong></div>
+              </div>
+            </div>
+          </div>
+          <div class="px-6 pb-6">
+            <a href="#sec-corfo" class="mk-btn-dark w-full py-3.5 text-xs flex items-center justify-between px-5">
+              <span>Solicitar Ficha & Cotización</span>
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Item 2: Meat Machine -->
+        <div data-cat="carne" class="demo-item mk-card mk-rounded-card overflow-hidden bg-white border border-[#DFE3E8] mk-border flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="relative aspect-video bg-[#15141C] border-b border-[#DFE3E8] mk-border overflow-hidden">
+              <img src="assets/images/machinery/campana_doble.jpg" alt="Envasadora Doble Campana" class="w-full h-full object-cover" />
+              <span class="absolute top-3 left-3 rounded bg-[#15141C]/95 text-white font-heading text-xs font-bold px-3 py-1 border-l-4 border-[#FF7618]">
+                LÍNEA CÁRNICA · WP-DZ800
+              </span>
+            </div>
+            <div class="p-6">
+              <div class="text-xs font-heading font-bold uppercase tracking-wider text-[#FF7618] mb-1.5">
+                ENVASADO INDUSTRIAL · BOMBA 200 M³/H
+              </div>
+              <h3 class="text-xl font-extrabold mb-2">Envasadora al Vacío Doble Campana</h3>
+              <p class="text-sm mk-muted text-slate-600 font-normal leading-relaxed mb-4">
+                Campana basculante de alta productividad para cortes cárnicos, cecinas, quesos y filetes de exportación en turnos continuos.
+              </p>
+              <div class="rounded-lg bg-slate-50 mk-sec-alt border border-[#DFE3E8] mk-border p-3.5 text-xs space-y-1.5 font-heading">
+                <div class="flex justify-between"><span class="mk-muted text-slate-500">BARRAS DE SELLADO:</span> <strong>800 mm × 4 barras</strong></div>
+                <div class="flex justify-between"><span class="mk-muted text-slate-500">CICLO OPERATIVO:</span> <strong>15 – 25 seg/ciclo</strong></div>
+              </div>
+            </div>
+          </div>
+          <div class="px-6 pb-6">
+            <a href="#sec-corfo" class="mk-btn-dark w-full py-3.5 text-xs flex items-center justify-between px-5">
+              <span>Solicitar Ficha & Cotización</span>
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Item 3: Packaging -->
+        <div data-cat="envases" class="demo-item mk-card mk-rounded-card overflow-hidden bg-white border border-[#DFE3E8] mk-border flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="relative aspect-video bg-[#15141C] border-b border-[#DFE3E8] mk-border overflow-hidden">
+              <img src="assets/images/products/bolsa_vacio_wellpack.jpg" alt="Bolsas Vacío WellPack" class="w-full h-full object-cover" />
+              <span class="absolute top-3 left-3 rounded bg-[#15141C]/95 text-white font-heading text-xs font-bold px-3 py-1 border-l-4 border-[#FF7618]">
+                COEXTRUSIÓN PA/PE · 70 A 150 µm
+              </span>
+            </div>
+            <div class="p-6">
+              <div class="text-xs font-heading font-bold uppercase tracking-wider text-[#FF7618] mb-1.5">
+                PACKAGING FLEXIBLE · IMPRESIÓN CORPORATIVA
+              </div>
+              <h3 class="text-xl font-extrabold mb-2">Bolsas de Vacío, Congelados y Doypack</h3>
+              <p class="text-sm mk-muted text-slate-600 font-normal leading-relaxed mb-4">
+                Envases certificados de alta barrera al oxígeno y humedad para cámaras de frío, túneles IQF y exhibición comercial con logo.
+              </p>
+              <div class="rounded-lg bg-slate-50 mk-sec-alt border border-[#DFE3E8] mk-border p-3.5 text-xs space-y-1.5 font-heading">
+                <div class="flex justify-between"><span class="mk-muted text-slate-500">RANGO TÉRMICO:</span> <strong>-40°C a +95°C</strong></div>
+                <div class="flex justify-between"><span class="mk-muted text-slate-500">PERSONALIZACIÓN:</span> <strong>Hasta 8 Colores</strong></div>
+              </div>
+            </div>
+          </div>
+          <div class="px-6 pb-6">
+            <a href="#sec-corfo" class="mk-btn-dark w-full py-3.5 text-xs flex items-center justify-between px-5">
+              <span>Solicitar Muestras & Precios</span>
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 4. MÉTRICAS + CONFIGURADOR CORFO CON BORDES SUAVIZADOS                -->
+  <!-- ===================================================================== -->
+  <section id="sec-corfo" class="bg-[#15141C] text-white py-16 lg:py-24 border-b border-[#2E2D3D]">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <div class="lg:col-span-5">
+          <div class="text-xs font-heading font-bold uppercase tracking-widest text-[#FF7618] mb-2">
+            // PROYECTOS E INCENTIVOS INDUSTRIALES
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-5">
+            Optimizamos tu línea productiva y estructuramos tu financiamiento Corfo
+          </h2>
+          <p class="text-sm text-slate-300 font-normal leading-relaxed mb-8">
+            Indicadores claros, sobrios y de alta legibilidad orientados a gerencias de planta y directorios industriales.
+          </p>
+
+          <div class="space-y-6 mb-10 font-heading">
+            <div>
+              <div class="flex justify-between text-sm font-bold mb-2">
+                <span>Eficiencia y Rendimiento de Línea en Planta</span>
+                <span class="text-[#FF7618]">98%</span>
+              </div>
+              <div class="w-full h-2 bg-[#2A2935] rounded-full overflow-hidden">
+                <div class="h-full bg-[#FF7618] rounded-full" style="width: 98%;"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-sm font-bold mb-2">
+                <span>Rebaja Tributaria Ley I+D (Impuesto 1ª Categoría)</span>
+                <span class="text-[#FF7618]">35%</span>
+              </div>
+              <div class="w-full h-2 bg-[#2A2935] rounded-full overflow-hidden">
+                <div class="h-full bg-[#FF7618] rounded-full" style="width: 72%;"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-sm font-bold mb-2">
+                <span>Valorización de Residuos y Recuperación de Agua</span>
+                <span class="text-[#FF7618]">85%</span>
+              </div>
+              <div class="w-full h-2 bg-[#2A2935] rounded-full overflow-hidden">
+                <div class="h-full bg-[#FF7618] rounded-full" style="width: 85%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 rounded-xl overflow-hidden border border-[#2E2D3D] divide-x divide-[#2E2D3D] bg-[#1E1D28]">
+            <div class="p-5">
+              <div class="font-heading text-3xl font-extrabold text-[#FF7618]">15 Años</div>
+              <div class="text-xs text-slate-300 mt-1">Plazo máximo en Créditos Verdes y MiPyme Corfo</div>
+            </div>
+            <div class="p-5">
+              <div class="font-heading text-3xl font-extrabold text-white">100% OEM</div>
+              <div class="text-xs text-slate-300 mt-1">Importación directa y puesta en marcha llave en mano</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Corfo Evaluator Card -->
+        <div class="lg:col-span-7 bg-[#1E1D28] mk-rounded-card border border-[#2E2D3D] p-8 shadow-xl">
+          <div class="flex items-center justify-between pb-4 mb-6 border-b border-[#2E2D3D]">
+            <div>
+              <span class="text-xs font-heading font-bold uppercase tracking-widest text-[#FF7618]">CONFIGURADOR EJECUTIVO</span>
+              <h3 class="text-xl font-extrabold mt-0.5">Evaluador de Proyectos y Financiamiento Corfo</h3>
+            </div>
+            <span class="font-heading text-xs font-bold px-3 py-1.5 rounded-md bg-[#15141C] border border-[#2E2D3D]" id="mk-wiz-step-indicator">
+              PASO 01 / 03
+            </span>
+          </div>
+
+          <div class="w-full h-1.5 bg-[#15141C] rounded-full overflow-hidden mb-6">
+            <div id="mk-wiz-bar" class="h-full bg-[#FF7618] rounded-full transition-all duration-300" style="width: 33%;"></div>
+          </div>
+
+          <div id="mk-wiz-content" class="space-y-4"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-[#0F0E14] text-slate-400 py-12 border-t border-[#252430] text-xs">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <span class="font-heading font-extrabold text-white text-base">WELLPACK<span class="text-[#FF7618]">.</span></span>
+        <span>© 2026 WellPack Industrial Solutions Chile · Propuesta Estética Manufaktur V2</span>
+      </div>
+      <div class="font-heading font-bold uppercase tracking-wider text-white">
+        ventas@wellpack.cl · +56 9 7214 6861
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // =========================================================================
+    // 1. LOGICA DE LA PANTALLA DE CARGA (PRELOADER)
+    // =========================================================================
+    const statusMessages = [
+      'Inicializando Ingeniería de Envasado & Maquinaria...',
+      'Cargando Catálogo de Alta Barrera y Líneas Inox AISI 304...',
+      'Preparando Configurador de Proyectos Corfo...',
+      'Sistema Industrial Listo'
+    ];
+
+    function runPreloaderAnimation() {
+      const preloader = document.getElementById('mk-preloader');
+      const bar = document.getElementById('loader-bar');
+      const pct = document.getElementById('loader-pct');
+      const status = document.getElementById('loader-status');
+
+      preloader.classList.remove('mk-hidden');
+      let progress = 0;
+      bar.style.width = '0%';
+      pct.textContent = '0%';
+
+      const timer = setInterval(() => {
+        progress += Math.floor(Math.random() * 14) + 9;
+        if (progress >= 100) {
+          progress = 100;
+          clearInterval(timer);
+          bar.style.width = '100%';
+          pct.textContent = '100%';
+          status.textContent = statusMessages[3];
+          setTimeout(() => {
+            preloader.classList.add('mk-hidden');
+          }, 380);
+        } else {
+          bar.style.width = progress + '%';
+          pct.textContent = progress + '%';
+          if (progress < 40) status.textContent = statusMessages[0];
+          else if (progress < 75) status.textContent = statusMessages[1];
+          else status.textContent = statusMessages[2];
+        }
+      }, 95);
+    }
+
+    function replayPreloader() {
+      runPreloaderAnimation();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      runPreloaderAnimation();
+    });
+
+    // =========================================================================
+    // 2. SELECTOR DE VARIANTE (BLANCO+CARBÓN vs TODO CARBÓN)
+    // =========================================================================
+    function setVariant(mode) {
+      if (mode === 'dark') {
+        document.body.classList.add('mk-all-dark');
+        document.getElementById('var-dark').className = 'px-3 py-1.5 text-xs font-heading font-bold uppercase tracking-wider bg-[#FF7618] text-white rounded';
+        document.getElementById('var-contrast').className = 'px-3 py-1.5 text-xs font-heading font-bold uppercase tracking-wider bg-[#22212C] text-slate-200 hover:text-white border border-[#383647] rounded';
+      } else {
+        document.body.classList.remove('mk-all-dark');
+        document.getElementById('var-contrast').className = 'px-3 py-1.5 text-xs font-heading font-bold uppercase tracking-wider bg-[#FF7618] text-white rounded';
+        document.getElementById('var-dark').className = 'px-3 py-1.5 text-xs font-heading font-bold uppercase tracking-wider bg-[#22212C] text-slate-200 hover:text-white border border-[#383647] rounded';
+      }
+    }
+
+    // =========================================================================
+    // 3. PESTAÑAS DEL HERO
+    // =========================================================================
+    const slides = [
+      {
+        kicker: '01 // PACKAGING INDUSTRIAL · ALTA BARRERA',
+        title: 'Soluciones industriales para procesamiento y envasado de alimentos',
+        desc: 'Abastecimiento directo de bolsas de vacío gofradas y lisas, pouches Doypack, bolsas para congelados IQF y films de termoformado con impresión corporativa.',
+        img: 'assets/images/hero_wellpack_lineup.jpg'
+      },
+      {
+        kicker: '02 // DIVISIÓN FRIGORÍFICA Y CECINAS',
+        title: 'Equipamiento de alto tonelaje para plantas cárnicas y frigoríficos',
+        desc: 'Sierras de cinta, molinos para bloques congelados, mezcladoras al vacío, embutidoras continuas y cámaras doble campana en acero inoxidable AISI 304.',
+        img: 'assets/images/hero_maquinaria_carnica.jpg'
+      },
+      {
+        kicker: '03 // INGENIERÍA ACUÍCOLA Y PESQUERA',
+        title: 'Líneas automatizadas para procesamiento de salmón y pesca blanca',
+        desc: 'Descamadoras, fileteadoras automáticas, despieladoras, desespinadoras Pin-Bone y porcionadoras electrónicas con videos de operación real en planta.',
+        img: 'assets/images/hero_maquinaria_pesquera.jpg'
+      },
+      {
+        kicker: '04 // PROYECTOS LLAVE EN MANO & CORFO',
+        title: 'Tecnología verde, economía circular y estructuración financiera Corfo',
+        desc: 'Plantas valorizadoras de residuos, tratamiento de aguas industriales (RILES), energía renovable y postulación integral a Crédito Verde, MiPyme y Ley I+D.',
+        img: 'assets/images/hero_proyectos_corfo.jpg'
+      }
+    ];
+
+    function switchHeroSlide(idx) {
+      const s = slides[idx];
+      document.getElementById('hero-kicker').textContent = s.kicker;
+      document.getElementById('hero-title').textContent = s.title;
+      document.getElementById('hero-desc').textContent = s.desc;
+      document.getElementById('hero-bg-img').src = s.img;
+
+      for (let i = 0; i < 4; i++) {
+        const tab = document.getElementById('slide-tab-' + i);
+        if (i === idx) {
+          tab.className = 'p-6 text-left border-t-2 border-[#FF7618] bg-[#1E1D28] transition-colors';
+          tab.querySelector('div').className = 'font-heading text-xs text-[#FF7618] font-bold mb-1';
+        } else {
+          tab.className = 'p-6 text-left hover:bg-[#1E1D28] transition-colors';
+          tab.querySelector('div').className = 'font-heading text-xs text-slate-400 font-bold mb-1';
+        }
+      }
+    }
+
+    // =========================================================================
+    // 4. FILTRO DE CATÁLOGO
+    // =========================================================================
+    function filterDemo(cat) {
+      ['all', 'pesca', 'carne', 'envases'].forEach(c => {
+        const btn = document.getElementById('flt-' + c);
+        if (c === cat) {
+          btn.className = 'px-4 py-2 rounded-md text-xs font-heading font-bold uppercase tracking-wider bg-[#FF7618] text-white';
+        } else {
+          btn.className = 'px-4 py-2 rounded-md text-xs font-heading font-bold uppercase tracking-wider bg-white text-[#15141C] border border-[#DFE3E8]';
+        }
+      });
+      document.querySelectorAll('.demo-item').forEach(el => {
+        el.style.display = (cat === 'all' || el.getAttribute('data-cat') === cat) ? 'flex' : 'none';
+      });
+    }
+
+    // =========================================================================
+    // 5. DEMO CONFIGURADOR CORFO CON BORDES SUAVES
+    // =========================================================================
+    let wizStep = 1;
+    let wizSector = 'Pesquero y Acuícola';
+    let wizFocus = 'Crédito Verde Corfo (Tecnología Verde, Agua y Residuos)';
+
+    function renderWiz() {
+      const box = document.getElementById('mk-wiz-content');
+      document.getElementById('mk-wiz-step-indicator').textContent = `PASO 0${wizStep} / 03`;
+      document.getElementById('mk-wiz-bar').style.width = `${wizStep * 33.3}%`;
+
+      if (wizStep === 1) {
+        box.innerHTML = `
+          <div class="text-sm font-heading font-bold uppercase tracking-wider text-slate-200 mb-3">
+            1. Seleccione su Sector Industrial:
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            ${['Pesquero y Acuícola', 'Cárnico y Frigoríficos', 'Agroindustrial y Alimentos', 'Otro Sector Industrial'].map((s, idx) => `
+              <button onclick="selectSector('${s}')" class="p-4 rounded-lg text-left border transition-all ${wizSector === s ? 'border-[#FF7618] bg-[#15141C]' : 'border-[#2E2D3D] bg-[#181722] hover:border-slate-500'} flex items-center justify-between">
+                <div>
+                  <div class="font-heading text-xs text-[#FF7618] font-bold">SECTOR 0${idx + 1}</div>
+                  <div class="font-heading text-sm font-bold text-white mt-0.5">${s}</div>
+                </div>
+                <span class="w-7 h-7 rounded-md flex items-center justify-center ${wizSector === s ? 'bg-[#FF7618] text-white' : 'bg-[#252433] text-slate-400'}">✓</span>
+              </button>
+            `).join('')}
+          </div>
+          <div class="pt-4 flex justify-end">
+            <button onclick="nextWiz(2)" class="mk-btn-orange px-6 py-3 text-xs inline-flex items-center gap-2">
+              <span>Siguiente Paso</span><span>→</span>
+            </button>
+          </div>
+        `;
+      } else if (wizStep === 2) {
+        const focuses = [
+          { label: 'Tecnología Verde, Agua, Residuos y Energía', prog: 'Crédito Verde Corfo' },
+          { label: 'Maquinaria de Proceso, Frío y Envasado', prog: 'Crédito Corfo MiPyme (Leasing / Inversión)' },
+          { label: 'Automatización, IoT e Innovación de Procesos', prog: 'Incentivo Tributario Ley I+D (35% rebaja)' },
+          { label: 'Asesoría Industrial Integral y Estructuración', prog: 'Consultoría Llave en Mano + Mix Corfo' }
+        ];
+        box.innerHTML = `
+          <div class="text-sm font-heading font-bold uppercase tracking-wider text-slate-200 mb-3">
+            2. Enfoque del Proyecto (Asigna línea Corfo):
+          </div>
+          <div class="space-y-2.5">
+            ${focuses.map((f) => `
+              <button onclick="selectFocus('${f.prog}')" class="w-full p-4 rounded-lg text-left border transition-all ${wizFocus === f.prog ? 'border-[#FF7618] bg-[#15141C]' : 'border-[#2E2D3D] bg-[#181722]'} flex items-center justify-between">
+                <div>
+                  <div class="font-heading text-sm font-bold text-white">${f.label}</div>
+                  <div class="text-xs text-[#FF7618] font-heading font-semibold mt-0.5">Instrumento: ${f.prog}</div>
+                </div>
+                <span class="w-7 h-7 rounded-md flex items-center justify-center ${wizFocus === f.prog ? 'bg-[#FF7618] text-white' : 'bg-[#252433] text-slate-400'}">✓</span>
+              </button>
+            `).join('')}
+          </div>
+          <div class="pt-4 flex justify-between">
+            <button onclick="nextWiz(1)" class="px-5 py-3 rounded-md text-xs font-heading font-bold uppercase border border-[#2E2D3D] text-slate-300">← Volver</button>
+            <button onclick="nextWiz(3)" class="mk-btn-orange px-6 py-3 text-xs inline-flex items-center gap-2">
+              <span>Ver Diagnóstico</span><span>→</span>
+            </button>
+          </div>
+        `;
+      } else {
+        box.innerHTML = `
+          <div class="p-5 rounded-lg bg-[#15141C] border-l-4 border-[#FF7618] border border-[#2E2D3D]">
+            <div class="font-heading text-xs font-bold uppercase tracking-widest text-[#FF7618] mb-1">
+              DIAGNÓSTICO PRELIMINAR ESTRUCTURADO
+            </div>
+            <div class="font-heading text-lg font-extrabold text-white mb-2">${wizFocus}</div>
+            <div class="text-xs text-slate-300 space-y-1">
+              <div><strong>Sector:</strong> ${wizSector}</div>
+              <div><strong>Modalidad:</strong> Ingeniería Llave en Mano + Carpeta Técnica Corfo</div>
+            </div>
+          </div>
+          <div class="pt-4 flex justify-between">
+            <button onclick="nextWiz(1)" class="px-5 py-3 rounded-md text-xs font-heading font-bold uppercase border border-[#2E2D3D] text-slate-300">Reiniciar</button>
+            <a href="proyectos-asesorias.html" class="mk-btn-orange px-6 py-3 text-xs inline-flex items-center gap-2">
+              <span>Abrir Wizard Completo de 5 Pasos</span><span>↗</span>
+            </a>
+          </div>
+        `;
+      }
+    }
+
+    function selectSector(s) { wizSector = s; renderWiz(); }
+    function selectFocus(f) { wizFocus = f; renderWiz(); }
+    function nextWiz(step) { wizStep = step; renderWiz(); }
+    renderWiz();
+  </script>
+</body>
+</html>

@@ -101,23 +101,9 @@ class AntigravityRenderer {
   }
 
   renderApp() {
-    if (this.pageMode === 'meat_machinery') {
-      document.body.style.backgroundColor = '#120606';
-      document.body.style.color = '#FFFFFF';
-      this.container.className = 'relative bg-[#120606] text-white min-h-screen';
-    } else if (this.pageMode === 'fishery_machinery') {
-      document.body.style.backgroundColor = '#03101f';
-      document.body.style.color = '#FFFFFF';
-      this.container.className = 'relative bg-[#03101f] text-white min-h-screen';
-    } else if (this.pageMode === 'industrial_projects') {
-      document.body.style.backgroundColor = '#041310';
-      document.body.style.color = '#FFFFFF';
-      this.container.className = 'relative bg-[#041310] text-white min-h-screen';
-    } else {
-      document.body.style.backgroundColor = '#121212';
-      document.body.style.color = '#FFFFFF';
-      this.container.className = 'relative bg-[#121212] text-white min-h-screen';
-    }
+    document.body.style.backgroundColor = '#15141C';
+    document.body.style.color = '#FFFFFF';
+    this.container.className = 'relative bg-[#15141C] text-white min-h-screen';
 
     let mainContentHtml = '';
     if (this.pageMode === 'meat_machinery') {
@@ -138,7 +124,7 @@ class AntigravityRenderer {
     }
 
     this.container.innerHTML = `
-      <!-- 1. Barra de Navegación Industrial Multi-División -->
+      <!-- 1. Barra de Navegación Industrial Multi-División (Manufaktur V2) -->
       ${this.renderNavbar()}
 
       <!-- 2. Contenedor de Secciones Dinámicas -->
@@ -149,7 +135,7 @@ class AntigravityRenderer {
       <!-- 3. Pie de Página -->
       ${this.renderFooter()}
 
-      <!-- 4. Floating Action Dock B2B (Acción Rápida & Micro-interacciones) -->
+      <!-- 4. Floating Action Dock B2B -->
       ${this.renderFloatingActionDock()}
 
       <!-- 5. Modales y Notificaciones -->
@@ -162,192 +148,102 @@ class AntigravityRenderer {
     if (window.lucide) {
       window.lucide.createIcons();
     }
+
+    // Cerrar suavemente la Pantalla de Carga Industrial (Preloader) una vez montado el DOM
+    const preloader = document.getElementById('mk-preloader');
+    if (preloader) {
+      const bar = document.getElementById('mk-loader-bar');
+      const pct = document.getElementById('mk-loader-pct');
+      const status = document.getElementById('mk-loader-status');
+      if (bar) bar.style.width = '100%';
+      if (pct) pct.textContent = '100%';
+      if (status) status.textContent = 'Sistema Industrial Listo';
+      setTimeout(() => {
+        preloader.classList.add('mk-hidden');
+      }, 320);
+    }
   }
 
   renderFloatingActionDock() {
-    if (this.pageMode === 'meat_machinery') {
-      return `
-        <aside id="floating-b2b-dock" aria-label="Acciones rápidas Maquinaria Cárnica" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-xl transition-all duration-300">
-          <div class="bg-[#1a0808]/95 backdrop-blur-xl border border-red-700/60 p-2 sm:p-2.5 rounded-2xl shadow-2xl shadow-black/90 flex items-center justify-between gap-2.5 sm:gap-4 ring-1 ring-red-500/20 hover:border-red-500 transition-all">
-            <div class="flex items-center gap-2.5 pl-2 sm:pl-3">
-              <span class="relative flex h-2.5 w-2.5">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
-              </span>
-              <div class="leading-none hidden xs:block sm:block">
-                <span class="text-[11px] font-mono font-bold text-white tracking-wider uppercase block">División Rubro Cárnico</span>
-                <span class="text-[9px] text-red-300 font-mono">12 Equipos SUS304 • Soporte Chile</span>
-              </div>
-            </div>
-            <div class="flex items-center gap-2">
-              <a 
-                href="https://wa.me/56987654321?text=Hola%20WellPack%2C%20quisiera%20cotizar%20maquinaria%20para%20el%20rubro%20c%C3%A1rnico%20y%20cecinas" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                class="btn-spring inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-emerald-400 border border-emerald-500/30 text-xs font-mono font-bold">
-                <i data-lucide="message-circle" class="w-4 h-4"></i>
-                <span class="hidden sm:inline">WhatsApp</span>
-              </a>
-              <button 
-                type="button"
-                data-machine-title="Línea Industrial Rubro Cárnico & Cecinas"
-                class="btn-machinery-quote btn-spring inline-flex items-center gap-2 px-4 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-amber-500 text-white font-black text-xs uppercase tracking-wider shadow-lg shadow-red-600/35">
-                <i data-lucide="flame" class="w-3.5 h-3.5 text-white"></i>
-                <span>Cotizar Maquinaria</span>
-              </button>
-            </div>
-          </div>
-        </aside>
-      `;
-    }
+    const isMeat = this.pageMode === 'meat_machinery';
+    const isFish = this.pageMode === 'fishery_machinery';
+    const isProj = this.pageMode === 'industrial_projects';
 
-    if (this.pageMode === 'fishery_machinery') {
-      return `
-        <aside id="floating-b2b-dock" aria-label="Acciones rápidas Maquinaria Pesquera" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-xl transition-all duration-300">
-          <div class="bg-[#05182e]/95 backdrop-blur-xl border border-cyan-500/50 p-2 sm:p-2.5 rounded-2xl shadow-2xl shadow-black/90 flex items-center justify-between gap-2.5 sm:gap-4 ring-1 ring-cyan-400/20 hover:border-cyan-400 transition-all">
-            <div class="flex items-center gap-2.5 pl-2 sm:pl-3">
-              <span class="relative flex h-2.5 w-2.5">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-400"></span>
-              </span>
-              <div class="leading-none hidden xs:block sm:block">
-                <span class="text-[11px] font-mono font-bold text-white tracking-wider uppercase block">División Proceso Pesquero</span>
-                <span class="text-[9px] text-cyan-300 font-mono">12 Máquinas + Videoteca • SUS304/316</span>
-              </div>
-            </div>
-            <div class="flex items-center gap-2">
-              <a 
-                href="https://wa.me/56987654321?text=Hola%20WellPack%2C%20quisiera%20cotizar%20maquinaria%20para%20proceso%20pesquero%20y%20salmonero" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                class="btn-spring inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-emerald-500/30 text-xs font-mono font-bold">
-                <i data-lucide="message-circle" class="w-4 h-4"></i>
-                <span class="hidden sm:inline">WhatsApp</span>
-              </a>
-              <button 
-                type="button"
-                data-machine-title="Línea Industrial Proceso Pesquero & Acuícola"
-                class="btn-machinery-quote btn-spring inline-flex items-center gap-2 px-4 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-cyan-500/35">
-                <i data-lucide="fish" class="w-3.5 h-3.5 text-slate-950"></i>
-                <span>Cotizar Línea Pesquera</span>
-              </button>
-            </div>
-          </div>
-        </aside>
-      `;
-    }
+    const titleText = isMeat
+      ? '02. División Rubro Cárnico'
+      : isFish
+      ? '03. División Proceso Pesquero'
+      : isProj
+      ? '04. División Proyectos & Corfo'
+      : '01. División Envases Flexibles';
 
-    if (this.pageMode === 'industrial_projects') {
-      return `
-        <aside id="floating-b2b-dock" aria-label="Acciones rápidas Proyectos y Corfo" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-xl transition-all duration-300">
-          <div class="bg-[#051b16]/95 backdrop-blur-xl border border-emerald-500/50 p-2 sm:p-2.5 rounded-2xl shadow-2xl shadow-black/90 flex items-center justify-between gap-2.5 sm:gap-4 ring-1 ring-emerald-400/20 hover:border-emerald-400 transition-all">
-            <div class="flex items-center gap-2.5 pl-2 sm:pl-3">
-              <span class="relative flex h-2.5 w-2.5">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
-              </span>
-              <div class="leading-none hidden xs:block sm:block">
-                <span class="text-[11px] font-mono font-bold text-white tracking-wider uppercase block">División Proyectos & Corfo</span>
-                <span class="text-[9px] text-emerald-300 font-mono">Crédito Verde • MiPyme • Ley I+D 35%</span>
-              </div>
-            </div>
-            <div class="flex items-center gap-2">
-              <a 
-                href="https://wa.me/56987654321?text=Hola%20WellPack%2C%20quisiera%20evaluar%20un%20Proyecto%20Industrial%20y%20Financiamiento%20Corfo" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                class="btn-spring inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-emerald-500/30 text-xs font-mono font-bold">
-                <i data-lucide="message-circle" class="w-4 h-4"></i>
-                <span class="hidden sm:inline">WhatsApp</span>
-              </a>
-              <a 
-                href="#corfo_wizard_section"
-                class="btn-spring inline-flex items-center gap-2 px-4 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-emerald-400 via-teal-400 to-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-emerald-500/35">
-                <i data-lucide="compass" class="w-3.5 h-3.5 text-slate-950"></i>
-                <span>Evaluar Proyecto Corfo</span>
-              </a>
-            </div>
-          </div>
-        </aside>
-      `;
-    }
+    const subText = isMeat
+      ? '12 Equipos Inox SUS304 • Soporte Chile'
+      : isFish
+      ? '12 Máquinas + 12 Videos en Planta'
+      : isProj
+      ? 'Crédito Verde • MiPyme • Ley I+D 35%'
+      : 'Impresión Corporativa • Alta Barrera';
+
+    const waHref = isMeat
+      ? 'https://wa.me/56987654321?text=Hola%20WellPack%2C%20quisiera%20cotizar%20maquinaria%20para%20el%20rubro%20c%C3%A1rnico%20y%20cecinas'
+      : isFish
+      ? 'https://wa.me/56987654321?text=Hola%20WellPack%2C%20quisiera%20cotizar%20maquinaria%20para%20proceso%20pesquero%20y%20salmonero'
+      : isProj
+      ? 'https://wa.me/56987654321?text=Hola%20WellPack%2C%20quisiera%20evaluar%20un%20Proyecto%20Industrial%20y%20Financiamiento%20Corfo'
+      : 'https://wa.me/56987654321?text=Hola%20WellPack%2C%20quisiera%20asesor%C3%ADa%20r%C3%A1pida%20para%20cotizar%20empaques%20industriales';
+
+    const primaryCtaHtml = isMeat
+      ? `<button type="button" data-machine-title="Línea Industrial Rubro Cárnico & Cecinas" class="btn-machinery-quote inline-flex items-center gap-2 px-4 py-2.5 rounded-md bg-[#FF7618] hover:bg-[#E5630A] text-white font-heading font-bold text-xs uppercase tracking-wider transition-colors">
+           <span>Cotizar Maquinaria</span>
+           <span>↗</span>
+         </button>`
+      : isFish
+      ? `<button type="button" data-machine-title="Línea Industrial Proceso Pesquero & Acuícola" class="btn-machinery-quote inline-flex items-center gap-2 px-4 py-2.5 rounded-md bg-[#FF7618] hover:bg-[#E5630A] text-white font-heading font-bold text-xs uppercase tracking-wider transition-colors">
+           <span>Cotizar Línea Pesquera</span>
+           <span>↗</span>
+         </button>`
+      : isProj
+      ? `<a href="#corfo_wizard_section" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-md bg-[#FF7618] hover:bg-[#E5630A] text-white font-heading font-bold text-xs uppercase tracking-wider transition-colors">
+           <span>Evaluar Proyecto Corfo</span>
+           <span>↗</span>
+         </a>`
+      : `<button data-open-variation="any" class="btn-open-variation inline-flex items-center gap-2 px-4 py-2.5 rounded-md bg-[#FF7618] hover:bg-[#E5630A] text-white font-heading font-bold text-xs uppercase tracking-wider transition-colors">
+           <span>Cotizar Ahora</span>
+           <span>↗</span>
+         </button>`;
 
     return `
-      <!-- Floating B2B Action Dock (Micro-interacción & Conversión Inmediata) -->
       <aside id="floating-b2b-dock" aria-label="Acciones rápidas WellPack" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-xl transition-all duration-300">
-        <div class="bg-neutral-900/90 backdrop-blur-xl border border-neutral-700/70 p-2 sm:p-2.5 rounded-2xl shadow-2xl shadow-black/80 flex items-center justify-between gap-2.5 sm:gap-4 ring-1 ring-white/10 hover:border-amber-500/50 transition-all">
-          
-          <!-- Indicador Operacional Planta Flexográfica -->
-          <div class="flex items-center gap-2.5 pl-2 sm:pl-3">
-            <span class="relative flex h-2.5 w-2.5">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-            </span>
-            <div class="leading-none hidden xs:block sm:block">
-              <span class="text-[11px] font-mono font-bold text-white tracking-wider uppercase block">Línea Flexo Activa</span>
-              <span class="text-[9px] text-neutral-400 font-mono">Tirajes desde 10.000 un.</span>
+        <div class="bg-[#15141C]/95 backdrop-blur-md border border-[#343346] p-2.5 rounded-lg shadow-2xl flex items-center justify-between gap-3">
+          <div class="flex items-center gap-2.5 pl-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#FF7618] shrink-0"></span>
+            <div class="leading-tight hidden sm:block">
+              <span class="text-xs font-heading font-bold text-white tracking-wide uppercase block">${titleText}</span>
+              <span class="text-xs text-slate-300 font-medium">${subText}</span>
             </div>
           </div>
-
-          <!-- Acciones Rápidas -->
           <div class="flex items-center gap-2">
-            <!-- Botón WhatsApp Directo -->
             <a 
-              href="https://wa.me/56987654321?text=Hola%20WellPack%2C%20quisiera%20asesor%C3%ADa%20r%C3%A1pida%20para%20cotizar%20empaques%20industriales" 
+              href="${waHref}" 
               target="_blank" 
               rel="noopener noreferrer"
-              class="btn-spring inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-neutral-800 hover:bg-neutral-750 text-emerald-400 border border-emerald-500/30 text-xs font-mono font-bold">
-              <i data-lucide="message-circle" class="w-4 h-4"></i>
+              class="inline-flex items-center gap-1.5 px-3 py-2 rounded-md bg-[#1F1E2B] hover:bg-[#2A293A] text-white border border-[#343346] text-xs font-heading font-bold">
+              <i data-lucide="message-circle" class="w-4 h-4 text-[#FF7618]"></i>
               <span class="hidden sm:inline">WhatsApp</span>
             </a>
-
-            <!-- Botón Cotizar Inmediato (Abre Alibaba Modal) -->
-            <button 
-              data-open-variation="any" 
-              class="btn-open-variation btn-spring inline-flex items-center gap-2 px-4 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-[#FF6B00] text-neutral-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-amber-500/25">
-              <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5 text-neutral-950"></i>
-              <span>Cotizar Ahora</span>
-            </button>
+            ${primaryCtaHtml}
           </div>
-
         </div>
       </aside>
     `;
   }
 
   renderNavbar() {
-    const config = getConfig();
-    const isConfigured = config.supabaseUrl && !config.supabaseUrl.includes('xyzcompany');
     const isPkg = this.pageMode === 'packaging';
     const isMeat = this.pageMode === 'meat_machinery';
     const isFish = this.pageMode === 'fishery_machinery';
     const isProj = this.pageMode === 'industrial_projects';
-
-    // Estilo temático de la barra superior según el rubro activo
-    const headerBg = isMeat
-      ? 'bg-[#140606]/90 border-red-900/50'
-      : isFish
-      ? 'bg-[#031224]/90 border-cyan-900/50'
-      : isProj
-      ? 'bg-[#041612]/90 border-emerald-900/60'
-      : 'bg-[#0b0c10]/85 border-white/[0.08]';
-
-    const hairlineGradient = isMeat
-      ? 'via-red-500/80'
-      : isFish
-      ? 'via-cyan-400/80'
-      : isProj
-      ? 'via-emerald-400/85'
-      : 'via-amber-500/60';
-
-    const badgeText = isMeat ? 'CÁRNICO' : isFish ? 'PESQUERO' : isProj ? 'PROYECTOS & CORFO' : 'ENVASES';
-    const badgeClasses = isMeat
-      ? 'bg-red-500/20 border-red-500/40 text-red-300'
-      : isFish
-      ? 'bg-cyan-500/20 border-cyan-400/40 text-cyan-300'
-      : isProj
-      ? 'bg-emerald-500/20 border-emerald-400/40 text-emerald-300'
-      : 'bg-amber-500/15 border-amber-500/30 text-amber-400';
 
     const subtitleText = isMeat
       ? 'División Maquinaria Rubro Cárnico'
@@ -355,173 +251,178 @@ class AntigravityRenderer {
       ? 'División Maquinaria Proceso Pesquero'
       : isProj
       ? 'Proyectos Llave en Mano & Corfo'
-      : 'Digital Flexible Packaging';
-
-    // Target blank cuando se abre una página especializada desde la página principal de envases
-    const meatTarget = isPkg ? 'target="_blank" rel="noopener"' : '';
-    const fishTarget = isPkg ? 'target="_blank" rel="noopener"' : '';
-    const projTarget = isPkg ? 'target="_blank" rel="noopener"' : '';
+      : 'Ingeniería & Envasado Industrial';
 
     return `
-      <header class="sticky top-0 z-40 backdrop-blur-2xl ${headerBg} border-b shadow-[0_4px_30px_rgba(0,0,0,0.6)] transition-all">
-        <!-- Cyber Hairline Gradient Top Accent -->
-        <div class="h-[2px] w-full bg-gradient-to-r from-transparent ${hairlineGradient} to-transparent"></div>
+      <!-- Topbar Corporativa Estilo Manufaktur Solutions -->
+      <div class="bg-[#0F0E14] text-slate-300 text-xs border-b border-[#262533] hidden md:block font-medium">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-between">
+          <div class="flex items-center gap-5">
+            <span class="flex items-center gap-2 text-white font-semibold">
+              <span class="w-2 h-2 rounded-full bg-[#FF7618]"></span>
+              DIVISIÓN INDUSTRIAL B2B CHILE
+            </span>
+            <span class="text-slate-400">ENVASES DE ALTA BARRERA · MAQUINARIA INOX AISI 304 · PROYECTOS CORFO</span>
+          </div>
+          <div class="flex items-center gap-6 font-heading font-bold text-white">
+            <span class="flex items-center gap-1.5 text-slate-200">
+              <svg class="w-3.5 h-3.5 text-[#FF7618]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              ventas@wellpack.cl
+            </span>
+            <a href="https://wa.me/56987654321" target="_blank" rel="noopener" class="text-[#FF7618] flex items-center gap-1.5 hover:underline">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Atención B2B Directa
+            </a>
+          </div>
+        </div>
+      </div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[76px] flex items-center justify-between gap-3">
+      <header class="sticky top-0 z-40 bg-[#15141C]/95 backdrop-blur-md border-b border-[#2E2D3D] shadow-lg transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-3">
           
-          <!-- 1. Logo Oficial WellPack -->
-          <a href="index.html" class="flex items-center gap-3 sm:gap-3.5 group shrink-0 transition-transform active:scale-95">
-            <div class="relative w-10 h-10 sm:w-11 sm:h-11 rounded-full p-[1.5px] bg-gradient-to-br ${isMeat ? 'from-red-500 via-rose-500 to-amber-500 shadow-[0_0_15px_rgba(239,68,68,0.45)]' : isFish ? 'from-cyan-400 via-sky-500 to-blue-600 shadow-[0_0_15px_rgba(6,182,212,0.45)]' : isProj ? 'from-emerald-400 via-teal-500 to-amber-400 shadow-[0_0_15px_rgba(16,185,129,0.45)]' : 'from-amber-400 via-amber-500 to-amber-600 shadow-[0_0_15px_rgba(245,158,11,0.35)]'} transition-all duration-300">
-              <img 
-                src="/assets/images/logo_wp_badge.png" 
-                alt="WellPack Official Logo" 
-                class="w-full h-full object-contain rounded-full bg-[#121212]"
-              />
+          <!-- 1. Emblema Vectorial HD + Marca WellPack (Cero Pixelado) -->
+          <a href="index.html" class="flex items-center gap-3.5 group shrink-0">
+            <div class="w-11 h-11 rounded-lg bg-[#1F1E2B] border border-[#36354A] group-hover:border-[#FF7618] flex items-center justify-center shadow-sm transition-colors shrink-0">
+              <svg class="w-6 h-6 text-[#FF7618]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                <line x1="12" y1="22.08" x2="12" y2="12"/>
+              </svg>
             </div>
             <div class="flex flex-col">
               <div class="flex items-center gap-2">
-                <span class="text-xl sm:text-[22px] font-black tracking-wider text-white font-heading uppercase group-hover:text-amber-400 transition-colors leading-none">WellPack</span>
-                <span class="text-[8.5px] font-mono px-1.5 py-0.5 rounded border ${badgeClasses} font-bold tracking-widest hidden xs:inline-block">${badgeText}</span>
+                <span class="text-xl sm:text-2xl font-extrabold tracking-tight text-white font-heading uppercase leading-none">
+                  WELLPACK<span class="text-[#FF7618]">.</span>
+                </span>
               </div>
-              <span class="text-[8.5px] sm:text-[9.5px] font-mono tracking-[0.20em] text-neutral-400 uppercase font-semibold mt-1 group-hover:text-neutral-200 transition-colors leading-none">
+              <span class="text-xs text-slate-300 font-semibold uppercase tracking-wider mt-1 leading-none">
                 ${subtitleText}
               </span>
             </div>
           </a>
 
-          <!-- 2. Pestañas de División + Navegación Central (Pill Dock Tecnológico) -->
-          <nav class="hidden lg:flex items-center gap-1.5 px-2.5 py-1.5 rounded-2xl bg-black/45 border border-white/10 backdrop-blur-md shadow-inner">
-            <!-- Pestaña 1: Envases Flexibles (Página Principal) -->
+          <!-- 2. Navegación Industrial Numerada (Sin emojis ni cápsulas de neón) -->
+          <nav class="hidden lg:flex items-center gap-1">
             <a 
               href="index.html" 
-              class="px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all ${
+              class="px-3.5 py-2.5 rounded-md text-xs font-heading font-bold uppercase tracking-wider flex items-center gap-2 transition-all ${
                 isPkg
-                  ? 'bg-amber-500 text-neutral-950 shadow-[0_0_15px_rgba(245,158,11,0.4)]'
-                  : 'text-neutral-300 hover:text-amber-300 hover:bg-white/5'
+                  ? 'bg-[#1F1E2B] text-white border-b-2 border-[#FF7618]'
+                  : 'text-slate-200 hover:text-white hover:bg-[#1F1E2B]/60'
               }">
-              <i data-lucide="package" class="w-3.5 h-3.5 ${isPkg ? 'text-neutral-950' : 'text-amber-400'}"></i>
-              <span>Envases</span>
+              <span class="text-[#FF7618] font-extrabold">01.</span>
+              <span>Envases Flexibles</span>
             </a>
 
-            <!-- Pestaña 2: Maquinaria Rubro Cárnico -->
             <a 
               href="maquinaria-carnica.html" 
-              ${meatTarget}
-              class="px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all ${
+              class="px-3.5 py-2.5 rounded-md text-xs font-heading font-bold uppercase tracking-wider flex items-center gap-2 transition-all ${
                 isMeat
-                  ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white border border-red-400/50 shadow-[0_0_18px_rgba(220,38,38,0.5)]'
-                  : 'text-red-300 bg-red-950/40 border border-red-500/30 hover:bg-red-900/50 hover:border-red-400'
+                  ? 'bg-[#1F1E2B] text-white border-b-2 border-[#FF7618]'
+                  : 'text-slate-200 hover:text-white hover:bg-[#1F1E2B]/60'
               }">
-              <span>🥩 Maquinaria Cárnica</span>
-              ${isPkg ? '<i data-lucide="external-link" class="w-3 h-3 text-red-400"></i>' : ''}
+              <span class="text-[#FF7618] font-extrabold">02.</span>
+              <span>Línea Cárnica</span>
             </a>
 
-            <!-- Pestaña 3: Maquinaria Proceso Pesquero -->
             <a 
               href="maquinaria-pesquera.html" 
-              ${fishTarget}
-              class="px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all ${
+              class="px-3.5 py-2.5 rounded-md text-xs font-heading font-bold uppercase tracking-wider flex items-center gap-2 transition-all ${
                 isFish
-                  ? 'bg-gradient-to-r from-cyan-400 to-sky-500 text-slate-950 border border-cyan-300 shadow-[0_0_18px_rgba(6,182,212,0.5)]'
-                  : 'text-cyan-300 bg-cyan-950/40 border border-cyan-500/30 hover:bg-cyan-900/50 hover:border-cyan-400'
+                  ? 'bg-[#1F1E2B] text-white border-b-2 border-[#FF7618]'
+                  : 'text-slate-200 hover:text-white hover:bg-[#1F1E2B]/60'
               }">
-              <span>🐟 Maquinaria Pesquera</span>
-              ${isPkg ? '<i data-lucide="external-link" class="w-3 h-3 text-cyan-400"></i>' : ''}
+              <span class="text-[#FF7618] font-extrabold">03.</span>
+              <span>Proceso Pesquero</span>
             </a>
 
-            <!-- Pestaña 4: Proyectos y Asesorías Industriales / Corfo -->
             <a 
               href="proyectos-asesorias.html" 
-              ${projTarget}
-              class="px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all ${
+              class="px-3.5 py-2.5 rounded-md text-xs font-heading font-bold uppercase tracking-wider flex items-center gap-2 transition-all ${
                 isProj
-                  ? 'bg-gradient-to-r from-emerald-400 via-teal-400 to-amber-400 text-slate-950 border border-emerald-300 shadow-[0_0_18px_rgba(16,185,129,0.5)]'
-                  : 'text-emerald-300 bg-emerald-950/45 border border-emerald-500/35 hover:bg-emerald-900/55 hover:border-emerald-400'
+                  ? 'bg-[#1F1E2B] text-white border-b-2 border-[#FF7618]'
+                  : 'text-slate-200 hover:text-white hover:bg-[#1F1E2B]/60'
               }">
-              <span>🌱 Proyectos & Corfo</span>
-              ${isPkg ? '<i data-lucide="external-link" class="w-3 h-3 text-emerald-400"></i>' : ''}
+              <span class="text-[#FF7618] font-extrabold">04.</span>
+              <span>Proyectos & Corfo</span>
             </a>
           </nav>
 
           <!-- 3. Acciones de Cabecera -->
-          <div class="flex items-center gap-2 sm:gap-2.5">
-            <!-- Configuración Webhook/Supabase -->
+          <div class="flex items-center gap-2">
             <button 
               id="btn-open-config" 
               title="Configuración de Sistema & Webhooks" 
-              class="p-2.5 rounded-xl bg-black/50 hover:bg-neutral-800 text-neutral-400 hover:text-amber-400 border border-white/10 transition-all active:scale-95">
+              class="p-2.5 rounded-md bg-[#1F1E2B] hover:bg-[#2A293A] text-slate-300 hover:text-[#FF7618] border border-[#343346] transition-colors">
               <i data-lucide="settings" class="w-4 h-4"></i>
             </button>
 
             ${isPkg ? `
-              <!-- Selector de Variaciones Estilo Alibaba -->
               <button 
                 id="btn-open-variations-nav" 
-                class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-neutral-900/90 hover:bg-neutral-800/90 text-amber-300 hover:text-amber-200 border border-amber-500/30 hover:border-amber-400/80 text-xs font-mono font-bold tracking-wider transition-all shadow-sm active:scale-95">
-                <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5 text-amber-400"></i>
-                <span class="hidden sm:inline">VARIACIONES</span>
+                class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2.5 rounded-md bg-[#1F1E2B] hover:bg-[#2A293A] text-white border border-[#343346] hover:border-[#FF7618] text-xs font-heading font-bold uppercase tracking-wider transition-colors">
+                <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5 text-[#FF7618]"></i>
+                <span>Variaciones</span>
               </button>
 
-              <!-- CTA Principal de Cotización de Empaque -->
               <button 
                 data-open-variation="any"
-                class="btn-open-variation group relative inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 hover:from-amber-400 hover:to-yellow-300 text-neutral-950 font-black text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-xl shadow-[0_0_20px_rgba(245,158,11,0.4)] border border-amber-300/60 transition-all hover:scale-[1.03] active:scale-95 font-mono tracking-wider uppercase shrink-0">
-                <i data-lucide="file-text" class="w-4 h-4 text-neutral-950"></i>
+                class="btn-open-variation inline-flex items-center gap-2 bg-[#FF7618] hover:bg-[#E5630A] text-white font-heading font-bold text-xs px-4 sm:px-5 py-2.5 rounded-md uppercase tracking-wider transition-colors shrink-0">
                 <span>Cotizar Empaque</span>
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
               </button>
             ` : isMeat ? `
               <button 
                 type="button"
                 data-machine-title="Línea Industrial Rubro Cárnico & Cecinas"
-                class="btn-machinery-quote group relative inline-flex items-center gap-2 bg-gradient-to-r from-red-600 via-rose-600 to-amber-500 hover:from-red-500 hover:to-amber-400 text-white font-black text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-xl shadow-[0_0_20px_rgba(220,38,38,0.45)] border border-red-400/50 transition-all hover:scale-[1.03] active:scale-95 font-mono tracking-wider uppercase shrink-0">
-                <i data-lucide="flame" class="w-4 h-4 text-white"></i>
+                class="btn-machinery-quote inline-flex items-center gap-2 bg-[#FF7618] hover:bg-[#E5630A] text-white font-heading font-bold text-xs px-4 sm:px-5 py-2.5 rounded-md uppercase tracking-wider transition-colors shrink-0">
                 <span>Cotizar Línea Cárnica</span>
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
               </button>
             ` : isFish ? `
               <button 
                 type="button"
                 data-machine-title="Línea Industrial Proceso Pesquero & Acuícola"
-                class="btn-machinery-quote group relative inline-flex items-center gap-2 bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-500 hover:from-cyan-300 hover:to-sky-400 text-slate-950 font-black text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-xl shadow-[0_0_20px_rgba(6,182,212,0.45)] border border-cyan-300/60 transition-all hover:scale-[1.03] active:scale-95 font-mono tracking-wider uppercase shrink-0">
-                <i data-lucide="fish" class="w-4 h-4 text-slate-950"></i>
+                class="btn-machinery-quote inline-flex items-center gap-2 bg-[#FF7618] hover:bg-[#E5630A] text-white font-heading font-bold text-xs px-4 sm:px-5 py-2.5 rounded-md uppercase tracking-wider transition-colors shrink-0">
                 <span>Cotizar Línea Pesquera</span>
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
               </button>
             ` : `
               <a 
                 href="#corfo_wizard_section"
-                class="group relative inline-flex items-center gap-2 bg-gradient-to-r from-emerald-400 via-teal-400 to-amber-400 hover:from-emerald-300 hover:to-amber-300 text-slate-950 font-black text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-xl shadow-[0_0_20px_rgba(16,185,129,0.45)] border border-emerald-300/60 transition-all hover:scale-[1.03] active:scale-95 font-mono tracking-wider uppercase shrink-0">
-                <i data-lucide="compass" class="w-4 h-4 text-slate-950"></i>
+                class="inline-flex items-center gap-2 bg-[#FF7618] hover:bg-[#E5630A] text-white font-heading font-bold text-xs px-4 sm:px-5 py-2.5 rounded-md uppercase tracking-wider transition-colors shrink-0">
                 <span>Evaluador Corfo</span>
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
               </a>
             `}
 
-            <!-- Botón Menú Móvil -->
             <button 
               id="btn-mobile-nav-toggle" 
               aria-label="Abrir menú" 
-              class="lg:hidden p-2.5 rounded-xl bg-black/60 text-neutral-300 hover:text-amber-400 border border-white/15 transition-all active:scale-95">
+              class="lg:hidden p-2.5 rounded-md bg-[#1F1E2B] text-white hover:text-[#FF7618] border border-[#343346] transition-colors">
               <i data-lucide="menu" class="w-5 h-5"></i>
             </button>
           </div>
         </div>
 
         <!-- Menú Desplegable Móvil con las 4 Pestañas de División -->
-        <div id="mobile-nav-menu" class="hidden lg:hidden border-t border-white/10 bg-[#0b0c10]/95 backdrop-blur-2xl px-4 py-3 space-y-2">
-          <div class="text-[10px] font-mono uppercase tracking-widest text-neutral-400 px-2 pb-1">Divisiones WellPack</div>
-          <a href="index.html" class="mobile-nav-link flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-bold ${isPkg ? 'bg-amber-500 text-neutral-950' : 'text-amber-300 bg-amber-500/10 border border-amber-500/30'}">
-            <span>📦 Envases Flexibles (Principal)</span>
-            ${isPkg ? '<span class="text-[10px] font-mono uppercase">Actual</span>' : ''}
+        <div id="mobile-nav-menu" class="hidden lg:hidden border-t border-[#2E2D3D] bg-[#15141C] px-4 py-3 space-y-2">
+          <div class="text-xs font-heading font-bold uppercase tracking-widest text-slate-400 px-2 pb-1">Divisiones Industriales WellPack</div>
+          <a href="index.html" class="mobile-nav-link flex items-center justify-between px-3.5 py-2.5 rounded-md text-sm font-heading font-bold ${isPkg ? 'bg-[#FF7618] text-white' : 'text-slate-200 bg-[#1F1E2B] border border-[#2E2D3D]'}">
+            <span>01. Envases Flexibles (Principal)</span>
+            <span>→</span>
           </a>
-          <a href="maquinaria-carnica.html" ${meatTarget} class="mobile-nav-link flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-bold ${isMeat ? 'bg-red-600 text-white' : 'text-red-300 bg-red-950/50 border border-red-500/30'}">
-            <span>🥩 Maquinaria Rubro Cárnico</span>
-            <i data-lucide="external-link" class="w-4 h-4"></i>
+          <a href="maquinaria-carnica.html" class="mobile-nav-link flex items-center justify-between px-3.5 py-2.5 rounded-md text-sm font-heading font-bold ${isMeat ? 'bg-[#FF7618] text-white' : 'text-slate-200 bg-[#1F1E2B] border border-[#2E2D3D]'}">
+            <span>02. Maquinaria Rubro Cárnico</span>
+            <span>→</span>
           </a>
-          <a href="maquinaria-pesquera.html" ${fishTarget} class="mobile-nav-link flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-bold ${isFish ? 'bg-cyan-400 text-slate-950' : 'text-cyan-300 bg-cyan-950/50 border border-cyan-500/30'}">
-            <span>🐟 Maquinaria Proceso Pesquero</span>
-            <i data-lucide="external-link" class="w-4 h-4"></i>
+          <a href="maquinaria-pesquera.html" class="mobile-nav-link flex items-center justify-between px-3.5 py-2.5 rounded-md text-sm font-heading font-bold ${isFish ? 'bg-[#FF7618] text-white' : 'text-slate-200 bg-[#1F1E2B] border border-[#2E2D3D]'}">
+            <span>03. Maquinaria Proceso Pesquero</span>
+            <span>→</span>
           </a>
-          <a href="proyectos-asesorias.html" ${projTarget} class="mobile-nav-link flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-bold ${isProj ? 'bg-emerald-400 text-slate-950' : 'text-emerald-300 bg-emerald-950/50 border border-emerald-500/30'}">
-            <span>🌱 Proyectos y Asesorías Corfo</span>
-            <i data-lucide="external-link" class="w-4 h-4"></i>
+          <a href="proyectos-asesorias.html" class="mobile-nav-link flex items-center justify-between px-3.5 py-2.5 rounded-md text-sm font-heading font-bold ${isProj ? 'bg-[#FF7618] text-white' : 'text-slate-200 bg-[#1F1E2B] border border-[#2E2D3D]'}">
+            <span>04. Proyectos y Asesorías Corfo</span>
+            <span>→</span>
           </a>
         </div>
       </header>
@@ -571,99 +472,115 @@ class AntigravityRenderer {
   }
 
   // ==========================================================
-  // SECCIÓN UNIVERSAL 1: HERO CENTRADO MULTI-ALIMENTOS
+  // SECCIÓN UNIVERSAL 1: HERO INDUSTRIAL ESTILO MANUFAKTUR V2
   // ==========================================================
   renderHeroUniversalSection(config = {}) {
     const title = config.title?.text || "Empaques de Alta Barrera Personalizados para tu Industria";
     const subtitle = config.subtitle?.text || "Desde bolsas al vacío hasta formatos Doypack. Importamos y fabricamos el envase exacto con la identidad visual de tu marca para el sector cárnico, pesquero, agrícola y retail.";
-    const actions = config.actions || [{ label: "Cotizar Empaque a Medida", type: "primary", bg_color: "#F59E0B" }];
+    const actions = config.actions || [{ label: "Cotizar Empaque a Medida", type: "primary", bg_color: "#FF7618" }];
     const bgImg = config.background_image?.url || "assets/images/hero_wellpack_lineup.jpg";
     const normalizedBg = bgImg.startsWith('/') ? bgImg.slice(1) : bgImg;
-    const overlay = config.background_image?.overlay || "rgba(18, 18, 18, 0.35)";
 
     return `
-      <section id="hero" class="relative min-h-[95vh] flex items-center justify-center overflow-hidden py-20 lg:py-28 bg-[#121212] text-white border-b border-neutral-800">
-        <!-- Contenedor del Fondo Panorámico en Movimiento Fluido (Izquierda <-> Derecha) -->
-        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
-          
-          <!-- Track móvil con animación continua de paneo cinematográfico -->
-          <div id="hero-fluid-track" class="absolute -top-[5%] -left-[18%] w-[136%] h-[110%] animate-hero-pan will-change-transform">
-            <img 
-              id="hero-fluid-img"
-              src="${normalizedBg}" 
-              alt="Variedad de empaques para alimentos WellPack" 
-              class="w-full h-full object-cover object-center filter brightness-[1.08] contrast-[1.12] saturate-[1.18] transition-transform duration-500 ease-out">
-          </div>
-
-          <!-- Efecto de brillo/destello de luz sobre envases plásticos que viaja suavemente -->
-          <div class="absolute inset-0 bg-gradient-to-r from-transparent via-amber-200/[0.08] to-transparent -skew-x-12 animate-light-sweep pointer-events-none"></div>
-
-          <!-- Gradiente Radial Foco: Centro sutilmente atenuado para legibilidad, dejando los alimentos de los costados y centro con máximo brillo y nitidez -->
-          <div class="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_50%,rgba(18,18,18,0.48)_0%,rgba(18,18,18,0.22)_60%,rgba(18,18,18,0.78)_100%)]"></div>
-
-          <!-- Viñetas superior e inferior que funden suavemente con navbar y siguiente sección -->
-          <div class="absolute inset-0 bg-gradient-to-b from-[#121212]/80 via-transparent to-[#121212]"></div>
+      <section id="hero" class="relative bg-[#15141C] text-white border-b border-[#2E2D3D] overflow-hidden">
+        <!-- Fondo Fotográfico Industrial Sobrio -->
+        <div class="absolute inset-0 z-0 pointer-events-none select-none opacity-35">
+          <img 
+            id="hero-fluid-img"
+            src="${normalizedBg}" 
+            alt="Soluciones Industriales de Envasado y Maquinaria WellPack" 
+            class="w-full h-full object-cover object-center">
+          <div class="absolute inset-0 bg-gradient-to-r from-[#15141C] via-[#15141C]/90 to-[#15141C]/55"></div>
         </div>
 
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-8 hero-content-trigger">
-          <div class="p-6 sm:p-10 rounded-3xl bg-[#121212]/40 backdrop-blur-[3px] border border-white/10 shadow-2xl shadow-black/80 space-y-7">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-14 lg:pt-20 lg:pb-18 relative z-10 hero-content-trigger">
+          <div class="max-w-3xl space-y-6">
             
-            <!-- Badge superior -->
-            <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-neutral-900/90 border border-amber-500/50 text-amber-400 text-xs font-mono font-bold uppercase tracking-wider shadow-lg shadow-black/60 backdrop-blur-md">
-              <i data-lucide="award" class="w-4 h-4 text-amber-400"></i>
-              <span>Fabricación e Importación Mayorista B2B</span>
+            <!-- Badge Técnico -->
+            <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-md bg-[#1F1E2B] border border-[#343346] text-[#FF7618] text-xs font-heading font-bold uppercase tracking-wider">
+              <span class="w-2 h-2 rounded-full bg-[#FF7618]"></span>
+              <span>INGENIERÍA INDUSTRIAL · FABRICACIÓN E IMPORTACIÓN MAYORISTA B2B</span>
             </div>
 
-            <!-- Título Centrado Principal -->
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-white drop-shadow-lg">
+            <!-- Título Principal Ultra-Nítido -->
+            <h1 class="text-3xl sm:text-5xl lg:text-[52px] font-extrabold tracking-tight leading-[1.12] text-white">
               ${title}
             </h1>
 
             <!-- Subtítulo -->
-            <p class="text-base sm:text-lg lg:text-xl text-neutral-200 max-w-3xl mx-auto font-normal leading-relaxed drop-shadow">
+            <p class="text-base sm:text-lg text-slate-200 max-w-2xl font-normal leading-relaxed">
               ${subtitle}
             </p>
 
             <!-- Botones de Acción -->
-            <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+            <div class="flex flex-wrap items-center gap-4 pt-1">
               ${actions.map(act => `
                 <button 
                   data-open-variation="any"
-                  class="btn-open-variation inline-flex items-center gap-2.5 bg-[#F59E0B] hover:bg-amber-400 text-neutral-950 font-black text-sm sm:text-base px-8 py-4 rounded-2xl shadow-xl shadow-amber-500/30 transition-all hover:scale-105 active:scale-95">
-                  <i data-lucide="calculator" class="w-5 h-5 text-neutral-950"></i>
+                  class="btn-open-variation inline-flex items-center gap-2.5 bg-[#FF7618] hover:bg-[#E5630A] text-white font-heading font-bold text-xs sm:text-sm px-7 py-3.5 rounded-md uppercase tracking-wider transition-all">
                   <span>${act.label}</span>
-                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
                 </button>
               `).join('')}
 
               <a 
                 href="#packaging_types_gallery" 
-                class="inline-flex items-center gap-2 bg-neutral-900/85 hover:bg-neutral-800 text-neutral-200 border border-neutral-700 hover:border-amber-400/70 font-bold text-sm sm:text-base px-7 py-4 rounded-2xl transition-all hover:scale-105 backdrop-blur-md shadow-lg">
-                <i data-lucide="package" class="w-5 h-5 text-amber-400"></i>
-                <span>Ver Formatos</span>
+                class="inline-flex items-center gap-2 bg-[#1F1E2B] hover:bg-[#2A293A] text-white border border-[#343346] hover:border-[#FF7618] font-heading font-bold text-xs sm:text-sm px-7 py-3.5 rounded-md uppercase tracking-wider transition-all">
+                <span>Ver Catálogo de Formatos</span>
               </a>
             </div>
 
             <!-- Barra de Especificaciones Rápidas -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5 pt-6 border-t border-neutral-800/90 text-left max-w-4xl mx-auto">
-              <div class="bg-neutral-900/75 backdrop-blur-md p-3.5 rounded-2xl border border-neutral-700/60 shadow-lg">
-                <div class="text-lg font-black text-amber-400 font-mono">EVOH / PE</div>
-                <div class="text-[11px] text-neutral-300 font-mono uppercase mt-0.5">Barrera de Oxígeno</div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4">
+              <div class="bg-[#1F1E2B] p-3.5 rounded-lg border border-[#2E2D3D]">
+                <div class="text-base font-extrabold text-[#FF7618] font-heading">EVOH / PA / PE</div>
+                <div class="text-xs text-slate-300 font-medium mt-0.5">Alta Barrera de Oxígeno</div>
               </div>
-              <div class="bg-neutral-900/75 backdrop-blur-md p-3.5 rounded-2xl border border-neutral-700/60 shadow-lg">
-                <div class="text-lg font-black text-amber-400 font-mono">-35° C IQF</div>
-                <div class="text-[11px] text-neutral-300 font-mono uppercase mt-0.5">Túneles de Congelado</div>
+              <div class="bg-[#1F1E2B] p-3.5 rounded-lg border border-[#2E2D3D]">
+                <div class="text-base font-extrabold text-[#FF7618] font-heading">-35° C IQF</div>
+                <div class="text-xs text-slate-300 font-medium mt-0.5">Túneles de Congelado</div>
               </div>
-              <div class="bg-neutral-900/75 backdrop-blur-md p-3.5 rounded-2xl border border-neutral-700/60 shadow-lg">
-                <div class="text-lg font-black text-amber-400 font-mono">10 Colores</div>
-                <div class="text-[11px] text-neutral-300 font-mono uppercase mt-0.5">Flexografía HD</div>
+              <div class="bg-[#1F1E2B] p-3.5 rounded-lg border border-[#2E2D3D]">
+                <div class="text-base font-extrabold text-[#FF7618] font-heading">10 Colores</div>
+                <div class="text-xs text-slate-300 font-medium mt-0.5">Flexografía & Hueco HD</div>
               </div>
-              <div class="bg-neutral-900/75 backdrop-blur-md p-3.5 rounded-2xl border border-neutral-700/60 shadow-lg">
-                <div class="text-lg font-black text-amber-400 font-mono">FDA 21 CFR</div>
-                <div class="text-[11px] text-neutral-300 font-mono uppercase mt-0.5">Inocuidad Alimentaria</div>
+              <div class="bg-[#1F1E2B] p-3.5 rounded-lg border border-[#2E2D3D]">
+                <div class="text-base font-extrabold text-[#FF7618] font-heading">FDA 21 CFR</div>
+                <div class="text-xs text-slate-300 font-medium mt-0.5">Inocuidad Alimentaria</div>
               </div>
             </div>
 
+          </div>
+        </div>
+
+        <!-- Barra Inferior de 4 Divisiones estilo Manufaktur Solutions -->
+        <div class="relative z-10 border-t border-[#2E2D3D] bg-[#14131B]">
+          <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[#2E2D3D]">
+            <a href="#packaging_types_gallery" class="p-5 sm:p-6 text-left border-t-2 border-[#FF7618] bg-[#1F1E2B] transition-colors block">
+              <div class="font-heading text-xs text-[#FF7618] font-bold mb-1">01 // PACKAGING INDUSTRIAL</div>
+              <div class="font-heading text-sm sm:text-base font-bold text-white">Envases de Alta Barrera e Impresión</div>
+            </a>
+            <a href="maquinaria-carnica.html" class="p-5 sm:p-6 text-left hover:bg-[#1F1E2B] transition-colors block group">
+              <div class="font-heading text-xs text-slate-400 group-hover:text-[#FF7618] font-bold mb-1">02 // LÍNEA FRIGORÍFICA</div>
+              <div class="font-heading text-sm sm:text-base font-bold text-white flex items-center justify-between">
+                <span>Maquinaria Industria Cárnica</span>
+                <span class="text-[#FF7618]">↗</span>
+              </div>
+            </a>
+            <a href="maquinaria-pesquera.html" class="p-5 sm:p-6 text-left hover:bg-[#1F1E2B] transition-colors block group">
+              <div class="font-heading text-xs text-slate-400 group-hover:text-[#FF7618] font-bold mb-1">03 // ACUICULTURA & PESCA</div>
+              <div class="font-heading text-sm sm:text-base font-bold text-white flex items-center justify-between">
+                <span>Proceso Pesquero + 12 Videos</span>
+                <span class="text-[#FF7618]">↗</span>
+              </div>
+            </a>
+            <a href="proyectos-asesorias.html" class="p-5 sm:p-6 text-left hover:bg-[#1F1E2B] transition-colors block group">
+              <div class="font-heading text-xs text-slate-400 group-hover:text-[#FF7618] font-bold mb-1">04 // LLAVE EN MANO</div>
+              <div class="font-heading text-sm sm:text-base font-bold text-white flex items-center justify-between">
+                <span>Tecnología Verde & Gestión Corfo</span>
+                <span class="text-[#FF7618]">↗</span>
+              </div>
+            </a>
           </div>
         </div>
       </section>
@@ -857,70 +774,161 @@ class AntigravityRenderer {
   }
 
   // ==========================================================
-  // PORTAL DE DIVISIONES DE MAQUINARIA Y PROYECTOS CORFO (EN PÁGINA PRINCIPAL DE ENVASES)
+  // PORTAL DE DIVISIONES DE MAQUINARIA Y PROYECTOS CORFO (ESTILO MANUFAKTUR V2)
   // ==========================================================
   renderMachineryDivisionsPortal() {
     return `
-      <section id="machinery_divisions_portal" class="py-20 bg-[#0d0e12] text-white relative border-b border-neutral-800 overflow-hidden font-sans">
-        <div class="absolute top-0 left-1/4 w-[500px] h-[300px] bg-red-600/10 blur-[140px] pointer-events-none rounded-full"></div>
-        <div class="absolute bottom-0 right-1/4 w-[500px] h-[300px] bg-cyan-500/10 blur-[140px] pointer-events-none rounded-full"></div>
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[320px] bg-emerald-500/10 blur-[150px] pointer-events-none rounded-full"></div>
-
+      <section id="machinery_divisions_portal" class="py-20 bg-[#191822] text-white relative border-b border-[#2E2D3D] overflow-hidden font-sans">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div class="text-center max-w-3xl mx-auto mb-12">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-900 border border-amber-500/40 text-amber-400 text-xs font-mono font-bold uppercase mb-3 shadow-sm">
-              <i data-lucide="cpu" class="w-4 h-4 text-amber-400"></i>
-              Portales Especializados en Pestaña Independiente
+          <!-- Encabezado de Sección -->
+          <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
+            <div>
+              <div class="text-xs font-heading font-bold uppercase tracking-widest text-[#FF7618] mb-2">
+                // UNIDADES OPERATIVAS E INGENIERÍA B2B
+              </div>
+              <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                Divisiones de Maquinaria Industrial & Proyectos Corfo
+              </h2>
             </div>
-            <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight">
-              Divisiones de Maquinaria Industrial & Proyectos Corfo
-            </h2>
-            <p class="mt-3 text-neutral-400 text-sm sm:text-base">
-              Explora nuestras líneas de equipamiento industrial por rubro o utiliza nuestro Evaluador Interactivo de Proyectos Llave en Mano y Financiamiento Corfo.
+            <p class="text-slate-300 text-sm sm:text-base max-w-md font-medium">
+              Explora nuestras líneas de equipamiento industrial en acero inoxidable o utiliza nuestro Evaluador Interactivo de Proyectos Llave en Mano y Financiamiento Corfo.
             </p>
           </div>
 
+          <!-- Grilla de 4 Columnas Estilo Manufaktur Solutions con Íconos Vectoriales HD -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+            <!-- Col 01 -->
+            <a href="#packaging_types_gallery" class="bg-[#1F1E2B] border border-[#2E2D3D] hover:border-[#FF7618] rounded-lg p-6 flex flex-col justify-between transition-all group">
+              <div>
+                <div class="flex items-center justify-between mb-5">
+                  <div class="w-12 h-12 rounded-lg bg-[#15141C] border border-[#343346] group-hover:bg-[#FF7618] group-hover:border-[#FF7618] text-[#FF7618] group-hover:text-white flex items-center justify-center transition-colors">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                      <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                      <line x1="12" y1="22.08" x2="12" y2="12"/>
+                    </svg>
+                  </div>
+                  <span class="font-heading text-xs font-extrabold px-2.5 py-1 rounded bg-[#15141C] text-[#FF7618] border border-[#2E2D3D]">DIV. 01</span>
+                </div>
+                <h3 class="text-lg font-extrabold text-white mb-2 leading-snug">Envases Flexibles y Alta Barrera</h3>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                  Bolsas al vacío gofradas y lisas, Doypack, bolsas para congelados IQF y films termoformables impresos.
+                </p>
+              </div>
+              <div class="pt-4 mt-5 border-t border-[#2E2D3D] flex items-center justify-between text-xs font-heading font-bold uppercase tracking-wider text-white">
+                <span>Ver Formatos</span>
+                <span class="text-[#FF7618]">↓</span>
+              </div>
+            </a>
+
+            <!-- Col 02 -->
+            <a href="maquinaria-carnica.html" class="bg-[#1F1E2B] border border-[#2E2D3D] hover:border-[#FF7618] rounded-lg p-6 flex flex-col justify-between transition-all group">
+              <div>
+                <div class="flex items-center justify-between mb-5">
+                  <div class="w-12 h-12 rounded-lg bg-[#15141C] border border-[#343346] group-hover:bg-[#FF7618] group-hover:border-[#FF7618] text-[#FF7618] group-hover:text-white flex items-center justify-center transition-colors">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="3"/>
+                      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                  </div>
+                  <span class="font-heading text-xs font-extrabold px-2.5 py-1 rounded bg-[#15141C] text-[#FF7618] border border-[#2E2D3D]">DIV. 02</span>
+                </div>
+                <h3 class="text-lg font-extrabold text-white mb-2 leading-snug">Maquinaria Rubro Cárnico</h3>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                  12 equipos SUS304: desmenuzadoras -18°C, molinos, cutters vacío 4.500 RPM, embutidoras y hornos PLC.
+                </p>
+              </div>
+              <div class="pt-4 mt-5 border-t border-[#2E2D3D] flex items-center justify-between text-xs font-heading font-bold uppercase tracking-wider text-white">
+                <span>Abrir Línea Cárnica</span>
+                <span class="text-[#FF7618]">↗</span>
+              </div>
+            </a>
+
+            <!-- Col 03 -->
+            <a href="maquinaria-pesquera.html" class="bg-[#1F1E2B] border border-[#2E2D3D] hover:border-[#FF7618] rounded-lg p-6 flex flex-col justify-between transition-all group">
+              <div>
+                <div class="flex items-center justify-between mb-5">
+                  <div class="w-12 h-12 rounded-lg bg-[#15141C] border border-[#343346] group-hover:bg-[#FF7618] group-hover:border-[#FF7618] text-[#FF7618] group-hover:text-white flex items-center justify-center transition-colors">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                      <line x1="8" y1="21" x2="16" y2="21"/>
+                      <line x1="12" y1="17" x2="12" y2="21"/>
+                      <polyline points="6 10 10 10 12 7 14 13 16 10 18 10"/>
+                    </svg>
+                  </div>
+                  <span class="font-heading text-xs font-extrabold px-2.5 py-1 rounded bg-[#15141C] text-[#FF7618] border border-[#2E2D3D]">DIV. 03</span>
+                </div>
+                <h3 class="text-lg font-extrabold text-white mb-2 leading-snug">Proceso Pesquero + Videos</h3>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                  12 máquinas con videos en planta: descamado hidrojets, eviscerado, fileteado de salmón, despielado y glaseo IQF.
+                </p>
+              </div>
+              <div class="pt-4 mt-5 border-t border-[#2E2D3D] flex items-center justify-between text-xs font-heading font-bold uppercase tracking-wider text-white">
+                <span>Abrir Línea Pesquera</span>
+                <span class="text-[#FF7618]">↗</span>
+              </div>
+            </a>
+
+            <!-- Col 04 -->
+            <a href="proyectos-asesorias.html" class="bg-[#1F1E2B] border border-[#2E2D3D] hover:border-[#FF7618] rounded-lg p-6 flex flex-col justify-between transition-all group">
+              <div>
+                <div class="flex items-center justify-between mb-5">
+                  <div class="w-12 h-12 rounded-lg bg-[#15141C] border border-[#343346] group-hover:bg-[#FF7618] group-hover:border-[#FF7618] text-[#FF7618] group-hover:text-white flex items-center justify-center transition-colors">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="18" y1="20" x2="18" y2="10"/>
+                      <line x1="12" y1="20" x2="12" y2="4"/>
+                      <line x1="6" y1="20" x2="6" y2="14"/>
+                      <line x1="2" y1="20" x2="22" y2="20"/>
+                    </svg>
+                  </div>
+                  <span class="font-heading text-xs font-extrabold px-2.5 py-1 rounded bg-[#15141C] text-[#FF7618] border border-[#2E2D3D]">DIV. 04</span>
+                </div>
+                <h3 class="text-lg font-extrabold text-white mb-2 leading-snug">Proyectos & Gestión Corfo</h3>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                  Valorización de residuos, plantas de agua industrial y Evaluador de 5 pasos (Crédito Verde, MiPyme, Ley I+D 35%).
+                </p>
+              </div>
+              <div class="pt-4 mt-5 border-t border-[#2E2D3D] flex items-center justify-between text-xs font-heading font-bold uppercase tracking-wider text-white">
+                <span>Evaluar Proyecto Corfo</span>
+                <span class="text-[#FF7618]">↗</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- 3 Tarjetas Fotográficas de Portales Especializados -->
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-7 items-stretch">
             <!-- Tarjeta Portal 1: Rubro Cárnico & Cecinas -->
             <a 
               href="maquinaria-carnica.html" 
-              target="_blank" 
-              rel="noopener"
-              class="group relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#1f0808] via-[#160707] to-[#0f0505] border border-red-500/40 hover:border-red-400 shadow-2xl hover:shadow-red-600/25 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between">
-              <div class="relative h-56 overflow-hidden">
+              class="group relative rounded-lg overflow-hidden bg-[#1F1E2B] border border-[#2E2D3D] hover:border-[#FF7618] shadow-lg transition-all duration-300 flex flex-col justify-between">
+              <div class="relative h-56 overflow-hidden bg-[#15141C]">
                 <img 
                   src="assets/images/hero_maquinaria_carnica.jpg" 
                   alt="Maquinaria Rubro Cárnico y Cecinas" 
                   loading="lazy"
                   class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
-                <div class="absolute inset-0 bg-gradient-to-t from-[#160707] via-[#160707]/40 to-transparent"></div>
-                <div class="absolute top-4 left-4">
-                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-red-950/90 backdrop-blur-md text-[11px] font-mono font-bold text-red-300 border border-red-500/50 shadow-lg">
-                    🥩 RUBRO CÁRNICO
-                  </span>
-                </div>
-                <div class="absolute top-4 right-4">
-                  <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl bg-black/80 text-[10px] font-mono text-amber-400 border border-amber-500/40">
-                    <span>Nueva pestaña</span>
-                    <i data-lucide="external-link" class="w-3 h-3"></i>
+                <div class="absolute inset-0 bg-gradient-to-t from-[#1F1E2B] via-transparent to-transparent"></div>
+                <div class="absolute top-3.5 left-3.5">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#15141C]/95 text-xs font-heading font-bold text-white border-l-4 border-[#FF7618]">
+                    02 · LÍNEA CÁRNICA
                   </span>
                 </div>
               </div>
 
               <div class="p-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 class="text-xl font-black text-white group-hover:text-red-400 transition-colors">
+                  <h3 class="text-xl font-extrabold text-white group-hover:text-[#FF7618] transition-colors">
                     Maquinaria para Rubro Cárnico, Frigoríficos & Cecinas
                   </h3>
-                  <p class="mt-2 text-xs sm:text-sm text-neutral-300 leading-relaxed">
+                  <p class="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
                     12 líneas en acero inoxidable SUS304: desmenuzadoras de congelados (-18°C), picadoras, cutters al vacío de 4.500 RPM, embutidoras y hornos ahumadores PLC.
                   </p>
                 </div>
-                <div class="mt-6 pt-4 border-t border-red-900/50 flex items-center justify-between">
-                  <span class="text-[11px] font-mono text-red-300 font-bold">12 Equipos Cárnicos</span>
-                  <span class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 text-white font-black text-xs uppercase tracking-wider shadow-lg shadow-red-600/30 group-hover:scale-105 transition-transform">
+                <div class="mt-6 pt-4 border-t border-[#2E2D3D] flex items-center justify-between">
+                  <span class="text-xs font-heading text-slate-300 font-bold">12 Equipos Cárnicos</span>
+                  <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-[#FF7618] text-white font-heading font-bold text-xs uppercase tracking-wider">
                     <span>Ver Catálogo</span>
-                    <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                    <span>↗</span>
                   </span>
                 </div>
               </div>
@@ -929,43 +937,35 @@ class AntigravityRenderer {
             <!-- Tarjeta Portal 2: Proceso Pesquero & Acuícola -->
             <a 
               href="maquinaria-pesquera.html" 
-              target="_blank" 
-              rel="noopener"
-              class="group relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#06203a] via-[#041527] to-[#020c18] border border-cyan-500/40 hover:border-cyan-300 shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between">
-              <div class="relative h-56 overflow-hidden">
+              class="group relative rounded-lg overflow-hidden bg-[#1F1E2B] border border-[#2E2D3D] hover:border-[#FF7618] shadow-lg transition-all duration-300 flex flex-col justify-between">
+              <div class="relative h-56 overflow-hidden bg-[#15141C]">
                 <img 
                   src="assets/images/hero_maquinaria_pesquera.jpg" 
                   alt="Maquinaria Proceso Pesquero y Salmonero" 
                   loading="lazy"
                   class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
-                <div class="absolute inset-0 bg-gradient-to-t from-[#041527] via-[#041527]/40 to-transparent"></div>
-                <div class="absolute top-4 left-4">
-                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-cyan-950/90 backdrop-blur-md text-[11px] font-mono font-bold text-cyan-300 border border-cyan-400/50 shadow-lg">
-                    🐟 PROCESO PESQUERO
-                  </span>
-                </div>
-                <div class="absolute top-4 right-4">
-                  <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl bg-black/80 text-[10px] font-mono text-cyan-300 border border-cyan-400/40">
-                    <span>Nueva pestaña</span>
-                    <i data-lucide="external-link" class="w-3 h-3"></i>
+                <div class="absolute inset-0 bg-gradient-to-t from-[#1F1E2B] via-transparent to-transparent"></div>
+                <div class="absolute top-3.5 left-3.5">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#15141C]/95 text-xs font-heading font-bold text-white border-l-4 border-[#FF7618]">
+                    03 · PROCESO PESQUERO
                   </span>
                 </div>
               </div>
 
               <div class="p-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 class="text-xl font-black text-white group-hover:text-cyan-300 transition-colors">
+                  <h3 class="text-xl font-extrabold text-white group-hover:text-[#FF7618] transition-colors">
                     Maquinaria para Proceso Pesquero + Videoteca Real
                   </h3>
                   <p class="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
                     12 máquinas con videos en planta: descamadora por hidrojets (90 bar), evisceradora, descabezadora, fileteadora, despieladora, sashimi, separadora de pulpa y glaseo IQF.
                   </p>
                 </div>
-                <div class="mt-6 pt-4 border-t border-cyan-900/50 flex items-center justify-between">
-                  <span class="text-[11px] font-mono text-cyan-300 font-bold">12 Equipos + 12 Videos</span>
-                  <span class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-cyan-400 to-sky-500 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-cyan-500/30 group-hover:scale-105 transition-transform">
+                <div class="mt-6 pt-4 border-t border-[#2E2D3D] flex items-center justify-between">
+                  <span class="text-xs font-heading text-slate-300 font-bold">12 Equipos + 12 Videos</span>
+                  <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-[#FF7618] text-white font-heading font-bold text-xs uppercase tracking-wider">
                     <span>Ver Catálogo</span>
-                    <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                    <span>↗</span>
                   </span>
                 </div>
               </div>
@@ -974,43 +974,35 @@ class AntigravityRenderer {
             <!-- Tarjeta Portal 3: Proyectos Llave en Mano & Asesorías Corfo -->
             <a 
               href="proyectos-asesorias.html" 
-              target="_blank" 
-              rel="noopener"
-              class="group relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#06261e] via-[#041914] to-[#020e0b] border border-emerald-500/45 hover:border-emerald-300 shadow-2xl hover:shadow-emerald-500/25 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between">
-              <div class="relative h-56 overflow-hidden">
+              class="group relative rounded-lg overflow-hidden bg-[#1F1E2B] border border-[#2E2D3D] hover:border-[#FF7618] shadow-lg transition-all duration-300 flex flex-col justify-between">
+              <div class="relative h-56 overflow-hidden bg-[#15141C]">
                 <img 
                   src="assets/images/hero_proyectos_corfo.jpg" 
                   alt="Proyectos Llave en Mano y Financiamiento Corfo" 
                   loading="lazy"
                   class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
-                <div class="absolute inset-0 bg-gradient-to-t from-[#041914] via-[#041914]/40 to-transparent"></div>
-                <div class="absolute top-4 left-4">
-                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-emerald-950/90 backdrop-blur-md text-[11px] font-mono font-bold text-emerald-300 border border-emerald-400/50 shadow-lg">
-                    🌱 PROYECTOS & CORFO
-                  </span>
-                </div>
-                <div class="absolute top-4 right-4">
-                  <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl bg-black/80 text-[10px] font-mono text-emerald-300 border border-emerald-400/40">
-                    <span>Wizard 5 Pasos</span>
-                    <i data-lucide="external-link" class="w-3 h-3"></i>
+                <div class="absolute inset-0 bg-gradient-to-t from-[#1F1E2B] via-transparent to-transparent"></div>
+                <div class="absolute top-3.5 left-3.5">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#15141C]/95 text-xs font-heading font-bold text-white border-l-4 border-[#FF7618]">
+                    04 · PROYECTOS & CORFO
                   </span>
                 </div>
               </div>
 
               <div class="p-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 class="text-xl font-black text-white group-hover:text-emerald-300 transition-colors">
+                  <h3 class="text-xl font-extrabold text-white group-hover:text-[#FF7618] transition-colors">
                     Proyectos Llave en Mano, Tecnología Verde & Incentivos Corfo
                   </h3>
-                  <p class="mt-2 text-xs sm:text-sm text-emerald-100/85 leading-relaxed">
+                  <p class="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
                     Economía circular (valorización de residuos y agua), Industria 4.0, importación directa de maquinaria y estructuración Corfo (Crédito Verde, MiPyme, Ley I+D 35%).
                   </p>
                 </div>
-                <div class="mt-6 pt-4 border-t border-emerald-900/60 flex items-center justify-between">
-                  <span class="text-[11px] font-mono text-emerald-300 font-bold">Evaluador Corfo Online</span>
-                  <span class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-emerald-400 via-teal-400 to-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-emerald-500/30 group-hover:scale-105 transition-transform">
+                <div class="mt-6 pt-4 border-t border-[#2E2D3D] flex items-center justify-between">
+                  <span class="text-xs font-heading text-slate-300 font-bold">Evaluador Corfo 5 Pasos</span>
+                  <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-[#FF7618] text-white font-heading font-bold text-xs uppercase tracking-wider">
                     <span>Evaluar Proyecto</span>
-                    <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                    <span>↗</span>
                   </span>
                 </div>
               </div>
@@ -1378,61 +1370,128 @@ class AntigravityRenderer {
         </div>
       </section>
 
-      <!-- 3. CONFIGURADOR Y EVALUADOR INTERACTIVO DE PROYECTOS CORFO (WIZARD DE 5 PASOS) -->
-      <section id="corfo_wizard_section" class="py-24 bg-[#03100d] text-white border-b border-emerald-950 relative overflow-hidden font-sans">
-        <div class="absolute top-1/4 right-10 w-[650px] h-[400px] bg-emerald-500/12 blur-[160px] pointer-events-none rounded-full"></div>
-        <div class="absolute bottom-10 left-10 w-[550px] h-[350px] bg-teal-500/10 blur-[140px] pointer-events-none rounded-full"></div>
+      <!-- 2.5 BLOQUE DE MÉTRICAS E INDICADORES DE PROGRESO (ESTILO MANUFAKTUR SOLUTIONS) -->
+      <section class="py-16 bg-[#15141C] text-white border-b border-[#2E2D3D]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div class="lg:col-span-6">
+              <div class="text-xs font-heading font-bold uppercase tracking-widest text-[#FF7618] mb-2">
+                // INDICADORES DE IMPACTO INDUSTRIAL Y FINANCIERO
+              </div>
+              <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-tight mb-4">
+                Optimización de planta, economía circular y retorno tributario
+              </h3>
+              <p class="text-sm text-slate-300 leading-relaxed mb-6">
+                Estructuramos proyectos con métricas auditables de ahorro energético, recuperación hídrica, rendimiento mecánico en línea y aprovechamiento de incentivos Corfo y Ley I+D.
+              </p>
+              <div class="grid grid-cols-2 rounded-lg overflow-hidden border border-[#2E2D3D] divide-x divide-[#2E2D3D] bg-[#1F1E2B]">
+                <div class="p-5">
+                  <div class="font-heading text-2xl sm:text-3xl font-extrabold text-[#FF7618]">Hasta 15 Años</div>
+                  <div class="text-xs text-slate-300 mt-1">Plazo máximo en Créditos Verdes y MiPyme Corfo</div>
+                </div>
+                <div class="p-5">
+                  <div class="font-heading text-2xl sm:text-3xl font-extrabold text-white">100% OEM</div>
+                  <div class="text-xs text-slate-300 mt-1">Importación directa y puesta en marcha llave en mano</div>
+                </div>
+              </div>
+            </div>
 
+            <div class="lg:col-span-6 bg-[#1F1E2B] border border-[#2E2D3D] rounded-lg p-6 sm:p-8 space-y-5 font-heading">
+              <div>
+                <div class="flex justify-between text-xs sm:text-sm font-bold mb-2">
+                  <span class="text-white">Eficiencia y Rendimiento Operativo en Planta</span>
+                  <span class="text-[#FF7618]">98%</span>
+                </div>
+                <div class="w-full h-2 bg-[#14131B] rounded-full overflow-hidden">
+                  <div class="h-full bg-[#FF7618] rounded-full" style="width: 98%;"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs sm:text-sm font-bold mb-2">
+                  <span class="text-white">Rebaja Tributaria Ley I+D (Impuesto 1ª Categoría SII)</span>
+                  <span class="text-[#FF7618]">35%</span>
+                </div>
+                <div class="w-full h-2 bg-[#14131B] rounded-full overflow-hidden">
+                  <div class="h-full bg-[#FF7618] rounded-full" style="width: 72%;"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs sm:text-sm font-bold mb-2">
+                  <span class="text-white">Valorización de Residuos Orgánicos y Recuperación de Agua</span>
+                  <span class="text-[#FF7618]">85%</span>
+                </div>
+                <div class="w-full h-2 bg-[#14131B] rounded-full overflow-hidden">
+                  <div class="h-full bg-[#FF7618] rounded-full" style="width: 85%;"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs sm:text-sm font-bold mb-2">
+                  <span class="text-white">Cobertura Garantía Estatal Pro-Inversión / Fogain</span>
+                  <span class="text-[#FF7618]">80%</span>
+                </div>
+                <div class="w-full h-2 bg-[#14131B] rounded-full overflow-hidden">
+                  <div class="h-full bg-[#FF7618] rounded-full" style="width: 80%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. CONFIGURADOR Y EVALUADOR INTERACTIVO DE PROYECTOS CORFO (WIZARD DE 5 PASOS) -->
+      <section id="corfo_wizard_section" class="py-24 bg-[#15141C] text-white border-b border-[#2E2D3D] relative overflow-hidden font-sans">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <!-- Encabezado del Wizard -->
           <div class="text-center max-w-3xl mx-auto mb-10">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950 border border-emerald-400/50 text-emerald-300 text-xs font-mono font-bold uppercase mb-3 shadow-lg">
-              <i data-lucide="cpu" class="w-4 h-4 text-amber-400"></i>
-              <span>Configurador & Evaluador Interactivo B2B • 5 Pasos</span>
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-[#1F1E2B] border border-[#343346] text-[#FF7618] text-xs font-heading font-bold uppercase mb-3">
+              <span>// CONFIGURADOR & EVALUADOR INTERACTIVO B2B · 5 PASOS</span>
             </div>
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
               Evaluador de Proyectos e Incentivos Corfo
             </h2>
-            <p class="mt-3 text-emerald-100/85 text-sm sm:text-base">
+            <p class="mt-3 text-slate-300 text-sm sm:text-base">
               Completa estos 5 pasos en menos de 1 minuto para obtener la ruta de financiamiento recomendada (Crédito Verde, Crédito MiPyme, Ley I+D 35% o Excepción de Rentas Pasivas) y el equipamiento técnico para tu planta.
             </p>
           </div>
 
           <!-- Contenedor Reactivo del Wizard -->
-          <div id="corfo-wizard-container" class="rounded-3xl bg-gradient-to-b from-[#07221c] to-[#041511] border-2 border-emerald-500/45 shadow-[0_25px_70px_rgba(0,0,0,0.85)] overflow-hidden">
+          <div id="corfo-wizard-container" class="rounded-lg bg-[#1F1E2B] border border-[#2E2D3D] shadow-2xl overflow-hidden">
             ${this.renderCorfoWizardInner()}
           </div>
         </div>
       </section>
 
       <!-- 4. BANNER DE CONEXIÓN CON CATÁLOGOS DE MAQUINARIA Y ENVASES -->
-      <section class="py-16 bg-[#020a08] border-b border-emerald-950 font-sans">
+      <section class="py-16 bg-[#191822] border-b border-[#2E2D3D] font-sans">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <a href="index.html" class="group p-6 rounded-3xl bg-gradient-to-r from-[#1a1408] to-[#120e06] border border-amber-500/35 hover:border-amber-400 flex items-center justify-between gap-4 transition-all hover:-translate-y-1">
+          <a href="index.html" class="group p-6 rounded-lg bg-[#1F1E2B] border border-[#2E2D3D] hover:border-[#FF7618] flex items-center justify-between gap-4 transition-all">
             <div>
-              <span class="text-[10px] font-mono uppercase text-amber-400 font-bold block mb-1">📦 División Principal</span>
-              <h3 class="text-lg font-black text-white group-hover:text-amber-300">Envases Flexibles de Alta Barrera</h3>
-              <p class="text-xs text-neutral-300 mt-1">Bolsas al vacío, Doypack, Retort y films impresos HD.</p>
+              <span class="text-xs font-heading uppercase text-[#FF7618] font-bold block mb-1">01 · División Principal</span>
+              <h3 class="text-lg font-extrabold text-white group-hover:text-[#FF7618]">Envases Flexibles de Alta Barrera</h3>
+              <p class="text-xs text-slate-300 mt-1">Bolsas al vacío, Doypack, Retort y films impresos HD.</p>
             </div>
-            <i data-lucide="arrow-up-right" class="w-5 h-5 text-amber-400 shrink-0"></i>
+            <span class="text-[#FF7618] font-heading font-bold text-lg">↗</span>
           </a>
 
-          <a href="maquinaria-carnica.html" class="group p-6 rounded-3xl bg-gradient-to-r from-[#210909] to-[#140606] border border-red-500/35 hover:border-red-400 flex items-center justify-between gap-4 transition-all hover:-translate-y-1">
+          <a href="maquinaria-carnica.html" class="group p-6 rounded-lg bg-[#1F1E2B] border border-[#2E2D3D] hover:border-[#FF7618] flex items-center justify-between gap-4 transition-all">
             <div>
-              <span class="text-[10px] font-mono uppercase text-red-400 font-bold block mb-1">🥩 Catálogo de Equipos</span>
-              <h3 class="text-lg font-black text-white group-hover:text-red-300">Maquinaria Rubro Cárnico & Cecinas</h3>
-              <p class="text-xs text-red-200/80 mt-1">12 máquinas SUS304: cutters vacío, embutidoras y hornos.</p>
+              <span class="text-xs font-heading uppercase text-[#FF7618] font-bold block mb-1">02 · Catálogo de Equipos</span>
+              <h3 class="text-lg font-extrabold text-white group-hover:text-[#FF7618]">Maquinaria Rubro Cárnico & Cecinas</h3>
+              <p class="text-xs text-slate-300 mt-1">12 máquinas SUS304: cutters vacío, embutidoras y hornos.</p>
             </div>
-            <i data-lucide="arrow-up-right" class="w-5 h-5 text-red-400 shrink-0"></i>
+            <span class="text-[#FF7618] font-heading font-bold text-lg">↗</span>
           </a>
 
-          <a href="maquinaria-pesquera.html" class="group p-6 rounded-3xl bg-gradient-to-r from-[#061c33] to-[#041224] border border-cyan-500/35 hover:border-cyan-400 flex items-center justify-between gap-4 transition-all hover:-translate-y-1">
+          <a href="maquinaria-pesquera.html" class="group p-6 rounded-lg bg-[#1F1E2B] border border-[#2E2D3D] hover:border-[#FF7618] flex items-center justify-between gap-4 transition-all">
             <div>
-              <span class="text-[10px] font-mono uppercase text-cyan-400 font-bold block mb-1">🐟 Catálogo + Videoteca</span>
-              <h3 class="text-lg font-black text-white group-hover:text-cyan-300">Maquinaria Proceso Pesquero</h3>
-              <p class="text-xs text-cyan-200/80 mt-1">12 máquinas en operación: descamado, fileteado e IQF.</p>
+              <span class="text-xs font-heading uppercase text-[#FF7618] font-bold block mb-1">03 · Catálogo + Videoteca</span>
+              <h3 class="text-lg font-extrabold text-white group-hover:text-[#FF7618]">Maquinaria Proceso Pesquero</h3>
+              <p class="text-xs text-slate-300 mt-1">12 máquinas en operación: descamado, fileteado e IQF.</p>
             </div>
-            <i data-lucide="arrow-up-right" class="w-5 h-5 text-cyan-400 shrink-0"></i>
+            <span class="text-[#FF7618] font-heading font-bold text-lg">↗</span>
           </a>
         </div>
       </section>

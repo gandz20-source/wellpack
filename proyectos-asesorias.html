@@ -12,10 +12,10 @@
   <link rel="icon" type="image/png" href="/assets/images/logo_wp_badge.png">
   <link rel="apple-touch-icon" href="/assets/images/logo_wp_badge.png">
 
-  <!-- Tipografía Industrial Moderna -->
+  <!-- Tipografía Industrial Ultra-Nítida (Plus Jakarta Sans + Inter) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -27,12 +27,15 @@
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
             mono: ['JetBrains Mono', 'monospace'],
-            heading: ['Space Grotesk', 'Inter', 'sans-serif']
+            heading: ['Plus Jakarta Sans', 'Inter', 'sans-serif']
           }
         }
       }
     }
   </script>
+
+  <!-- Sistema de Diseño Industrial Manufaktur V2 -->
+  <link rel="stylesheet" href="css/manufaktur-industrial.css?v=manufaktur_v29">
 
   <!-- GSAP y ScrollTrigger -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -46,94 +49,69 @@
 
   <!-- Supabase JS Client v2 CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <style>
-    body {
-      background-color: #041310;
-      color: #FFFFFF;
-      font-family: 'Inter', sans-serif;
-      overflow-x: hidden;
-    }
-    
-    h1, h2, h3, h4 {
-      font-family: 'Space Grotesk', 'Inter', sans-serif;
-    }
-
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #041310;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #10b981;
-      border-radius: 4px;
-      border: 1px solid #34d399;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #34d399;
-    }
-
-    @keyframes heroPanLeftRight {
-      0% {
-        transform: translate3d(-5.5%, 0, 0) scale(1.06);
-      }
-      50% {
-        transform: translate3d(5.5%, -1.8%, 0) scale(1.09);
-      }
-      100% {
-        transform: translate3d(-5.5%, 0, 0) scale(1.06);
-      }
-    }
-
-    .animate-hero-pan {
-      animation: heroPanLeftRight 9s cubic-bezier(0.42, 0, 0.58, 1) infinite;
-      will-change: transform;
-    }
-
-    .spotlight-card {
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
-    }
-    .spotlight-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      border-radius: inherit;
-      background: radial-gradient(550px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(16, 185, 129, 0.16), transparent 42%);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      z-index: 2;
-    }
-    .spotlight-card:hover::before {
-      opacity: 1;
-    }
-
-    .btn-spring {
-      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, box-shadow 0.2s ease;
-    }
-    .btn-spring:hover {
-      transform: translateY(-2px) scale(1.02);
-    }
-    .btn-spring:active {
-      transform: translateY(1px) scale(0.98);
-    }
-  </style>
 </head>
-<body data-page-mode="industrial_projects" class="min-h-screen bg-[#041310] text-white selection:bg-emerald-400 selection:text-slate-950 font-sans">
+<body data-page-mode="industrial_projects" class="min-h-screen bg-[#15141C] text-white selection:bg-[#FF7618] selection:text-white font-sans">
 
-  <div id="app" class="relative bg-[#041310] text-white min-h-screen">
-    <div class="min-h-screen flex flex-col items-center justify-center p-4">
-      <div class="w-12 h-12 border-4 border-emerald-400 border-t-transparent rounded-full animate-spin mb-4"></div>
-      <p class="font-mono text-xs text-emerald-300 tracking-widest uppercase animate-pulse font-bold">
-        Cargando División Proyectos y Asesorías Industriales Corfo...
-      </p>
+  <!-- Pantalla de Carga Ejecutiva Industrial (Preloader Manufaktur) -->
+  <div id="mk-preloader">
+    <div class="w-full max-w-md px-6 text-center">
+      <div class="relative w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+        <svg class="w-20 h-20 text-[#FF7618]/35 mk-animate-gear absolute inset-0" viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="42" stroke="currentColor" stroke-width="2" stroke-dasharray="8 6" />
+          <circle cx="50" cy="50" r="34" stroke="#FF7618" stroke-width="1.5" stroke-opacity="0.5" />
+        </svg>
+        <div class="w-12 h-12 rounded-lg bg-[#FF7618] flex items-center justify-center shadow-lg">
+          <svg class="w-7 h-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+            <line x1="12" y1="22.08" x2="12" y2="12"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="font-heading text-2xl font-extrabold tracking-tight text-white mb-1">
+        WELLPACK<span class="text-[#FF7618]">.</span> CHILE
+      </div>
+      <div id="mk-loader-status" class="text-xs font-semibold uppercase tracking-widest text-slate-300 mb-6">
+        Inicializando Proyectos Llave en Mano & Evaluador Corfo...
+      </div>
+
+      <div class="w-full h-2 bg-[#252433] rounded-full overflow-hidden mb-3 border border-[#323144]">
+        <div id="mk-loader-bar" class="h-full bg-[#FF7618] rounded-full transition-all duration-150" style="width: 15%;"></div>
+      </div>
+
+      <div class="flex items-center justify-between text-xs font-heading font-bold">
+        <span class="text-slate-400">04 · PROYECTOS E INCENTIVOS CORFO</span>
+        <span id="mk-loader-pct" class="text-[#FF7618] text-sm">15%</span>
+      </div>
     </div>
   </div>
 
-  <script type="module" src="js/antigravity-renderer.js?v=projects_corfo_wizard_v28"></script>
+  <script>
+    (function() {
+      var p = 15;
+      var bar = document.getElementById('mk-loader-bar');
+      var pct = document.getElementById('mk-loader-pct');
+      var iv = setInterval(function() {
+        p += Math.floor(Math.random() * 14) + 8;
+        if (p >= 92) { p = 92; clearInterval(iv); }
+        if (bar) bar.style.width = p + '%';
+        if (pct) pct.textContent = p + '%';
+      }, 110);
+      setTimeout(function() {
+        var pre = document.getElementById('mk-preloader');
+        if (pre && !pre.classList.contains('mk-hidden')) {
+          if (bar) bar.style.width = '100%';
+          if (pct) pct.textContent = '100%';
+          pre.classList.add('mk-hidden');
+        }
+      }, 2200);
+    })();
+  </script>
+
+  <div id="app" class="relative bg-[#15141C] text-white min-h-screen"></div>
+
+  <script type="module" src="js/antigravity-renderer.js?v=manufaktur_v29"></script>
 
 </body>
 </html>
