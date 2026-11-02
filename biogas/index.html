@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <title>WellPack Biogás | Plantas de Biogás ECPC, Valorización de RILES y Crédito Verde Corfo</title>
+  <meta name="description" content="División de Ingeniería en Biogás y Valorización de Residuos Orgánicos de WellPack Chile. Reactores anaeróbicos ECPC, domos de doble membrana PVDF, planos CAD en planta y estructuración de Crédito Verde Corfo para industria pesquera, cárnica y alimentaria.">
+
+  <link rel="icon" type="image/png" href="/assets/images/logo_wp_badge.png">
+  <link rel="apple-touch-icon" href="/assets/images/logo_wp_badge.png">
+
+  <!-- Tipografía Industrial Ultra-Nítida (Plus Jakarta Sans + Inter + JetBrains Mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+            heading: ['Plus Jakarta Sans', 'Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+    svg, svg * {
+      shape-rendering: geometricPrecision;
+    }
+
+    /* Preloader Industrial de 6 Escenas en Secuencia (Cero Texto) */
+    #mk-preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background-color: #0F172A;
+      background-image:
+        radial-gradient(circle at 50% 45%, rgba(16, 185, 129, 0.1), transparent 55%),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 28px 28px, 28px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.42s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.42s;
+    }
+    #mk-preloader.mk-hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .mk-scene-stage {
+      position: relative;
+      width: 320px;
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mk-scene-item {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transform: scale(0.92) translateY(8px);
+      transition: opacity 0.26s ease, transform 0.26s ease;
+      pointer-events: none;
+    }
+    .mk-scene-item.active {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+    .mk-bar-track {
+      width: 220px;
+      height: 6px;
+      background: #1E293B;
+      border-radius: 99px;
+      overflow: hidden;
+      margin-top: 14px;
+      border: 1px solid #334155;
+    }
+    .mk-bar-fill {
+      height: 100%;
+      width: 10%;
+      background: linear-gradient(90deg, #10B981, #38BDF8);
+      border-radius: 99px;
+      transition: width 0.08s linear;
+    }
+    .mk-dots-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .mk-scene-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #334155;
+      transition: all 0.22s ease;
+    }
+    .mk-scene-dot.active {
+      background: #10B981;
+      transform: scale(1.3);
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.7);
+    }
+
+    @keyframes mkArmUpper { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(10deg); } }
+    @keyframes mkArmFore { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(14deg); } }
+    @keyframes mkArmWrist { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-20deg); } }
+    @keyframes mkClawL { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-14deg); } }
+    @keyframes mkClawR { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(14deg); } }
+    @keyframes mkBeltBoxes { 0% { transform: translateX(0px); } 100% { transform: translateX(42px); } }
+    @keyframes mkWorkerPack { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(5px); } }
+    @keyframes mkLever { 0%, 100% { transform: rotate(-12deg); } 50% { transform: rotate(15deg); } }
+    @keyframes mkBeacon { 0%, 100% { opacity: 1; filter: drop-shadow(0 0 6px #EB5E28); } 50% { opacity: 0.35; filter: none; } }
+    @keyframes mkPickerMove { 0%, 100% { transform: translate(0px, 0px) rotate(0deg); } 50% { transform: translate(-12px, 12px) rotate(-5deg); } }
+    @keyframes mkInclinedBoxes { 0% { transform: translateX(0px); } 100% { transform: translateX(38px); } }
+    @keyframes mkReceiverHands { 0%, 100% { transform: rotate(0deg) translateY(0px); } 50% { transform: rotate(-4deg) translateY(3px); } }
+    @keyframes mkForkLiftUp { 0%, 100% { transform: translateY(4px); } 50% { transform: translateY(-22px); } }
+    @keyframes mkForkCab { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-2px); } }
+
+    .s1-upper { transform-origin: 72px 109px; animation: mkArmUpper 1.1s ease-in-out infinite; }
+    .s1-fore  { transform-origin: 152px 58px; animation: mkArmFore 1.1s ease-in-out infinite; }
+    .s1-wrist { transform-origin: 196px 85px; animation: mkArmWrist 1.1s ease-in-out infinite; }
+    .s1-claw-l { transform-origin: 185px 105px; animation: mkClawL 1.1s ease-in-out infinite; }
+    .s1-claw-r { transform-origin: 207px 105px; animation: mkClawR 1.1s ease-in-out infinite; }
+    .s-boxes  { animation: mkBeltBoxes 0.75s linear infinite; }
+    .s2-worker { animation: mkWorkerPack 0.8s ease-in-out infinite; }
+    .s3-lever { transform-origin: 96px 168px; animation: mkLever 0.9s ease-in-out infinite; }
+    .s3-beacon { animation: mkBeacon 0.55s ease-in-out infinite; }
+    .s4-picker { transform-origin: 240px 70px; animation: mkPickerMove 0.9s ease-in-out infinite; }
+    .s5-boxes { animation: mkInclinedBoxes 0.75s linear infinite; }
+    .s5-worker { transform-origin: 245px 135px; animation: mkReceiverHands 0.85s ease-in-out infinite; }
+    .s6-lift { animation: mkForkLiftUp 1s ease-in-out infinite; }
+    .s6-cab  { animation: mkForkCab 0.45s ease-in-out infinite; }
+
+    /* Custom Range Sliders */
+    input[type="range"].biogas-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 8px;
+      background: #1E293B;
+      border-radius: 99px;
+      outline: none;
+      border: 1px solid #334155;
+    }
+    input[type="range"].biogas-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #10B981;
+      border: 3px solid #FFFFFF;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.5);
+    }
+    input[type="range"].biogas-slider::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #10B981;
+      border: 3px solid #FFFFFF;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.5);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#F8FAFC] text-slate-900 font-sans selection:bg-emerald-500 selection:text-white">
+
+  <!-- Pantalla de Carga Industrial: 6 Animaciones Centradas en Secuencia (Cero Texto) -->
+  <div id="mk-preloader">
+    <div class="mk-scene-stage">
+      <!-- Escena 1 -->
+      <svg class="mk-scene-item active" viewBox="0 0 320 230" width="320" height="230" fill="none">
+        <defs><clipPath id="clipS1"><rect x="115" y="130" width="170" height="34"/></clipPath></defs>
+        <line x1="20" y1="212" x2="300" y2="212" stroke="#263544" stroke-width="3.2" stroke-linecap="round"/>
+        <rect x="32" y="205" width="258" height="7" rx="3" fill="#87B7CF" stroke="#263544" stroke-width="2.5"/>
+        <rect x="44" y="162" width="56" height="43" fill="#87B7CF" stroke="#263544" stroke-width="2.5"/>
+        <rect x="53" y="171" width="16" height="22" fill="#4A5C6A"/>
+        <rect x="73" y="171" width="16" height="22" fill="#4A5C6A"/>
+        <rect x="50" y="152" width="44" height="10" fill="#F6AF24" stroke="#263544" stroke-width="2.5"/>
+        <rect x="59" y="110" width="26" height="42" fill="#F6AF24" stroke="#263544" stroke-width="2.5"/>
+        <rect x="64" y="120" width="16" height="5" rx="2.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+        <rect x="64" y="129" width="16" height="5" rx="2.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+        <rect x="64" y="138" width="16" height="5" rx="2.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+        <rect x="47" y="100" width="11" height="14" fill="#F6AF24" stroke="#263544" stroke-width="2.2"/>
+        <rect x="86" y="100" width="11" height="14" fill="#F6AF24" stroke="#263544" stroke-width="2.2"/>
+        <g class="s1-upper">
+          <polygon points="66,100 82,66 93,71 80,108" fill="#EB5E28" stroke="#263544" stroke-width="2.5" stroke-linejoin="round"/>
+          <polygon points="88,62 150,47 153,59 92,73" fill="#EB5E28" stroke="#263544" stroke-width="2.5" stroke-linejoin="round"/>
+          <circle cx="90" cy="68" r="9" fill="#87B7CF" stroke="#263544" stroke-width="2.5"/>
+          <circle cx="90" cy="68" r="3.5" fill="#B8DCEB" stroke="#263544" stroke-width="1.8"/>
+          <g class="s1-fore">
+            <polygon points="154,49 199,77 192,87 148,59" fill="#EB5E28" stroke="#263544" stroke-width="2.5" stroke-linejoin="round"/>
+            <circle cx="152" cy="54" r="10" fill="#87B7CF" stroke="#263544" stroke-width="2.5"/>
+            <circle cx="152" cy="54" r="4" fill="#B8DCEB" stroke="#263544" stroke-width="1.8"/>
+            <g class="s1-wrist">
+              <rect x="190" y="84" width="12" height="11" fill="#F6AF24" stroke="#263544" stroke-width="2.2"/>
+              <circle cx="196" cy="81" r="8.5" fill="#87B7CF" stroke="#263544" stroke-width="2.5"/>
+              <circle cx="196" cy="81" r="3" fill="#B8DCEB" stroke="#263544" stroke-width="1.6"/>
+              <path d="M180 95 H212 L215 104 H177 Z" fill="#87B7CF" stroke="#263544" stroke-width="2.4" stroke-linejoin="round"/>
+              <g class="s1-claw-l"><path d="M177 103 L174 117 L183 124 L185 113 L182 103 Z" fill="#87B7CF" stroke="#263544" stroke-width="2.3" stroke-linejoin="round"/></g>
+              <g class="s1-claw-r"><path d="M215 103 L218 117 L209 124 L207 113 L210 103 Z" fill="#87B7CF" stroke="#263544" stroke-width="2.3" stroke-linejoin="round"/></g>
+            </g>
+          </g>
+        </g>
+        <circle cx="72" cy="105" r="16" fill="#87B7CF" stroke="#263544" stroke-width="2.6"/>
+        <circle cx="72" cy="105" r="8" fill="#B8DCEB" stroke="#263544" stroke-width="2"/>
+        <g clip-path="url(#clipS1)">
+          <g class="s-boxes">
+            <rect x="86" y="137" width="30" height="16" rx="1.5" fill="#F6AF24" stroke="#263544" stroke-width="2.4"/>
+            <rect x="128" y="137" width="30" height="16" rx="1.5" fill="#F6AF24" stroke="#263544" stroke-width="2.4"/>
+            <rect x="170" y="137" width="30" height="16" rx="1.5" fill="#F6AF24" stroke="#263544" stroke-width="2.4"/>
+            <rect x="212" y="137" width="30" height="16" rx="1.5" fill="#F6AF24" stroke="#263544" stroke-width="2.4"/>
+            <rect x="254" y="137" width="30" height="16" rx="1.5" fill="#F6AF24" stroke="#263544" stroke-width="2.4"/>
+          </g>
+        </g>
+        <rect x="132" y="178" width="8" height="27" fill="#87B7CF" stroke="#263544" stroke-width="2.4"/>
+        <rect x="260" y="178" width="8" height="27" fill="#87B7CF" stroke="#263544" stroke-width="2.4"/>
+        <rect x="110" y="153" width="180" height="26" rx="13" fill="#87B7CF" stroke="#263544" stroke-width="2.6"/>
+        <rect x="116" y="158" width="168" height="16" rx="8" fill="#374756" stroke="#263544" stroke-width="2"/>
+        <circle cx="128" cy="166" r="5.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+        <circle cx="156" cy="166" r="5.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+        <circle cx="185" cy="166" r="5.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+        <circle cx="214" cy="166" r="5.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+        <circle cx="243" cy="166" r="5.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+        <circle cx="272" cy="166" r="5.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+      </svg>
+
+      <!-- Escena 2 -->
+      <svg class="mk-scene-item" viewBox="0 0 320 230" width="320" height="230" fill="none">
+        <line x1="30" y1="212" x2="290" y2="212" stroke="#263544" stroke-width="3.2" stroke-linecap="round"/>
+        <rect x="44" y="205" width="232" height="7" rx="3" fill="#87B7CF" stroke="#263544" stroke-width="2.5"/>
+        <rect x="95" y="170" width="12" height="35" fill="#5A6B7C" stroke="#263544" stroke-width="2.4"/>
+        <rect x="115" y="170" width="12" height="35" fill="#5A6B7C" stroke="#263544" stroke-width="2.4"/>
+        <g class="s2-worker">
+          <path d="M78 106 C78 88 144 88 144 106 L150 142 H72 Z" fill="#87B7CF" stroke="#263544" stroke-width="2.5" stroke-linejoin="round"/>
+          <rect x="91" y="93" width="9" height="34" fill="#5A6B7C" stroke="#263544" stroke-width="2.2"/>
+          <rect x="122" y="93" width="9" height="34" fill="#5A6B7C" stroke="#263544" stroke-width="2.2"/>
+          <rect x="104" y="78" width="14" height="14" rx="4" fill="#FBD2A6" stroke="#263544" stroke-width="2.2"/>
+          <path d="M92 52 H130 V68 C130 80 92 80 92 68 Z" fill="#FBD2A6" stroke="#263544" stroke-width="2.4"/>
+          <circle cx="103" cy="62" r="1.8" fill="#263544"/>
+          <circle cx="119" cy="62" r="1.8" fill="#263544"/>
+          <path d="M107 70 Q112 74 117 69" stroke="#263544" stroke-width="2" stroke-linecap="round"/>
+          <path d="M90 50 C90 30 132 30 132 50 Z" fill="#F6AF24" stroke="#263544" stroke-width="2.5"/>
+          <rect x="88" y="48" width="46" height="5" rx="2.5" fill="#F6AF24" stroke="#263544" stroke-width="2.2"/>
+          <rect x="88" y="114" width="46" height="34" rx="2" fill="#F6AF24" stroke="#263544" stroke-width="2.5"/>
+          <ellipse cx="89" cy="141" rx="8" ry="6" transform="rotate(20 89 141)" fill="#FFFFFF" stroke="#263544" stroke-width="2.2"/>
+          <ellipse cx="133" cy="141" rx="8" ry="6" transform="rotate(-20 133 141)" fill="#FFFFFF" stroke="#263544" stroke-width="2.2"/>
+        </g>
+        <rect x="158" y="116" width="46" height="32" rx="2" fill="#F6AF24" stroke="#263544" stroke-width="2.5"/>
+        <rect x="220" y="116" width="46" height="32" rx="2" fill="#F6AF24" stroke="#263544" stroke-width="2.5"/>
+        <rect x="68" y="174" width="8" height="31" fill="#87B7CF" stroke="#263544" stroke-width="2.4"/>
+        <rect x="244" y="174" width="8" height="31" fill="#87B7CF" stroke="#263544" stroke-width="2.4"/>
+        <rect x="48" y="148" width="224" height="27" rx="13.5" fill="#87B7CF" stroke="#263544" stroke-width="2.6"/>
+        <rect x="55" y="153" width="210" height="17" rx="8.5" fill="#374756" stroke="#263544" stroke-width="2"/>
+        <circle cx="72" cy="161.5" r="5.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+        <circle cx="107" cy="161.5" r="5.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+        <circle cx="142" cy="161.5" r="5.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+        <circle cx="177" cy="161.5" r="5.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+        <circle cx="212" cy="161.5" r="5.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+        <circle cx="247" cy="161.5" r="5.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+      </svg>
+
+      <!-- Escena 3 -->
+      <svg class="mk-scene-item" viewBox="0 0 320 230" width="320" height="230" fill="none">
+        <defs><clipPath id="clipS3"><rect x="64" y="32" width="192" height="90" rx="3"/></clipPath></defs>
+        <rect x="55" y="23" width="210" height="108" rx="6" fill="#5A6B7C" stroke="#263544" stroke-width="2.6"/>
+        <rect x="64" y="32" width="192" height="90" rx="3" fill="#BCE8F7" stroke="#263544" stroke-width="2.2"/>
+        <polygon points="66,34 140,34 95,120 66,120" fill="#D6F2FC" opacity="0.65"/>
+        <g clip-path="url(#clipS3)">
+          <g class="s-boxes">
+            <rect x="38" y="76" width="30" height="14" rx="1.5" fill="#F6AF24" stroke="#263544" stroke-width="2.2"/>
+            <rect x="80" y="76" width="30" height="14" rx="1.5" fill="#F6AF24" stroke="#263544" stroke-width="2.2"/>
+            <rect x="122" y="76" width="30" height="14" rx="1.5" fill="#F6AF24" stroke="#263544" stroke-width="2.2"/>
+            <rect x="164" y="76" width="30" height="14" rx="1.5" fill="#F6AF24" stroke="#263544" stroke-width="2.2"/>
+            <rect x="206" y="76" width="30" height="14" rx="1.5" fill="#F6AF24" stroke="#263544" stroke-width="2.2"/>
+            <rect x="248" y="76" width="30" height="14" rx="1.5" fill="#F6AF24" stroke="#263544" stroke-width="2.2"/>
+          </g>
+          <rect x="62" y="90" width="196" height="24" fill="#4A5C6A" stroke="#263544" stroke-width="2.2"/>
+          <circle cx="88" cy="102" r="6.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+          <circle cx="136" cy="102" r="6.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+          <circle cx="184" cy="102" r="6.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+          <circle cx="232" cy="102" r="6.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+        </g>
+        <rect x="68" y="195" width="7" height="19" fill="#87B7CF" stroke="#263544" stroke-width="2.2"/>
+        <rect x="245" y="195" width="7" height="19" fill="#87B7CF" stroke="#263544" stroke-width="2.2"/>
+        <rect x="88" y="158" width="16" height="14" fill="#87B7CF" stroke="#263544" stroke-width="2.2"/>
+        <g class="s3-lever">
+          <line x1="96" y1="165" x2="119" y2="158" stroke="#263544" stroke-width="3.2" stroke-linecap="round"/>
+          <rect x="115" y="154" width="15" height="6" rx="3" transform="rotate(-14 115 154)" fill="#EB5E28" stroke="#263544" stroke-width="2"/>
+        </g>
+        <g class="s3-beacon">
+          <path d="M230 166 V157 A7.5 7.5 0 0 1 245 157 V166 Z" fill="#EB5E28" stroke="#263544" stroke-width="2.2"/>
+        </g>
+        <rect x="226" y="166" width="23" height="6" rx="2" fill="#87B7CF" stroke="#263544" stroke-width="2"/>
+        <rect x="38" y="172" width="244" height="24" rx="4" fill="#7E93A6" stroke="#263544" stroke-width="2.5"/>
+        <circle cx="82" cy="182" r="4.5" fill="#DCEEF7" stroke="#263544" stroke-width="1.5"/>
+        <circle cx="96" cy="182" r="4.5" fill="#DCEEF7" stroke="#263544" stroke-width="1.5"/>
+        <circle cx="110" cy="182" r="4.5" fill="#DCEEF7" stroke="#263544" stroke-width="1.5"/>
+        <g class="s2-worker">
+          <path d="M116 202 C116 174 128 164 150 164 C172 164 184 174 184 202 Z" fill="#87B7CF" stroke="#263544" stroke-width="2.5"/>
+          <rect x="143" y="153" width="14" height="11" fill="#FBD2A6" stroke="#263544" stroke-width="2.2"/>
+          <path d="M133 131 H167 V147 C167 154 133 154 133 147 Z" fill="#374756" stroke="#263544" stroke-width="2.4"/>
+          <path d="M131 131 C131 116 169 116 169 131 Z" fill="#F6AF24" stroke="#263544" stroke-width="2.4"/>
+          <line x1="128" y1="131" x2="172" y2="131" stroke="#263544" stroke-width="2.6" stroke-linecap="round"/>
+        </g>
+        <rect x="130" y="198" width="40" height="16" rx="3" fill="#EB5E28" stroke="#263544" stroke-width="2.4"/>
+        <line x1="124" y1="214" x2="176" y2="214" stroke="#263544" stroke-width="3.2" stroke-linecap="round"/>
+      </svg>
+
+      <!-- Escena 4 -->
+      <svg class="mk-scene-item" viewBox="0 0 320 230" width="320" height="230" fill="none">
+        <line x1="25" y1="212" x2="295" y2="212" stroke="#263544" stroke-width="3.2" stroke-linecap="round"/>
+        <rect x="44" y="205" width="232" height="7" rx="3" fill="#87B7CF" stroke="#263544" stroke-width="2.5"/>
+        <rect x="68" y="176" width="8" height="29" fill="#87B7CF" stroke="#263544" stroke-width="2.4"/>
+        <rect x="244" y="176" width="8" height="29" fill="#87B7CF" stroke="#263544" stroke-width="2.4"/>
+        <rect x="70" y="134" width="32" height="16" rx="1.5" fill="#F6AF24" stroke="#263544" stroke-width="2.4"/>
+        <rect x="116" y="134" width="32" height="16" rx="1.5" fill="#F6AF24" stroke="#263544" stroke-width="2.4"/>
+        <rect x="48" y="150" width="224" height="26" rx="13" fill="#87B7CF" stroke="#263544" stroke-width="2.6"/>
+        <rect x="55" y="155" width="210" height="16" rx="8" fill="#374756" stroke="#263544" stroke-width="2"/>
+        <circle cx="72" cy="163" r="5.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+        <circle cx="115" cy="163" r="5.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+        <circle cx="160" cy="163" r="5.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+        <circle cx="205" cy="163" r="5.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+        <circle cx="247" cy="163" r="5.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+        <g class="s4-picker">
+          <path d="M276 68 C298 60 306 38 294 20" stroke="#263544" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <g transform="translate(222, 92) rotate(-22)">
+            <rect x="0" y="-17" width="42" height="34" rx="12" fill="#87B7CF" stroke="#263544" stroke-width="2.5"/>
+            <rect x="42" y="-11" width="7" height="22" rx="3" fill="#87B7CF" stroke="#263544" stroke-width="2.2"/>
+            <rect x="51" y="-11" width="7" height="22" rx="3" fill="#87B7CF" stroke="#263544" stroke-width="2.2"/>
+            <rect x="60" y="-8" width="6" height="16" rx="2" fill="#87B7CF" stroke="#263544" stroke-width="2.2"/>
+            <path d="M2 -12 L-22 -12 L-38 -5" stroke="#263544" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 12 L-22 12 L-38 5" stroke="#263544" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="-22" cy="-12" r="3.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+            <circle cx="-22" cy="12" r="3.5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+            <rect x="-56" y="-8" width="30" height="16" rx="1.5" fill="#F6AF24" stroke="#263544" stroke-width="2.4"/>
+          </g>
+        </g>
+      </svg>
+
+      <!-- Escena 5 -->
+      <svg class="mk-scene-item" viewBox="0 0 320 230" width="320" height="230" fill="none">
+        <defs><clipPath id="clipS5"><rect x="10" y="-26" width="165" height="28"/></clipPath></defs>
+        <line x1="18" y1="212" x2="302" y2="212" stroke="#263544" stroke-width="3.2" stroke-linecap="round"/>
+        <rect x="28" y="205" width="190" height="7" rx="3" fill="#87B7CF" stroke="#263544" stroke-width="2.5"/>
+        <rect x="52" y="132" width="8" height="73" fill="#87B7CF" stroke="#263544" stroke-width="2.4"/>
+        <rect x="176" y="176" width="8" height="29" fill="#87B7CF" stroke="#263544" stroke-width="2.4"/>
+        <g transform="translate(36, 108) rotate(21)">
+          <g clip-path="url(#clipS5)">
+            <g class="s5-boxes">
+              <rect x="-20" y="-17" width="30" height="16" rx="1.5" fill="#F6AF24" stroke="#263544" stroke-width="2.4"/>
+              <rect x="18" y="-17" width="30" height="16" rx="1.5" fill="#F6AF24" stroke="#263544" stroke-width="2.4"/>
+              <rect x="56" y="-17" width="30" height="16" rx="1.5" fill="#F6AF24" stroke="#263544" stroke-width="2.4"/>
+              <rect x="94" y="-17" width="30" height="16" rx="1.5" fill="#F6AF24" stroke="#263544" stroke-width="2.4"/>
+              <rect x="132" y="-17" width="30" height="16" rx="1.5" fill="#F6AF24" stroke="#263544" stroke-width="2.4"/>
+            </g>
+          </g>
+          <rect x="0" y="0" width="184" height="26" rx="13" fill="#87B7CF" stroke="#263544" stroke-width="2.6"/>
+          <rect x="6" y="5" width="172" height="16" rx="8" fill="#374756" stroke="#263544" stroke-width="2"/>
+          <circle cx="20" cy="13" r="5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+          <circle cx="52" cy="13" r="5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+          <circle cx="84" cy="13" r="5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+          <circle cx="116" cy="13" r="5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+          <circle cx="148" cy="13" r="5" fill="#87B7CF" stroke="#263544" stroke-width="1.8"/>
+        </g>
+        <path d="M242 152 L228 206 H240 L254 156 Z" fill="#87B7CF" stroke="#263544" stroke-width="2.4" stroke-linejoin="round"/>
+        <path d="M250 152 L266 204 L276 200 L260 150 Z" fill="#87B7CF" stroke="#263544" stroke-width="2.4" stroke-linejoin="round"/>
+        <g class="s5-worker">
+          <path d="M238 104 C238 96 262 96 262 106 L260 154 H238 Z" fill="#87B7CF" stroke="#263544" stroke-width="2.4" stroke-linejoin="round"/>
+          <circle cx="250" cy="76" r="14" fill="#FBD2A6" stroke="#263544" stroke-width="2.4"/>
+          <path d="M236 68 C238 54 264 54 264 70 Z" fill="#87B7CF" stroke="#263544" stroke-width="2.4"/>
+          <path d="M254 58 C262 58 266 64 264 72 H252 Z" fill="#F6AF24" stroke="#263544" stroke-width="2"/>
+          <line x1="227" y1="68" x2="244" y2="68" stroke="#263544" stroke-width="2.6" stroke-linecap="round"/>
+          <rect x="205" y="106" width="28" height="15" rx="1.5" transform="rotate(24 205 106)" fill="#F6AF24" stroke="#263544" stroke-width="2.4"/>
+          <path d="M250 112 L232 132 L214 120" stroke="#87B7CF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M250 112 L232 132 L214 120" stroke="#263544" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="211" cy="117" r="5.5" fill="#FFFFFF" stroke="#263544" stroke-width="2"/>
+        </g>
+      </svg>
+
+      <!-- Escena 6 -->
+      <svg class="mk-scene-item" viewBox="0 0 320 230" width="320" height="230" fill="none">
+        <line x1="16" y1="212" x2="304" y2="212" stroke="#263544" stroke-width="3.2" stroke-linecap="round"/>
+        <g class="s6-lift">
+          <rect x="24" y="128" width="66" height="54" rx="2" fill="#EB5E28" stroke="#263544" stroke-width="2.6"/>
+          <path d="M96 136 V188 H28 V182 H90 V136 Z" fill="#87B7CF" stroke="#263544" stroke-width="2.4" stroke-linejoin="round"/>
+        </g>
+        <rect x="96" y="84" width="14" height="112" rx="7" fill="#87B7CF" stroke="#263544" stroke-width="2.6"/>
+        <g class="s6-cab">
+          <path d="M110 160 L136 90 C140 80 150 75 166 75 H208 C218 75 223 81 225 92 L232 136 H280 C289 136 294 142 294 151 V188 H110 Z"
+                fill="#F6AF24" stroke="#263544" stroke-width="2.8" stroke-linejoin="round"/>
+          <path d="M128 156 L148 94 C151 87 157 85 168 85 H204 C210 85 213 89 214 96 L220 162 C220 170 214 174 204 174 H174 L162 156 Z"
+                fill="#0F172A" stroke="#263544" stroke-width="2.6" stroke-linejoin="round"/>
+          <path d="M138 162 L156 140 L164 146 L150 168 Z" fill="#4A5C6A" stroke="#263544" stroke-width="2.3"/>
+          <line x1="152" y1="133" x2="168" y2="145" stroke="#87B7CF" stroke-width="4" stroke-linecap="round"/>
+          <path d="M180 158 L162 172 L169 174 L188 162 Z" fill="#87B7CF" stroke="#263544" stroke-width="2"/>
+          <path d="M186 131 C196 131 200 140 198 158 H180 L182 131 Z" fill="#87B7CF" stroke="#263544" stroke-width="2.2"/>
+          <circle cx="189" cy="119" r="8.5" fill="#FBD2A6" stroke="#263544" stroke-width="2.2"/>
+          <path d="M178 116 C178 105 200 105 200 116 Z" fill="#F6AF24" stroke="#263544" stroke-width="2.2"/>
+          <line x1="174" y1="116" x2="201" y2="116" stroke="#263544" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M186 138 L165 141" stroke="#87B7CF" stroke-width="5.5" stroke-linecap="round"/>
+          <path d="M200 128 H207 V164 H178 V156 H200 Z" fill="#4A5C6A" stroke="#263544" stroke-width="2.3" stroke-linejoin="round"/>
+          <rect x="290" y="164" width="12" height="24" rx="3" fill="#4A5C6A" stroke="#263544" stroke-width="2.4"/>
+          <circle cx="246" cy="156" r="7.5" fill="#F6AF24" stroke="#263544" stroke-width="2"/>
+          <rect x="223" y="80" width="6" height="10" rx="2" fill="#EB5E28" stroke="#263544" stroke-width="1.8"/>
+        </g>
+        <circle cx="152" cy="183" r="28" fill="#5A6B7C" stroke="#263544" stroke-width="2.8"/>
+        <circle cx="152" cy="183" r="16" fill="#87B7CF" stroke="#263544" stroke-width="2.4"/>
+        <circle cx="152" cy="183" r="7" fill="#5A6B7C" stroke="#263544" stroke-width="2"/>
+        <circle cx="262" cy="189" r="22" fill="#5A6B7C" stroke="#263544" stroke-width="2.8"/>
+        <circle cx="262" cy="189" r="12" fill="#87B7CF" stroke="#263544" stroke-width="2.4"/>
+        <circle cx="262" cy="189" r="5" fill="#5A6B7C" stroke="#263544" stroke-width="2"/>
+      </svg>
+    </div>
+
+    <div class="mk-bar-track">
+      <div id="mk-loader-bar" class="mk-bar-fill"></div>
+    </div>
+
+    <div class="mk-dots-row">
+      <span class="mk-scene-dot active"></span>
+      <span class="mk-scene-dot"></span>
+      <span class="mk-scene-dot"></span>
+      <span class="mk-scene-dot"></span>
+      <span class="mk-scene-dot"></span>
+      <span class="mk-scene-dot"></span>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var iv = null;
+      function runPreloaderSequence() {
+        var pre = document.getElementById('mk-preloader');
+        var bar = document.getElementById('mk-loader-bar');
+        var scenes = pre ? pre.querySelectorAll('.mk-scene-item') : [];
+        var dots = pre ? pre.querySelectorAll('.mk-scene-dot') : [];
+        if (!pre) return;
+        pre.classList.remove('mk-hidden');
+        if (iv) clearInterval(iv);
+        var p = 0;
+        var lastIdx = -1;
+        iv = setInterval(function() {
+          p += 3;
+          if (p >= 100) {
+            p = 100;
+            clearInterval(iv);
+            setTimeout(function() {
+              pre.classList.add('mk-hidden');
+            }, 220);
+          }
+          if (bar) bar.style.width = p + '%';
+          var idx = Math.min(5, Math.floor((p / 100) * 6));
+          if (idx !== lastIdx) {
+            lastIdx = idx;
+            for (var i = 0; i < scenes.length; i++) {
+              scenes[i].classList.toggle('active', i === idx);
+              if (dots[i]) dots[i].classList.toggle('active', i === idx);
+            }
+          }
+        }, 65);
+      }
+      window.replayWellpackPreloader = runPreloaderSequence;
+      runPreloaderSequence();
+    })();
+  </script>
+
+  <!-- ========================================================================
+       1. BARRA DE NAVEGACIÓN CORPORATIVA WELLPACK (5 DIVISIONES)
+       ======================================================================== -->
+  <div class="bg-[#090D16] text-slate-300 text-xs border-b border-slate-800 hidden md:block font-medium">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-between">
+      <div class="flex items-center gap-5">
+        <span class="flex items-center gap-2 text-white font-semibold">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          DIVISIÓN INGENIERÍA EN BIOGÁS & VALORIZACIÓN ORGÁNICA
+        </span>
+        <span class="text-slate-400">REACTORES ECPC · DOMOS DOBLE MEMBRANA PVDF · CRÉDITO VERDE CORFO</span>
+      </div>
+      <div class="flex items-center gap-6 font-heading font-bold text-white">
+        <span class="text-slate-300">Director de Proyectos: Gonzalo Carrasco</span>
+        <a href="https://wa.me/56974379993" target="_blank" rel="noopener" class="text-emerald-400 hover:underline">
+          +56 9 7437 9993
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <header class="sticky top-0 z-40 bg-[#0F172A]/95 backdrop-blur-md border-b border-slate-800 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-3">
+      <a href="/index.html" class="flex items-center gap-3.5 group shrink-0">
+        <div class="w-11 h-11 rounded-lg bg-slate-800 border border-slate-700 group-hover:border-emerald-400 flex items-center justify-center transition-colors shrink-0">
+          <svg class="w-6 h-6 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+            <line x1="12" y1="22.08" x2="12" y2="12"/>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-xl sm:text-2xl font-extrabold tracking-tight text-white font-heading uppercase leading-none">
+            WELLPACK<span class="text-emerald-400">.</span>
+          </span>
+          <span class="text-xs text-slate-300 font-semibold uppercase tracking-wider mt-1 leading-none">
+            Ingeniería en Biogás & Valorización
+          </span>
+        </div>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-1">
+        <a href="/index.html" class="px-3 py-2.5 rounded-md text-xs font-heading font-bold uppercase tracking-wider text-slate-300 hover:text-white hover:bg-slate-800/70 flex items-center gap-1.5 transition-all">
+          <span class="text-[#FF7618] font-extrabold">01.</span>
+          <span>Envases Flexibles</span>
+        </a>
+        <a href="/maquinaria-carnica.html" class="px-3 py-2.5 rounded-md text-xs font-heading font-bold uppercase tracking-wider text-slate-300 hover:text-white hover:bg-slate-800/70 flex items-center gap-1.5 transition-all">
+          <span class="text-[#FF7618] font-extrabold">02.</span>
+          <span>Línea Cárnica</span>
+        </a>
+        <a href="/maquinaria-pesquera.html" class="px-3 py-2.5 rounded-md text-xs font-heading font-bold uppercase tracking-wider text-slate-300 hover:text-white hover:bg-slate-800/70 flex items-center gap-1.5 transition-all">
+          <span class="text-[#FF7618] font-extrabold">03.</span>
+          <span>Proceso Pesquero</span>
+        </a>
+        <a href="/proyectos-asesorias.html" class="px-3 py-2.5 rounded-md text-xs font-heading font-bold uppercase tracking-wider text-slate-300 hover:text-white hover:bg-slate-800/70 flex items-center gap-1.5 transition-all">
+          <span class="text-[#FF7618] font-extrabold">04.</span>
+          <span>Proyectos & Corfo</span>
+        </a>
+        <a href="/proyectos-biogas.html" class="px-3.5 py-2 rounded-md text-xs font-heading font-bold uppercase tracking-wider bg-emerald-500/15 text-white border-b-2 border-emerald-400 flex items-center gap-2 transition-all">
+          <span class="text-emerald-400 font-extrabold">05.</span>
+          <span>Proyectos Biogás</span>
+          <span class="px-1.5 py-0.5 text-[10px] rounded bg-emerald-400 text-slate-950 font-extrabold tracking-tight leading-none">
+            Financiable Corfo
+          </span>
+        </a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <a href="#biogas-calculator-section" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-extrabold text-xs px-4 py-2.5 rounded-md uppercase tracking-wider transition-colors">
+          <span>Simular Planta</span>
+          <span>↗</span>
+        </a>
+        <button type="button" onclick="document.getElementById('biogas-mobile-nav').classList.toggle('hidden')" class="lg:hidden p-2.5 rounded-md bg-slate-800 text-white border border-slate-700">
+          ☰
+        </button>
+      </div>
+    </div>
+
+    <!-- Menú Móvil -->
+    <div id="biogas-mobile-nav" class="hidden lg:hidden border-t border-slate-800 bg-[#0F172A] px-4 py-3 space-y-2">
+      <a href="/index.html" class="block px-3.5 py-2 rounded-md text-sm font-heading font-bold text-slate-200 bg-slate-800/80">01. Envases Flexibles</a>
+      <a href="/maquinaria-carnica.html" class="block px-3.5 py-2 rounded-md text-sm font-heading font-bold text-slate-200 bg-slate-800/80">02. Maquinaria Rubro Cárnico</a>
+      <a href="/maquinaria-pesquera.html" class="block px-3.5 py-2 rounded-md text-sm font-heading font-bold text-slate-200 bg-slate-800/80">03. Maquinaria Proceso Pesquero</a>
+      <a href="/proyectos-asesorias.html" class="block px-3.5 py-2 rounded-md text-sm font-heading font-bold text-slate-200 bg-slate-800/80">04. Proyectos y Asesorías Corfo</a>
+      <a href="/proyectos-biogas.html" class="flex items-center justify-between px-3.5 py-2.5 rounded-md text-sm font-heading font-bold text-slate-950 bg-emerald-400">
+        <span>05. Proyectos Biogás</span>
+        <span class="text-xs font-extrabold uppercase">Financiable Corfo</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       SECCIÓN 1: HERO SECTION (IMPACTO EJECUTIVO EN AZUL INGENIERÍA #0F172A)
+       ======================================================================== -->
+  <section class="relative bg-[#0F172A] text-white pt-12 pb-16 lg:pt-16 lg:pb-24 border-b border-slate-800 overflow-hidden">
+    <!-- Grilla técnica de fondo tipo Blueprint -->
+    <div class="absolute inset-0 opacity-15 pointer-events-none" style="background-image: linear-gradient(to right, #38bdf8 1px, transparent 1px), linear-gradient(to bottom, #38bdf8 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl">
+        <div class="inline-flex flex-wrap items-center gap-2.5 px-3.5 py-1.5 rounded-md bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 text-xs font-heading font-bold uppercase tracking-wider mb-6">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span>División Ingeniería en Biogás & Economía Circular Industrial · Financiable Corfo</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl lg:text-[52px] font-heading font-extrabold tracking-tight text-white leading-[1.1] mb-6">
+          Transforme los Residuos Orgánicos y RILES de su Planta en <span class="text-emerald-400">Electricidad, Calor y Ahorro Directo</span>
+        </h1>
+
+        <p class="text-base sm:text-lg lg:text-xl text-slate-300 font-normal leading-relaxed mb-8 max-w-3xl">
+          Ingeniería llave en mano, importación directa de reactores anaeróbicos <strong class="text-white font-semibold">ECPC de alta resistencia</strong> y estructuración de <strong class="text-emerald-300 font-semibold">Crédito Verde Corfo</strong> para eliminar el costo de vertedero en la industria pesquera, cárnica y alimentaria.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-12">
+          <a href="#biogas-proposals-section" class="inline-flex items-center justify-center gap-3 px-7 py-4 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-extrabold text-sm uppercase tracking-wider shadow-lg transition-all">
+            <span>Explorar Propuestas y Planos 2D</span>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+          </a>
+          <a href="#biogas-calculator-section" class="inline-flex items-center justify-center gap-3 px-7 py-4 rounded-lg bg-slate-800 hover:bg-slate-700 text-white border border-sky-400/40 font-heading font-bold text-sm uppercase tracking-wider transition-all">
+            <span>Simular Ahorro de mi Planta</span>
+            <span class="text-sky-400 font-mono">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 3 KPIs Destacados en Tarjetas bajo el Hero -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="bg-slate-900/90 border border-slate-700/80 rounded-xl p-6 shadow-xl">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-mono uppercase tracking-widest text-sky-400 font-bold">KPI 01 · RÉGIMEN CONTINUO</span>
+            <span class="w-8 h-8 rounded-lg bg-sky-500/15 border border-sky-400/30 flex items-center justify-center text-sky-400 font-mono font-bold text-xs">24/7</span>
+          </div>
+          <div class="text-2xl sm:text-3xl font-heading font-extrabold text-white mb-1.5">
+            Desde 20 a 30 días
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Ciclo de fermentación anaeróbica mesofílica (35°C–38°C) para generación continua 24/7 sin interrupciones.
+          </p>
+        </div>
+
+        <div class="bg-slate-900/90 border border-emerald-500/40 rounded-xl p-6 shadow-xl">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-mono uppercase tracking-widest text-emerald-400 font-bold">KPI 02 · CONVERSIÓN ENERGÉTICA</span>
+            <span class="w-8 h-8 rounded-lg bg-emerald-500/15 border border-emerald-400/30 flex items-center justify-center text-emerald-400 font-mono font-bold text-xs">kWh</span>
+          </div>
+          <div class="text-2xl sm:text-3xl font-heading font-extrabold text-emerald-400 mb-1.5">
+            1,62 kWh / m³
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Rendimiento eléctrico directo en grupo electrógeno CHP para autoconsumo en cámaras de frío y planta industrial.
+          </p>
+        </div>
+
+        <div class="bg-slate-900/90 border border-slate-700/80 rounded-xl p-6 shadow-xl">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-mono uppercase tracking-widest text-sky-400 font-bold">KPI 03 · ESTÁNDAR AMBIENTAL</span>
+            <span class="w-8 h-8 rounded-lg bg-sky-500/15 border border-sky-400/30 flex items-center justify-center text-sky-400 font-mono font-bold text-xs">ECPC</span>
+          </div>
+          <div class="text-2xl sm:text-3xl font-heading font-extrabold text-white mb-1.5">
+            0% Olores y 100% Hermético
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Tecnología de acero empernado ECPC, desulfuración industrial de H₂S y domos de doble membrana PVDF.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECCIÓN 2: "¿CÓMO FUNCIONA NUESTRA TECNOLOGÍA?" (TIMELINE DE 4 ETAPAS)
+       ======================================================================== -->
+  <section class="py-16 lg:py-24 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-slate-100 border border-slate-300 text-slate-800 text-xs font-mono font-bold uppercase mb-3">
+          INGENIERÍA DE PROCESO SIN FRICCIÓN
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-heading font-extrabold text-slate-900 tracking-tight mb-3">
+          ¿Cómo Funciona Nuestra Tecnología de Biogás Industrial?
+        </h2>
+        <p class="text-base text-slate-600 leading-relaxed">
+          Un tren continuo y hermético de 4 etapas que convierte subproductos pesqueros, cárnicos y RILES en energía eléctrica trifásica (380V), agua caliente industrial y biofertilizante estabilizado.
+        </p>
+      </div>
+
+      <!-- Diagrama de Flujo Lineal en 4 Etapas -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+        <!-- Etapa 1 -->
+        <div class="bg-slate-50 border border-slate-200 hover:border-sky-500 rounded-xl p-6 transition-all flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-md bg-[#0F172A] text-sky-400 font-mono text-xs font-bold">ETAPA 01</span>
+              <span class="text-xs font-mono font-bold text-slate-500">8%–10% SÓLIDOS</span>
+            </div>
+            <h3 class="text-lg font-heading font-extrabold text-slate-900 mb-2">
+              Recepción y Licuado (Pretratamiento)
+            </h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              Triturador industrial (<strong class="text-slate-800">Crusher</strong>) y tanque de homogeneización donde los descartes sólidos (vísceras, cabezas, restos cárnicos) se mezclan con aguas residuales orgánicas (<strong class="text-slate-800">RILES</strong>) hasta lograr una mezcla bombeable al <strong class="text-slate-900">8%–10% de sólidos</strong>.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-xs font-mono text-slate-700">
+            <span>Entrada: Sólidos + RILES</span>
+            <span class="text-emerald-600 font-bold">→ Etapa 02</span>
+          </div>
+        </div>
+
+        <!-- Etapa 2 -->
+        <div class="bg-slate-50 border border-slate-200 hover:border-emerald-500 rounded-xl p-6 transition-all flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-md bg-[#0F172A] text-emerald-400 font-mono text-xs font-bold">ETAPA 02</span>
+              <span class="text-xs font-mono font-bold text-emerald-700">35°C–38°C MESOFÍLICO</span>
+            </div>
+            <h3 class="text-lg font-heading font-extrabold text-slate-900 mb-2">
+              Digestión Anaeróbica (Reactor ECPC)
+            </h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              Tanque modular de placas de acero con recubrimiento anticorrosivo <strong class="text-slate-800">ECPC</strong>, sellado polimérico de polisulfuro, aislación térmica para clima sur de Chile y calefacción interna a <strong class="text-slate-800">35°C–38°C</strong>. En ausencia de oxígeno, las bacterias transforman grasa y proteína en <strong class="text-emerald-700">Biogás (55%–65% Metano CH₄)</strong> y biofertilizante libre de patógenos.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-xs font-mono text-slate-700">
+            <span>Salida: CH₄ + Bioabono</span>
+            <span class="text-emerald-600 font-bold">→ Etapa 03</span>
+          </div>
+        </div>
+
+        <!-- Etapa 3 -->
+        <div class="bg-slate-50 border border-slate-200 hover:border-sky-500 rounded-xl p-6 transition-all flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-md bg-[#0F172A] text-sky-400 font-mono text-xs font-bold">ETAPA 03</span>
+              <span class="text-xs font-mono font-bold text-slate-500">FILTRADO H₂S & H₂O</span>
+            </div>
+            <h3 class="text-lg font-heading font-extrabold text-slate-900 mb-2">
+              Purificación Crítica (Deshidratación y Desulfuración)
+            </h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              El gas crudo pasa por un separador de agua (<strong class="text-slate-800">Modelo-1000</strong>) y torres desulfuradoras (secas, húmedas o biológicas) que eliminan el <strong class="text-slate-800">ácido sulfhídrico (H₂S)</strong> proveniente de la proteína marina/cárnica, protegiendo motores y calderas de la corrosión.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-xs font-mono text-slate-700">
+            <span>Gas Dulce y Seco</span>
+            <span class="text-emerald-600 font-bold">→ Etapa 04</span>
+          </div>
+        </div>
+
+        <!-- Etapa 4 -->
+        <div class="bg-slate-50 border border-slate-200 hover:border-emerald-500 rounded-xl p-6 transition-all flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-md bg-emerald-600 text-white font-mono text-xs font-bold">ETAPA 04</span>
+              <span class="text-xs font-mono font-bold text-emerald-700">380V + CALOR CHP</span>
+            </div>
+            <h3 class="text-lg font-heading font-extrabold text-slate-900 mb-2">
+              Almacenamiento en Doble Membrana y Cogeneración (CHP)
+            </h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              El gas limpio se acumula a presión constante en el <strong class="text-slate-800">Gasómetro Flexible de Doble Membrana</strong> (tecnología alemana PVDF/PVC resistente a UV) para alimentar un <strong class="text-emerald-700">Grupo Electrógeno a Biogás</strong> (electricidad 380V para la planta + agua caliente gratis recuperada del motor) o una Caldera Industrial.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-xs font-mono text-emerald-700 font-bold">
+            <span>Autoconsumo Directo</span>
+            <span>✓ 1,62 kWh/m³</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECCIÓN 3: CATÁLOGO INTERACTIVO DE 5 PROPUESTAS Y PLANOS 2D EN PLANTA
+       ======================================================================== -->
+  <section id="biogas-proposals-section" class="py-16 lg:py-24 bg-[#F1F5F9] border-b border-slate-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-8 gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#0F172A] text-sky-400 text-xs font-mono font-bold uppercase mb-3">
+            BLUEPRINTS CAD 2D A ESCALA · METROS CUADRADOS EXACTOS
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-heading font-extrabold text-slate-900 tracking-tight">
+            Catálogo Interactivo de Propuestas y Planos en Planta
+          </h2>
+        </div>
+        <p class="text-sm text-slate-600 max-w-md">
+          Seleccione una de las 5 configuraciones escalables según el volumen diario de residuos de su planta y los metros cuadrados de patio disponibles:
+        </p>
+      </div>
+
+      <!-- Barra de 5 Pestañas (Tabs) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5 mb-8">
+        <button type="button" data-tab="1" class="biogas-tab-btn px-4 py-3 rounded-lg font-heading font-bold text-xs sm:text-sm bg-white text-slate-700 border border-slate-300 hover:border-slate-400 transition-all text-left">
+          <div class="text-[10px] font-mono text-emerald-600 font-bold">PROPUESTA 01 · 8 m²</div>
+          <div class="truncate">Micro-Planta Solar 3,5 m³</div>
+        </button>
+
+        <button type="button" data-tab="2" class="biogas-tab-btn px-4 py-3 rounded-lg font-heading font-bold text-xs sm:text-sm bg-white text-slate-700 border border-slate-300 hover:border-slate-400 transition-all text-left">
+          <div class="text-[10px] font-mono text-emerald-600 font-bold">PROPUESTA 02 · 96 m²</div>
+          <div class="truncate">Modular ECPC 100 m³</div>
+        </button>
+
+        <button type="button" data-tab="3" class="biogas-tab-btn px-4 py-3 rounded-lg font-heading font-extrabold text-xs sm:text-sm bg-[#0F172A] text-white border-2 border-[#10B981] shadow-md transition-all text-left">
+          <div class="text-[10px] font-mono text-emerald-400 font-bold">PROPUESTA 03 · 252 m²</div>
+          <div class="truncate">Compacta 1.000 m³ (Techo)</div>
+        </button>
+
+        <button type="button" data-tab="4" class="biogas-tab-btn px-4 py-3 rounded-lg font-heading font-bold text-xs sm:text-sm bg-white text-slate-700 border border-slate-300 hover:border-slate-400 transition-all text-left">
+          <div class="text-[10px] font-mono text-emerald-600 font-bold">PROPUESTA 04 · 396 m²</div>
+          <div class="truncate">Extendida 1.000 + Domo 500</div>
+        </button>
+
+        <button type="button" data-tab="5" class="biogas-tab-btn px-4 py-3 rounded-lg font-heading font-bold text-xs sm:text-sm bg-white text-slate-700 border border-slate-300 hover:border-slate-400 transition-all text-left">
+          <div class="text-[10px] font-mono text-emerald-600 font-bold">PROPUESTA 05 · 1.200 m² / JCNCS</div>
+          <div class="truncate">Mega-Planta 6.000 m³ / e-PTFE</div>
+        </button>
+      </div>
+
+      <!-- Contenedor Principal: Izquierda Ficha Técnica/Financiera | Derecha Plano Blueprint SVG -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <!-- Columna Izquierda: Ficha Técnica y Financiera (5 cols) -->
+        <div id="biogas-proposal-details" class="lg:col-span-5 bg-white border border-slate-200 rounded-xl p-6 shadow-md">
+          <!-- Renderizado dinámicamente por biogas-page-app.js -->
+        </div>
+
+        <!-- Columna Derecha: Plano de Ingeniería Blueprint 2D en SVG (7 cols) -->
+        <div class="lg:col-span-7 bg-[#0F172A] border-2 border-slate-800 rounded-xl p-4 sm:p-6 shadow-2xl">
+          <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-slate-800">
+            <div>
+              <div id="biogas-blueprint-title" class="text-xs sm:text-sm font-mono font-bold text-sky-400 uppercase">
+                PLANO DE PLANTA CAD-03 · INDUSTRIAL COMPACTA 1.000 m³
+              </div>
+              <div id="biogas-blueprint-scale" class="text-xs text-slate-400 font-mono">
+                Escala 1:100 · Superficie Total: 252,0 m² (18,0 m × 14,0 m)
+              </div>
+            </div>
+            <div class="flex items-center gap-3 text-[11px] font-mono">
+              <span class="flex items-center gap-1.5 text-sky-400">
+                <span class="w-2.5 h-2.5 rounded-sm bg-sky-400 inline-block"></span>
+                Cotas / Equipos
+              </span>
+              <span class="flex items-center gap-1.5 text-emerald-400">
+                <span class="w-2.5 h-2.5 rounded-sm bg-emerald-400 inline-block"></span>
+                Línea Biogás / Reactor
+              </span>
+            </div>
+          </div>
+
+          <div id="biogas-blueprint-canvas" class="w-full overflow-hidden rounded-lg">
+            <!-- SVG Blueprint inyectado dinámicamente -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabla Resumen Comparativa de las 5 Propuestas -->
+      <div class="mt-12 bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+        <div class="px-6 py-4 bg-slate-900 text-white flex items-center justify-between">
+          <span class="font-heading font-bold text-sm uppercase tracking-wider">Matriz Comparativa Rápida de las 5 Configuraciones WellPack</span>
+          <span class="text-xs font-mono text-emerald-400">Valores estimados a $145/kWh y $30.000/Ton vertedero</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs sm:text-sm">
+            <thead>
+              <tr class="bg-slate-100 text-slate-700 border-b border-slate-200 font-heading font-bold">
+                <th class="py-3 px-4">Propuesta</th>
+                <th class="py-3 px-4">Carga Orgánica</th>
+                <th class="py-3 px-4">Producción Biogás</th>
+                <th class="py-3 px-4">Electricidad (CHP)</th>
+                <th class="py-3 px-4">Patio Requerido</th>
+                <th class="py-3 px-4">Flujo Positivo Mensual</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 text-slate-700">
+              <tr class="hover:bg-slate-50 cursor-pointer" onclick="window.jumpToBiogasTab('1')">
+                <td class="py-3 px-4 font-bold text-slate-900">01. Micro-Planta Solar 3,5 m³</td>
+                <td class="py-3 px-4">25 kg/día</td>
+                <td class="py-3 px-4 font-mono">63 m³/mes</td>
+                <td class="py-3 px-4 font-mono">102 kWh/mes</td>
+                <td class="py-3 px-4 font-mono font-bold text-sky-700">8 m² (4×2 m)</td>
+                <td class="py-3 px-4 font-semibold text-emerald-700">Validación Piloto / Casino</td>
+              </tr>
+              <tr class="hover:bg-slate-50 cursor-pointer" onclick="window.jumpToBiogasTab('2')">
+                <td class="py-3 px-4 font-bold text-slate-900">02. Modular Pequeña ECPC 100 m³</td>
+                <td class="py-3 px-4">1,2 Ton/día</td>
+                <td class="py-3 px-4 font-mono">3.000 m³/mes</td>
+                <td class="py-3 px-4 font-mono">4.860 kWh/mes</td>
+                <td class="py-3 px-4 font-mono font-bold text-sky-700">96 m² (12×8 m)</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">~$1.785.000 CLP/mes</td>
+              </tr>
+              <tr class="bg-emerald-50/50 hover:bg-emerald-50 cursor-pointer" onclick="window.jumpToBiogasTab('3')">
+                <td class="py-3 px-4 font-extrabold text-slate-900">03. Industrial Compacta 1.000 m³ (Domo Techo)</td>
+                <td class="py-3 px-4 font-semibold">10–12 Ton/día + RILES</td>
+                <td class="py-3 px-4 font-mono font-bold">30.000 m³/mes</td>
+                <td class="py-3 px-4 font-mono font-bold">48.600 kWh/mes</td>
+                <td class="py-3 px-4 font-mono font-bold text-sky-700">252 m² (18×14 m)</td>
+                <td class="py-3 px-4 font-mono font-extrabold text-emerald-700">~$16.047.000 CLP/mes</td>
+              </tr>
+              <tr class="hover:bg-slate-50 cursor-pointer" onclick="window.jumpToBiogasTab('4')">
+                <td class="py-3 px-4 font-bold text-slate-900">04. Industrial Extendida 1.000 m³ + Domo 500 m³</td>
+                <td class="py-3 px-4">10–12 Ton/día + RILES</td>
+                <td class="py-3 px-4 font-mono">30.000 m³/mes + Pulmón</td>
+                <td class="py-3 px-4 font-mono">48.600 kWh/mes</td>
+                <td class="py-3 px-4 font-mono font-bold text-sky-700">396 m² (22×18 m)</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">~$16.047.000 CLP/mes</td>
+              </tr>
+              <tr class="hover:bg-slate-50 cursor-pointer" onclick="window.jumpToBiogasTab('5A')">
+                <td class="py-3 px-4 font-bold text-slate-900">05A. Batería Mayor Biogás 6.000 m³ (2×3.000)</td>
+                <td class="py-3 px-4">35–40 Ton/día</td>
+                <td class="py-3 px-4 font-mono">90.000 m³/mes</td>
+                <td class="py-3 px-4 font-mono">145.800 kWh/mes</td>
+                <td class="py-3 px-4 font-mono font-bold text-sky-700">1.200 m² (40×30 m)</td>
+                <td class="py-3 px-4 font-mono font-extrabold text-emerald-700">~$52.641.000 CLP/mes</td>
+              </tr>
+              <tr class="hover:bg-slate-50 cursor-pointer" onclick="window.jumpToBiogasTab('5B')">
+                <td class="py-3 px-4 font-bold text-slate-900">05B. Compostaje Nanomembrana e-PTFE / 24 m³</td>
+                <td class="py-3 px-4">Hasta 3.000 Ton/año</td>
+                <td class="py-3 px-4 font-mono">Sin Gas (Aeróbico 70°C)</td>
+                <td class="py-3 px-4 font-mono">Consumo: 50 kWh/d</td>
+                <td class="py-3 px-4 font-mono font-bold text-sky-700">50 m² / 240 m²</td>
+                <td class="py-3 px-4 font-semibold text-emerald-700">100% Ahorro Vertedero + Abono</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECCIÓN 4: CRONOGRAMA REAL DE PUESTA EN MARCHA Y ARRANQUE BIOLÓGICO
+       ======================================================================== -->
+  <section class="py-16 lg:py-24 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-emerald-100 text-emerald-900 text-xs font-mono font-bold uppercase mb-3">
+          CERO INCERTIDUMBRE OPERATIVA
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-heading font-extrabold text-slate-900 tracking-tight mb-3">
+          Cronograma Real de Puesta en Marcha y Arranque Biológico
+        </h2>
+        <p class="text-base text-slate-600 leading-relaxed">
+          A diferencia de los digestores antiguos de hormigón armado que demoran más de 6 meses en obra civil, nuestra tecnología modular empernada <strong class="text-slate-900">ECPC</strong> reduce drásticamente los plazos de instalación y puesta en régimen:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        <!-- Tarjeta Izquierda: Montaje Físico Rápido (15 a 25 días) -->
+        <div class="lg:col-span-5 bg-[#0F172A] text-white rounded-xl p-7 border border-slate-800 flex flex-col justify-between shadow-xl">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-sky-500/20 border border-sky-400/40 text-sky-300 font-mono text-xs font-bold mb-4">
+              FASE MECÁNICA · 15 A 25 DÍAS
+            </div>
+            <h3 class="text-2xl font-heading font-extrabold text-white mb-3">
+              Montaje Físico Rápido sin Meses de Obra Civil
+            </h3>
+            <p class="text-sm text-slate-300 leading-relaxed mb-6">
+              Gracias al sistema modular de placas de acero con recubrimiento anticorrosivo <strong class="text-white">ECPC pre-ensambladas en fábrica</strong> y unidas en terreno con pernos autoblocantes y sellador de polisulfuro, el montaje completo del reactor toma apenas <strong class="text-emerald-400">15 a 25 días</strong> sobre la losa de fundación.
+            </p>
+          </div>
+          <div class="p-4 rounded-lg bg-slate-900 border border-slate-700 space-y-2 text-xs font-mono text-slate-300">
+            <div class="flex justify-between"><span>• Placas de acero ECPC:</span><span class="text-sky-400 font-bold">Pre-curvadas en fábrica</span></div>
+            <div class="flex justify-between"><span>• Sellado hermético:</span><span class="text-emerald-400 font-bold">Polímero de Polisulfuro</span></div>
+            <div class="flex justify-between"><span>• Aislación Clima Sur:</span><span class="text-white font-bold">Poliuretano + Chaqueta</span></div>
+          </div>
+        </div>
+
+        <!-- Tarjeta Derecha: Curva Biológica Única de Arranque (25 días solo la primera vez) -->
+        <div class="lg:col-span-7 bg-slate-50 border border-slate-200 rounded-xl p-7 flex flex-col justify-between">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-emerald-600 text-white font-mono text-xs font-bold mb-4">
+              CURVA BIOLÓGICA ÚNICA · 25 DÍAS SOLO LA PRIMERA VEZ
+            </div>
+            <h3 class="text-2xl font-heading font-extrabold text-slate-900 mb-6">
+              De la Inoculación al Régimen Continuo 24/7
+            </h3>
+
+            <div class="space-y-4">
+              <div class="p-4 rounded-lg bg-white border-l-4 border-sky-500 shadow-sm">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="font-heading font-extrabold text-slate-900 text-sm">Días 1 a 7 · Carga de Inóculo e Hidrólisis</span>
+                  <span class="text-xs font-mono font-bold text-sky-700">SEMANA 1</span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-600">
+                  Siembra bacteriana inicial, estabilización térmica a 35°C–38°C e hidrólisis enzimática de proteínas y lípidos del descarte orgánico.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-lg bg-white border-l-4 border-amber-500 shadow-sm">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="font-heading font-extrabold text-slate-900 text-sm">Días 8 a 15 · Inicio de Metanogénesis y Primera Llama</span>
+                  <span class="text-xs font-mono font-bold text-amber-700">SEMANA 2</span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-600">
+                  Las arqueas metanogénicas comienzan a elevar la concentración de CH₄ por sobre el 50%, logrando la primera prueba de llama inflamable en antorcha.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-lg bg-emerald-950 text-white border-l-4 border-emerald-400 shadow-md">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="font-heading font-extrabold text-emerald-300 text-sm">Día 25 en Adelante · Régimen Continuo 24/7 sin Esperas</span>
+                  <span class="text-xs font-mono font-bold text-emerald-400">ESTADO ESTACIONARIO</span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-200">
+                  El reactor alcanza equilibrio biológico permanente. <strong class="text-white">A partir de este día no hay esperas:</strong> por cada kilo de residuo que entra diariamente, sale biogás continuo hacia el generador CHP y biofertilizante estabilizado.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECCIÓN 5: CALCULADORA INTERACTIVA DE VIABILIDAD Y RETORNO (SIMULADOR)
+       ======================================================================== -->
+  <section id="biogas-calculator-section" class="py-16 lg:py-24 bg-[#0F172A] text-white border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 text-xs font-mono font-bold uppercase mb-3">
+          SIMULADOR EN VIVO · BALANCE DE MASA, ENERGÍA Y FLUJO DE CAJA
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-heading font-extrabold text-white tracking-tight mb-3">
+          Calculadora Interactiva de Viabilidad y Retorno Mensual
+        </h2>
+        <p class="text-base text-slate-300 leading-relaxed">
+          Ajuste los 3 parámetros operativos de su planta para calcular automáticamente su producción de biogás, generación eléctrica mensual (kWh), ahorro en vertedero y la planta WellPack ideal según sus metros cuadrados disponibles:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Panel de Controles (Sliders) - 5 Columnas -->
+        <div class="lg:col-span-5 bg-slate-900 border border-slate-700 rounded-xl p-6 space-y-6 shadow-xl">
+          <!-- Slider 1: Toneladas diarias -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <label for="slider-biogas-tons" class="text-xs font-heading font-bold uppercase tracking-wider text-slate-300">
+                1. Toneladas Diarias de Descarte Orgánico
+              </label>
+              <span id="val-biogas-tons" class="text-sm font-mono font-extrabold text-emerald-400">
+                10 Ton/día (300 Ton/mes)
+              </span>
+            </div>
+            <input id="slider-biogas-tons" type="range" min="0.5" max="40" step="0.5" value="10" class="biogas-slider" />
+            <div class="flex justify-between text-[11px] font-mono text-slate-400 mt-1.5">
+              <span>0,5 Ton/día</span>
+              <span>10 Ton/día</span>
+              <span>25 Ton/día</span>
+              <span>40 Ton/día</span>
+            </div>
+          </div>
+
+          <!-- Slider 2: Costo Vertedero + Flete -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <label for="slider-biogas-landfill" class="text-xs font-heading font-bold uppercase tracking-wider text-slate-300">
+                2. Costo Actual Vertedero + Flete ($/Ton)
+              </label>
+              <span id="val-biogas-landfill" class="text-sm font-mono font-extrabold text-sky-400">
+                $30.000 / Ton
+              </span>
+            </div>
+            <input id="slider-biogas-landfill" type="range" min="15000" max="50000" step="1000" value="30000" class="biogas-slider" />
+            <div class="flex justify-between text-[11px] font-mono text-slate-400 mt-1.5">
+              <span>$15.000 CLP</span>
+              <span>$30.000 CLP (Prom.)</span>
+              <span>$50.000 CLP</span>
+            </div>
+          </div>
+
+          <!-- Control 3: Metros cuadrados de patio disponibles -->
+          <div>
+            <label class="block text-xs font-heading font-bold uppercase tracking-wider text-slate-300 mb-2.5">
+              3. Metros Cuadrados de Patio Disponibles en Planta
+            </label>
+            <div class="grid grid-cols-2 gap-2.5">
+              <label class="cursor-pointer">
+                <input type="radio" name="biogas-patio-size" value="40" class="peer sr-only" />
+                <div class="p-3 rounded-lg bg-slate-800 border border-slate-700 peer-checked:border-emerald-400 peer-checked:bg-emerald-500/15 text-xs font-heading font-bold text-slate-200 peer-checked:text-white transition-all">
+                  Menos de 50 m²
+                  <span class="block text-[10px] font-mono text-slate-400 mt-0.5">Piloto / Contenedor</span>
+                </div>
+              </label>
+
+              <label class="cursor-pointer">
+                <input type="radio" name="biogas-patio-size" value="250" checked class="peer sr-only" />
+                <div class="p-3 rounded-lg bg-slate-800 border border-slate-700 peer-checked:border-emerald-400 peer-checked:bg-emerald-500/15 text-xs font-heading font-bold text-slate-200 peer-checked:text-white transition-all">
+                  100 a 280 m²
+                  <span class="block text-[10px] font-mono text-slate-400 mt-0.5">Domo en Techo</span>
+                </div>
+              </label>
+
+              <label class="cursor-pointer">
+                <input type="radio" name="biogas-patio-size" value="400" class="peer sr-only" />
+                <div class="p-3 rounded-lg bg-slate-800 border border-slate-700 peer-checked:border-emerald-400 peer-checked:bg-emerald-500/15 text-xs font-heading font-bold text-slate-200 peer-checked:text-white transition-all">
+                  350 a 450 m²
+                  <span class="block text-[10px] font-mono text-slate-400 mt-0.5">Con Domo en Suelo</span>
+                </div>
+              </label>
+
+              <label class="cursor-pointer">
+                <input type="radio" name="biogas-patio-size" value="1200" class="peer sr-only" />
+                <div class="p-3 rounded-lg bg-slate-800 border border-slate-700 peer-checked:border-emerald-400 peer-checked:bg-emerald-500/15 text-xs font-heading font-bold text-slate-200 peer-checked:text-white transition-all">
+                  Más de 1.000 m²
+                  <span class="block text-[10px] font-mono text-slate-400 mt-0.5">Patio Industrial Amplio</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-slate-800 text-[11px] font-mono text-slate-400 space-y-1">
+            <div>• Rendimiento conservador: 90 m³ biogás / Ton orgánica</div>
+            <div>• Conversión CHP: 1,62 kWh / m³ biogás (a $145 CLP/kWh autoconsumo)</div>
+          </div>
+        </div>
+
+        <!-- Panel de Resultados en Vivo - 7 Columnas -->
+        <div class="lg:col-span-7 space-y-5">
+          <!-- KPI Principal: Flujo Positivo Total Mensual -->
+          <div class="bg-gradient-to-r from-emerald-950 via-slate-900 to-slate-900 border-2 border-emerald-400 rounded-xl p-6 shadow-2xl">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="text-xs font-mono font-bold uppercase tracking-widest text-emerald-400">
+                FLUJO POSITIVO TOTAL ESTIMADO (AHORRO LUZ + VERTEDERO)
+              </span>
+              <span id="res-annual-flow" class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 font-mono text-xs font-bold">
+                $192.564.000 / año
+              </span>
+            </div>
+            <div id="res-total-flow" class="text-3xl sm:text-5xl font-heading font-extrabold text-white tracking-tight mb-2">
+              $16.047.000 / mes
+            </div>
+            <p class="text-xs sm:text-sm text-slate-300">
+              Recursos que hoy se pierden en pago de electricidad y camiones a vertedero, transformados en flujo de caja directo para pagar el leasing Corfo de la planta.
+            </p>
+          </div>
+
+          <!-- Grilla de 5 Indicadores Calculados -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="bg-slate-900 border border-slate-800 rounded-lg p-4">
+              <div class="text-[11px] font-mono uppercase text-slate-400 mb-1">Biogás Diario</div>
+              <div id="res-daily-biogas" class="text-lg font-mono font-extrabold text-sky-400">900 m³/día</div>
+              <div id="res-monthly-biogas" class="text-xs font-mono text-slate-400 mt-0.5">27.000 m³/mes</div>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-lg p-4">
+              <div class="text-[11px] font-mono uppercase text-slate-400 mb-1">Electricidad Mensual</div>
+              <div id="res-monthly-kwh" class="text-lg font-mono font-extrabold text-emerald-400">43.740 kWh/mes</div>
+              <div class="text-xs font-mono text-slate-400 mt-0.5">+ Agua Caliente Gratis</div>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-lg p-4">
+              <div class="text-[11px] font-mono uppercase text-slate-400 mb-1">Ahorro Vertedero</div>
+              <div id="res-landfill-savings" class="text-lg font-mono font-extrabold text-amber-400">$9.000.000</div>
+              <div class="text-xs font-mono text-slate-400 mt-0.5">Mensual en disposición</div>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-lg p-4 sm:col-span-2">
+              <div class="text-[11px] font-mono uppercase text-emerald-400 mb-1">Ahorro Eléctrico Autoconsumo ($145/kWh)</div>
+              <div id="res-electric-savings" class="text-xl font-mono font-extrabold text-white">$6.342.300 / mes</div>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-lg p-4">
+              <div class="text-[11px] font-mono uppercase text-slate-400 mb-1">Ingreso Inyección Red ($85)</div>
+              <div id="res-grid-income" class="text-base font-mono font-bold text-slate-300">$3.717.900</div>
+            </div>
+          </div>
+
+          <!-- Recomendación Automática de Planta y Plano -->
+          <div class="bg-slate-900 border-l-4 border-sky-400 rounded-r-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <div class="text-[11px] font-mono uppercase tracking-wider text-sky-400 font-bold mb-1">
+                PLANTA Y PLANO RECOMENDADO AUTOMÁTICAMENTE:
+              </div>
+              <div id="res-recommended-plant" class="text-base sm:text-lg font-heading font-extrabold text-white mb-1">
+                Propuesta 3 — Planta ECPC 1.000 m³ con Domo Integrado en Techo (252 m²)
+              </div>
+              <p id="res-recommended-reason" class="text-xs text-slate-300 leading-relaxed">
+                Para 10 Ton/día y patio de 100 a 280 m², el Domo Integrado en el Techo ahorra un 36% de espacio ocupando solo 252 m² (18×14 m).
+              </p>
+            </div>
+            <div class="flex flex-col gap-2 shrink-0">
+              <button id="btn-view-recommended-plan" type="button" class="px-4 py-2.5 rounded-md bg-sky-500 hover:bg-sky-400 text-slate-950 font-heading font-extrabold text-xs uppercase tracking-wider transition-colors whitespace-nowrap">
+                Ver Plano 2D ↑
+              </button>
+              <a href="#biogas-contact-section" class="px-4 py-2 rounded-md bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-extrabold text-xs uppercase tracking-wider text-center transition-colors whitespace-nowrap">
+                Solicitar Carpeta Corfo ↓
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECCIÓN 6: FINANCIAMIENTO CORFO Y CIERRE DE VENTAS (WHATSAPP DIRECTO)
+       ======================================================================== -->
+  <section id="biogas-contact-section" class="py-16 lg:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-emerald-100 text-emerald-900 text-xs font-mono font-bold uppercase mb-3">
+          ESTRUCTURACIÓN FINANCIERA E INGENIERÍA LLAVE EN MANO
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-heading font-extrabold text-slate-900 tracking-tight mb-3">
+          Financiamiento Corfo y Solicitud de Visita Técnica
+        </h2>
+        <p class="text-base text-slate-600 leading-relaxed">
+          En WellPack no solo importamos e instalamos los reactores ECPC: nuestro equipo estructura la carpeta técnica y financiera para apalancar su proyecto con las 3 herramientas de fomento industrial vigentes en Chile:
+        </p>
+      </div>
+
+      <!-- 3 Tarjetas de Apalancamiento Financiero Corfo -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 shadow-sm">
+          <div class="w-10 h-10 rounded-lg bg-emerald-600 text-white font-mono font-bold flex items-center justify-center mb-4">01</div>
+          <h3 class="text-lg font-heading font-extrabold text-slate-900 mb-2">
+            Crédito Verde Corfo
+          </h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Tasas y plazos preferenciales de largo plazo diseñados específicamente para inversiones en plantas de biogás, valorización de RILES, energía renovable y economía circular industrial.
+          </p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 shadow-sm">
+          <div class="w-10 h-10 rounded-lg bg-[#0F172A] text-sky-400 font-mono font-bold flex items-center justify-center mb-4">02</div>
+          <h3 class="text-lg font-heading font-extrabold text-slate-900 mb-2">
+            Crédito Corfo MiPyme (Leasing)
+          </h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Estructuración de leasing o crédito de inversión donde la cuota mensual del equipamiento se paga directamente con el mismo ahorro mensual de electricidad y vertedero.
+          </p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 shadow-sm">
+          <div class="w-10 h-10 rounded-lg bg-amber-500 text-slate-950 font-mono font-bold flex items-center justify-center mb-4">35%</div>
+          <h3 class="text-lg font-heading font-extrabold text-slate-900 mb-2">
+            Ley de Incentivo Tributario I+D
+          </h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Hasta un <strong class="text-slate-900">35% de descuento directo en el Impuesto de Primera Categoría</strong> por la adaptación e integración tecnológica de biodigestión, automatización PLC e Industria 4.0 en planta.
+          </p>
+        </div>
+      </div>
+
+      <!-- Formulario Final + Tarjeta Ejecutiva Gonzalo Carrasco -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start bg-[#0F172A] text-white rounded-2xl p-6 sm:p-10 shadow-2xl border border-slate-800">
+        <!-- Formulario (7 Columnas) -->
+        <div class="lg:col-span-7 space-y-4">
+          <h3 class="text-xl sm:text-2xl font-heading font-extrabold text-white">
+            Solicitar Propuesta Técnica y Visita a Terreno
+          </h3>
+          <p class="text-sm text-slate-300 mb-4">
+            Los datos simulados en la calculadora ya están pre-cargados. Complete sus datos de contacto para enviar el diagnóstico técnico directo por WhatsApp a Ingeniería WellPack:
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Nombre y Apellido *</label>
+              <input id="form-biogas-name" type="text" placeholder="Ej: Roberto Gómez" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-900 border border-slate-700 text-white text-sm focus:border-emerald-400 focus:outline-none" />
+            </div>
+            <div>
+              <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Empresa / Planta *</label>
+              <input id="form-biogas-company" type="text" placeholder="Ej: Pesquera Austral S.A." class="w-full px-3.5 py-2.5 rounded-lg bg-slate-900 border border-slate-700 text-white text-sm focus:border-emerald-400 focus:outline-none" />
+            </div>
+            <div>
+              <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Rubro Industrial</label>
+              <select id="form-biogas-sector" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-900 border border-slate-700 text-white text-sm focus:border-emerald-400 focus:outline-none">
+                <option value="Pesquero y Acuícola">Pesquero y Acuícola</option>
+                <option value="Cárnico y Frigoríficos">Cárnico y Frigoríficos</option>
+                <option value="Agroindustrial y Alimentos">Agroindustrial y Alimentos</option>
+                <option value="Otro Rubro Industrial">Otro Rubro Industrial</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Toneladas / Día (Simuladas)</label>
+              <input id="form-biogas-tons" type="text" readonly value="10 Ton/día" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-800/90 border border-slate-700 text-emerald-400 font-mono font-bold text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Espacio Disponible (m²)</label>
+              <input id="form-biogas-space" type="text" readonly value="100 a 280 m²" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-800/90 border border-slate-700 text-sky-400 font-mono font-bold text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Planta Recomendada</label>
+              <input id="form-biogas-proposal" type="text" value="Propuesta 3 — Planta ECPC 1.000 m³ (252 m²)" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-900 border border-slate-700 text-white text-sm focus:border-emerald-400 focus:outline-none" />
+            </div>
+            <div>
+              <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Teléfono / WhatsApp *</label>
+              <input id="form-biogas-phone" type="tel" placeholder="+56 9 ..." class="w-full px-3.5 py-2.5 rounded-lg bg-slate-900 border border-slate-700 text-white text-sm focus:border-emerald-400 focus:outline-none" />
+            </div>
+            <div>
+              <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Email Corporativo *</label>
+              <input id="form-biogas-email" type="email" placeholder="gerencia@empresa.cl" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-900 border border-slate-700 text-white text-sm focus:border-emerald-400 focus:outline-none" />
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <a id="btn-biogas-whatsapp-submit" href="https://wa.me/56974379993" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-extrabold text-sm uppercase tracking-wider shadow-lg transition-all">
+              <span>Enviar Diagnóstico a Ingeniería Wellpack por WhatsApp</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tarjeta de Contacto Directo Gonzalo Carrasco (5 Columnas) -->
+        <div class="lg:col-span-5 bg-slate-900 border border-slate-700 rounded-xl p-6 space-y-5">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-emerald-500/15 text-emerald-400 font-mono text-xs font-bold">
+            ATENCIÓN EJECUTIVA DIRECTA
+          </div>
+          <div>
+            <div class="text-xl font-heading font-extrabold text-white">Gonzalo Carrasco</div>
+            <div class="text-sm font-semibold text-emerald-400">Director de Proyectos Industriales · WellPack Chile</div>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Evaluación en terreno de factibilidad de RILES y descartes orgánicos, dimensionamiento de layout CAD en planta e ingreso de carpeta de financiamiento Corfo.
+          </p>
+
+          <div class="space-y-3 pt-2 border-t border-slate-800 text-sm">
+            <a href="https://wa.me/56974379993" target="_blank" rel="noopener" class="flex items-center justify-between p-3 rounded-lg bg-slate-800 hover:bg-slate-750 border border-slate-700 transition-colors">
+              <span class="text-slate-300 font-medium">WhatsApp / Teléfono Directo:</span>
+              <span class="font-mono font-bold text-emerald-400">+56 9 7437 9993</span>
+            </a>
+            <a href="mailto:gandz.20@gmail.com" class="flex items-center justify-between p-3 rounded-lg bg-slate-800 hover:bg-slate-750 border border-slate-700 transition-colors">
+              <span class="text-slate-300 font-medium">Correo Electrónico:</span>
+              <span class="font-mono font-bold text-sky-400">gandz.20@gmail.com</span>
+            </a>
+            <div class="flex items-center justify-between p-3 rounded-lg bg-slate-800/60 border border-slate-800">
+              <span class="text-slate-400 text-xs">Cobertura Industrial:</span>
+              <span class="font-mono text-xs text-white font-semibold">Todo Chile (Biobío · Los Lagos · RM)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pie de Página Corporativo -->
+  <footer class="bg-[#090D16] text-slate-400 py-10 border-t border-slate-800 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <span class="font-heading font-extrabold text-white text-base">WELLPACK<span class="text-emerald-400">.</span> CHILE</span>
+        <span>· División Biogás, Tecnología Verde y Proyectos Corfo</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-4">
+        <button type="button" onclick="window.replayWellpackPreloader && window.replayWellpackPreloader()" class="text-emerald-400 hover:underline font-mono font-bold">
+          ↻ Repetir Animación Industrial
+        </button>
+        <a href="/index.html" class="hover:text-white">01. Envases</a>
+        <a href="/maquinaria-carnica.html" class="hover:text-white">02. Cárnico</a>
+        <a href="/maquinaria-pesquera.html" class="hover:text-white">03. Pesquero</a>
+        <a href="/proyectos-asesorias.html" class="hover:text-white">04. Proyectos Corfo</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initBiogasPage } from '/js/biogas-page-app.js?v=biogas_v1';
+    document.addEventListener('DOMContentLoaded', () => {
+      initBiogasPage();
+    });
+  </script>
+</body>
+</html>

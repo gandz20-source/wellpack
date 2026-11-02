@@ -338,13 +338,23 @@ class AntigravityRenderer {
 
             <a 
               href="proyectos-asesorias.html" 
-              class="px-3.5 py-2.5 rounded-md text-xs font-heading font-bold uppercase tracking-wider flex items-center gap-2 transition-all ${
+              class="px-3 py-2.5 rounded-md text-xs font-heading font-bold uppercase tracking-wider flex items-center gap-1.5 transition-all ${
                 isProj
                   ? 'bg-[#1F1E2B] text-white border-b-2 border-[#FF7618]'
                   : 'text-slate-200 hover:text-white hover:bg-[#1F1E2B]/60'
               }">
               <span class="text-[#FF7618] font-extrabold">04.</span>
               <span>Proyectos & Corfo</span>
+            </a>
+
+            <a 
+              href="proyectos-biogas.html" 
+              class="px-3 py-2 rounded-md text-xs font-heading font-bold uppercase tracking-wider flex items-center gap-2 transition-all bg-[#10B981]/10 hover:bg-[#10B981]/20 text-white border border-[#10B981]/40">
+              <span class="text-[#10B981] font-extrabold">05.</span>
+              <span>Proyectos Biogás</span>
+              <span class="px-1.5 py-0.5 text-[10px] rounded bg-[#10B981] text-[#052E16] font-extrabold tracking-tight leading-none">
+                Financiable Corfo
+              </span>
             </a>
           </nav>
 
@@ -422,6 +432,13 @@ class AntigravityRenderer {
           </a>
           <a href="proyectos-asesorias.html" class="mobile-nav-link flex items-center justify-between px-3.5 py-2.5 rounded-md text-sm font-heading font-bold ${isProj ? 'bg-[#FF7618] text-white' : 'text-slate-200 bg-[#1F1E2B] border border-[#2E2D3D]'}">
             <span>04. Proyectos y Asesorías Corfo</span>
+            <span>→</span>
+          </a>
+          <a href="proyectos-biogas.html" class="mobile-nav-link flex items-center justify-between px-3.5 py-2.5 rounded-md text-sm font-heading font-bold text-white bg-[#10B981]/15 border border-[#10B981]/50">
+            <span class="flex items-center gap-2">
+              <span>05. Proyectos Biogás</span>
+              <span class="px-1.5 py-0.5 text-[10px] rounded bg-[#10B981] text-[#052E16] font-extrabold uppercase">Financiable Corfo</span>
+            </span>
             <span>→</span>
           </a>
         </div>
