@@ -252,7 +252,7 @@ div.bg-cyan-950\/80 {
 }
 
 /* ==========================================================================
-   9. PANTALLA DE CARGA INDUSTRIAL EJECUTIVA (LÍNEA AUTOMATIZADA VECTORIAL HD)
+   9. PANTALLA DE CARGA INDUSTRIAL (6 ESCENAS CENTRADAS EN SECUENCIA, CERO TEXTO)
    ========================================================================== */
 #mk-preloader {
   position: fixed;
@@ -260,15 +260,15 @@ div.bg-cyan-950\/80 {
   z-index: 99999;
   background-color: #15141C;
   background-image:
-    radial-gradient(circle at 50% 10%, rgba(255, 118, 24, 0.08), transparent 60%),
-    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+    radial-gradient(circle at 50% 45%, rgba(255, 118, 24, 0.08), transparent 55%),
+    linear-gradient(rgba(255, 255, 255, 0.016) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.016) 1px, transparent 1px);
   background-size: 100% 100%, 28px 28px, 28px 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.48s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.48s;
+  transition: opacity 0.42s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.42s;
 }
 
 #mk-preloader.mk-hidden {
@@ -277,142 +277,136 @@ div.bg-cyan-950\/80 {
   pointer-events: none;
 }
 
-@keyframes mkSpinGear {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.mk-animate-gear {
-  animation: mkSpinGear 7s linear infinite;
-}
-
-/* Animaciones Mecánicas de la Línea de Producción (Preloader) */
-@keyframes mkRobotUpper {
-  0%, 100% { transform: rotate(0deg); }
-  45%, 55% { transform: rotate(11deg); }
-}
-@keyframes mkRobotForearm {
-  0%, 100% { transform: rotate(0deg); }
-  45%, 55% { transform: rotate(14deg); }
-}
-@keyframes mkRobotWrist {
-  0%, 100% { transform: rotate(0deg); }
-  45%, 55% { transform: rotate(-22deg); }
-}
-@keyframes mkClawLeft {
-  0%, 35%, 100% { transform: rotate(0deg); }
-  45%, 65% { transform: rotate(-14deg); }
-}
-@keyframes mkClawRight {
-  0%, 35%, 100% { transform: rotate(0deg); }
-  45%, 65% { transform: rotate(14deg); }
-}
-@keyframes mkBoxesSlide {
-  0% { transform: translateX(0px); }
-  100% { transform: translateX(44px); }
-}
-@keyframes mkMonitorBoxes {
-  0% { transform: translateX(0px); }
-  100% { transform: translateX(36px); }
-}
-@keyframes mkLeverMove {
-  0%, 100% { transform: rotate(-12deg); }
-  50% { transform: rotate(14deg); }
-}
-@keyframes mkBeaconPulse {
-  0%, 100% { opacity: 1; filter: drop-shadow(0 0 6px #FF7618); }
-  50% { opacity: 0.45; filter: drop-shadow(0 0 0px transparent); }
-}
-@keyframes mkOperatorNod {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-2.5px); }
-}
-@keyframes mkForkLift {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-24px); }
-}
-@keyframes mkForkliftEngine {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-1.5px); }
-}
-
-.mk-anim-upper {
-  transform-origin: 78px 112px;
-  animation: mkRobotUpper 2.4s ease-in-out infinite;
-}
-.mk-anim-forearm {
-  transform-origin: 152px 58px;
-  animation: mkRobotForearm 2.4s ease-in-out infinite;
-}
-.mk-anim-wrist {
-  transform-origin: 196px 86px;
-  animation: mkRobotWrist 2.4s ease-in-out infinite;
-}
-.mk-anim-claw-l {
-  transform-origin: 188px 104px;
-  animation: mkClawLeft 2.4s ease-in-out infinite;
-}
-.mk-anim-claw-r {
-  transform-origin: 204px 104px;
-  animation: mkClawRight 2.4s ease-in-out infinite;
-}
-.mk-anim-boxes {
-  animation: mkBoxesSlide 1.2s linear infinite;
-}
-.mk-anim-monitor-boxes {
-  animation: mkMonitorBoxes 1.2s linear infinite;
-}
-.mk-anim-lever {
-  transform-origin: 365px 175px;
-  animation: mkLeverMove 2s ease-in-out infinite;
-}
-.mk-anim-beacon {
-  animation: mkBeaconPulse 0.85s ease-in-out infinite;
-}
-.mk-anim-operator {
-  animation: mkOperatorNod 1.9s ease-in-out infinite;
-}
-.mk-anim-fork-cargo {
-  animation: mkForkLift 2.2s ease-in-out infinite;
-}
-.mk-anim-forklift-cab {
-  animation: mkForkliftEngine 0.55s ease-in-out infinite;
-}
-
-.mk-stage-pill {
-  background: #181722;
-  border: 1px solid #2C2B3B;
-  border-radius: 8px;
-  padding: 8px 10px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  opacity: 0.5;
-  transition: all 0.22s ease;
-}
-
-.mk-stage-pill.active {
-  opacity: 1;
-  border-color: #FF7618;
-  background: rgba(255, 118, 24, 0.1);
-}
-
-.mk-stage-pill .mk-stage-num {
-  width: 22px;
-  height: 22px;
-  border-radius: 5px;
-  background: #252435;
-  color: #94A3B8;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  font-weight: 700;
+.mk-scene-stage {
+  position: relative;
+  width: 320px;
+  height: 240px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
 }
 
-.mk-stage-pill.active .mk-stage-num {
-  background: #FF7618;
-  color: #FFFFFF;
+.mk-scene-item {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(0.92) translateY(8px);
+  transition: opacity 0.26s cubic-bezier(0.4, 0, 0.2, 1), transform 0.26s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
 }
+
+.mk-scene-item.active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.mk-bar-track {
+  width: 220px;
+  height: 6px;
+  background: #232232;
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 14px;
+  border: 1px solid #323146;
+}
+
+.mk-bar-fill {
+  height: 100%;
+  width: 10%;
+  background: linear-gradient(90deg, #FF7618, #F6AF24);
+  border-radius: 99px;
+  transition: width 0.08s linear;
+}
+
+.mk-dots-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.mk-scene-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #2E2D40;
+  transition: all 0.22s ease;
+}
+
+.mk-scene-dot.active {
+  background: #FF7618;
+  transform: scale(1.3);
+  box-shadow: 0 0 8px rgba(255, 118, 24, 0.7);
+}
+
+/* Animaciones Mecánicas de las 6 Escenas */
+@keyframes mkArmUpper {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(10deg); }
+}
+@keyframes mkArmFore {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(14deg); }
+}
+@keyframes mkArmWrist {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-20deg); }
+}
+@keyframes mkClawL {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-14deg); }
+}
+@keyframes mkClawR {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(14deg); }
+}
+@keyframes mkBeltBoxes {
+  0% { transform: translateX(0px); }
+  100% { transform: translateX(42px); }
+}
+@keyframes mkWorkerPack {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(5px); }
+}
+@keyframes mkLever {
+  0%, 100% { transform: rotate(-12deg); }
+  50% { transform: rotate(15deg); }
+}
+@keyframes mkBeacon {
+  0%, 100% { opacity: 1; filter: drop-shadow(0 0 6px #EB5E28); }
+  50% { opacity: 0.35; filter: none; }
+}
+@keyframes mkPickerMove {
+  0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+  50% { transform: translate(-12px, 12px) rotate(-5deg); }
+}
+@keyframes mkInclinedBoxes {
+  0% { transform: translateX(0px); }
+  100% { transform: translateX(38px); }
+}
+@keyframes mkReceiverHands {
+  0%, 100% { transform: rotate(0deg) translateY(0px); }
+  50% { transform: rotate(-4deg) translateY(3px); }
+}
+@keyframes mkForkLiftUp {
+  0%, 100% { transform: translateY(4px); }
+  50% { transform: translateY(-22px); }
+}
+@keyframes mkForkCab {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-2px); }
+}
+
+.s1-upper { transform-origin: 72px 109px; animation: mkArmUpper 1.1s ease-in-out infinite; }
+.s1-fore  { transform-origin: 152px 58px; animation: mkArmFore 1.1s ease-in-out infinite; }
+.s1-wrist { transform-origin: 196px 85px; animation: mkArmWrist 1.1s ease-in-out infinite; }
+.s1-claw-l { transform-origin: 185px 105px; animation: mkClawL 1.1s ease-in-out infinite; }
+.s1-claw-r { transform-origin: 207px 105px; animation: mkClawR 1.1s ease-in-out infinite; }
+.s-boxes  { animation: mkBeltBoxes 0.75s linear infinite; }
+.s2-worker { animation: mkWorkerPack 0.8s ease-in-out infinite; }
+.s3-lever { transform-origin: 96px 168px; animation: mkLever 0.9s ease-in-out infinite; }
+.s3-beacon { animation: mkBeacon 0.55s ease-in-out infinite; }
+.s4-picker { transform-origin: 240px 70px; animation: mkPickerMove 0.9s ease-in-out infinite; }
+.s5-boxes { animation: mkInclinedBoxes 0.75s linear infinite; }
+.s5-worker { transform-origin: 245px 135px; animation: mkReceiverHands 0.85s ease-in-out infinite; }
+.s6-lift { animation: mkForkLiftUp 1s ease-in-out infinite; }
+.s6-cab  { animation: mkForkCab 0.45s ease-in-out infinite; }
