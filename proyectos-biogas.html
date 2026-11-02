@@ -42,6 +42,59 @@
       shape-rendering: geometricPrecision;
     }
 
+    /* Animaciones Gráficas del Proceso de Biogás y Reciclaje */
+    @keyframes wpPipeFlow {
+      to { stroke-dashoffset: -28; }
+    }
+    @keyframes wpSpinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes wpSpinReverse {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+    @keyframes wpBubbleUp {
+      0% { transform: translateY(14px) scale(0.8); opacity: 0.2; }
+      50% { opacity: 0.95; }
+      100% { transform: translateY(-22px) scale(1.1); opacity: 0; }
+    }
+    @keyframes wpDomeBreathe {
+      0%, 100% { transform: scaleY(0.94); }
+      50% { transform: scaleY(1.04); }
+    }
+    @keyframes wpPulseGlow {
+      0%, 100% { opacity: 0.55; transform: scale(0.96); }
+      50% { opacity: 1; transform: scale(1.06); }
+    }
+    .wp-pipe-anim {
+      stroke-dasharray: 8 6;
+      animation: wpPipeFlow 1.1s linear infinite;
+    }
+    .wp-spin-cw {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: wpSpinSlow 5s linear infinite;
+    }
+    .wp-spin-ccw {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: wpSpinReverse 5s linear infinite;
+    }
+    .wp-bubble-1 { animation: wpBubbleUp 2.6s ease-in infinite; }
+    .wp-bubble-2 { animation: wpBubbleUp 2.6s ease-in 0.8s infinite; }
+    .wp-bubble-3 { animation: wpBubbleUp 2.6s ease-in 1.6s infinite; }
+    .wp-dome-anim {
+      transform-box: fill-box;
+      transform-origin: bottom center;
+      animation: wpDomeBreathe 3.2s ease-in-out infinite;
+    }
+    .wp-glow-anim {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: wpPulseGlow 1.8s ease-in-out infinite;
+    }
+
     /* Preloader Industrial de 6 Escenas en Secuencia (Cero Texto) */
     #mk-preloader {
       position: fixed;
@@ -653,103 +706,523 @@
   </section>
 
   <!-- ========================================================================
-       SECCIÓN 2: "¿CÓMO FUNCIONA NUESTRA TECNOLOGÍA?" (TIMELINE DE 4 ETAPAS)
+       SECCIÓN 2: INFOGRAFÍA 100% VISUAL "¿CÓMO FUNCIONA EL PROCESO?" (DIBUJOS EXPLICATIVOS)
        ======================================================================== -->
-  <section class="py-16 lg:py-24 bg-white border-b border-slate-200">
+  <section id="biogas-process-section" class="py-14 lg:py-20 bg-white border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mb-12">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-slate-100 border border-slate-300 text-slate-800 text-xs font-mono font-bold uppercase mb-3">
-          INGENIERÍA DE PROCESO SIN FRICCIÓN
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-8 gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#0F172A] text-emerald-400 text-xs font-mono font-bold uppercase mb-2.5">
+            ESQUEMA 100% GRÁFICO · CICLO DE ECONOMÍA CIRCULAR Y BIOGÁS
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-heading font-extrabold text-slate-900 tracking-tight">
+            ¿Cómo Funciona el Reciclaje de Residuos a Energía y Bioabono?
+          </h2>
         </div>
-        <h2 class="text-2xl sm:text-4xl font-heading font-extrabold text-slate-900 tracking-tight mb-3">
-          ¿Cómo Funciona Nuestra Tecnología de Biogás Industrial?
-        </h2>
-        <p class="text-base text-slate-600 leading-relaxed">
-          Un tren continuo y hermético de 4 etapas que convierte subproductos pesqueros, cárnicos y RILES en energía eléctrica trifásica (380V), agua caliente industrial y biofertilizante estabilizado.
-        </p>
+        <!-- Leyenda Visual de Flujos -->
+        <div class="flex flex-wrap items-center gap-3 bg-slate-100 border border-slate-200 px-4 py-2.5 rounded-xl text-xs font-mono font-bold">
+          <span class="flex items-center gap-1.5 text-sky-700"><span class="w-3 h-3 rounded-full bg-sky-500 inline-block"></span>Lodo / RILES</span>
+          <span class="flex items-center gap-1.5 text-emerald-700"><span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>Biogás CH₄</span>
+          <span class="flex items-center gap-1.5 text-amber-700"><span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>Electricidad 380V</span>
+          <span class="flex items-center gap-1.5 text-rose-700"><span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>Calor CHP 85°C</span>
+          <span class="flex items-center gap-1.5 text-lime-800"><span class="w-3 h-3 rounded-full bg-lime-500 inline-block"></span>Bioabono</span>
+        </div>
       </div>
 
-      <!-- Diagrama de Flujo Lineal en 4 Etapas -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-        <!-- Etapa 1 -->
-        <div class="bg-slate-50 border border-slate-200 hover:border-sky-500 rounded-xl p-6 transition-all flex flex-col justify-between shadow-sm">
+      <!-- ====================================================================
+           DIAGRAMA PANORÁMICO MAESTRO (TREN COMPLETO ANIMADO EN CORTE)
+           ==================================================================== -->
+      <div class="mb-10 bg-[#0F172A] border-2 border-slate-800 rounded-2xl p-4 sm:p-6 shadow-2xl overflow-hidden">
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3 border-b border-slate-800 text-xs font-mono">
+          <span class="text-emerald-400 font-bold uppercase">DIAGRAMA DE FLUJO DE PROCESO (P&ID VISUAL INTERACTIVO · FLUJO CONTINUO 24/7)</span>
+          <span class="text-slate-400">De Vísceras, Descartes y RILES → Electricidad 380V + Agua Caliente + Biofertilizante</span>
+        </div>
+
+        <div class="w-full overflow-x-auto">
+          <svg viewBox="0 0 1200 340" class="w-full min-w-[860px] h-auto select-none">
+            <defs>
+              <pattern id="pidGrid" width="24" height="24" patternUnits="userSpaceOnUse">
+                <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#1E293B" stroke-width="1"/>
+              </pattern>
+              <linearGradient id="tankLiquid" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#0284C7" stop-opacity="0.45"/>
+                <stop offset="100%" stop-color="#0F766E" stop-opacity="0.85"/>
+              </linearGradient>
+              <linearGradient id="gasGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#10B981" stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="#059669" stop-opacity="0.15"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Fondo Grilla Técnica -->
+            <rect width="1200" height="340" rx="12" fill="#0B1220"/>
+            <rect width="1200" height="340" rx="12" fill="url(#pidGrid)"/>
+            <!-- Suelo de Planta -->
+            <line x1="20" y1="275" x2="1180" y2="275" stroke="#334155" stroke-width="3"/>
+
+            <!-- ==================== TUBERÍAS ANIMADAS DE CONEXIÓN ==================== -->
+            <!-- Tubería 1: Licuado 8-10% hacia Reactor ECPC -->
+            <path d="M 250 225 L 350 225" fill="none" stroke="#1E293B" stroke-width="10" stroke-linecap="round"/>
+            <path d="M 250 225 L 350 225" fill="none" stroke="#38BDF8" stroke-width="4" class="wp-pipe-anim"/>
+            <text x="300" y="212" text-anchor="middle" fill="#38BDF8" font-family="JetBrains Mono" font-size="10" font-weight="700">LODO 8-10%</text>
+
+            <!-- Tubería 2: Gas Crudo desde Cúpula Reactor hacia Purificación -->
+            <path d="M 520 75 L 620 75 L 620 135" fill="none" stroke="#1E293B" stroke-width="9" stroke-linejoin="round"/>
+            <path d="M 520 75 L 620 75 L 620 135" fill="none" stroke="#FACC15" stroke-width="3.5" class="wp-pipe-anim"/>
+            <text x="572" y="65" text-anchor="middle" fill="#FACC15" font-family="JetBrains Mono" font-size="10" font-weight="700">GAS CRUDO + H₂S</text>
+
+            <!-- Tubería 2B: Digestato hacia Bioabono (Abajo del Reactor) -->
+            <path d="M 435 275 L 435 312 L 560 312" fill="none" stroke="#1E293B" stroke-width="8" stroke-linejoin="round"/>
+            <path d="M 435 275 L 435 312 L 560 312" fill="none" stroke="#84CC16" stroke-width="3.5" class="wp-pipe-anim"/>
+
+            <!-- Tubería 3: Gas Limpio desde Torres H2S hacia Domo Doble Membrana -->
+            <path d="M 760 115 L 845 115 L 845 185" fill="none" stroke="#1E293B" stroke-width="9" stroke-linejoin="round"/>
+            <path d="M 760 115 L 845 115 L 845 185" fill="none" stroke="#10B981" stroke-width="4" class="wp-pipe-anim"/>
+            <text x="802" y="104" text-anchor="middle" fill="#10B981" font-family="JetBrains Mono" font-size="10" font-weight="700">CH₄ LIMPIO</text>
+
+            <!-- Tubería 4: Del Domo al Motor CHP -->
+            <path d="M 960 225 L 1015 225" fill="none" stroke="#1E293B" stroke-width="9"/>
+            <path d="M 960 225 L 1015 225" fill="none" stroke="#10B981" stroke-width="4" class="wp-pipe-anim"/>
+
+            <!-- Tubería 5 (Retorno Térmico CHP 85°C hacia Reactor ECPC) -->
+            <path d="M 1070 275 L 1070 324 L 390 324 L 390 250" fill="none" stroke="#EF4444" stroke-width="2.5" class="wp-pipe-anim"/>
+            <rect x="695" y="313" width="245" height="18" rx="4" fill="#0F172A" stroke="#EF4444" stroke-width="1"/>
+            <text x="817" y="325" text-anchor="middle" fill="#FCA5A5" font-family="JetBrains Mono" font-size="9.5" font-weight="700">♨ RETORNO AGUA CALIENTE 85°C GRATIS AL REACTOR</text>
+
+            <!-- ==================== NODO 1: RECEPCIÓN, TRITURADOR Y HOMOGENEIZADO ==================== -->
+            <g transform="translate(28, 70)">
+              <rect x="0" y="0" width="58" height="22" rx="4" fill="#0284C7"/>
+              <text x="29" y="15" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono" font-size="10" font-weight="700">ETAPA 01</text>
+              <text x="66" y="15" fill="#E2E8F0" font-family="Plus Jakarta Sans" font-size="12" font-weight="800">TRITURADO + RILES</text>
+
+              <!-- Bin de Pescado / Cárnico volcando -->
+              <rect x="6" y="36" width="66" height="40" rx="5" fill="#1E293B" stroke="#F59E0B" stroke-width="2"/>
+              <path d="M 18 55 Q 32 43 48 55 Q 32 67 18 55 Z" fill="#F59E0B"/>
+              <polygon points="46,55 56,47 56,63" fill="#F59E0B"/>
+              <circle cx="25" cy="53" r="2" fill="#0F172A"/>
+              <text x="39" y="71" text-anchor="middle" fill="#FDE68A" font-family="JetBrains Mono" font-size="8.5" font-weight="700">VÍSCERAS / CARNE</text>
+
+              <!-- Tolva y Triturador (Crusher) -->
+              <polygon points="82,45 142,45 128,85 96,85" fill="#334155" stroke="#94A3B8" stroke-width="2"/>
+              <rect x="90" y="85" width="44" height="36" rx="4" fill="#1E293B" stroke="#38BDF8" stroke-width="2"/>
+              <g class="wp-spin-cw">
+                <circle cx="104" cy="103" r="8" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/>
+                <line x1="96" y1="103" x2="112" y2="103" stroke="#0F172A" stroke-width="2"/>
+                <line x1="104" y1="95" x2="104" y2="111" stroke="#0F172A" stroke-width="2"/>
+              </g>
+              <g class="wp-spin-ccw">
+                <circle cx="120" cy="103" r="8" fill="#38BDF8" stroke="#0F172A" stroke-width="2"/>
+                <line x1="112" y1="103" x2="128" y2="103" stroke="#0F172A" stroke-width="2"/>
+                <line x1="120" y1="95" x2="120" y2="111" stroke="#0F172A" stroke-width="2"/>
+              </g>
+
+              <!-- Tanque Homogeneizador de Mezcla (8-10% Sólidos) -->
+              <rect x="146" y="85" width="76" height="120" rx="8" fill="#0F172A" stroke="#38BDF8" stroke-width="2.5"/>
+              <rect x="149" y="120" width="70" height="82" rx="5" fill="url(#tankLiquid)"/>
+              <path d="M 184 52 L 184 85" stroke="#38BDF8" stroke-width="4" class="wp-pipe-anim"/>
+              <rect x="152" y="34" width="64" height="18" rx="4" fill="#0369A1"/>
+              <text x="184" y="46" text-anchor="middle" fill="#E0F2FE" font-family="JetBrains Mono" font-size="8.5" font-weight="700">+ AGUA RILES</text>
+              <line x1="184" y1="90" x2="184" y2="165" stroke="#CBD5E1" stroke-width="2.5"/>
+              <g class="wp-spin-cw">
+                <ellipse cx="184" cy="165" rx="18" ry="5" fill="#38BDF8"/>
+              </g>
+              <text x="184" y="193" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono" font-size="9" font-weight="700">MEZCLA 8-10%</text>
+            </g>
+
+            <!-- ==================== NODO 2: REACTOR ANAERÓBICO ECPC (35°C-38°C) ==================== -->
+            <g transform="translate(345, 32)">
+              <rect x="0" y="0" width="58" height="22" rx="4" fill="#10B981"/>
+              <text x="29" y="15" text-anchor="middle" fill="#052E16" font-family="JetBrains Mono" font-size="10" font-weight="800">ETAPA 02</text>
+              <text x="66" y="15" fill="#E2E8F0" font-family="Plus Jakarta Sans" font-size="12" font-weight="800">REACTOR ECPC 38°C</text>
+
+              <!-- Cúpula Gasómetro Superior del Reactor -->
+              <path d="M 20 95 Q 95 22 170 95 Z" fill="url(#gasGradient)" stroke="#10B981" stroke-width="2.5"/>
+              <text x="95" y="78" text-anchor="middle" fill="#A7F3D0" font-family="JetBrains Mono" font-size="10" font-weight="700">BIOGÁS 65% CH₄</text>
+
+              <!-- Cuerpo Cilíndrico Acero ECPC en Corte Transversal -->
+              <rect x="20" y="95" width="150" height="148" rx="6" fill="#0F172A" stroke="#10B981" stroke-width="3"/>
+              <rect x="24" y="115" width="142" height="124" rx="4" fill="url(#tankLiquid)"/>
+
+              <!-- Serpentín de Calefacción Interna (35°C-38°C) -->
+              <path d="M 36 195 Q 55 185 75 195 T 115 195 T 154 195" fill="none" stroke="#EF4444" stroke-width="3.5"/>
+              <path d="M 36 212 Q 55 202 75 212 T 115 212 T 154 212" fill="none" stroke="#EF4444" stroke-width="3.5"/>
+              <rect x="46" y="218" width="98" height="16" rx="4" fill="#7F1D1D"/>
+              <text x="95" y="229" text-anchor="middle" fill="#FECACA" font-family="JetBrains Mono" font-size="8.5" font-weight="700">CALEFACCIÓN 35°C–38°C</text>
+
+              <!-- Eje Agitador Central -->
+              <line x1="95" y1="95" x2="95" y2="185" stroke="#E2E8F0" stroke-width="3"/>
+              <g class="wp-spin-cw">
+                <rect x="65" y="142" width="60" height="7" rx="3" fill="#34D399"/>
+              </g>
+
+              <!-- Burbujas Animadas de Metano CH4 Subiendo -->
+              <g class="wp-bubble-1">
+                <circle cx="55" cy="155" r="5" fill="#34D399"/>
+                <circle cx="130" cy="160" r="6" fill="#34D399"/>
+              </g>
+              <g class="wp-bubble-2">
+                <circle cx="78" cy="145" r="6" fill="#A7F3D0"/>
+                <circle cx="115" cy="140" r="4.5" fill="#34D399"/>
+              </g>
+              <g class="wp-bubble-3">
+                <circle cx="65" cy="130" r="4" fill="#6EE7B7"/>
+                <circle cx="138" cy="132" r="5.5" fill="#A7F3D0"/>
+              </g>
+
+              <text x="95" y="112" text-anchor="middle" fill="#E2E8F0" font-family="JetBrains Mono" font-size="8.5" font-weight="700">SIN OXÍGENO · CERO OLOR</text>
+            </g>
+
+            <!-- Salida Biofertilizante (Abajo centro) -->
+            <g transform="translate(558, 286)">
+              <rect x="0" y="0" width="128" height="30" rx="6" fill="#1A2E05" stroke="#84CC16" stroke-width="2"/>
+              <text x="64" y="13" text-anchor="middle" fill="#BEF264" font-family="JetBrains Mono" font-size="8.5" font-weight="700">🌱 BIOFERTILIZANTE</text>
+              <text x="64" y="24" text-anchor="middle" fill="#ECFCCB" font-family="JetBrains Mono" font-size="8">ABONO SÓLIDO + LÍQUIDO</text>
+            </g>
+
+            <!-- ==================== NODO 3: PURIFICACIÓN (AGUA + TORRES H2S) ==================== -->
+            <g transform="translate(590, 70)">
+              <rect x="0" y="0" width="58" height="22" rx="4" fill="#0284C7"/>
+              <text x="29" y="15" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono" font-size="10" font-weight="700">ETAPA 03</text>
+              <text x="66" y="15" fill="#E2E8F0" font-family="Plus Jakarta Sans" font-size="12" font-weight="800">FILTRADO H₂O + H₂S</text>
+
+              <!-- Separador de Agua Modelo-1000 -->
+              <rect x="12" y="65" width="38" height="140" rx="8" fill="#1E293B" stroke="#38BDF8" stroke-width="2"/>
+              <path d="M 16 175 L 46 175 L 46 200 L 16 200 Z" fill="#0284C7"/>
+              <text x="31" y="125" text-anchor="middle" fill="#7DD3FC" font-family="JetBrains Mono" font-size="8" font-weight="700" transform="rotate(-90 31 125)">SEPARADOR H₂O</text>
+
+              <!-- Torre Desulfuradora 1 -->
+              <rect x="64" y="45" width="46" height="160" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="2.5"/>
+              <rect x="70" y="75" width="34" height="90" rx="4" fill="#064E3B" stroke="#34D399" stroke-dasharray="3 3"/>
+              <text x="87" y="122" text-anchor="middle" fill="#6EE7B7" font-family="JetBrains Mono" font-size="8.5" font-weight="700">FILTRO</text>
+              <text x="87" y="134" text-anchor="middle" fill="#6EE7B7" font-family="JetBrains Mono" font-size="8.5" font-weight="700">H₂S #1</text>
+
+              <!-- Torre Desulfuradora 2 -->
+              <rect x="122" y="45" width="46" height="160" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="2.5"/>
+              <rect x="128" y="75" width="34" height="90" rx="4" fill="#064E3B" stroke="#34D399" stroke-dasharray="3 3"/>
+              <text x="145" y="122" text-anchor="middle" fill="#6EE7B7" font-family="JetBrains Mono" font-size="8.5" font-weight="700">TORRE</text>
+              <text x="145" y="134" text-anchor="middle" fill="#6EE7B7" font-family="JetBrains Mono" font-size="8.5" font-weight="700">H₂S #2</text>
+
+              <line x1="50" y1="150" x2="64" y2="150" stroke="#38BDF8" stroke-width="3"/>
+              <line x1="110" y1="90" x2="122" y2="90" stroke="#10B981" stroke-width="3"/>
+            </g>
+
+            <!-- ==================== NODO 4: DOMO PVDF + COGENERACIÓN CHP 380V ==================== -->
+            <g transform="translate(815, 70)">
+              <rect x="0" y="0" width="58" height="22" rx="4" fill="#10B981"/>
+              <text x="29" y="15" text-anchor="middle" fill="#052E16" font-family="JetBrains Mono" font-size="10" font-weight="800">ETAPA 04</text>
+              <text x="66" y="15" fill="#E2E8F0" font-family="Plus Jakarta Sans" font-size="12" font-weight="800">DOMO PVDF + MOTOR CHP</text>
+
+              <!-- Gasómetro de Doble Membrana PVDF -->
+              <path d="M 8 205 A 68 72 0 0 1 144 205 Z" fill="#0F172A" stroke="#38BDF8" stroke-width="2" stroke-dasharray="5 3"/>
+              <g class="wp-dome-anim">
+                <path d="M 16 205 A 60 58 0 0 1 136 205 Z" fill="url(#gasGradient)" stroke="#10B981" stroke-width="2.5"/>
+              </g>
+              <text x="76" y="178" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono" font-size="9.5" font-weight="700">DOMO PVDF</text>
+              <text x="76" y="192" text-anchor="middle" fill="#6EE7B7" font-family="JetBrains Mono" font-size="8.5">DOBLE MEMBRANA</text>
+
+              <!-- Grupo Electrógeno a Biogás (CHP) -->
+              <rect x="195" y="108" width="155" height="97" rx="8" fill="#1E293B" stroke="#F59E0B" stroke-width="2.5"/>
+              <rect x="207" y="122" width="66" height="50" rx="5" fill="#0F172A" stroke="#38BDF8" stroke-width="1.5"/>
+              <g class="wp-glow-anim">
+                <polygon points="242,128 228,148 240,148 234,166 254,144 241,144" fill="#FACC15"/>
+              </g>
+              <text x="310" y="140" text-anchor="middle" fill="#FDE047" font-family="JetBrains Mono" font-size="11" font-weight="800">⚡ 380V</text>
+              <text x="310" y="154" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono" font-size="9" font-weight="700">1,62 kWh/m³</text>
+              <text x="310" y="168" text-anchor="middle" fill="#FCA5A5" font-family="JetBrains Mono" font-size="8.5" font-weight="700">+ CALOR CHP</text>
+              <text x="272" y="194" text-anchor="middle" fill="#CBD5E1" font-family="JetBrains Mono" font-size="9" font-weight="700">GENERADOR BIOGÁS</text>
+
+              <!-- Salida Eléctrica a Planta Frigorífica / Pesquera -->
+              <rect x="200" y="42" width="148" height="46" rx="6" fill="#064E3B" stroke="#10B981" stroke-width="2"/>
+              <text x="274" y="61" text-anchor="middle" fill="#A7F3D0" font-family="JetBrains Mono" font-size="9.5" font-weight="700">🏭 AUTOCONSUMO PLANTA</text>
+              <text x="274" y="76" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono" font-size="8.5">CÁMARAS DE FRÍO + PROCESO</text>
+              <path d="M 274 108 L 274 88" stroke="#FACC15" stroke-width="3.5" class="wp-pipe-anim"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           4 TARJETAS 100% GRÁFICAS CON DIBUJOS EXPLICATIVOS POR ETAPA
+           ==================================================================== -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- ==================== TARJETA GRÁFICA ETAPA 01 ==================== -->
+        <div class="bg-slate-50 border-2 border-slate-200 hover:border-sky-500 rounded-2xl overflow-hidden transition-all flex flex-col justify-between shadow-md">
           <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="px-3 py-1 rounded-md bg-[#0F172A] text-sky-400 font-mono text-xs font-bold">ETAPA 01</span>
-              <span class="text-xs font-mono font-bold text-slate-500">8%–10% SÓLIDOS</span>
+            <!-- Barra Superior -->
+            <div class="px-5 py-3.5 bg-[#0F172A] flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded bg-sky-500 text-slate-950 font-mono text-xs font-extrabold">ETAPA 01</span>
+              <span class="text-xs font-mono font-bold text-sky-300">MEZCLA 8%–10% SÓLIDOS</span>
             </div>
-            <h3 class="text-lg font-heading font-extrabold text-slate-900 mb-2">
-              Recepción y Licuado (Pretratamiento)
-            </h3>
-            <p class="text-sm text-slate-600 leading-relaxed mb-4">
-              Triturador industrial (<strong class="text-slate-800">Crusher</strong>) y tanque de homogeneización donde los descartes sólidos (vísceras, cabezas, restos cárnicos) se mezclan con aguas residuales orgánicas (<strong class="text-slate-800">RILES</strong>) hasta lograr una mezcla bombeable al <strong class="text-slate-900">8%–10% de sólidos</strong>.
-            </p>
-          </div>
-          <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-xs font-mono text-slate-700">
-            <span>Entrada: Sólidos + RILES</span>
-            <span class="text-emerald-600 font-bold">→ Etapa 02</span>
+
+            <!-- Dibujo Explicativo Etapa 01 -->
+            <div class="bg-[#0B1220] p-3 border-b border-slate-200">
+              <svg viewBox="0 0 280 185" class="w-full h-44 select-none">
+                <rect width="280" height="185" rx="8" fill="#0F172A"/>
+                <!-- Bin descartes volcando -->
+                <rect x="14" y="18" width="68" height="44" rx="5" fill="#1E293B" stroke="#F59E0B" stroke-width="2"/>
+                <path d="M 28 38 Q 44 26 60 38 Q 44 50 28 38 Z" fill="#F59E0B"/>
+                <polygon points="58,38 68,30 68,46" fill="#F59E0B"/>
+                <text x="48" y="56" text-anchor="middle" fill="#FDE68A" font-family="JetBrains Mono" font-size="8" font-weight="700">DESCARTE SÓLIDO</text>
+
+                <!-- Flecha caída a triturador -->
+                <path d="M 84 40 L 108 55" stroke="#F59E0B" stroke-width="3" class="wp-pipe-anim"/>
+
+                <!-- Triturador Crusher -->
+                <polygon points="95,58 155,58 143,92 107,92" fill="#334155" stroke="#94A3B8" stroke-width="2"/>
+                <rect x="102" y="92" width="46" height="38" rx="4" fill="#1E293B" stroke="#38BDF8" stroke-width="2"/>
+                <g class="wp-spin-cw">
+                  <circle cx="116" cy="111" r="8" fill="#F59E0B"/>
+                </g>
+                <g class="wp-spin-ccw">
+                  <circle cx="134" cy="111" r="8" fill="#38BDF8"/>
+                </g>
+                <text x="125" y="144" text-anchor="middle" fill="#94A3B8" font-family="JetBrains Mono" font-size="8.5" font-weight="700">TRITURADOR</text>
+
+                <!-- Tubería a Homogeneizador -->
+                <path d="M 148 111 L 176 111" stroke="#38BDF8" stroke-width="4" class="wp-pipe-anim"/>
+
+                <!-- Tanque Homogeneizador + RILES -->
+                <rect x="180" y="20" width="82" height="20" rx="4" fill="#0369A1"/>
+                <text x="221" y="33" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono" font-size="8.5" font-weight="700">+ AGUA RILES</text>
+                <path d="M 221 40 L 221 62" stroke="#38BDF8" stroke-width="3.5" class="wp-pipe-anim"/>
+
+                <rect x="176" y="62" width="90" height="96" rx="8" fill="#1E293B" stroke="#38BDF8" stroke-width="2.5"/>
+                <rect x="180" y="90" width="82" height="64" rx="5" fill="#0284C7" fill-opacity="0.55"/>
+                <line x1="221" y1="66" x2="221" y2="128" stroke="#E2E8F0" stroke-width="2.5"/>
+                <g class="wp-spin-cw">
+                  <ellipse cx="221" cy="128" rx="20" ry="5" fill="#38BDF8"/>
+                </g>
+                <text x="221" y="148" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono" font-size="8.5" font-weight="700">LICUADO 8-10%</text>
+              </svg>
+            </div>
+
+            <!-- Resumen Visual (Cero Párrafo Largo) -->
+            <div class="p-5 space-y-2.5">
+              <h3 class="text-base font-heading font-extrabold text-slate-900">
+                1. Recepción, Triturado y Licuado
+              </h3>
+              <div class="space-y-1.5 text-xs">
+                <div class="flex items-center justify-between p-2 rounded-lg bg-white border border-slate-200">
+                  <span class="font-mono text-slate-500 uppercase">Entrada:</span>
+                  <span class="font-bold text-slate-900">🐟 Vísceras / Carne + 💧 RILES</span>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded-lg bg-white border border-slate-200">
+                  <span class="font-mono text-slate-500 uppercase">Equipo:</span>
+                  <span class="font-bold text-sky-700">⚙️ Triturador + Homogeneizador</span>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded-lg bg-sky-50 border border-sky-200">
+                  <span class="font-mono text-sky-800 uppercase font-bold">Salida:</span>
+                  <span class="font-mono font-extrabold text-sky-900">Lodo Bombeable (8%–10%)</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Etapa 2 -->
-        <div class="bg-slate-50 border border-slate-200 hover:border-emerald-500 rounded-xl p-6 transition-all flex flex-col justify-between shadow-sm">
+        <!-- ==================== TARJETA GRÁFICA ETAPA 02 ==================== -->
+        <div class="bg-slate-50 border-2 border-emerald-500 rounded-2xl overflow-hidden transition-all flex flex-col justify-between shadow-md">
           <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="px-3 py-1 rounded-md bg-[#0F172A] text-emerald-400 font-mono text-xs font-bold">ETAPA 02</span>
-              <span class="text-xs font-mono font-bold text-emerald-700">35°C–38°C MESOFÍLICO</span>
+            <!-- Barra Superior -->
+            <div class="px-5 py-3.5 bg-[#0F172A] flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded bg-emerald-400 text-slate-950 font-mono text-xs font-extrabold">ETAPA 02</span>
+              <span class="text-xs font-mono font-bold text-emerald-300">35°C–38°C SIN OXÍGENO</span>
             </div>
-            <h3 class="text-lg font-heading font-extrabold text-slate-900 mb-2">
-              Digestión Anaeróbica (Reactor ECPC)
-            </h3>
-            <p class="text-sm text-slate-600 leading-relaxed mb-4">
-              Tanque modular de placas de acero con recubrimiento anticorrosivo <strong class="text-slate-800">ECPC</strong>, sellado polimérico de polisulfuro, aislación térmica para clima sur de Chile y calefacción interna a <strong class="text-slate-800">35°C–38°C</strong>. En ausencia de oxígeno, las bacterias transforman grasa y proteína en <strong class="text-emerald-700">Biogás (55%–65% Metano CH₄)</strong> y biofertilizante libre de patógenos.
-            </p>
-          </div>
-          <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-xs font-mono text-slate-700">
-            <span>Salida: CH₄ + Bioabono</span>
-            <span class="text-emerald-600 font-bold">→ Etapa 03</span>
+
+            <!-- Dibujo Explicativo Etapa 02 -->
+            <div class="bg-[#0B1220] p-3 border-b border-slate-200">
+              <svg viewBox="0 0 280 185" class="w-full h-44 select-none">
+                <rect width="280" height="185" rx="8" fill="#0F172A"/>
+                <!-- Cúpula Superior Biogás -->
+                <path d="M 45 62 Q 125 8 205 62 Z" fill="#10B981" fill-opacity="0.35" stroke="#10B981" stroke-width="2.5"/>
+                <text x="125" y="48" text-anchor="middle" fill="#A7F3D0" font-family="JetBrains Mono" font-size="9" font-weight="800">BIOGÁS 55%–65% CH₄</text>
+
+                <!-- Tanque Acero ECPC en Corte -->
+                <rect x="45" y="62" width="160" height="106" rx="6" fill="#1E293B" stroke="#10B981" stroke-width="2.5"/>
+                <rect x="50" y="78" width="150" height="85" rx="4" fill="#0F766E" fill-opacity="0.65"/>
+
+                <!-- Serpentín Térmico 38°C -->
+                <path d="M 60 138 Q 82 128 104 138 T 148 138 T 190 138" fill="none" stroke="#EF4444" stroke-width="3.5"/>
+                <text x="125" y="156" text-anchor="middle" fill="#FCA5A5" font-family="JetBrains Mono" font-size="8.5" font-weight="700">♨ CALEFACCIÓN 35°C–38°C</text>
+
+                <!-- Agitador Central -->
+                <line x1="125" y1="62" x2="125" y2="125" stroke="#E2E8F0" stroke-width="3"/>
+                <g class="wp-spin-cw">
+                  <rect x="92" y="102" width="66" height="6" rx="3" fill="#34D399"/>
+                </g>
+
+                <!-- Burbujas CH4 subiendo -->
+                <g class="wp-bubble-1">
+                  <circle cx="78" cy="115" r="5" fill="#34D399"/>
+                  <circle cx="168" cy="118" r="5.5" fill="#6EE7B7"/>
+                </g>
+                <g class="wp-bubble-2">
+                  <circle cx="102" cy="98" r="4.5" fill="#A7F3D0"/>
+                  <circle cx="152" cy="95" r="5" fill="#34D399"/>
+                </g>
+
+                <!-- Salida Bioabono Derecha -->
+                <path d="M 205 145 L 258 145" stroke="#84CC16" stroke-width="4" class="wp-pipe-anim"/>
+                <rect x="212" y="108" width="58" height="28" rx="4" fill="#1A2E05" stroke="#84CC16" stroke-width="1.5"/>
+                <text x="241" y="125" text-anchor="middle" fill="#BEF264" font-family="JetBrains Mono" font-size="8" font-weight="700">🌱 BIOABONO</text>
+              </svg>
+            </div>
+
+            <!-- Resumen Visual -->
+            <div class="p-5 space-y-2.5">
+              <h3 class="text-base font-heading font-extrabold text-slate-900">
+                2. Digestión Anaeróbica (ECPC)
+              </h3>
+              <div class="space-y-1.5 text-xs">
+                <div class="flex items-center justify-between p-2 rounded-lg bg-white border border-slate-200">
+                  <span class="font-mono text-slate-500 uppercase">Proceso:</span>
+                  <span class="font-bold text-slate-900">🦠 Bacterias Sin O₂ (0% Olor)</span>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded-lg bg-white border border-slate-200">
+                  <span class="font-mono text-slate-500 uppercase">Blindaje:</span>
+                  <span class="font-bold text-emerald-700">🛡️ Acero ECPC + Aislación Sur</span>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded-lg bg-emerald-50 border border-emerald-200">
+                  <span class="font-mono text-emerald-800 uppercase font-bold">Salidas:</span>
+                  <span class="font-mono font-extrabold text-emerald-900">🔥 Biogás CH₄ + 🌱 Bioabono</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Etapa 3 -->
-        <div class="bg-slate-50 border border-slate-200 hover:border-sky-500 rounded-xl p-6 transition-all flex flex-col justify-between shadow-sm">
+        <!-- ==================== TARJETA GRÁFICA ETAPA 03 ==================== -->
+        <div class="bg-slate-50 border-2 border-slate-200 hover:border-sky-500 rounded-2xl overflow-hidden transition-all flex flex-col justify-between shadow-md">
           <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="px-3 py-1 rounded-md bg-[#0F172A] text-sky-400 font-mono text-xs font-bold">ETAPA 03</span>
-              <span class="text-xs font-mono font-bold text-slate-500">FILTRADO H₂S & H₂O</span>
+            <!-- Barra Superior -->
+            <div class="px-5 py-3.5 bg-[#0F172A] flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded bg-sky-500 text-slate-950 font-mono text-xs font-extrabold">ETAPA 03</span>
+              <span class="text-xs font-mono font-bold text-sky-300">ELIMINA H₂O Y AZUFRE H₂S</span>
             </div>
-            <h3 class="text-lg font-heading font-extrabold text-slate-900 mb-2">
-              Purificación Crítica (Deshidratación y Desulfuración)
-            </h3>
-            <p class="text-sm text-slate-600 leading-relaxed mb-4">
-              El gas crudo pasa por un separador de agua (<strong class="text-slate-800">Modelo-1000</strong>) y torres desulfuradoras (secas, húmedas o biológicas) que eliminan el <strong class="text-slate-800">ácido sulfhídrico (H₂S)</strong> proveniente de la proteína marina/cárnica, protegiendo motores y calderas de la corrosión.
-            </p>
-          </div>
-          <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-xs font-mono text-slate-700">
-            <span>Gas Dulce y Seco</span>
-            <span class="text-emerald-600 font-bold">→ Etapa 04</span>
+
+            <!-- Dibujo Explicativo Etapa 03 -->
+            <div class="bg-[#0B1220] p-3 border-b border-slate-200">
+              <svg viewBox="0 0 280 185" class="w-full h-44 select-none">
+                <rect width="280" height="185" rx="8" fill="#0F172A"/>
+                <!-- Entrada Gas Crudo -->
+                <path d="M 12 52 L 46 52" stroke="#FACC15" stroke-width="4" class="wp-pipe-anim"/>
+                <text x="32" y="42" text-anchor="middle" fill="#FACC15" font-family="JetBrains Mono" font-size="8" font-weight="700">GAS + H₂S</text>
+
+                <!-- Separador de Condensado Modelo-1000 -->
+                <rect x="46" y="34" width="46" height="128" rx="8" fill="#1E293B" stroke="#38BDF8" stroke-width="2"/>
+                <rect x="50" y="132" width="38" height="26" rx="4" fill="#0284C7"/>
+                <text x="69" y="88" text-anchor="middle" fill="#7DD3FC" font-family="JetBrains Mono" font-size="8.5" font-weight="700">MOD-1000</text>
+                <text x="69" y="102" text-anchor="middle" fill="#E0F2FE" font-family="JetBrains Mono" font-size="7.5">DRENA H₂O</text>
+
+                <!-- Conector -->
+                <path d="M 92 115 L 118 115" stroke="#38BDF8" stroke-width="3.5" class="wp-pipe-anim"/>
+
+                <!-- Torres Desulfuradoras Gemelas -->
+                <rect x="118" y="24" width="52" height="138" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="2.5"/>
+                <rect x="125" y="54" width="38" height="78" rx="4" fill="#064E3B" stroke="#34D399" stroke-dasharray="3 3"/>
+                <text x="144" y="92" text-anchor="middle" fill="#A7F3D0" font-family="JetBrains Mono" font-size="8.5" font-weight="700">CAPTURA</text>
+                <text x="144" y="105" text-anchor="middle" fill="#FACC15" font-family="JetBrains Mono" font-size="8.5" font-weight="700">AZUFRE H₂S</text>
+
+                <path d="M 170 46 L 192 46" stroke="#10B981" stroke-width="3.5" class="wp-pipe-anim"/>
+
+                <rect x="192" y="24" width="52" height="138" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="2.5"/>
+                <rect x="199" y="54" width="38" height="78" rx="4" fill="#064E3B" stroke="#34D399" stroke-dasharray="3 3"/>
+                <text x="218" y="92" text-anchor="middle" fill="#6EE7B7" font-family="JetBrains Mono" font-size="8.5" font-weight="700">GAS PURO</text>
+                <text x="218" y="105" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono" font-size="8">SIN OLOR</text>
+
+                <!-- Salida Gas Dulce -->
+                <path d="M 244 120 L 272 120" stroke="#10B981" stroke-width="4" class="wp-pipe-anim"/>
+              </svg>
+            </div>
+
+            <!-- Resumen Visual -->
+            <div class="p-5 space-y-2.5">
+              <h3 class="text-base font-heading font-extrabold text-slate-900">
+                3. Purificación Crítica (H₂O y H₂S)
+              </h3>
+              <div class="space-y-1.5 text-xs">
+                <div class="flex items-center justify-between p-2 rounded-lg bg-white border border-slate-200">
+                  <span class="font-mono text-slate-500 uppercase">Paso 1:</span>
+                  <span class="font-bold text-slate-900">💧 Secado Condensador Mod-1000</span>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded-lg bg-white border border-slate-200">
+                  <span class="font-mono text-slate-500 uppercase">Paso 2:</span>
+                  <span class="font-bold text-sky-700">🧪 Torres Desulfuradoras H₂S</span>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded-lg bg-sky-50 border border-sky-200">
+                  <span class="font-mono text-sky-800 uppercase font-bold">Resultado:</span>
+                  <span class="font-mono font-extrabold text-sky-900">✨ 0% Corrosión en Motores</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Etapa 4 -->
-        <div class="bg-slate-50 border border-slate-200 hover:border-emerald-500 rounded-xl p-6 transition-all flex flex-col justify-between shadow-sm">
+        <!-- ==================== TARJETA GRÁFICA ETAPA 04 ==================== -->
+        <div class="bg-slate-50 border-2 border-emerald-500 rounded-2xl overflow-hidden transition-all flex flex-col justify-between shadow-md">
           <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="px-3 py-1 rounded-md bg-emerald-600 text-white font-mono text-xs font-bold">ETAPA 04</span>
-              <span class="text-xs font-mono font-bold text-emerald-700">380V + CALOR CHP</span>
+            <!-- Barra Superior -->
+            <div class="px-5 py-3.5 bg-emerald-600 flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded bg-[#0F172A] text-emerald-400 font-mono text-xs font-extrabold">ETAPA 04</span>
+              <span class="text-xs font-mono font-extrabold text-white">⚡ 380V + ♨️ AGUA CALIENTE</span>
             </div>
-            <h3 class="text-lg font-heading font-extrabold text-slate-900 mb-2">
-              Almacenamiento en Doble Membrana y Cogeneración (CHP)
-            </h3>
-            <p class="text-sm text-slate-600 leading-relaxed mb-4">
-              El gas limpio se acumula a presión constante en el <strong class="text-slate-800">Gasómetro Flexible de Doble Membrana</strong> (tecnología alemana PVDF/PVC resistente a UV) para alimentar un <strong class="text-emerald-700">Grupo Electrógeno a Biogás</strong> (electricidad 380V para la planta + agua caliente gratis recuperada del motor) o una Caldera Industrial.
-            </p>
-          </div>
-          <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-xs font-mono text-emerald-700 font-bold">
-            <span>Autoconsumo Directo</span>
-            <span>✓ 1,62 kWh/m³</span>
+
+            <!-- Dibujo Explicativo Etapa 04 -->
+            <div class="bg-[#0B1220] p-3 border-b border-slate-200">
+              <svg viewBox="0 0 280 185" class="w-full h-44 select-none">
+                <rect width="280" height="185" rx="8" fill="#0F172A"/>
+
+                <!-- Domo de Doble Membrana PVDF -->
+                <path d="M 14 156 A 56 64 0 0 1 126 156 Z" fill="#1E293B" stroke="#38BDF8" stroke-width="2" stroke-dasharray="4 3"/>
+                <g class="wp-dome-anim">
+                  <path d="M 22 156 A 48 50 0 0 1 118 156 Z" fill="#10B981" fill-opacity="0.45" stroke="#10B981" stroke-width="2.5"/>
+                </g>
+                <text x="70" y="132" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono" font-size="8.5" font-weight="700">DOMO PVDF</text>
+                <text x="70" y="145" text-anchor="middle" fill="#A7F3D0" font-family="JetBrains Mono" font-size="7.5">PRESIÓN CTE.</text>
+
+                <!-- Tubería al Motor CHP -->
+                <path d="M 126 138 L 154 138" stroke="#10B981" stroke-width="4" class="wp-pipe-anim"/>
+
+                <!-- Grupo Electrógeno CHP -->
+                <rect x="154" y="86" width="112" height="72" rx="8" fill="#1E293B" stroke="#F59E0B" stroke-width="2.5"/>
+                <g class="wp-glow-anim">
+                  <polygon points="184,98 172,116 182,116 177,132 195,112 184,112" fill="#FACC15"/>
+                </g>
+                <text x="228" y="114" text-anchor="middle" fill="#FDE047" font-family="JetBrains Mono" font-size="10" font-weight="800">380V</text>
+                <text x="228" y="128" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono" font-size="8" font-weight="700">MOTOR CHP</text>
+                <text x="210" y="148" text-anchor="middle" fill="#FCA5A5" font-family="JetBrains Mono" font-size="8" font-weight="700">+ AGUA 85°C</text>
+
+                <!-- Salida Eléctrica a Frigorífico / Planta -->
+                <path d="M 210 86 L 210 54" stroke="#FACC15" stroke-width="3.5" class="wp-pipe-anim"/>
+                <rect x="148" y="18" width="120" height="36" rx="6" fill="#064E3B" stroke="#10B981" stroke-width="2"/>
+                <text x="208" y="34" text-anchor="middle" fill="#A7F3D0" font-family="JetBrains Mono" font-size="8.5" font-weight="700">⚡ CÁMARAS DE FRÍO</text>
+                <text x="208" y="46" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono" font-size="8">1,62 kWh POR CADA m³</text>
+              </svg>
+            </div>
+
+            <!-- Resumen Visual -->
+            <div class="p-5 space-y-2.5">
+              <h3 class="text-base font-heading font-extrabold text-slate-900">
+                4. Domo PVDF y Cogeneración CHP
+              </h3>
+              <div class="space-y-1.5 text-xs">
+                <div class="flex items-center justify-between p-2 rounded-lg bg-white border border-slate-200">
+                  <span class="font-mono text-slate-500 uppercase">Acopio:</span>
+                  <span class="font-bold text-slate-900">🎈 Gasómetro Doble Membrana</span>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded-lg bg-white border border-slate-200">
+                  <span class="font-mono text-slate-500 uppercase">Energía:</span>
+                  <span class="font-bold text-amber-700">⚡ 1,62 kWh/m³ (Luz 380V Planta)</span>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded-lg bg-emerald-50 border border-emerald-200">
+                  <span class="font-mono text-emerald-800 uppercase font-bold">Térmico:</span>
+                  <span class="font-mono font-extrabold text-emerald-900">♨️ Agua Caliente 85°C Gratis</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -912,83 +1385,162 @@
   </section>
 
   <!-- ========================================================================
-       SECCIÓN 4: CRONOGRAMA REAL DE PUESTA EN MARCHA Y ARRANQUE BIOLÓGICO
+       SECCIÓN 4: ESQUEMA GRÁFICO DE MONTAJE RÁPIDO Y CURVA BIOLÓGICA ÚNICA
        ======================================================================== -->
-  <section class="py-16 lg:py-24 bg-white border-b border-slate-200">
+  <section class="py-16 lg:py-20 bg-white border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mb-12">
+      <div class="max-w-3xl mb-10">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-emerald-100 text-emerald-900 text-xs font-mono font-bold uppercase mb-3">
-          CERO INCERTIDUMBRE OPERATIVA
+          INFOGRAFÍA DE MONTAJE Y PUESTA EN MARCHA
         </div>
-        <h2 class="text-2xl sm:text-4xl font-heading font-extrabold text-slate-900 tracking-tight mb-3">
-          Cronograma Real de Puesta en Marcha y Arranque Biológico
+        <h2 class="text-2xl sm:text-4xl font-heading font-extrabold text-slate-900 tracking-tight">
+          Montaje Mecánico en 15–25 Días y Curva Biológica Única
         </h2>
-        <p class="text-base text-slate-600 leading-relaxed">
-          A diferencia de los digestores antiguos de hormigón armado que demoran más de 6 meses en obra civil, nuestra tecnología modular empernada <strong class="text-slate-900">ECPC</strong> reduce drásticamente los plazos de instalación y puesta en régimen:
-        </p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-        <!-- Tarjeta Izquierda: Montaje Físico Rápido (15 a 25 días) -->
-        <div class="lg:col-span-5 bg-[#0F172A] text-white rounded-xl p-7 border border-slate-800 flex flex-col justify-between shadow-xl">
+        <!-- Tarjeta Izquierda Gráfica: Montaje Empernado ECPC en 3 Pasos (15 a 25 días) -->
+        <div class="lg:col-span-5 bg-[#0F172A] text-white rounded-2xl p-6 border-2 border-slate-800 flex flex-col justify-between shadow-xl">
           <div>
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-sky-500/20 border border-sky-400/40 text-sky-300 font-mono text-xs font-bold mb-4">
-              FASE MECÁNICA · 15 A 25 DÍAS
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded bg-sky-500 text-slate-950 font-mono text-xs font-extrabold">FASE MECÁNICA</span>
+              <span class="font-mono text-xs font-bold text-emerald-400">15 A 25 DÍAS (SIN OBRA CIVIL LARGA)</span>
             </div>
-            <h3 class="text-2xl font-heading font-extrabold text-white mb-3">
-              Montaje Físico Rápido sin Meses de Obra Civil
+            <h3 class="text-xl font-heading font-extrabold text-white mb-4">
+              Armado Modular de Placas ECPC Empernadas
             </h3>
-            <p class="text-sm text-slate-300 leading-relaxed mb-6">
-              Gracias al sistema modular de placas de acero con recubrimiento anticorrosivo <strong class="text-white">ECPC pre-ensambladas en fábrica</strong> y unidas en terreno con pernos autoblocantes y sellador de polisulfuro, el montaje completo del reactor toma apenas <strong class="text-emerald-400">15 a 25 días</strong> sobre la losa de fundación.
-            </p>
+
+            <!-- Dibujo Explicativo de los 3 Pasos de Montaje -->
+            <div class="bg-[#0B1220] border border-slate-800 rounded-xl p-3 mb-4">
+              <svg viewBox="0 0 420 190" class="w-full h-auto select-none">
+                <rect width="420" height="190" rx="8" fill="#0B1220"/>
+
+                <!-- Paso 1: Losa + Primer Anillo -->
+                <g transform="translate(16, 22)">
+                  <text x="52" y="14" text-anchor="middle" fill="#38BDF8" font-family="JetBrains Mono" font-size="9.5" font-weight="800">DÍA 1–5</text>
+                  <rect x="8" y="122" width="88" height="14" rx="2" fill="#475569"/>
+                  <rect x="16" y="86" width="72" height="36" rx="3" fill="#1E293B" stroke="#38BDF8" stroke-width="2"/>
+                  <line x1="40" y1="86" x2="40" y2="122" stroke="#38BDF8" stroke-width="1.5" stroke-dasharray="3 2"/>
+                  <line x1="64" y1="86" x2="64" y2="122" stroke="#38BDF8" stroke-width="1.5" stroke-dasharray="3 2"/>
+                  <text x="52" y="152" text-anchor="middle" fill="#E2E8F0" font-family="JetBrains Mono" font-size="8.5" font-weight="700">1. LOSA + ANILLO</text>
+                </g>
+
+                <!-- Flecha 1 -->
+                <path d="M 128 95 L 150 95" stroke="#38BDF8" stroke-width="3" class="wp-pipe-anim"/>
+
+                <!-- Paso 2: Elevación por Anillos Empernados -->
+                <g transform="translate(158, 22)">
+                  <text x="52" y="14" text-anchor="middle" fill="#FACC15" font-family="JetBrains Mono" font-size="9.5" font-weight="800">DÍA 6–15</text>
+                  <rect x="8" y="122" width="88" height="14" rx="2" fill="#475569"/>
+                  <rect x="16" y="42" width="72" height="80" rx="3" fill="#1E293B" stroke="#FACC15" stroke-width="2"/>
+                  <line x1="16" y1="68" x2="88" y2="68" stroke="#FACC15" stroke-width="1.5"/>
+                  <line x1="16" y1="95" x2="88" y2="95" stroke="#FACC15" stroke-width="1.5"/>
+                  <text x="52" y="85" text-anchor="middle" fill="#FDE047" font-family="JetBrains Mono" font-size="8" font-weight="700">PERNOS +</text>
+                  <text x="52" y="112" text-anchor="middle" fill="#FDE047" font-family="JetBrains Mono" font-size="8" font-weight="700">POLISULFURO</text>
+                  <text x="52" y="152" text-anchor="middle" fill="#E2E8F0" font-family="JetBrains Mono" font-size="8.5" font-weight="700">2. TORRE ECPC</text>
+                </g>
+
+                <!-- Flecha 2 -->
+                <path d="M 270 95 L 292 95" stroke="#10B981" stroke-width="3" class="wp-pipe-anim"/>
+
+                <!-- Paso 3: Cúpula PVDF + Skid Conectado -->
+                <g transform="translate(300, 22)">
+                  <text x="52" y="14" text-anchor="middle" fill="#10B981" font-family="JetBrains Mono" font-size="9.5" font-weight="800">DÍA 16–25</text>
+                  <rect x="8" y="122" width="88" height="14" rx="2" fill="#475569"/>
+                  <path d="M 16 48 Q 52 16 88 48 Z" fill="#10B981" fill-opacity="0.45" stroke="#10B981" stroke-width="2"/>
+                  <rect x="16" y="48" width="72" height="74" rx="3" fill="#064E3B" stroke="#10B981" stroke-width="2"/>
+                  <text x="52" y="88" text-anchor="middle" fill="#A7F3D0" font-family="JetBrains Mono" font-size="8.5" font-weight="700">LISTO 100%</text>
+                  <text x="52" y="102" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono" font-size="7.5">HERMÉTICO</text>
+                  <text x="52" y="152" text-anchor="middle" fill="#10B981" font-family="JetBrains Mono" font-size="8.5" font-weight="700">3. DOMO + SKID</text>
+                </g>
+              </svg>
+            </div>
           </div>
-          <div class="p-4 rounded-lg bg-slate-900 border border-slate-700 space-y-2 text-xs font-mono text-slate-300">
-            <div class="flex justify-between"><span>• Placas de acero ECPC:</span><span class="text-sky-400 font-bold">Pre-curvadas en fábrica</span></div>
-            <div class="flex justify-between"><span>• Sellado hermético:</span><span class="text-emerald-400 font-bold">Polímero de Polisulfuro</span></div>
-            <div class="flex justify-between"><span>• Aislación Clima Sur:</span><span class="text-white font-bold">Poliuretano + Chaqueta</span></div>
+
+          <div class="grid grid-cols-3 gap-2 text-center text-xs font-mono">
+            <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+              <div class="text-sky-400 font-bold">Placas ECPC</div>
+              <div class="text-[10px] text-slate-400">Pre-curvadas</div>
+            </div>
+            <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+              <div class="text-emerald-400 font-bold">Polisulfuro</div>
+              <div class="text-[10px] text-slate-400">100% Estanco</div>
+            </div>
+            <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+              <div class="text-amber-400 font-bold">Aislación Sur</div>
+              <div class="text-[10px] text-slate-400">Clima Frío</div>
+            </div>
           </div>
         </div>
 
-        <!-- Tarjeta Derecha: Curva Biológica Única de Arranque (25 días solo la primera vez) -->
-        <div class="lg:col-span-7 bg-slate-50 border border-slate-200 rounded-xl p-7 flex flex-col justify-between">
+        <!-- Tarjeta Derecha Gráfica: Curva Biológica Única (Gráfico de Curva CH4 Día 1 a Día 25+) -->
+        <div class="lg:col-span-7 bg-slate-50 border-2 border-slate-200 rounded-2xl p-6 flex flex-col justify-between shadow-md">
           <div>
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-emerald-600 text-white font-mono text-xs font-bold mb-4">
-              CURVA BIOLÓGICA ÚNICA · 25 DÍAS SOLO LA PRIMERA VEZ
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+              <span class="px-3 py-1 rounded bg-emerald-600 text-white font-mono text-xs font-extrabold">CURVA BIOLÓGICA ÚNICA (SOLO LA 1ª VEZ)</span>
+              <span class="font-mono text-xs font-bold text-emerald-800">DESDE EL DÍA 25 OPERA 24/7 SIN ESPERAS</span>
             </div>
-            <h3 class="text-2xl font-heading font-extrabold text-slate-900 mb-6">
-              De la Inoculación al Régimen Continuo 24/7
+            <h3 class="text-xl font-heading font-extrabold text-slate-900 mb-4">
+              Curva de Concentración de Metano (CH₄) y Producción Continua
             </h3>
 
-            <div class="space-y-4">
-              <div class="p-4 rounded-lg bg-white border-l-4 border-sky-500 shadow-sm">
-                <div class="flex items-center justify-between mb-1">
-                  <span class="font-heading font-extrabold text-slate-900 text-sm">Días 1 a 7 · Carga de Inóculo e Hidrólisis</span>
-                  <span class="text-xs font-mono font-bold text-sky-700">SEMANA 1</span>
-                </div>
-                <p class="text-xs sm:text-sm text-slate-600">
-                  Siembra bacteriana inicial, estabilización térmica a 35°C–38°C e hidrólisis enzimática de proteínas y lípidos del descarte orgánico.
-                </p>
-              </div>
+            <!-- Gráfico SVG de la Curva Biológica -->
+            <div class="bg-[#0F172A] border border-slate-800 rounded-xl p-4 mb-4">
+              <svg viewBox="0 0 580 190" class="w-full h-auto select-none">
+                <rect width="580" height="190" rx="8" fill="#0B1220"/>
+                <!-- Líneas guía horizontales -->
+                <line x1="55" y1="35" x2="555" y2="35" stroke="#1E293B" stroke-width="1" stroke-dasharray="4 4"/>
+                <line x1="55" y1="85" x2="555" y2="85" stroke="#1E293B" stroke-width="1" stroke-dasharray="4 4"/>
+                <line x1="55" y1="145" x2="555" y2="145" stroke="#475569" stroke-width="2"/>
 
-              <div class="p-4 rounded-lg bg-white border-l-4 border-amber-500 shadow-sm">
-                <div class="flex items-center justify-between mb-1">
-                  <span class="font-heading font-extrabold text-slate-900 text-sm">Días 8 a 15 · Inicio de Metanogénesis y Primera Llama</span>
-                  <span class="text-xs font-mono font-bold text-amber-700">SEMANA 2</span>
-                </div>
-                <p class="text-xs sm:text-sm text-slate-600">
-                  Las arqueas metanogénicas comienzan a elevar la concentración de CH₄ por sobre el 50%, logrando la primera prueba de llama inflamable en antorcha.
-                </p>
-              </div>
+                <!-- Etiquetas Eje Y (% CH4) -->
+                <text x="46" y="39" text-anchor="end" fill="#10B981" font-family="JetBrains Mono" font-size="9.5" font-weight="700">65% CH₄</text>
+                <text x="46" y="89" text-anchor="end" fill="#FACC15" font-family="JetBrains Mono" font-size="9.5" font-weight="700">50% CH₄</text>
+                <text x="46" y="148" text-anchor="end" fill="#94A3B8" font-family="JetBrains Mono" font-size="9.5">0% CH₄</text>
 
-              <div class="p-4 rounded-lg bg-emerald-950 text-white border-l-4 border-emerald-400 shadow-md">
-                <div class="flex items-center justify-between mb-1">
-                  <span class="font-heading font-extrabold text-emerald-300 text-sm">Día 25 en Adelante · Régimen Continuo 24/7 sin Esperas</span>
-                  <span class="text-xs font-mono font-bold text-emerald-400">ESTADO ESTACIONARIO</span>
-                </div>
-                <p class="text-xs sm:text-sm text-slate-200">
-                  El reactor alcanza equilibrio biológico permanente. <strong class="text-white">A partir de este día no hay esperas:</strong> por cada kilo de residuo que entra diariamente, sale biogás continuo hacia el generador CHP y biofertilizante estabilizado.
-                </p>
-              </div>
+                <!-- Área bajo la curva -->
+                <path d="M 65 145 C 130 142, 180 110, 235 85 C 290 60, 330 35, 375 35 L 545 35 L 545 145 Z" fill="#10B981" fill-opacity="0.18"/>
+                <!-- Curva Principal de Metano -->
+                <path d="M 65 145 C 130 142, 180 110, 235 85 C 290 60, 330 35, 375 35 L 545 35" fill="none" stroke="#10B981" stroke-width="4"/>
+                <path d="M 375 35 L 545 35" fill="none" stroke="#34D399" stroke-width="4" class="wp-pipe-anim"/>
+
+                <!-- Hito 1: Días 1 a 7 -->
+                <circle cx="120" cy="132" r="6" fill="#38BDF8" stroke="#0F172A" stroke-width="2"/>
+                <rect x="68" y="96" width="108" height="24" rx="4" fill="#1E293B" stroke="#38BDF8" stroke-width="1.5"/>
+                <text x="122" y="111" text-anchor="middle" fill="#7DD3FC" font-family="JetBrains Mono" font-size="8.5" font-weight="700">DÍAS 1–7: SIEMBRA</text>
+
+                <!-- Hito 2: Días 8 a 15 -->
+                <circle cx="235" cy="85" r="6" fill="#FACC15" stroke="#0F172A" stroke-width="2"/>
+                <rect x="182" y="48" width="116" height="24" rx="4" fill="#1E293B" stroke="#FACC15" stroke-width="1.5"/>
+                <text x="240" y="63" text-anchor="middle" fill="#FDE047" font-family="JetBrains Mono" font-size="8.5" font-weight="700">DÍAS 8–15: 1ª LLAMA</text>
+
+                <!-- Hito 3: Día 25 en Adelante (Régimen Continuo 24/7) -->
+                <circle cx="375" cy="35" r="7" fill="#10B981" stroke="#FFFFFF" stroke-width="2"/>
+                <rect x="355" y="52" width="185" height="44" rx="6" fill="#064E3B" stroke="#10B981" stroke-width="2"/>
+                <text x="447" y="70" text-anchor="middle" fill="#A7F3D0" font-family="JetBrains Mono" font-size="9.5" font-weight="800">DÍA 25+: RÉGIMEN 24/7</text>
+                <text x="447" y="85" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono" font-size="8.5">ENTRA RESIDUO → SALE GAS Y LUZ</text>
+
+                <!-- Etiquetas Eje X -->
+                <text x="95" y="168" text-anchor="middle" fill="#94A3B8" font-family="JetBrains Mono" font-size="9">Semana 1</text>
+                <text x="235" y="168" text-anchor="middle" fill="#94A3B8" font-family="JetBrains Mono" font-size="9">Semana 2</text>
+                <text x="375" y="168" text-anchor="middle" fill="#10B981" font-family="JetBrains Mono" font-size="9.5" font-weight="700">Día 25</text>
+                <text x="495" y="168" text-anchor="middle" fill="#34D399" font-family="JetBrains Mono" font-size="9.5" font-weight="700">Año 1 ... Año 20+</text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
+            <div class="p-3 rounded-lg bg-white border-l-4 border-sky-500 shadow-sm">
+              <div class="font-mono font-bold text-sky-800">1. DÍAS 1–7</div>
+              <div class="font-bold text-slate-900">Inóculo + 38°C</div>
+            </div>
+            <div class="p-3 rounded-lg bg-white border-l-4 border-amber-500 shadow-sm">
+              <div class="font-mono font-bold text-amber-800">2. DÍAS 8–15</div>
+              <div class="font-bold text-slate-900">CH₄ &gt; 50% (Llama)</div>
+            </div>
+            <div class="p-3 rounded-lg bg-emerald-950 text-white border-l-4 border-emerald-400 shadow-sm">
+              <div class="font-mono font-bold text-emerald-400">3. DÍA 25+ (24/7)</div>
+              <div class="font-bold text-white">Generación sin esperas</div>
             </div>
           </div>
         </div>
