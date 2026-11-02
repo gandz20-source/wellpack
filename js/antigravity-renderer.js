@@ -149,18 +149,10 @@ class AntigravityRenderer {
       window.lucide.createIcons();
     }
 
-    // Cerrar suavemente la Pantalla de Carga Industrial (Preloader) una vez montado el DOM
-    const preloader = document.getElementById('mk-preloader');
-    if (preloader) {
-      const bar = document.getElementById('mk-loader-bar');
-      const pct = document.getElementById('mk-loader-pct');
-      const status = document.getElementById('mk-loader-status');
-      if (bar) bar.style.width = '100%';
-      if (pct) pct.textContent = '100%';
-      if (status) status.textContent = 'Sistema Industrial Listo';
-      setTimeout(() => {
-        preloader.classList.add('mk-hidden');
-      }, 320);
+    // Permitir que la animación industrial de 4 etapas (Brazo Robótico -> SCADA -> Cinta -> Montacargas)
+    // complete su ciclo visual (~2.3s) antes de abrir el telón suavemente
+    if (window.__mkPreloaderReady) {
+      window.__mkPreloaderReady();
     }
   }
 
@@ -224,6 +216,14 @@ class AntigravityRenderer {
             </div>
           </div>
           <div class="flex items-center gap-2">
+            <button
+              type="button"
+              onclick="window.replayWellpackPreloader && window.replayWellpackPreloader()"
+              title="Repetir Animación de Línea Industrial"
+              class="inline-flex items-center gap-1 px-2.5 py-2 rounded-md bg-[#1F1E2B] hover:bg-[#2A293A] text-slate-200 hover:text-white border border-[#343346] text-xs font-heading font-bold transition-colors">
+              <span class="text-[#FF7618]">↻</span>
+              <span class="hidden md:inline">Intro</span>
+            </button>
             <a 
               href="${waHref}" 
               target="_blank" 

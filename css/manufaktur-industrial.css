@@ -252,18 +252,23 @@ div.bg-cyan-950\/80 {
 }
 
 /* ==========================================================================
-   9. PANTALLA DE CARGA INDUSTRIAL EJECUTIVA (PRELOADER MANUFAKTUR)
+   9. PANTALLA DE CARGA INDUSTRIAL EJECUTIVA (LÍNEA AUTOMATIZADA VECTORIAL HD)
    ========================================================================== */
 #mk-preloader {
   position: fixed;
   inset: 0;
   z-index: 99999;
   background-color: #15141C;
+  background-image:
+    radial-gradient(circle at 50% 10%, rgba(255, 118, 24, 0.08), transparent 60%),
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 100% 100%, 28px 28px, 28px 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.42s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.42s;
+  transition: opacity 0.48s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.48s;
 }
 
 #mk-preloader.mk-hidden {
@@ -279,4 +284,135 @@ div.bg-cyan-950\/80 {
 
 .mk-animate-gear {
   animation: mkSpinGear 7s linear infinite;
+}
+
+/* Animaciones Mecánicas de la Línea de Producción (Preloader) */
+@keyframes mkRobotUpper {
+  0%, 100% { transform: rotate(0deg); }
+  45%, 55% { transform: rotate(11deg); }
+}
+@keyframes mkRobotForearm {
+  0%, 100% { transform: rotate(0deg); }
+  45%, 55% { transform: rotate(14deg); }
+}
+@keyframes mkRobotWrist {
+  0%, 100% { transform: rotate(0deg); }
+  45%, 55% { transform: rotate(-22deg); }
+}
+@keyframes mkClawLeft {
+  0%, 35%, 100% { transform: rotate(0deg); }
+  45%, 65% { transform: rotate(-14deg); }
+}
+@keyframes mkClawRight {
+  0%, 35%, 100% { transform: rotate(0deg); }
+  45%, 65% { transform: rotate(14deg); }
+}
+@keyframes mkBoxesSlide {
+  0% { transform: translateX(0px); }
+  100% { transform: translateX(44px); }
+}
+@keyframes mkMonitorBoxes {
+  0% { transform: translateX(0px); }
+  100% { transform: translateX(36px); }
+}
+@keyframes mkLeverMove {
+  0%, 100% { transform: rotate(-12deg); }
+  50% { transform: rotate(14deg); }
+}
+@keyframes mkBeaconPulse {
+  0%, 100% { opacity: 1; filter: drop-shadow(0 0 6px #FF7618); }
+  50% { opacity: 0.45; filter: drop-shadow(0 0 0px transparent); }
+}
+@keyframes mkOperatorNod {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-2.5px); }
+}
+@keyframes mkForkLift {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-24px); }
+}
+@keyframes mkForkliftEngine {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-1.5px); }
+}
+
+.mk-anim-upper {
+  transform-origin: 78px 112px;
+  animation: mkRobotUpper 2.4s ease-in-out infinite;
+}
+.mk-anim-forearm {
+  transform-origin: 152px 58px;
+  animation: mkRobotForearm 2.4s ease-in-out infinite;
+}
+.mk-anim-wrist {
+  transform-origin: 196px 86px;
+  animation: mkRobotWrist 2.4s ease-in-out infinite;
+}
+.mk-anim-claw-l {
+  transform-origin: 188px 104px;
+  animation: mkClawLeft 2.4s ease-in-out infinite;
+}
+.mk-anim-claw-r {
+  transform-origin: 204px 104px;
+  animation: mkClawRight 2.4s ease-in-out infinite;
+}
+.mk-anim-boxes {
+  animation: mkBoxesSlide 1.2s linear infinite;
+}
+.mk-anim-monitor-boxes {
+  animation: mkMonitorBoxes 1.2s linear infinite;
+}
+.mk-anim-lever {
+  transform-origin: 365px 175px;
+  animation: mkLeverMove 2s ease-in-out infinite;
+}
+.mk-anim-beacon {
+  animation: mkBeaconPulse 0.85s ease-in-out infinite;
+}
+.mk-anim-operator {
+  animation: mkOperatorNod 1.9s ease-in-out infinite;
+}
+.mk-anim-fork-cargo {
+  animation: mkForkLift 2.2s ease-in-out infinite;
+}
+.mk-anim-forklift-cab {
+  animation: mkForkliftEngine 0.55s ease-in-out infinite;
+}
+
+.mk-stage-pill {
+  background: #181722;
+  border: 1px solid #2C2B3B;
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.5;
+  transition: all 0.22s ease;
+}
+
+.mk-stage-pill.active {
+  opacity: 1;
+  border-color: #FF7618;
+  background: rgba(255, 118, 24, 0.1);
+}
+
+.mk-stage-pill .mk-stage-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  background: #252435;
+  color: #94A3B8;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.mk-stage-pill.active .mk-stage-num {
+  background: #FF7618;
+  color: #FFFFFF;
 }
