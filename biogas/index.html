@@ -202,35 +202,56 @@
     .s6-cab  { animation: mkForkCab 0.45s ease-in-out infinite; }
 
     /* Custom Range Sliders */
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
     input[type="range"].biogas-slider {
       -webkit-appearance: none;
       appearance: none;
       width: 100%;
-      height: 8px;
+      height: 10px;
       background: #1E293B;
       border-radius: 99px;
       outline: none;
       border: 1px solid #334155;
+      touch-action: pan-y;
     }
     input[type="range"].biogas-slider::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 22px;
-      height: 22px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       background: #10B981;
       border: 3px solid #FFFFFF;
       cursor: pointer;
-      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.5);
+      box-shadow: 0 2px 10px rgba(16, 185, 129, 0.65);
     }
     input[type="range"].biogas-slider::-moz-range-thumb {
-      width: 22px;
-      height: 22px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       background: #10B981;
       border: 3px solid #FFFFFF;
       cursor: pointer;
-      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.5);
+      box-shadow: 0 2px 10px rgba(16, 185, 129, 0.65);
+    }
+    @media (max-width: 640px) {
+      .mk-scene-stage {
+        width: min(300px, 86vw);
+        height: 210px;
+      }
+      #biogas-blueprint-canvas.mobile-zoomed svg {
+        min-width: 600px;
+      }
     }
   </style>
 </head>
@@ -558,21 +579,21 @@
   </div>
 
   <header class="sticky top-0 z-40 bg-[#0F172A]/95 backdrop-blur-md border-b border-slate-800 shadow-lg">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-3">
-      <a href="/index.html" class="flex items-center gap-3.5 group shrink-0">
-        <div class="w-11 h-11 rounded-lg bg-slate-800 border border-slate-700 group-hover:border-emerald-400 flex items-center justify-center transition-colors shrink-0">
-          <svg class="w-6 h-6 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <div class="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2">
+      <a href="/index.html" class="flex items-center gap-2.5 sm:gap-3.5 group min-w-0">
+        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-slate-800 border border-slate-700 group-hover:border-emerald-400 flex items-center justify-center transition-colors shrink-0">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
             <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
             <line x1="12" y1="22.08" x2="12" y2="12"/>
           </svg>
         </div>
-        <div class="flex flex-col">
-          <span class="text-xl sm:text-2xl font-extrabold tracking-tight text-white font-heading uppercase leading-none">
+        <div class="flex flex-col min-w-0">
+          <span class="text-lg sm:text-2xl font-extrabold tracking-tight text-white font-heading uppercase leading-none truncate">
             WELLPACK<span class="text-emerald-400">.</span>
           </span>
-          <span class="text-xs text-slate-300 font-semibold uppercase tracking-wider mt-1 leading-none">
-            Ingeniería en Biogás & Valorización
+          <span class="text-[10px] sm:text-xs text-slate-300 font-semibold uppercase tracking-wider mt-1 leading-none truncate">
+            Biogás & Valorización
           </span>
         </div>
       </a>
@@ -603,27 +624,57 @@
         </a>
       </nav>
 
-      <div class="flex items-center gap-2">
-        <a href="#biogas-calculator-section" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-extrabold text-xs px-4 py-2.5 rounded-md uppercase tracking-wider transition-colors">
-          <span>Simular Planta</span>
+      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+        <a href="#biogas-calculator-section" class="inline-flex items-center gap-1.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-extrabold text-[11px] sm:text-xs px-3 sm:px-4 py-2 sm:py-2.5 rounded-md uppercase tracking-wider transition-colors">
+          <span>Simular</span>
+          <span class="hidden sm:inline">Planta</span>
           <span>↗</span>
         </a>
-        <button type="button" onclick="document.getElementById('biogas-mobile-nav').classList.toggle('hidden')" class="lg:hidden p-2.5 rounded-md bg-slate-800 text-white border border-slate-700">
-          ☰
+        <button type="button" onclick="document.getElementById('biogas-mobile-nav').classList.toggle('hidden')" class="lg:hidden inline-flex items-center gap-1.5 px-3 py-2 rounded-md bg-slate-800 text-white border border-slate-700 font-heading font-bold text-xs">
+          <span>MENÚ</span>
+          <span>☰</span>
         </button>
       </div>
     </div>
 
-    <!-- Menú Móvil -->
-    <div id="biogas-mobile-nav" class="hidden lg:hidden border-t border-slate-800 bg-[#0F172A] px-4 py-3 space-y-2">
-      <a href="/index.html" class="block px-3.5 py-2 rounded-md text-sm font-heading font-bold text-slate-200 bg-slate-800/80">01. Envases Flexibles</a>
-      <a href="/maquinaria-carnica.html" class="block px-3.5 py-2 rounded-md text-sm font-heading font-bold text-slate-200 bg-slate-800/80">02. Maquinaria Rubro Cárnico</a>
-      <a href="/maquinaria-pesquera.html" class="block px-3.5 py-2 rounded-md text-sm font-heading font-bold text-slate-200 bg-slate-800/80">03. Maquinaria Proceso Pesquero</a>
-      <a href="/proyectos-asesorias.html" class="block px-3.5 py-2 rounded-md text-sm font-heading font-bold text-slate-200 bg-slate-800/80">04. Proyectos y Asesorías Corfo</a>
+    <!-- Barra Rápida Móvil de las 5 Divisiones (1 Toque sin abrir menú) -->
+    <div class="lg:hidden border-t border-slate-800/90 bg-[#090D16] px-3 py-2 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+      <a href="/index.html" class="shrink-0 px-2.5 py-1.5 rounded-md text-[11px] font-heading font-bold text-slate-300 bg-slate-800/80 border border-slate-700/80 whitespace-nowrap">
+        01. Envases
+      </a>
+      <a href="/maquinaria-carnica.html" class="shrink-0 px-2.5 py-1.5 rounded-md text-[11px] font-heading font-bold text-slate-300 bg-slate-800/80 border border-slate-700/80 whitespace-nowrap">
+        02. Cárnico
+      </a>
+      <a href="/maquinaria-pesquera.html" class="shrink-0 px-2.5 py-1.5 rounded-md text-[11px] font-heading font-bold text-slate-300 bg-slate-800/80 border border-slate-700/80 whitespace-nowrap">
+        03. Pesquero
+      </a>
+      <a href="/proyectos-asesorias.html" class="shrink-0 px-2.5 py-1.5 rounded-md text-[11px] font-heading font-bold text-slate-300 bg-slate-800/80 border border-slate-700/80 whitespace-nowrap">
+        04. Corfo
+      </a>
+      <a href="/proyectos-biogas.html" class="shrink-0 px-2.5 py-1.5 rounded-md text-[11px] font-heading font-extrabold text-slate-950 bg-emerald-400 whitespace-nowrap flex items-center gap-1">
+        <span>05. Biogás</span>
+        <span class="text-[9px] px-1 py-0.5 rounded bg-slate-950 text-emerald-400">CORFO</span>
+      </a>
+    </div>
+
+    <!-- Menú Móvil Desplegable Completo -->
+    <div id="biogas-mobile-nav" class="hidden lg:hidden border-t border-slate-800 bg-[#0F172A] px-4 py-3 space-y-2 shadow-2xl">
+      <a href="/index.html" class="block px-3.5 py-2.5 rounded-md text-sm font-heading font-bold text-slate-200 bg-slate-800/80">01. Envases Flexibles</a>
+      <a href="/maquinaria-carnica.html" class="block px-3.5 py-2.5 rounded-md text-sm font-heading font-bold text-slate-200 bg-slate-800/80">02. Maquinaria Rubro Cárnico</a>
+      <a href="/maquinaria-pesquera.html" class="block px-3.5 py-2.5 rounded-md text-sm font-heading font-bold text-slate-200 bg-slate-800/80">03. Maquinaria Proceso Pesquero</a>
+      <a href="/proyectos-asesorias.html" class="block px-3.5 py-2.5 rounded-md text-sm font-heading font-bold text-slate-200 bg-slate-800/80">04. Proyectos y Asesorías Corfo</a>
       <a href="/proyectos-biogas.html" class="flex items-center justify-between px-3.5 py-2.5 rounded-md text-sm font-heading font-bold text-slate-950 bg-emerald-400">
         <span>05. Proyectos Biogás</span>
         <span class="text-xs font-extrabold uppercase">Financiable Corfo</span>
       </a>
+      <div class="pt-2 grid grid-cols-2 gap-2">
+        <a href="#biogas-proposals-section" onclick="document.getElementById('biogas-mobile-nav').classList.add('hidden')" class="text-center py-2.5 rounded-md bg-slate-800 text-sky-400 font-mono text-xs font-bold border border-sky-500/40">
+          Ver Planos 2D
+        </a>
+        <a href="#biogas-calculator-section" onclick="document.getElementById('biogas-mobile-nav').classList.add('hidden')" class="text-center py-2.5 rounded-md bg-emerald-500 text-slate-950 font-mono text-xs font-extrabold">
+          Calculadora ROI
+        </a>
+      </div>
     </div>
   </header>
 
@@ -730,15 +781,132 @@
       </div>
 
       <!-- ====================================================================
-           DIAGRAMA PANORÁMICO MAESTRO (TREN COMPLETO ANIMADO EN CORTE)
+           DIAGRAMA PANORÁMICO MAESTRO (ESCRITORIO / TABLET) + DIAGRAMA VERTICAL MÓVIL
            ==================================================================== -->
-      <div class="mb-10 bg-[#0F172A] border-2 border-slate-800 rounded-2xl p-4 sm:p-6 shadow-2xl overflow-hidden">
+      <div class="mb-10 bg-[#0F172A] border-2 border-slate-800 rounded-2xl p-3.5 sm:p-6 shadow-2xl overflow-hidden">
         <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3 border-b border-slate-800 text-xs font-mono">
-          <span class="text-emerald-400 font-bold uppercase">DIAGRAMA DE FLUJO DE PROCESO (P&ID VISUAL INTERACTIVO · FLUJO CONTINUO 24/7)</span>
-          <span class="text-slate-400">De Vísceras, Descartes y RILES → Electricidad 380V + Agua Caliente + Biofertilizante</span>
+          <span class="text-emerald-400 font-bold uppercase">DIAGRAMA DE FLUJO DE PROCESO (P&ID VISUAL INTERACTIVO · 24/7)</span>
+          <span class="text-slate-400">De Vísceras y RILES → Electricidad 380V + Agua Caliente + Bioabono</span>
         </div>
 
-        <div class="w-full overflow-x-auto">
+        <!-- VERSIÓN MÓVIL 100% VERTICAL (Cero Scroll Horizontal en Celulares) -->
+        <div class="md:hidden w-full">
+          <svg viewBox="0 0 360 570" class="w-full h-auto select-none">
+            <rect width="360" height="570" rx="10" fill="#0B1220"/>
+
+            <!-- BLOQUE 1 MÓVIL: TRITURADO + RILES -->
+            <g transform="translate(16, 14)">
+              <rect width="328" height="104" rx="10" fill="#1E293B" stroke="#38BDF8" stroke-width="2"/>
+              <rect x="12" y="10" width="66" height="20" rx="4" fill="#0284C7"/>
+              <text x="45" y="24" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono" font-size="10" font-weight="800">ETAPA 01</text>
+              <text x="88" y="24" fill="#FFFFFF" font-family="Plus Jakarta Sans" font-size="13" font-weight="800">TRITURADO + AGUA RILES</text>
+
+              <!-- Dibujo compacto Etapa 1 -->
+              <rect x="14" y="40" width="84" height="50" rx="6" fill="#0F172A" stroke="#F59E0B" stroke-width="1.8"/>
+              <text x="56" y="62" text-anchor="middle" fill="#FDE68A" font-family="JetBrains Mono" font-size="10" font-weight="700">🐟 VÍSCERAS</text>
+              <text x="56" y="78" text-anchor="middle" fill="#38BDF8" font-family="JetBrains Mono" font-size="9.5" font-weight="700">+ 💧 RILES</text>
+
+              <path d="M 98 65 L 126 65" stroke="#F59E0B" stroke-width="3.5" class="wp-pipe-anim"/>
+
+              <rect x="126" y="40" width="82" height="50" rx="6" fill="#0F172A" stroke="#38BDF8" stroke-width="1.8"/>
+              <g class="wp-spin-cw"><circle cx="154" cy="65" r="8" fill="#F59E0B"/></g>
+              <g class="wp-spin-ccw"><circle cx="178" cy="65" r="8" fill="#38BDF8"/></g>
+              <text x="167" y="85" text-anchor="middle" fill="#E2E8F0" font-family="JetBrains Mono" font-size="8.5" font-weight="700">CRUSHER</text>
+
+              <path d="M 208 65 L 232 65" stroke="#38BDF8" stroke-width="3.5" class="wp-pipe-anim"/>
+
+              <rect x="232" y="40" width="82" height="50" rx="6" fill="#0369A1" stroke="#38BDF8" stroke-width="1.8"/>
+              <text x="273" y="61" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono" font-size="10" font-weight="800">LICUADO</text>
+              <text x="273" y="77" text-anchor="middle" fill="#E0F2FE" font-family="JetBrains Mono" font-size="9.5" font-weight="700">8%–10% SÓL.</text>
+            </g>
+
+            <!-- CONECTOR VERTICAL 1 -> 2 -->
+            <path d="M 180 118 L 180 146" stroke="#38BDF8" stroke-width="5" class="wp-pipe-anim"/>
+            <text x="242" y="136" fill="#38BDF8" font-family="JetBrains Mono" font-size="10" font-weight="700">↓ LODO BOMBEABLE</text>
+
+            <!-- BLOQUE 2 MÓVIL: REACTOR ECPC 38°C -->
+            <g transform="translate(16, 146)">
+              <rect width="328" height="122" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="2.5"/>
+              <rect x="12" y="10" width="66" height="20" rx="4" fill="#10B981"/>
+              <text x="45" y="24" text-anchor="middle" fill="#052E16" font-family="JetBrains Mono" font-size="10" font-weight="800">ETAPA 02</text>
+              <text x="88" y="24" fill="#FFFFFF" font-family="Plus Jakarta Sans" font-size="13" font-weight="800">REACTOR ECPC (35°C–38°C)</text>
+
+              <!-- Reactor en corte -->
+              <rect x="14" y="38" width="186" height="72" rx="6" fill="#0F766E" fill-opacity="0.65" stroke="#10B981" stroke-width="2"/>
+              <path d="M 24 92 Q 55 82 86 92 T 148 92 T 188 92" fill="none" stroke="#EF4444" stroke-width="3"/>
+              <g class="wp-bubble-1"><circle cx="52" cy="72" r="5" fill="#34D399"/><circle cx="152" cy="74" r="5" fill="#6EE7B7"/></g>
+              <g class="wp-bubble-2"><circle cx="104" cy="65" r="5.5" fill="#A7F3D0"/></g>
+              <text x="107" y="56" text-anchor="middle" fill="#A7F3D0" font-family="JetBrains Mono" font-size="10.5" font-weight="800">🔥 BIOGÁS 65% CH₄</text>
+              <text x="107" y="104" text-anchor="middle" fill="#FECACA" font-family="JetBrains Mono" font-size="9" font-weight="700">♨ CALEFACCIÓN 38°C · 0% OLOR</text>
+
+              <!-- Salida lateral Bioabono -->
+              <path d="M 200 74 L 222 74" stroke="#84CC16" stroke-width="4" class="wp-pipe-anim"/>
+              <rect x="222" y="42" width="92" height="64" rx="6" fill="#1A2E05" stroke="#84CC16" stroke-width="2"/>
+              <text x="268" y="64" text-anchor="middle" fill="#BEF264" font-family="JetBrains Mono" font-size="10" font-weight="800">🌱 BIOABONO</text>
+              <text x="268" y="80" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono" font-size="9">FERTILIZANTE</text>
+              <text x="268" y="94" text-anchor="middle" fill="#84CC16" font-family="JetBrains Mono" font-size="8.5" font-weight="700">0% PATÓGENOS</text>
+            </g>
+
+            <!-- CONECTOR VERTICAL 2 -> 3 -->
+            <path d="M 180 268 L 180 296" stroke="#FACC15" stroke-width="5" class="wp-pipe-anim"/>
+            <text x="248" y="286" fill="#FACC15" font-family="JetBrains Mono" font-size="10" font-weight="700">↓ GAS CRUDO + H₂S</text>
+
+            <!-- BLOQUE 3 MÓVIL: PURIFICACIÓN H2O + H2S -->
+            <g transform="translate(16, 296)">
+              <rect width="328" height="104" rx="10" fill="#1E293B" stroke="#38BDF8" stroke-width="2"/>
+              <rect x="12" y="10" width="66" height="20" rx="4" fill="#0284C7"/>
+              <text x="45" y="24" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono" font-size="10" font-weight="800">ETAPA 03</text>
+              <text x="88" y="24" fill="#FFFFFF" font-family="Plus Jakarta Sans" font-size="13" font-weight="800">SECADO Y FILTRO AZUFRE H₂S</text>
+
+              <rect x="14" y="40" width="92" height="52" rx="6" fill="#0F172A" stroke="#38BDF8" stroke-width="1.8"/>
+              <text x="60" y="62" text-anchor="middle" fill="#7DD3FC" font-family="JetBrains Mono" font-size="9.5" font-weight="700">💧 MOD-1000</text>
+              <text x="60" y="78" text-anchor="middle" fill="#E0F2FE" font-family="JetBrains Mono" font-size="9">DRENA AGUA</text>
+
+              <path d="M 106 66 L 126 66" stroke="#38BDF8" stroke-width="3.5" class="wp-pipe-anim"/>
+
+              <rect x="126" y="40" width="96" height="52" rx="6" fill="#064E3B" stroke="#10B981" stroke-width="1.8"/>
+              <text x="174" y="62" text-anchor="middle" fill="#FDE047" font-family="JetBrains Mono" font-size="9.5" font-weight="800">🧪 TORRES H₂S</text>
+              <text x="174" y="78" text-anchor="middle" fill="#A7F3D0" font-family="JetBrains Mono" font-size="9">QUITA AZUFRE</text>
+
+              <path d="M 222 66 L 240 66" stroke="#10B981" stroke-width="3.5" class="wp-pipe-anim"/>
+
+              <rect x="240" y="40" width="74" height="52" rx="6" fill="#0F172A" stroke="#10B981" stroke-width="1.8"/>
+              <text x="277" y="62" text-anchor="middle" fill="#6EE7B7" font-family="JetBrains Mono" font-size="9.5" font-weight="800">✨ GAS PURO</text>
+              <text x="277" y="78" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono" font-size="8.5">0% CORROSIÓN</text>
+            </g>
+
+            <!-- CONECTOR VERTICAL 3 -> 4 -->
+            <path d="M 180 400 L 180 428" stroke="#10B981" stroke-width="5" class="wp-pipe-anim"/>
+            <text x="244" y="418" fill="#10B981" font-family="JetBrains Mono" font-size="10" font-weight="700">↓ METANO DULCE</text>
+
+            <!-- BLOQUE 4 MÓVIL: DOMO PVDF + MOTOR CHP 380V -->
+            <g transform="translate(16, 428)">
+              <rect width="328" height="126" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="2.5"/>
+              <rect x="12" y="10" width="66" height="20" rx="4" fill="#10B981"/>
+              <text x="45" y="24" text-anchor="middle" fill="#052E16" font-family="JetBrains Mono" font-size="10" font-weight="800">ETAPA 04</text>
+              <text x="88" y="24" fill="#FFFFFF" font-family="Plus Jakarta Sans" font-size="13" font-weight="800">DOMO PVDF + GENERADOR CHP</text>
+
+              <!-- Domo PVDF -->
+              <path d="M 18 112 A 48 52 0 0 1 114 112 Z" fill="#0F172A" stroke="#38BDF8" stroke-width="1.8" stroke-dasharray="4 3"/>
+              <g class="wp-dome-anim">
+                <path d="M 24 112 A 42 42 0 0 1 108 112 Z" fill="#10B981" fill-opacity="0.45" stroke="#10B981" stroke-width="2"/>
+              </g>
+              <text x="66" y="96" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono" font-size="9.5" font-weight="800">DOMO PVDF</text>
+              <text x="66" y="108" text-anchor="middle" fill="#A7F3D0" font-family="JetBrains Mono" font-size="8">PRESIÓN CTE.</text>
+
+              <path d="M 116 86 L 140 86" stroke="#10B981" stroke-width="4" class="wp-pipe-anim"/>
+
+              <!-- Motor CHP + Salidas -->
+              <rect x="140" y="40" width="174" height="74" rx="8" fill="#0F172A" stroke="#F59E0B" stroke-width="2"/>
+              <text x="227" y="62" text-anchor="middle" fill="#FDE047" font-family="JetBrains Mono" font-size="12" font-weight="800">⚡ LUZ 380V (1,62 kWh/m³)</text>
+              <text x="227" y="80" text-anchor="middle" fill="#A7F3D0" font-family="JetBrains Mono" font-size="9.5" font-weight="700">🏭 CÁMARAS FRÍO Y PLANTA</text>
+              <text x="227" y="98" text-anchor="middle" fill="#FCA5A5" font-family="JetBrains Mono" font-size="9.5" font-weight="700">♨️ + AGUA CALIENTE 85°C GRATIS</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- VERSIÓN ESCRITORIO / TABLET PANORÁMICA -->
+        <div class="hidden md:block w-full overflow-x-auto">
           <svg viewBox="0 0 1200 340" class="w-full min-w-[860px] h-auto select-none">
             <defs>
               <pattern id="pidGrid" width="24" height="24" patternUnits="userSpaceOnUse">
@@ -1246,65 +1414,68 @@
         </p>
       </div>
 
-      <!-- Barra de 5 Pestañas (Tabs) -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5 mb-8">
-        <button type="button" data-tab="1" class="biogas-tab-btn px-4 py-3 rounded-lg font-heading font-bold text-xs sm:text-sm bg-white text-slate-700 border border-slate-300 hover:border-slate-400 transition-all text-left">
-          <div class="text-[10px] font-mono text-emerald-600 font-bold">PROPUESTA 01 · 8 m²</div>
-          <div class="truncate">Micro-Planta Solar 3,5 m³</div>
+      <!-- Barra de 5 Pestañas (Compacta 2 Columnas en Móvil / 5 en Escritorio) -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-6">
+        <button type="button" data-tab="1" class="biogas-tab-btn px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg font-heading font-bold text-xs sm:text-sm bg-white text-slate-700 border border-slate-300 hover:border-slate-400 transition-all text-left">
+          <div class="text-[10px] font-mono text-emerald-600 font-bold">PROP. 01 · 8 m²</div>
+          <div class="truncate">Piloto Solar 3,5 m³</div>
         </button>
 
-        <button type="button" data-tab="2" class="biogas-tab-btn px-4 py-3 rounded-lg font-heading font-bold text-xs sm:text-sm bg-white text-slate-700 border border-slate-300 hover:border-slate-400 transition-all text-left">
-          <div class="text-[10px] font-mono text-emerald-600 font-bold">PROPUESTA 02 · 96 m²</div>
+        <button type="button" data-tab="2" class="biogas-tab-btn px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg font-heading font-bold text-xs sm:text-sm bg-white text-slate-700 border border-slate-300 hover:border-slate-400 transition-all text-left">
+          <div class="text-[10px] font-mono text-emerald-600 font-bold">PROP. 02 · 96 m²</div>
           <div class="truncate">Modular ECPC 100 m³</div>
         </button>
 
-        <button type="button" data-tab="3" class="biogas-tab-btn px-4 py-3 rounded-lg font-heading font-extrabold text-xs sm:text-sm bg-[#0F172A] text-white border-2 border-[#10B981] shadow-md transition-all text-left">
-          <div class="text-[10px] font-mono text-emerald-400 font-bold">PROPUESTA 03 · 252 m²</div>
-          <div class="truncate">Compacta 1.000 m³ (Techo)</div>
+        <button type="button" data-tab="3" class="biogas-tab-btn px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg font-heading font-extrabold text-xs sm:text-sm bg-[#0F172A] text-white border-2 border-[#10B981] shadow-md transition-all text-left">
+          <div class="text-[10px] font-mono text-emerald-400 font-bold">PROP. 03 · 252 m²</div>
+          <div class="truncate">Compacta 1.000 m³</div>
         </button>
 
-        <button type="button" data-tab="4" class="biogas-tab-btn px-4 py-3 rounded-lg font-heading font-bold text-xs sm:text-sm bg-white text-slate-700 border border-slate-300 hover:border-slate-400 transition-all text-left">
-          <div class="text-[10px] font-mono text-emerald-600 font-bold">PROPUESTA 04 · 396 m²</div>
-          <div class="truncate">Extendida 1.000 + Domo 500</div>
+        <button type="button" data-tab="4" class="biogas-tab-btn px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg font-heading font-bold text-xs sm:text-sm bg-white text-slate-700 border border-slate-300 hover:border-slate-400 transition-all text-left">
+          <div class="text-[10px] font-mono text-emerald-600 font-bold">PROP. 04 · 396 m²</div>
+          <div class="truncate">1.000 + Domo 500</div>
         </button>
 
-        <button type="button" data-tab="5" class="biogas-tab-btn px-4 py-3 rounded-lg font-heading font-bold text-xs sm:text-sm bg-white text-slate-700 border border-slate-300 hover:border-slate-400 transition-all text-left">
-          <div class="text-[10px] font-mono text-emerald-600 font-bold">PROPUESTA 05 · 1.200 m² / JCNCS</div>
+        <button type="button" data-tab="5" class="biogas-tab-btn col-span-2 sm:col-span-1 px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg font-heading font-bold text-xs sm:text-sm bg-white text-slate-700 border border-slate-300 hover:border-slate-400 transition-all text-left">
+          <div class="text-[10px] font-mono text-emerald-600 font-bold">PROP. 05 · 1.200 m² / JCNCS</div>
           <div class="truncate">Mega-Planta 6.000 m³ / e-PTFE</div>
         </button>
       </div>
 
-      <!-- Contenedor Principal: Izquierda Ficha Técnica/Financiera | Derecha Plano Blueprint SVG -->
+      <!-- Contenedor Principal: En Móvil el Plano 2D va PRIMERO (order-1) para ver el cambio al instante -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        <!-- Columna Izquierda: Ficha Técnica y Financiera (5 cols) -->
-        <div id="biogas-proposal-details" class="lg:col-span-5 bg-white border border-slate-200 rounded-xl p-6 shadow-md">
+        <!-- Columna Izquierda en Escritorio / Segunda en Móvil: Ficha Técnica y Financiera (5 cols) -->
+        <div id="biogas-proposal-details" class="order-2 lg:order-1 lg:col-span-5 bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-md">
           <!-- Renderizado dinámicamente por biogas-page-app.js -->
         </div>
 
-        <!-- Columna Derecha: Plano de Ingeniería Blueprint 2D en SVG (7 cols) -->
-        <div class="lg:col-span-7 bg-[#0F172A] border-2 border-slate-800 rounded-xl p-4 sm:p-6 shadow-2xl">
-          <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-slate-800">
+        <!-- Columna Derecha en Escritorio / Primera en Móvil: Plano de Ingeniería Blueprint 2D en SVG (7 cols) -->
+        <div id="biogas-blueprint-card" class="order-1 lg:order-2 lg:col-span-7 bg-[#0F172A] border-2 border-slate-800 rounded-xl p-3.5 sm:p-6 shadow-2xl">
+          <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3 border-b border-slate-800">
             <div>
               <div id="biogas-blueprint-title" class="text-xs sm:text-sm font-mono font-bold text-sky-400 uppercase">
                 PLANO DE PLANTA CAD-03 · INDUSTRIAL COMPACTA 1.000 m³
               </div>
-              <div id="biogas-blueprint-scale" class="text-xs text-slate-400 font-mono">
+              <div id="biogas-blueprint-scale" class="text-[11px] sm:text-xs text-slate-400 font-mono">
                 Escala 1:100 · Superficie Total: 252,0 m² (18,0 m × 14,0 m)
               </div>
             </div>
-            <div class="flex items-center gap-3 text-[11px] font-mono">
-              <span class="flex items-center gap-1.5 text-sky-400">
+            <div class="flex items-center gap-2 sm:gap-3 text-[11px] font-mono">
+              <button type="button" onclick="const c=document.getElementById('biogas-blueprint-canvas'); c.classList.toggle('mobile-zoomed'); this.textContent = c.classList.contains('mobile-zoomed') ? '🔍 Ajustar a Pantalla' : '🔍 Ampliar Plano';" class="sm:hidden px-2.5 py-1 rounded bg-slate-800 text-emerald-400 border border-emerald-500/40 font-bold text-[10px]">
+                🔍 Ampliar Plano
+              </button>
+              <span class="hidden sm:flex items-center gap-1.5 text-sky-400">
                 <span class="w-2.5 h-2.5 rounded-sm bg-sky-400 inline-block"></span>
                 Cotas / Equipos
               </span>
-              <span class="flex items-center gap-1.5 text-emerald-400">
+              <span class="hidden sm:flex items-center gap-1.5 text-emerald-400">
                 <span class="w-2.5 h-2.5 rounded-sm bg-emerald-400 inline-block"></span>
                 Línea Biogás / Reactor
               </span>
             </div>
           </div>
 
-          <div id="biogas-blueprint-canvas" class="w-full overflow-hidden rounded-lg">
+          <div id="biogas-blueprint-canvas" class="w-full overflow-x-auto rounded-lg">
             <!-- SVG Blueprint inyectado dinámicamente -->
           </div>
         </div>
@@ -1567,7 +1738,21 @@
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         <!-- Panel de Controles (Sliders) - 5 Columnas -->
-        <div class="lg:col-span-5 bg-slate-900 border border-slate-700 rounded-xl p-6 space-y-6 shadow-xl">
+        <div class="lg:col-span-5 bg-slate-900 border border-slate-700 rounded-xl p-5 sm:p-6 space-y-6 shadow-xl">
+          <!-- Resumen en Vivo Flotante solo para Móvil (Para ver resultados mientras se arrastra el slider) -->
+          <div class="lg:hidden p-3.5 rounded-xl bg-gradient-to-r from-emerald-950 to-slate-950 border-2 border-emerald-400/80 shadow-lg">
+            <div class="flex items-center justify-between text-[10px] font-mono uppercase text-emerald-300 font-bold mb-1">
+              <span>FLUJO POSITIVO EN VIVO</span>
+              <span id="res-monthly-kwh-mobile" class="text-sky-300">43.740 kWh/mes</span>
+            </div>
+            <div id="res-total-flow-mobile" class="text-2xl font-heading font-extrabold text-white tracking-tight">
+              $16.047.000 / mes
+            </div>
+            <div id="res-rec-short-mobile" class="text-[11px] font-mono text-emerald-400 font-bold mt-1 truncate">
+              ✓ Propuesta 3 — Planta ECPC 1.000 m³ (252 m²)
+            </div>
+          </div>
+
           <!-- Slider 1: Toneladas diarias -->
           <div>
             <div class="flex items-center justify-between mb-2">
@@ -2151,7 +2336,7 @@
   </footer>
 
   <script type="module">
-    import { initBiogasPage } from '/js/biogas-page-app.js?v=biogas_v2';
+    import { initBiogasPage } from '/js/biogas-page-app.js?v=biogas_v3';
     document.addEventListener('DOMContentLoaded', () => {
       initBiogasPage();
     });

@@ -278,30 +278,30 @@ class AntigravityRenderer {
       </div>
 
       <header class="sticky top-0 z-40 bg-[#15141C]/95 backdrop-blur-md border-b border-[#2E2D3D] shadow-lg transition-all">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-3">
+        <div class="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2">
           
-          <!-- 1. Emblema Vectorial HD + Marca WellPack (Cero Pixelado) -->
-          <a href="index.html" class="flex items-center gap-3.5 group shrink-0">
-            <div class="w-11 h-11 rounded-lg bg-[#1F1E2B] border border-[#36354A] group-hover:border-[#FF7618] flex items-center justify-center shadow-sm transition-colors shrink-0">
-              <svg class="w-6 h-6 text-[#FF7618]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <!-- 1. Emblema Vectorial HD + Marca WellPack (Cero Pixelado, adaptable a Móvil) -->
+          <a href="index.html" class="flex items-center gap-2.5 sm:gap-3.5 group min-w-0">
+            <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-[#1F1E2B] border border-[#36354A] group-hover:border-[#FF7618] flex items-center justify-center shadow-sm transition-colors shrink-0">
+              <svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#FF7618]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
                 <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
                 <line x1="12" y1="22.08" x2="12" y2="12"/>
               </svg>
             </div>
-            <div class="flex flex-col">
+            <div class="flex flex-col min-w-0">
               <div class="flex items-center gap-2">
-                <span class="text-xl sm:text-2xl font-extrabold tracking-tight text-white font-heading uppercase leading-none">
+                <span class="text-lg sm:text-2xl font-extrabold tracking-tight text-white font-heading uppercase leading-none truncate">
                   WELLPACK<span class="text-[#FF7618]">.</span>
                 </span>
               </div>
-              <span class="text-xs text-slate-300 font-semibold uppercase tracking-wider mt-1 leading-none">
+              <span class="text-[10px] sm:text-xs text-slate-300 font-semibold uppercase tracking-wider mt-1 leading-none truncate">
                 ${subtitleText}
               </span>
             </div>
           </a>
 
-          <!-- 2. Navegación Industrial Numerada (Sin emojis ni cápsulas de neón) -->
+          <!-- 2. Navegación Industrial Numerada (Escritorio) -->
           <nav class="hidden lg:flex items-center gap-1">
             <a 
               href="index.html" 
@@ -358,12 +358,12 @@ class AntigravityRenderer {
             </a>
           </nav>
 
-          <!-- 3. Acciones de Cabecera -->
-          <div class="flex items-center gap-2">
+          <!-- 3. Acciones de Cabecera (Compactas en Móvil para evitar desborde) -->
+          <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
             <button 
               id="btn-open-config" 
               title="Configuración de Sistema & Webhooks" 
-              class="p-2.5 rounded-md bg-[#1F1E2B] hover:bg-[#2A293A] text-slate-300 hover:text-[#FF7618] border border-[#343346] transition-colors">
+              class="hidden sm:inline-flex p-2.5 rounded-md bg-[#1F1E2B] hover:bg-[#2A293A] text-slate-300 hover:text-[#FF7618] border border-[#343346] transition-colors">
               <i data-lucide="settings" class="w-4 h-4"></i>
             </button>
 
@@ -377,46 +377,71 @@ class AntigravityRenderer {
 
               <button 
                 data-open-variation="any"
-                class="btn-open-variation inline-flex items-center gap-2 bg-[#FF7618] hover:bg-[#E5630A] text-white font-heading font-bold text-xs px-4 sm:px-5 py-2.5 rounded-md uppercase tracking-wider transition-colors shrink-0">
-                <span>Cotizar Empaque</span>
-                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                class="btn-open-variation inline-flex items-center gap-1.5 bg-[#FF7618] hover:bg-[#E5630A] text-white font-heading font-bold text-[11px] sm:text-xs px-3 sm:px-5 py-2 sm:py-2.5 rounded-md uppercase tracking-wider transition-colors shrink-0">
+                <span>Cotizar</span>
+                <span class="hidden sm:inline">Empaque</span>
+                <span>↗</span>
               </button>
             ` : isMeat ? `
               <button 
                 type="button"
                 data-machine-title="Línea Industrial Rubro Cárnico & Cecinas"
-                class="btn-machinery-quote inline-flex items-center gap-2 bg-[#FF7618] hover:bg-[#E5630A] text-white font-heading font-bold text-xs px-4 sm:px-5 py-2.5 rounded-md uppercase tracking-wider transition-colors shrink-0">
-                <span>Cotizar Línea Cárnica</span>
-                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                class="btn-machinery-quote inline-flex items-center gap-1.5 bg-[#FF7618] hover:bg-[#E5630A] text-white font-heading font-bold text-[11px] sm:text-xs px-3 sm:px-5 py-2 sm:py-2.5 rounded-md uppercase tracking-wider transition-colors shrink-0">
+                <span>Cotizar</span>
+                <span class="hidden sm:inline">Línea Cárnica</span>
+                <span>↗</span>
               </button>
             ` : isFish ? `
               <button 
                 type="button"
                 data-machine-title="Línea Industrial Proceso Pesquero & Acuícola"
-                class="btn-machinery-quote inline-flex items-center gap-2 bg-[#FF7618] hover:bg-[#E5630A] text-white font-heading font-bold text-xs px-4 sm:px-5 py-2.5 rounded-md uppercase tracking-wider transition-colors shrink-0">
-                <span>Cotizar Línea Pesquera</span>
-                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                class="btn-machinery-quote inline-flex items-center gap-1.5 bg-[#FF7618] hover:bg-[#E5630A] text-white font-heading font-bold text-[11px] sm:text-xs px-3 sm:px-5 py-2 sm:py-2.5 rounded-md uppercase tracking-wider transition-colors shrink-0">
+                <span>Cotizar</span>
+                <span class="hidden sm:inline">Línea Pesquera</span>
+                <span>↗</span>
               </button>
             ` : `
               <a 
                 href="#corfo_wizard_section"
-                class="inline-flex items-center gap-2 bg-[#FF7618] hover:bg-[#E5630A] text-white font-heading font-bold text-xs px-4 sm:px-5 py-2.5 rounded-md uppercase tracking-wider transition-colors shrink-0">
-                <span>Evaluador Corfo</span>
-                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                class="inline-flex items-center gap-1.5 bg-[#FF7618] hover:bg-[#E5630A] text-white font-heading font-bold text-[11px] sm:text-xs px-3 sm:px-5 py-2 sm:py-2.5 rounded-md uppercase tracking-wider transition-colors shrink-0">
+                <span>Evaluar</span>
+                <span class="hidden sm:inline">Corfo</span>
+                <span>↗</span>
               </a>
             `}
 
             <button 
               id="btn-mobile-nav-toggle" 
               aria-label="Abrir menú" 
-              class="lg:hidden p-2.5 rounded-md bg-[#1F1E2B] text-white hover:text-[#FF7618] border border-[#343346] transition-colors">
-              <i data-lucide="menu" class="w-5 h-5"></i>
+              class="lg:hidden inline-flex items-center gap-1.5 px-3 py-2 rounded-md bg-[#1F1E2B] text-white hover:text-[#FF7618] border border-[#343346] font-heading font-bold text-xs transition-colors">
+              <span>MENÚ</span>
+              <i data-lucide="menu" class="w-4 h-4"></i>
             </button>
           </div>
         </div>
 
-        <!-- Menú Desplegable Móvil con las 4 Pestañas de División -->
-        <div id="mobile-nav-menu" class="hidden lg:hidden border-t border-[#2E2D3D] bg-[#15141C] px-4 py-3 space-y-2">
+        <!-- Barra Rápida Móvil de las 5 Divisiones (1 Toque sin abrir menú) -->
+        <div class="lg:hidden border-t border-[#262533] bg-[#0F0E14] px-3 py-2 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+          <a href="index.html" class="shrink-0 px-2.5 py-1.5 rounded-md text-[11px] font-heading font-bold whitespace-nowrap ${isPkg ? 'bg-[#FF7618] text-white' : 'text-slate-300 bg-[#1F1E2B] border border-[#2E2D3D]'}">
+            01. Envases
+          </a>
+          <a href="maquinaria-carnica.html" class="shrink-0 px-2.5 py-1.5 rounded-md text-[11px] font-heading font-bold whitespace-nowrap ${isMeat ? 'bg-[#FF7618] text-white' : 'text-slate-300 bg-[#1F1E2B] border border-[#2E2D3D]'}">
+            02. Cárnico
+          </a>
+          <a href="maquinaria-pesquera.html" class="shrink-0 px-2.5 py-1.5 rounded-md text-[11px] font-heading font-bold whitespace-nowrap ${isFish ? 'bg-[#FF7618] text-white' : 'text-slate-300 bg-[#1F1E2B] border border-[#2E2D3D]'}">
+            03. Pesquero
+          </a>
+          <a href="proyectos-asesorias.html" class="shrink-0 px-2.5 py-1.5 rounded-md text-[11px] font-heading font-bold whitespace-nowrap ${isProj ? 'bg-[#FF7618] text-white' : 'text-slate-300 bg-[#1F1E2B] border border-[#2E2D3D]'}">
+            04. Corfo
+          </a>
+          <a href="proyectos-biogas.html" class="shrink-0 px-2.5 py-1.5 rounded-md text-[11px] font-heading font-extrabold text-white bg-[#10B981]/20 border border-[#10B981]/60 whitespace-nowrap flex items-center gap-1">
+            <span>05. Biogás</span>
+            <span class="text-[9px] px-1 py-0.5 rounded bg-[#10B981] text-[#052E16]">CORFO</span>
+          </a>
+        </div>
+
+        <!-- Menú Desplegable Móvil con las 5 Pestañas de División -->
+        <div id="mobile-nav-menu" class="hidden lg:hidden border-t border-[#2E2D3D] bg-[#15141C] px-4 py-3 space-y-2 shadow-2xl">
           <div class="text-xs font-heading font-bold uppercase tracking-widest text-slate-400 px-2 pb-1">Divisiones Industriales WellPack</div>
           <a href="index.html" class="mobile-nav-link flex items-center justify-between px-3.5 py-2.5 rounded-md text-sm font-heading font-bold ${isPkg ? 'bg-[#FF7618] text-white' : 'text-slate-200 bg-[#1F1E2B] border border-[#2E2D3D]'}">
             <span>01. Envases Flexibles (Principal)</span>

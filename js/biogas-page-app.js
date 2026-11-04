@@ -664,15 +664,20 @@ export function initBiogasPage() {
 
   // Inicializar Tabs de las 5 Propuestas
   const tabButtons = document.querySelectorAll('.biogas-tab-btn');
+  function applyTabButtonClasses() {
+    tabButtons.forEach(b => {
+      const isCurrent = b.dataset.tab === activeTab;
+      const spanClass = b.dataset.tab === '5' ? 'col-span-2 sm:col-span-1 ' : '';
+      b.className = isCurrent
+        ? `biogas-tab-btn ${spanClass}px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg font-heading font-extrabold text-xs sm:text-sm bg-[#0F172A] text-white border-2 border-[#10B981] shadow-md transition-all text-left`
+        : `biogas-tab-btn ${spanClass}px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg font-heading font-bold text-xs sm:text-sm bg-white text-slate-700 border border-slate-300 hover:border-slate-400 transition-all text-left`;
+    });
+  }
+
   tabButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       activeTab = btn.dataset.tab;
-      tabButtons.forEach(b => {
-        const isCurrent = b.dataset.tab === activeTab;
-        b.className = isCurrent
-          ? 'biogas-tab-btn px-4 py-3 rounded-lg font-heading font-extrabold text-xs sm:text-sm bg-[#0F172A] text-white border-2 border-[#10B981] shadow-md transition-all text-left'
-          : 'biogas-tab-btn px-4 py-3 rounded-lg font-heading font-bold text-xs sm:text-sm bg-white text-slate-700 border border-slate-300 hover:border-slate-400 transition-all text-left';
-      });
+      applyTabButtonClasses();
       renderProposalPanel(activeTab);
     });
   });
@@ -685,12 +690,7 @@ export function initBiogasPage() {
     } else {
       activeTab = String(tabKey);
     }
-    tabButtons.forEach(b => {
-      const isCurrent = b.dataset.tab === activeTab;
-      b.className = isCurrent
-        ? 'biogas-tab-btn px-4 py-3 rounded-lg font-heading font-extrabold text-xs sm:text-sm bg-[#0F172A] text-white border-2 border-[#10B981] shadow-md transition-all text-left'
-        : 'biogas-tab-btn px-4 py-3 rounded-lg font-heading font-bold text-xs sm:text-sm bg-white text-slate-700 border border-slate-300 hover:border-slate-400 transition-all text-left';
-    });
+    applyTabButtonClasses();
     renderProposalPanel(activeTab);
     const sec = document.getElementById('biogas-proposals-section');
     if (sec) sec.scrollIntoView({ behavior: 'smooth' });
@@ -811,6 +811,14 @@ export function initBiogasPage() {
     if (btnViewRecPlan) {
       btnViewRecPlan.onclick = () => window.jumpToBiogasTab(rec.key);
     }
+
+    // Actualizar Resumen en Vivo de Móvil (encima de los sliders)
+    const elTotalFlowMobile = document.getElementById('res-total-flow-mobile');
+    const elMonthlyKwhMobile = document.getElementById('res-monthly-kwh-mobile');
+    const elRecShortMobile = document.getElementById('res-rec-short-mobile');
+    if (elTotalFlowMobile) elTotalFlowMobile.textContent = `${formatCLP(totalMonthlyPositiveFlow)} / mes`;
+    if (elMonthlyKwhMobile) elMonthlyKwhMobile.textContent = `${formatNumber(monthlyKwh)} kWh/mes`;
+    if (elRecShortMobile) elRecShortMobile.textContent = `✓ ${rec.name}`;
 
     // Sincronizar con el formulario inferior de diagnóstico
     const formTons = document.getElementById('form-biogas-tons');

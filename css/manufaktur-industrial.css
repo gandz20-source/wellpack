@@ -410,3 +410,71 @@ div.bg-cyan-950\/80 {
 .s5-worker { transform-origin: 245px 135px; animation: mkReceiverHands 0.85s ease-in-out infinite; }
 .s6-lift { animation: mkForkLiftUp 1s ease-in-out infinite; }
 .s6-cab  { animation: mkForkCab 0.45s ease-in-out infinite; }
+
+/* ==========================================================================
+   10. OPTIMIZACIÓN INTEGRAL PARA DISPOSITIVOS MÓVILES (320px - 767px)
+   ========================================================================== */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 78px !important;
+  }
+
+  .mk-scene-stage {
+    width: min(300px, 86vw) !important;
+    height: 210px !important;
+  }
+
+  /* Reducir paddings verticales excesivos en secciones móviles */
+  section.py-24,
+  section.py-20 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  /* Evitar que botones de filtro se partan en múltiples líneas en móvil */
+  #packaging-category-filters,
+  #machinery-category-filters,
+  #fishery-category-filters {
+    justify-content: flex-start !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem !important;
+  }
+
+  #packaging-category-filters button,
+  #machinery-category-filters button,
+  #fishery-category-filters button {
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Ajustar títulos grandes en pantallas estrechas (< 390px) */
+  h1.text-4xl {
+    font-size: 1.85rem !important;
+    line-height: 1.15 !important;
+  }
+  h2.text-3xl {
+    font-size: 1.55rem !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Ajustar dock inferior flotante en pantallas pequeñas */
+  #floating-b2b-dock {
+    bottom: 10px !important;
+    width: 95% !important;
+  }
+}
